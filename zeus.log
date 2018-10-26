@@ -1,0 +1,76 @@
+2018-09-19 18:17:33.355  INFO 12384 --- [main] com.zcf.universe.UniverseApplication     : Starting UniverseApplication on DESKTOP-5EC5HSI with PID 12384 (E:\projects\zeus\target\classes started by six in E:\projects\zeus)
+2018-09-19 18:17:33.357  INFO 12384 --- [main] com.zcf.universe.UniverseApplication     : The following profiles are active: dev
+2018-09-19 18:17:33.390  INFO 12384 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@470f1802: startup date [Wed Sep 19 18:17:33 NOVT 2018]; root of context hierarchy
+2018-09-19 18:17:33.784  WARN 12384 --- [main] t.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.zcf.universe]' package. Please check your configuration.
+2018-09-19 18:17:33.789  WARN 12384 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.zcf.universe]' package. Please check your configuration.
+2018-09-19 18:17:34.233  INFO 12384 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-09-19 18:17:34.249  INFO 12384 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-09-19 18:17:34.249  INFO 12384 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-09-19 18:17:34.252  INFO 12384 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_162\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;%MAVEN_HOME%\bin;"%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;";F:\apache-tomcat-8.5.31;F:\git\Git\cmd;%M2_HOME%\bin;%MAVEN_HOME%\bin;C:\Users\six\AppData\Local\Microsoft\WindowsApps;;.]
+2018-09-19 18:17:34.311  INFO 12384 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/zeus]   : Initializing Spring embedded WebApplicationContext
+2018-09-19 18:17:34.311  INFO 12384 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 922 ms
+2018-09-19 18:17:34.347  INFO 12384 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-09-19 18:17:34.350  INFO 12384 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-09-19 18:17:34.351  INFO 12384 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-09-19 18:17:34.351  INFO 12384 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-09-19 18:17:34.351  INFO 12384 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-09-19 18:17:34.627  INFO 12384 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-09-19 18:17:34.730  INFO 12384 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@470f1802: startup date [Wed Sep 19 18:17:33 NOVT 2018]; root of context hierarchy
+2018-09-19 18:17:34.761  INFO 12384 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello],methods=[GET]}" onto public java.lang.String com.zcf.universe.controller.api.HelloController.index()
+2018-09-19 18:17:34.763  INFO 12384 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/login],methods=[POST]}" onto public java.lang.String com.zcf.universe.controller.api.UserController.login(java.lang.String,java.lang.String)
+2018-09-19 18:17:34.765  INFO 12384 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-09-19 18:17:34.765  INFO 12384 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-09-19 18:17:34.780  INFO 12384 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-09-19 18:17:34.780  INFO 12384 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-09-19 18:17:34.875  INFO 12384 --- [main] t.m.m.autoconfigure.MapperCacheDisabler  : Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2018-09-19 18:17:34.875  INFO 12384 --- [main] t.m.m.autoconfigure.MapperCacheDisabler  : Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2018-09-19 18:17:34.875  INFO 12384 --- [main] t.m.m.autoconfigure.MapperCacheDisabler  : Clear tk.mybatis.mapper.version.VersionUtil CACHE cache.
+2018-09-19 18:17:34.876  INFO 12384 --- [main] t.m.m.autoconfigure.MapperCacheDisabler  : Clear EntityHelper entityTableMap cache.
+2018-09-19 18:17:34.997  INFO 12384 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-09-19 18:17:34.998  INFO 12384 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-09-19 18:17:35.001  INFO 12384 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-09-19 18:17:35.021  INFO 12384 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/zeus'
+2018-09-19 18:17:35.025  INFO 12384 --- [main] com.zcf.universe.UniverseApplication     : Started UniverseApplication in 1.902 seconds (JVM running for 2.389)
+2018-09-19 18:17:43.363  INFO 12384 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/zeus]   : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-09-19 18:17:43.364  INFO 12384 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-09-19 18:17:43.374  INFO 12384 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 10 ms
+2018-09-19 18:17:43.396  INFO 12384 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-09-19 18:17:43.514  INFO 12384 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-09-19 18:18:48.992  INFO 11252 --- [main] com.zcf.universe.UniverseApplication     : Starting UniverseApplication on DESKTOP-5EC5HSI with PID 11252 (E:\projects\zeus\target\classes started by six in E:\projects\zeus)
+2018-09-19 18:18:48.994  INFO 11252 --- [main] com.zcf.universe.UniverseApplication     : The following profiles are active: dev
+2018-09-19 18:18:49.025  INFO 11252 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@63021689: startup date [Wed Sep 19 18:18:49 NOVT 2018]; root of context hierarchy
+2018-09-19 18:18:49.421  WARN 11252 --- [main] t.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.zcf.universe]' package. Please check your configuration.
+2018-09-19 18:18:49.427  WARN 11252 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.zcf.universe]' package. Please check your configuration.
+2018-09-19 18:18:49.856  INFO 11252 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2018-09-19 18:18:49.873  INFO 11252 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-09-19 18:18:49.874  INFO 11252 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-09-19 18:18:49.876  INFO 11252 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_162\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;%MAVEN_HOME%\bin;"%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;";F:\apache-tomcat-8.5.31;F:\git\Git\cmd;%M2_HOME%\bin;%MAVEN_HOME%\bin;C:\Users\six\AppData\Local\Microsoft\WindowsApps;;.]
+2018-09-19 18:18:49.936  INFO 11252 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/zeus]   : Initializing Spring embedded WebApplicationContext
+2018-09-19 18:18:49.936  INFO 11252 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 911 ms
+2018-09-19 18:18:49.973  INFO 11252 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-09-19 18:18:49.976  INFO 11252 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-09-19 18:18:49.976  INFO 11252 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-09-19 18:18:49.977  INFO 11252 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-09-19 18:18:49.977  INFO 11252 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-09-19 18:18:50.238  INFO 11252 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-09-19 18:18:50.340  INFO 11252 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@63021689: startup date [Wed Sep 19 18:18:49 NOVT 2018]; root of context hierarchy
+2018-09-19 18:18:50.372  INFO 11252 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello],methods=[GET]}" onto public java.lang.String com.zcf.universe.controller.api.HelloController.index()
+2018-09-19 18:18:50.374  INFO 11252 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/login],methods=[POST]}" onto public java.lang.String com.zcf.universe.controller.api.UserController.login(java.lang.String,java.lang.String)
+2018-09-19 18:18:50.376  INFO 11252 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-09-19 18:18:50.376  INFO 11252 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-09-19 18:18:50.392  INFO 11252 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-09-19 18:18:50.392  INFO 11252 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-09-19 18:18:50.481  INFO 11252 --- [main] t.m.m.autoconfigure.MapperCacheDisabler  : Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2018-09-19 18:18:50.481  INFO 11252 --- [main] t.m.m.autoconfigure.MapperCacheDisabler  : Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2018-09-19 18:18:50.481  INFO 11252 --- [main] t.m.m.autoconfigure.MapperCacheDisabler  : Clear tk.mybatis.mapper.version.VersionUtil CACHE cache.
+2018-09-19 18:18:50.481  INFO 11252 --- [main] t.m.m.autoconfigure.MapperCacheDisabler  : Clear EntityHelper entityTableMap cache.
+2018-09-19 18:18:50.603  INFO 11252 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-09-19 18:18:50.604  INFO 11252 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-09-19 18:18:50.607  INFO 11252 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-09-19 18:18:50.627  INFO 11252 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/zeus'
+2018-09-19 18:18:50.630  INFO 11252 --- [main] com.zcf.universe.UniverseApplication     : Started UniverseApplication in 1.883 seconds (JVM running for 2.328)
+2018-09-19 18:18:57.076  INFO 11252 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/zeus]   : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-09-19 18:18:57.077  INFO 11252 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-09-19 18:18:57.093  INFO 11252 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 16 ms
+2018-09-19 18:18:57.117  INFO 11252 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-09-19 18:18:57.244  INFO 11252 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.

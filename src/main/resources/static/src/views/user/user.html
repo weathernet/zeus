@@ -1,0 +1,199 @@
+<title>用户列表</title>
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">主页</a>
+        <a>
+            <cite>用户管理</cite>
+        </a>
+        <a>
+            <cite>用户管理</cite>
+        </a>
+    </div>
+</div>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="layadmin-user-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">关键字</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="keywords" placeholder="请输入" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">搜索类别</label>
+                        <div class="layui-input-block">
+                            <select name="status">
+                                <option value="0">昵称</option>
+                                <option value="1">真实姓名</option>
+                                <option value="2">手机号</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-user-back-search">
+                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <table id="LAY-user-user" lay-filter="LAY-user-user"></table>
+            <script type="text/html" id="userSex">
+                {{#  if(d.userSex==0){     }}
+                <button class="layui-btn layui-btn-danger layui-btn-xs">女</button>
+                {{#  }else{                          }}
+                <button class="layui-btn layui-btn-normal layui-btn-xs">男</button>
+                {{#       }                    }}
+            </script>
+            <script type="text/html" id="userType">
+                {{#  if(d.userType==0){            }}
+                <button class="layui-btn layui-btn-normal layui-btn-xs">工人</button>
+                {{#  }else if(d.userType==1){      }}
+                <button class="layui-btn layui-btn-warm layui-btn-xs">工头</button>
+                {{#  } else{                       }}
+                <button class="layui-btn layui-btn-danger layui-btn-xs">雇主</button>
+                {{#  }                             }}
+            </script>
+            <script type="text/html" id="UserAuditState">
+                {{#  if(d.userAuditState==0){     }}
+                <button class="layui-btn ayui-btn-primary layui-btn-xs">未认证</button>
+                {{#  }else if(d.userAuditState==1){                          }}
+                <button class="layui-btn layui-btn-warm layui-btn-xs">审核中</button>
+                {{#  }else if(d.userAuditState==2){                          }}
+                <button class="layui-btn layui-btn-normal layui-btn-xs">已通过</button>
+                {{#      }else{                    }}
+                <button class="layui-btn layui-btn-danger layui-btn-xs">已拒绝</button>
+                {{#       }                    }}
+            </script>
+            <script type="text/html" id="userState">
+                {{#  if(d.userState==0){     }}
+                <button class="layui-btn ayui-btn-danger layui-btn-xs">正常</button>
+                {{#  }else{                          }}
+                <button class="layui-btn layui-btn-danger layui-btn-xs">冻结</button>
+                {{#       }                    }}
+            </script>
+            <script type="text/html" id="Push">
+                {{#  if(d.userPushApp==0){     }}
+                <button class="layui-btn ayui-btn-danger layui-btn-xs">开启</button>
+                {{#  }else{                          }}
+                <button class="layui-btn layui-btn-danger layui-btn-xs">关闭</button>
+                {{#       }                    }}
+            </script>
+            <script type="text/html" id="Push1">
+                {{#  if(d.userPushWeixin==0){     }}
+                <button class="layui-btn ayui-btn-danger layui-btn-xs">开启</button>
+                {{#  }else{                          }}
+                <button class="layui-btn layui-btn-danger layui-btn-xs">关闭</button>
+                {{#       }                    }}
+            </script>
+            <script type="text/html" id="Push2">
+                {{#  if(d.userPushNote==0){     }}
+                <button class="layui-btn ayui-btn-danger layui-btn-xs">开启</button>
+                {{#  }else{                          }}
+                <button class="layui-btn layui-btn-danger layui-btn-xs">关闭</button>
+                {{#       }                    }}
+            </script>
+            <script type="text/html" id="Push3">
+                {{#  if(d.userPushWeixinAccount==0){     }}
+                <button class="layui-btn ayui-btn-danger layui-btn-xs">开启</button>
+                {{#  }else{                          }}
+                <button class="layui-btn layui-btn-danger layui-btn-xs">关闭</button>
+                {{#       }                    }}
+            </script>
+            <script type="text/html" id="userHeadpic">
+                <img style="display: inline-block; width: 50%; height: 100%;" src=http://172.16.1.233:8080/{{
+                     d.userHeadpic }} onclick="previewImg(this)">
+            </script>
+            <script type="text/html" id="Identity1">
+                <img style="display: inline-block; width: 50%; height: 100%;" src=http://172.16.1.233:8080/{{
+                     d.userCardid }} onclick="previewImg(this)">
+            </script>
+            <script type="text/html" id="Identity2">
+                <img style="display: inline-block; width: 50%; height: 100%;" src=http://172.16.1.233:8080/{{
+                     d.userCardidback }} onclick="previewImg(this)">
+            </script>
+            <script type="text/html" id="Identity3">
+                <img style="display: inline-block; width: 50%; height: 100%;" src=http://172.16.1.233:8080/{{
+                     d.userCardidinfo }} onclick="previewImg(this)">
+            </script>
+            <script type="text/html" id="Details1">
+                <img style="display: inline-block; width: 50%; height: 100%;" src=http://172.16.1.233:8080/{{
+                     d.userUnitHeadpic }} onclick="previewImg(this)">
+            </script>
+            <script type="text/html" id="Details2">
+                <img style="display: inline-block; width: 50%; height: 100%;" src=http://172.16.1.233:8080/{{
+                     d.userUnitPic }} onclick="previewImg(this)">
+            </script>
+            <script type="text/html" id="Details3">
+                <img style="display: inline-block; width: 50%; height: 100%;" src=http://172.16.1.233:8080/{{
+                     d.userBusinessLicense }} onclick="previewImg(this)">
+            </script>
+            <script type="text/html" id="Details4">
+                <img style="display: inline-block; width: 50%; height: 100%;" src=http://172.16.1.233:8080/{{
+                     d.userWorkPic }} onclick="previewImg(this)">
+            </script>
+
+
+            <script type="text/html" id="table-user-user">
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="real"><i
+                        class="layui-icon layui-icon-edit"></i>实名信息</a>
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="unit"><i
+                        class="layui-icon layui-icon-edit"></i>其他信息</a>
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i
+                        class="layui-icon layui-icon-edit"></i>编辑</a>
+            </script>
+        </div>
+    </div>
+</div>
+<script>
+    function previewImg(obj) {
+        var img = new Image();
+        img.src = obj.src;
+        var imgHtml = "<img src='" + obj.src + "' width='500px' height='500px'/>";
+        //弹出层
+        layer.open({
+            type: 1,
+            shade: 0.8,
+            offset: 'auto',
+            area: [500 + 'px', 550 + 'px'],
+            shadeClose: true,
+            scrollbar: false,
+            title: "图片预览", //不显示标题
+            content: imgHtml, //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+            cancel: function () {
+                //layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', { time: 5000, icon: 6 });
+            }
+        });
+    }
+
+    layui.use('user', layui.factory('user')).use(['admin', 'user', 'table'],
+        function () {
+            var $ = layui.$,
+                admin = layui.admin,
+                view = layui.view,
+                table = layui.table,
+                form = layui.form;
+            form.render();
+            form.render(null, 'layadmin-user-form');
+
+            //监听搜索
+            form.on('submit(LAY-user-back-search)',
+                function (data) {
+                    var field = data.field;
+                    console.log(field)
+                    //执行重载
+                    table.reload('LAY-user-user', {
+                        method: "post",
+                        url: "/searchWkUser",
+                        where: field
+
+                    });
+                });
+            $('.layui-btn.user-form').on('click', function () {
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
+        });
+</script>
+

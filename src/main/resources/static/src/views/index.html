@@ -1,0 +1,138 @@
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">快捷方式</div>
+                        <div class="layui-card-body">
+                            <div class="layui-carousel layadmin-carousel layadmin-shortcut">
+                                <div carousel-item>
+                                    <ul class="layui-row layui-col-space10">
+                                        <li class="layui-col-xs3">
+                                            <a href="#">
+                                                <i class="layui-icon layui-icon-console"></i>
+                                                <cite>主页</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="user/user">
+                                                <i class="layui-icon layui-icon-chart"></i>
+                                                <cite>用户信息</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="puts/puts">
+                                                <i class="layui-icon layui-icon-template-1"></i>
+                                                <cite>提现申请</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="goods/goods">
+                                                <i class="layui-icon layui-icon-chat"></i>
+                                                <cite>商品信息</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="evaluate/evaluate">
+                                                <i class="layui-icon layui-icon-find-fill"></i>
+                                                <cite>商品的评论</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="activitys/activitys">
+                                                <i class="layui-icon layui-icon-survey"></i>
+                                                <cite>商品的活动</cite>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs3">
+                                            <a lay-href="mission/mission">
+                                                <i class="layui-icon layui-icon-user"></i>
+                                                <cite>发布推荐任务</cite>
+                                            </a>
+                                        </li>
+                                      <li class="layui-col-xs3">
+                                            <a lay-href="broadcast/broadcast">
+                                                <i class="layui-icon layui-icon-set"></i>
+                                                <cite>首页管理</cite>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md6">
+                    <div class="layui-card">
+                        <div class="layui-card-header">待办事项</div>
+                        <div class="layui-card-body">
+
+                            <div class="layui-carousel layadmin-carousel layadmin-backlog">
+                                <div carousel-item>
+                                    <ul class="layui-row layui-col-space10">
+                                        <li class="layui-col-xs6">
+                                            <a lay-href="order/order1"
+                                               class="layadmin-backlog-body">
+                                                <h3>代付款</h3>
+                                                <p><cite>去看看</cite></p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs6">
+                                            <a lay-href="order/order2"
+                                               class="layadmin-backlog-body">
+                                                <h3>待发货</h3>
+                                                <p><cite>去看看</cite></p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs6">
+                                            <a lay-href="order/order3"
+                                               class="layadmin-backlog-body">
+                                                <h3>待收货</h3>
+                                                <p><cite>去看看</cite></p>
+                                            </a>
+                                        </li>
+                                        <li class="layui-col-xs6">
+                                            <a lay-href="order/order4"
+                                               class="layadmin-backlog-body">
+                                                <h3>待评价</h3>
+                                                <p><cite>去看看</cite></p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!--                 <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">数据概览</div>
+                        <div class="layui-card-body">
+                            <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade"
+                                 lay-filter="LAY-index-dataview">
+                                <div carousel-item id="LAY-index-dataview">
+                                    <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script>
+    layui.use('console', layui.factory('console')).use(['admin', 'console', 'table'], function () {
+        var $ = layui.$
+            , admin = layui.admin
+            , view = layui.view
+            , table = layui.table
+            , form = layui.form;
+    });
+</script>
+
