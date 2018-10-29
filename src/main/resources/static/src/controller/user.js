@@ -118,7 +118,7 @@ layui.define(['table', 'form'], function (exports) {
                                 type: "POST", //请求方式 post
                                 dataType: 'json', //数据类型 json
                                 contentType: "application/json; charset=utf-8",
-                                url: "/updateWkUser", // 请求地址
+                                url: BASE_URL+"/updateWkUser", // 请求地址
                                 data: JSON.stringify(field), //请求附带参数
                                 success: function () {
                                     layui.table.reload('LAY-user-user'); //重载表格

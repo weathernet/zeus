@@ -17,7 +17,16 @@ layui.define(function(exports){
   
   //公共业务的逻辑处理可以写在此处，切换任何页面都会执行
   //……
-  
+    //baseurl
+    function getRoot() {
+        var hostname = location.hostname;
+        var pathname = location.pathname;
+        var contextPath = pathname.split("/")[1];
+        var port = location.port;
+        var protocol = location.protocol;
+        return protocol + "//" + hostname + ":" + port + "/" + contextPath;
+    }
+    var BASE_URL = getRoot();
   
   
   //退出

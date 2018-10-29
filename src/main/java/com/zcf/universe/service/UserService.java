@@ -1,7 +1,7 @@
 package com.zcf.universe.service;
 
 import com.zcf.universe.common.json.Body;
-import com.zcf.universe.entity.User;
+import com.zcf.universe.pojo.User;
 import com.zcf.universe.mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,5 +52,9 @@ public class UserService {
 
     public boolean deleteUser(Integer id) {
         return this.userMapper.deleteByPrimaryKey(id) == 1;
+    }
+
+    public User selectOneUser() {
+        return this.userMapper.selectOneUser();
     }
 }

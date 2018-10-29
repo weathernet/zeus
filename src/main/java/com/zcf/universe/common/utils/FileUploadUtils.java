@@ -25,8 +25,8 @@ public class FileUploadUtils {
      */
     public static Map uploadLayUiImg(MultipartFile file, String pathVal, String customPath) {
         String ImgURL = fileUpload(file, pathVal, customPath);
-        Map LayUiImageResult = new HashMap<>();
-        Map ImgSrc = new HashMap<>();
+        Map LayUiImageResult = new HashMap<String,String>();
+        Map ImgSrc = new HashMap<String,String>();
         LayUiImageResult.put("code", 0);
         LayUiImageResult.put("msg", "成功");
         LayUiImageResult.put("data", ImgSrc);
