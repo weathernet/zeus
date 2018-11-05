@@ -1,13 +1,18 @@
 package com.zcf.universe.controller.console;
 
-import com.zcf.universe.pojo.LayUIMeun.LayUiMenuResult;
-import com.zcf.universe.pojo.LayUIMeun.LayuiParentMenu;
-import com.zcf.universe.service.LayUiMenuService;
+import com.zcf.universe.common.utils.FileUploadUtils;
+import com.zcf.universe.common.LayUIMeun.LayUiMenuResult;
+import com.zcf.universe.common.LayUIMeun.LayuiParentMenu;
+import com.zcf.universe.service.LayUI.LayUiMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yuan
@@ -18,7 +23,7 @@ public class LayUiMenu {
     @Autowired
     private LayUiMenuService service;
 
-    @RequestMapping("LayUiMenus")
+    @GetMapping("LayUiMenus")
     public LayUiMenuResult menu() {
         List<LayuiParentMenu> menu = this.service.menu();
         LayUiMenuResult menuResult = new LayUiMenuResult();
@@ -26,6 +31,13 @@ public class LayUiMenu {
         menuResult.setMsg("返回成功");
         menuResult.setData(menu);
         return menuResult;
+    }
+
+    @PostMapping("upload")
+    public Map uploadimages(MultipartFile file, HttpServletRequest request) {
+        String pathVal = request.getSession().getServletContext().getRealPath("/");
+        String customPath = "img/";
+        return FileUploadUtils.wangEditorImageUpload(file, pathVal, customPath);
 
     }
 }

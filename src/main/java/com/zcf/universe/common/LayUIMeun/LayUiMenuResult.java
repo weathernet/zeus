@@ -1,5 +1,5 @@
 
-package com.zcf.universe.pojo.LayUIMeun;
+package com.zcf.universe.common.LayUIMeun;
 
 import lombok.Data;
 

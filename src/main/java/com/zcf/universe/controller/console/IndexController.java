@@ -1,13 +1,17 @@
 package com.zcf.universe.controller.console;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class IndexController {
-
-    @RequestMapping("/index")
+    @GetMapping("/index")
     public String index() {
         return "login";
+    }
+
+    @GetMapping("/test")
+    public String Test() {
+        return "Test";
     }
 }

@@ -1,4 +1,4 @@
-package com.zcf.universe.pojo.LayUIMeun;
+package com.zcf.universe.common.LayUIMeun;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

@@ -1,7 +1,7 @@
-package com.zcf.universe.service;
+package com.zcf.universe.service.LayUI;
 
-import com.zcf.universe.pojo.LayUIMeun.LayuiParentMenu;
-import com.zcf.universe.pojo.LayUIMeun.LayuiSubMenu;
+import com.zcf.universe.common.LayUIMeun.LayuiParentMenu;
+import com.zcf.universe.common.LayUIMeun.LayuiSubMenu;
 import com.zcf.universe.mapper.LayuiParentMenuMapper;
 import com.zcf.universe.mapper.LayuiSubMenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;

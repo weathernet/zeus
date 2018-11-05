@@ -6,15 +6,23 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Random;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by YuanQJ on 2018/10/18.
  */
 public class FileUploadUtils {
+    private static final String IMAGE_URL = "http://localhost:8080/zeus/";
+
+    public static Map wangEditorImageUpload(MultipartFile file, String pathVal, String customPath) {
+        List<String> url = new ArrayList<>();
+        String ImgURL = IMAGE_URL+fileUpload(file, pathVal, customPath);
+        url.add(ImgURL);
+        Map map = new HashMap();
+        map.put("errno", "0");
+        map.put("data", url);
+        return map;
+    }
 
     /**
      * LayUI 的图片上传的返回值
@@ -25,8 +33,8 @@ public class FileUploadUtils {
      */
     public static Map uploadLayUiImg(MultipartFile file, String pathVal, String customPath) {
         String ImgURL = fileUpload(file, pathVal, customPath);
-        Map LayUiImageResult = new HashMap<String,String>();
-        Map ImgSrc = new HashMap<String,String>();
+        Map LayUiImageResult = new HashMap<String, String>();
+        Map ImgSrc = new HashMap<String, String>();
         LayUiImageResult.put("code", 0);
         LayUiImageResult.put("msg", "成功");
         LayUiImageResult.put("data", ImgSrc);
