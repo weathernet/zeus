@@ -1,0 +1,31 @@
+server:
+  port: 8089
+  server:
+      path: /
+spring:
+#:数据库连接
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/family?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=true
+    username: root
+    password: root
+#:缓存数据库
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+#:mybatis
+mybatis:
+  type-aliases-package: com.zcf.universe.pojo
+#:分页插件
+pagehelper:
+  helperDialect: mysql
+  supportMethodsArguments: true
+  reasonable: true
+  params:
+    count: countSql
+logging:
+  level:
+    com.zcf.universe.mapper : debug #:打印SQL语句
+    io.swagger.models.parameters.AbstractSerializableParameter: error #:为了解决swagger日志无端的报错
