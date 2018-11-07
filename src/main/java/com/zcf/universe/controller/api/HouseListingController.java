@@ -8,7 +8,6 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,9 +38,7 @@ public class HouseListingController {
             @RequestParam(defaultValue = "20") String sortBy, @RequestParam(defaultValue = "true") Boolean desc, @RequestParam String key,
             @RequestParam(defaultValue = "北京") String city
     ) {
-        List<HouseListing> list = this.houseListingService.getHouseListings(page, rows, sortBy, desc, key, city);
-
-        return ResponseEntity.ok(list);
+        return ResponseEntity.ok(this.houseListingService.getHouseListings(page, rows, sortBy, desc, key, city));
     }
 
     @ApiOperation(value = "发布房源")
@@ -61,14 +58,12 @@ public class HouseListingController {
     @ApiOperation(value = "当前房源的回显")
     @GetMapping("houseListing/{id}")
     public ResponseEntity<HouseListing> getHouseListing(@PathVariable() Integer id) {
-        HouseListing houseListing = this.houseListingService.getHouseListing(id);
-        return ResponseEntity.status(HttpStatus.OK).body(houseListing);
+        return ResponseEntity.ok(this.houseListingService.getHouseListing(id));
     }
 
     @GetMapping("houseLabel")
     @ApiOperation(value = "显示所有的标签")
-    public ResponseEntity<List<HouseLabel>> getHouseLabel(){
-        List<HouseLabel> list = this.houseListingService.getHouseLabel();
-        return ResponseEntity.status(HttpStatus.OK).body(list);
+    public ResponseEntity<List<HouseLabel>> getHouseLabel() {
+        return ResponseEntity.ok(this.houseListingService.getHouseLabel());
     }
 }

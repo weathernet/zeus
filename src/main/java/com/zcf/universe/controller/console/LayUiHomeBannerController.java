@@ -2,8 +2,8 @@ package com.zcf.universe.controller.console;
 
 import com.zcf.universe.common.utils.FileUploadUtils;
 import com.zcf.universe.common.utils.LayUiResult;
-import com.zcf.universe.pojo.HomeStory;
-import com.zcf.universe.service.LayUiHomeStoryService;
+import com.zcf.universe.pojo.HomeBanner;
+import com.zcf.universe.service.LayUI.LayUiHomeBannerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,41 +19,42 @@ import java.util.Map;
 * Created by YuanQJ on 2018/11/07.
 */
 @RestController
-@RequestMapping("/home/story")
-public class LayUiHomeStoryController {
+@RequestMapping("/home/banner")
+public class LayUiHomeBannerController {
 
     @Autowired
-    private LayUiHomeStoryService LayUihomeStoryservice;
+    private LayUiHomeBannerService LayUihomeBannerservice;
 
     @RequestMapping("add")
-    public boolean add(@RequestBody HomeStory homeStory) {
-        return this.LayUihomeStoryservice.add(homeStory);
+    public boolean add(@RequestBody HomeBanner homeBanner) {
+        return this.LayUihomeBannerservice.add(homeBanner);
     }
 
     @RequestMapping("delete")
     public boolean delete(@RequestParam Integer id) {
-        return this.LayUihomeStoryservice.delete(id);
+        return this.LayUihomeBannerservice.delete(id);
     }
 
     @RequestMapping("update")
-    public boolean update(@RequestBody HomeStory homeStory) {
-        return this.LayUihomeStoryservice.update(homeStory);
+    public boolean update(@RequestBody HomeBanner homeBanner) {
+        return this.LayUihomeBannerservice.update(homeBanner);
     }
 
     @RequestMapping("query")
-    public LayUiResult queryHomeStory(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "20") Integer limit) {
-        return this.LayUihomeStoryservice.query(page,limit);
+    public LayUiResult queryHomeBanner(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "20") Integer limit) {
+        return this.LayUihomeBannerservice.query(page,limit);
     }
 
     @RequestMapping("search")
     public LayUiResult search(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "20") Integer limit,
         @RequestParam String keywords) {
-        return this.LayUihomeStoryservice.search(page,limit,keywords);
+        return this.LayUihomeBannerservice.search(page,limit,keywords);
     }
 
     @RequestMapping("upload")
     public Map UploadBrand(@RequestParam("file") MultipartFile file) throws FileNotFoundException{
-        String pathVal = ResourceUtils.getURL("classpath:").getPath() + "static/start/";
+        //String pathVal = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/";
+        String pathVal = ResourceUtils.getURL("classpath:").getPath() + "static/";
         return FileUploadUtils.uploadLayUiImg(file, pathVal,"img/");
     }
 }

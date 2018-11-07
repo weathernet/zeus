@@ -1,15 +1,16 @@
 package com.zcf.universe.controller.api;
 
+import com.zcf.universe.pojo.HomeBanner;
 import com.zcf.universe.pojo.HomeGroups;
+import com.zcf.universe.pojo.HomeStory;
 import com.zcf.universe.service.HomePageService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -27,7 +28,24 @@ public class HomePageController {
     @GetMapping("homeGroup")
     @ApiOperation(value = "获取首页分类")
     public ResponseEntity<List<HomeGroups>> getHomeGroups() {
-        List<HomeGroups> list = this.homePageService.getHomeGroups();
-        return ResponseEntity.status(HttpStatus.OK).body(list);
+        return ResponseEntity.ok(this.homePageService.getHomeGroups());
+    }
+
+    @GetMapping("homeBanner")
+    @ApiOperation(value = "获取首页轮播图")
+    public ResponseEntity<List<HomeBanner>> getHomeBanner() {
+        return ResponseEntity.ok(this.homePageService.getHomeBanner());
+    }
+
+    @GetMapping("homeStories")
+    @ApiOperation(value = "获取所有的故事")
+    public ResponseEntity<List<HomeStory>> getHomeStories() {
+        return ResponseEntity.ok(this.homePageService.getHomeStories());
+    }
+
+    @GetMapping("homeStory/{id}")
+    @ApiOperation(value = "获取所有的故事")
+    public ResponseEntity<HomeStory> getHomeStory(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(this.homePageService.getHomeStory(id));
     }
 }

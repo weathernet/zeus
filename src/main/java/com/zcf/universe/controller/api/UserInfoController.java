@@ -56,8 +56,7 @@ public class UserInfoController {
     @ApiOperation(value = "获取用户信息", notes = "ID一定不能为空")
     @ApiImplicitParam(name = "id", value = "用户的主键", required = true, dataType = "int")
     public ResponseEntity<UserInfo> getUserInfo(@PathVariable("id") Integer id) {
-        UserInfo userInfo = this.userInfoservice.getUserInfo(id);
-        return ResponseEntity.status(HttpStatus.OK).body(userInfo);
+        return ResponseEntity.ok(this.userInfoservice.getUserInfo(id));
 
     }
 

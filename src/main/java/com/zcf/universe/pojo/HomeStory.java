@@ -1,131 +1,44 @@
 package com.zcf.universe.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
 import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
 
+@Data
 @Table(name = "home_story")
+@ApiModel(value = "首页故事模型", description = "故事信息")
 public class HomeStory {
     /**
      * 故事Id
      */
+    @Id
     @Column(name = "story_id")
-    private String storyId;
+    @ApiModelProperty(value = "主键")
+    private Integer storyId;
 
-    /**
-     * 故事标题
-     */
+    @ApiModelProperty(value = "故事标题")
     @Column(name = "story_title")
     private String storyTitle;
 
+    @ApiModelProperty(value = "故事的内容")
     @Column(name = "story_content")
     private String storyContent;
 
-    /**
-     * 故事图片
-     */
+    @ApiModelProperty(value = "故事图片")
     @Column(name = "story_image")
     private String storyImage;
 
+    @ApiModelProperty(value = "创建时间")
     @Column(name = "create_time")
     private Date createTime;
 
+    @ApiModelProperty(value = "更新时间")
     @Column(name = "update_time")
     private Date updateTime;
 
-    /**
-     * 获取故事Id
-     *
-     * @return story_id - 故事Id
-     */
-    public String getStoryId() {
-        return storyId;
-    }
-
-    /**
-     * 设置故事Id
-     *
-     * @param storyId 故事Id
-     */
-    public void setStoryId(String storyId) {
-        this.storyId = storyId;
-    }
-
-    /**
-     * 获取故事标题
-     *
-     * @return story_title - 故事标题
-     */
-    public String getStoryTitle() {
-        return storyTitle;
-    }
-
-    /**
-     * 设置故事标题
-     *
-     * @param storyTitle 故事标题
-     */
-    public void setStoryTitle(String storyTitle) {
-        this.storyTitle = storyTitle;
-    }
-
-    /**
-     * @return story_content
-     */
-    public String getStoryContent() {
-        return storyContent;
-    }
-
-    /**
-     * @param storyContent
-     */
-    public void setStoryContent(String storyContent) {
-        this.storyContent = storyContent;
-    }
-
-    /**
-     * 获取故事图片
-     *
-     * @return story_image - 故事图片
-     */
-    public String getStoryImage() {
-        return storyImage;
-    }
-
-    /**
-     * 设置故事图片
-     *
-     * @param storyImage 故事图片
-     */
-    public void setStoryImage(String storyImage) {
-        this.storyImage = storyImage;
-    }
-
-    /**
-     * @return create_time
-     */
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    /**
-     * @param createTime
-     */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    /**
-     * @return update_time
-     */
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    /**
-     * @param updateTime
-     */
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }
