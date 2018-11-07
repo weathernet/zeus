@@ -14,7 +14,7 @@ import java.util.Date;
 @ApiModel(value = "用户信息模型", description = "用户对象user")
 public class UserInfo {
     @Id
-    @ApiModelProperty(value = "用户ID", required = true)
+    @ApiModelProperty(value = "用户ID,主键", required = true)
     @Column(name = "user_id")
     private Integer userId;
 
@@ -60,14 +60,6 @@ public class UserInfo {
     @Column(name = "user_ali_pay_openid")
     private String userAliPayOpenid;
 
-    @ApiModelProperty(value = "创建时间")
-    @Column(name = "create_time")
-    private Date createTime;
-
-    @ApiModelProperty(value = "更新时间")
-    @Column(name = "update_time")
-    private Date updateTime;
-
     @ApiModelProperty(value = "芝麻信用分")
     @Column(name = "user_sesame_score")
     private String userSesameScore;
@@ -80,5 +72,12 @@ public class UserInfo {
     @Column(name = "user_state")
     private Integer userState;
 
+    @ApiModelProperty(value = "创建时间")
+    @Column(name = "create_time")
+    private Date createTime;
+
+    @ApiModelProperty(value = "更新时间")
+    @Column(name = "update_time")
+    private Date updateTime;
 
 }

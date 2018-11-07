@@ -1,5 +1,7 @@
 package com.zcf.universe.service;
 
+import com.zcf.universe.common.exception.CommonException;
+import com.zcf.universe.common.exception.ExceptionEnum;
 import com.zcf.universe.common.utils.IDUtils;
 import com.zcf.universe.mapper.UserInfoMapper;
 import com.zcf.universe.pojo.UserInfo;
@@ -30,10 +32,10 @@ public class UserInfoService {
     // 注册时的验证码
     public void getCode(String phone) {
         if (StringUtils.isEmpty(phone)) {
-            System.out.println("手机号不能为空");
+            throw  new CommonException(ExceptionEnum.PHONE_NUMBER_BE_NULL);
         }
         if (this.checkPhone(phone)) {
-            System.out.println("该手机号已注册");
+            throw  new CommonException(ExceptionEnum.PHONE_NUMBER_BE_NULL);
         }
         String random = IDUtils.Random();//获取随机数
         //SmsUtils.sendRegister(phone, random);//发送验证码

@@ -42,21 +42,11 @@ layui.define(['table', 'form'], function (exports) {
 
     //**********表格显示开始**********
     table.render({
-        elem: '#LAY-userInfo-list'
-        , url: '/user/info/query'
+        elem: '#LAY-houseLabel-list'
+        , url: '/house/label/query'
         , cols: [[
-             {field: 'userId',  title: '用户ID'}
-            , {field: 'userRealName', title: 'userRealName'}
-            , {field: 'userNikeName', title: '用户昵称'}
-            , {field: 'userIdentification', title: '身份证号码'}
-            , {field: 'userGender', title: '性别'}
-            , {field: 'user_head_portrait', title: '头像'}
-            , {field: 'userEmail', title: 'userEmail'}
-            , {field: 'userPhoneNumber', title: 'userPhoneNumber'}
-            , {field: 'userSesameScore', title: '芝麻信用分'}
-            , {field: 'userWallet', title: '钱包'}
-            , {field: 'userState', title: '实名认证'}
-            , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-userInfo-toolbar'}//设置表格工具条的名称
+             {field: 'labelName',  title: '房源的特色标签'}
+            , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-houseLabel-toolbar'}//设置表格工具条的名称
         ]]
         , page: true//开启分页
         , limit: 20
@@ -66,27 +56,27 @@ layui.define(['table', 'form'], function (exports) {
     //**********表格显示开始***********
 
     //++++++++++监听工具条操作开始++++++++++
-    table.on('tool(LAY-userInfo-list)', function (obj) {//表格的名称
+    table.on('tool(LAY-houseLabel-list)', function (obj) {//表格的名称
         var data = obj.data;
         if (obj.event === 'edit') {//匹配工具栏的edit字段
             admin.popup({
                 title: '修改词条信息'
                 , area: ['550px', '550px']
                 , success: function (layero, index) {
-                    view(this.id).render('userInfo/form', data).done(function () {//跳转的路径
-                        form.render(null, 'LAY-userInfo-list');//读取表格的信息
+                    view(this.id).render('houseLabel/form', data).done(function () {//跳转的路径
+                        form.render(null, 'LAY-houseLabel-list');//读取表格的信息
                         //监听提交
-                        form.on('submit(userInfo-form-submit)', function (data) {//form 表单提交的按钮
+                        form.on('submit(houseLabel-form-submit)', function (data) {//form 表单提交的按钮
                             var field = data.field; //获取提交的字段
                             console.log(field)
                             $.ajax({
                                 type: "POST", //请求方式 post
                                 dataType: 'json', //数据类型 json
                                 contentType: "application/json; charset=utf-8",
-                                url: "/user/info/update", // 请求地址
+                                url: "/house/label/update", // 请求地址
                                 data: JSON.stringify(field), //请求附带参数
                                 success: function () {
-                                    layui.table.reload('LAY-userInfo-list'); //重载表格
+                                    layui.table.reload('LAY-houseLabel-list'); //重载表格
                                     layer.close(index); //执行关闭
                                 }
                             });
@@ -96,8 +86,8 @@ layui.define(['table', 'form'], function (exports) {
             });
         } else if (obj.event === 'del') {//匹配工具栏的del字段
             layer.confirm('确定删除词条信息？', function (index) {
-                var id = data.id;//根据数据库的字段更改data.id中id的命名
-                $.post("/user/info/delete", {id: id}, function (data) {
+                var id = data.labelId;//根据数据库的字段更改data.id中id的命名
+                $.post("/house/label/delete", {id: id}, function (data) {
                     obj.del();
                     layer.close(index);
                 })
@@ -113,19 +103,19 @@ layui.define(['table', 'form'], function (exports) {
                 title: '添加词条'
                 , area: ['550px', '550px']//设置弹出框大小
                 , success: function (layero, index) {
-                    view(this.id).render('userInfo/form').done(function () {
+                    view(this.id).render('houseLabel/form').done(function () {
                         //监听提交
-                        form.on('submit(userInfo-form-submit)', function (data) {
+                        form.on('submit(houseLabel-form-submit)', function (data) {
                             var field = data.field; //获取提交的字段
                             console.log(field)
                             $.ajax({
                                 type: "POST", //请求方式 post
                                 dataType: 'json', //数据类型 json
                                 contentType: "application/json; charset=utf-8",
-                                url: "/user/info/add", // 请求地址
+                                url: "/house/label/add", // 请求地址
                                 data: JSON.stringify(field), //请求附带参数
                                 success: function (data) {
-                                    layui.table.reload('LAY-userInfo-list'); //重载表格
+                                    layui.table.reload('LAY-houseLabel-list'); //重载表格
                                     layer.close(index); //执行关闭
                                 }
                             });
@@ -135,26 +125,26 @@ layui.define(['table', 'form'], function (exports) {
             });
         }
     }
-    $('.layui-btn.userInfo-form').on('click', function() {var type = $(this).data('type');
+    $('.layui-btn.houseLabel-form').on('click', function() {var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
     //**********新增结束**********
 
     //==========搜索开始==========
-    form.render(null, 'lay-admin-userInfo-form');
-    form.on('submit(LAY-userInfo-back-search)',
+    form.render(null, 'lay-admin-houseLabel-form');
+    form.on('submit(LAY-houseLabel-back-search)',
         function(data) {
             var field = data.field;
             console.log(field)
             //执行重载
-            table.reload('LAY-userInfo-list', {
+            table.reload('LAY-houseLabel-list', {
                 method: "post",
-                url: "/user/info/search",
+                url: "/house/label/search",
                 where: field
             });
         });
     //==========搜索结束==========
 
     //对外暴露的接口
-    exports('userInfo', {});
+    exports('houseLabel', {});
 });

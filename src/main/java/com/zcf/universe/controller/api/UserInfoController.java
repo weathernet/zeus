@@ -13,13 +13,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.FileNotFoundException;
 
 /**
  * Created by YuanQJ on 2018/10/31.
  */
 @RestController
-@Api(value = "用户controller", tags = {"用户操作接口"})
+@Api(value = "用户控制层", tags = {"用户操作接口"})
 public class UserInfoController {
 
     @Autowired
@@ -80,7 +81,7 @@ public class UserInfoController {
         String customPath = "user/";//自定义图片存储路径
         String userHeadPortrait = FileUploadUtils.fileUpload(file, path, customPath);
         this.userInfoservice.uploadUserHeadPortrait(id, userHeadPortrait);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.ok(null);
     }
 
     //Authentication
@@ -89,7 +90,7 @@ public class UserInfoController {
     @ApiImplicitParam(name = "id", value = "用户的主键", required = true, dataType = "int")
     public ResponseEntity<Void> authenticationUser(@PathVariable("id") Integer id, UserInfo info) {
         this.userInfoservice.updateUser(info, id);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.ok(null);
     }
 
 }
