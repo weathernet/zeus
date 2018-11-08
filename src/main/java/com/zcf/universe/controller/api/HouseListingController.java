@@ -18,7 +18,7 @@ import java.util.List;
  * @date 2018/11/6 0006
  */
 @RestController
-@Api(value = "房源控制层", tags = {"房源操作接口"})
+@Api(value = "房源控制器", tags = {"房源控制器"})
 public class HouseListingController {
 
     @Autowired

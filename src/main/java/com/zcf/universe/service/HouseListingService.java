@@ -30,14 +30,14 @@ public class HouseListingService {
     private HouseLabelMapper houseLabelMapper;
 
     //查询房源
-    public List<HouseListing> getHouseListings(Integer page, Integer rows, String sortBy, boolean desc, String key,String city) {
+    public List<HouseListing> getHouseListings(Integer page, Integer rows, String sortBy, boolean desc, String key, String city) {
         //分页
         PageHelper.startPage(page, rows);
         //过滤
         Example example = new Example(HouseListing.class);
         Example.Criteria criteria = example.createCriteria();
-        if(StringUtils.isNotBlank(city)){
-            criteria.andEqualTo("housingCity" ,city);
+        if (StringUtils.isNotBlank(city)) {
+            criteria.andEqualTo("housingCity", city);
         }
         if (StringUtils.isNotBlank(key)) {
             criteria.orLike("housingTitle", "%" + key + "%");
@@ -60,6 +60,7 @@ public class HouseListingService {
         return this.houseListingMapper.insertSelective(houseListing) == 1;
 
     }
+
     //更新房源
     public void updateHouseListing(Integer id, HouseListing houseListing) {
         houseListing.setHousingId(id);
@@ -77,7 +78,7 @@ public class HouseListingService {
 
     public List<HouseLabel> getHouseLabel() {
         List<HouseLabel> list = this.houseLabelMapper.selectAll();
-        if(CollectionUtils.isEmpty(list)){
+        if (CollectionUtils.isEmpty(list)) {
             throw new CommonException(ExceptionEnum.HOUSE_LABEL_BE_REPEAT);
         }
         return list;

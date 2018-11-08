@@ -3,22 +3,18 @@
         <label class="layui-form-label">品牌名称</label>
         <div class="layui-input-inline">
             <script type="text/html" template>
-                <input type="text" name="name" value="{{ d.params.name || '' }}" lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input">
+                <input type="text" name="storyTitle" value="{{ d.params.storyTitle || '' }}" lay-verify="required"
+                       placeholder="请输入地址" autocomplete="off" class="layui-input">
             </script>
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">图片</label>
-        <div class="layui-input-inline">
-            <script type="text/html" template>
-                <input type="text" name="image" value="{{ d.params.image || '' }}" lay-verify="required"
-                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
-            </script>
-        </div>
-        <button style="float: left;" type="button" class="layui-btn" id="homeStory-upload-homeStory">上传图片</button>
+    <div class="layui-form-item layui-form-text">
+    <textarea class="layui-textarea" id="LAY_demo1" style="display: none" name="storyContent" lay-verify="content">
+    </textarea>
     </div>
+
     <script type="text/html" template>
-        <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+        <input type="hidden" name="storyId" value="{{ d.params.storyId || '' }}">
     </script>
     <div class="layui-form-item">
         <label class="layui-form-label"></label>
@@ -28,15 +24,28 @@
     </div>
 </div>
 <script>
-    layui.use([ 'admin', 'form', 'upload' ], function() {
-        var $ = layui.$, form = layui.form, upload = layui.upload;
-
+    layui.use(['admin', 'form', 'upload', 'layedit'], function () {
+        var $ = layui.$, form = layui.form, upload = layui.upload, layedit = layui.layedit;
+        layedit.set({
+            uploadImage: {
+                url: '/home/story/upload', //接口url
+                type: 'post', //默认post
+            }
+        });
+        var indexVal = layedit.build('LAY_demo1', {
+            tool: ['left', 'center', 'right', '|', 'face','image']
+        });
+        form.verify({
+            content: function(value) {
+                return layedit.sync(indexVal);
+            }
+        });
         form.render();//使select可以显示option
         //-------------文件上传开始----------
         upload.render({
-            elem : '#homeStory-upload-homeStory',
-            url : '/home/story/upload',
-            done : function(res) {
+            elem: '#homeStory-upload-homeStory',
+            url: '/home/story/upload',
+            done: function (res) {
                 //如果上传失败
                 if (res.code > 0) {
                     return layer.msg('上传失败');

@@ -20,7 +20,7 @@ import java.io.FileNotFoundException;
  * Created by YuanQJ on 2018/10/31.
  */
 @RestController
-@Api(value = "用户控制层", tags = {"用户操作接口"})
+@Api(value = "用户控制器", tags = {"用户控制器"})
 public class UserInfoController {
 
     @Autowired
@@ -83,7 +83,6 @@ public class UserInfoController {
         return ResponseEntity.ok(null);
     }
 
-    //Authentication
     @PostMapping("Authentication/{id}")
     @ApiOperation(value = "实名认证", notes = "图片不为空")
     @ApiImplicitParam(name = "id", value = "用户的主键", required = true, dataType = "int")

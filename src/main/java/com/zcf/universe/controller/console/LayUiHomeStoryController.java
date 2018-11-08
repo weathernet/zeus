@@ -3,7 +3,7 @@ package com.zcf.universe.controller.console;
 import com.zcf.universe.common.utils.FileUploadUtils;
 import com.zcf.universe.common.utils.LayUiResult;
 import com.zcf.universe.pojo.HomeStory;
-import com.zcf.universe.service.LayUiHomeStoryService;
+import com.zcf.universe.service.LayUI.LayUiHomeStoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestBody;
