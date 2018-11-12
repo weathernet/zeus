@@ -45,10 +45,29 @@ layui.define(['table', 'form'], function (exports) {
         elem: '#LAY-userOrder-list'
         , url: '/user/order/query'
         , cols: [[
-             {field: 'additionalTitle',  title: '标题'}
-            , {field: 'additionalContext', title: '佣金比例设置'}
-            , {field: 'createTime', title: '创建日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
-            , {field: 'updateTime', title: '修改日期',templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
+            {field: 'orderId', title: '订单号'}
+            , {field: 'orderUserId', title: '用户Id'}
+            , {field: 'orderType', title: '类型'}
+            , {field: 'orderGoodsId', title: '商品编号'}
+            , {field: 'orderGoodsTitle', title: '商品标题'}
+            , {field: 'orderGoodsImage', title: '商品照片'}
+            , {field: 'orderGoodsPrice', title: '商品价格'}
+            , {field: 'orderGoodsStatus', title: '订单状态'}
+            , {field: 'orderUserPhone', title: '收货人手机号'}
+            , {field: 'orderUserAddress', title: '收货人地址'}
+            , {field: 'orderCourierCompany', title: '快递公司'}
+            , {field: 'orderCourierNumber', title: '快递单号'}
+            , {field: 'orderHousingId', title: '房源Id'}
+            , {field: 'orderHousingTitle', title: '房源标题'}
+            , {field: 'orderHousingImage', title: '房源图片'}
+            , {field: 'orderHousingStartTime', title: '房屋合约开始时间'}
+            , {field: 'orderHousingEndTime', title: '租房合约的结束时间'}
+            , {field: 'orderHousingPrice', title: '租金'}
+            , {
+                field: 'createTime',
+                title: '订单生成时间',
+                templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'
+            }
             , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-userOrder-toolbar'}//设置表格工具条的名称
         ]]
         , page: true//开启分页
@@ -128,7 +147,8 @@ layui.define(['table', 'form'], function (exports) {
             });
         }
     }
-    $('.layui-btn.userOrder-form').on('click', function() {var type = $(this).data('type');
+    $('.layui-btn.userOrder-form').on('click', function () {
+        var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
     //**********新增结束**********
@@ -136,7 +156,7 @@ layui.define(['table', 'form'], function (exports) {
     //==========搜索开始==========
     form.render(null, 'lay-admin-userOrder-form');
     form.on('submit(LAY-userOrder-back-search)',
-        function(data) {
+        function (data) {
             var field = data.field;
             console.log(field)
             //执行重载

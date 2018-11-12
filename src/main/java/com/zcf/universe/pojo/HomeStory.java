@@ -13,9 +13,7 @@ import java.util.Date;
 @Table(name = "home_story")
 @ApiModel(value = "首页故事模型", description = "故事信息")
 public class HomeStory {
-    /**
-     * 故事Id
-     */
+
     @Id
     @Column(name = "story_id")
     @ApiModelProperty(value = "主键")

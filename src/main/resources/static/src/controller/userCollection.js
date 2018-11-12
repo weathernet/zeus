@@ -45,10 +45,12 @@ layui.define(['table', 'form'], function (exports) {
         elem: '#LAY-userCollection-list'
         , url: '/user/collection/query'
         , cols: [[
-             {field: 'additionalTitle',  title: '标题'}
-            , {field: 'additionalContext', title: '佣金比例设置'}
-            , {field: 'createTime', title: '创建日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
-            , {field: 'updateTime', title: '修改日期',templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
+             {field: 'collectionUserId',  title: '用户ID'}
+            , {field: 'collectionHousingId', title: '编号'}
+            , {field: 'collectionHousingTitle', title: '标题'}
+            , {field: 'collectionHousingImage', title: '图片'}
+            , {field: 'collectionHousingPrice', title: '价格'}
+            , {field: 'createTime', title: '收藏时间',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
             , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-userCollection-toolbar'}//设置表格工具条的名称
         ]]
         , page: true//开启分页

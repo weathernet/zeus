@@ -77,10 +77,6 @@ public class HouseListing {
     @Column(name = "housing_traffic")
     private String housingTraffic;
 
-    @ApiModelProperty(value = " 房源分组:写字楼,商业,房产出售,生活广场,品家出行", required = true)
-    @Column(name = "housing_groups")
-    private Integer housingGroups;
-
     @ApiModelProperty(value = " 经度")
     @Column(name = "housing_longitude")
     private String housingLongitude;
@@ -92,10 +88,6 @@ public class HouseListing {
     @ApiModelProperty(value = " 出租状态：0未出租；1已出租", required = true)
     @Column(name = "housing_live_status")
     private String housingLiveStatus;
-
-    @ApiModelProperty(value = " 房源的经营状态:0非自营 1自营", required = true)
-    @Column(name = "housing_status")
-    private String housingStatus;
 
     @ApiModelProperty(value = " 租用类型：0短租;1长租;2合租", required = true)
     @Column(name = "housing_lease_type")

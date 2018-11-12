@@ -8,9 +8,12 @@
             </script>
         </div>
     </div>
-    <div class="layui-form-item layui-form-text">
-    <textarea class="layui-textarea" id="LAY_demo1" style="display: none" name="storyContent" lay-verify="content">
-    </textarea>
+    <div class="layui-form-item layui-form-text" id="div1">
+        <script type="text/html" template>
+            <div >
+                {{d.params.storyContent || ''}}
+            </div>
+        </script>
     </div>
 
     <script type="text/html" template>
@@ -26,20 +29,6 @@
 <script>
     layui.use(['admin', 'form', 'upload', 'layedit'], function () {
         var $ = layui.$, form = layui.form, upload = layui.upload, layedit = layui.layedit;
-        layedit.set({
-            uploadImage: {
-                url: '/home/story/upload', //接口url
-                type: 'post', //默认post
-            }
-        });
-        var indexVal = layedit.build('LAY_demo1', {
-            tool: ['left', 'center', 'right', '|', 'face','image']
-        });
-        form.verify({
-            content: function(value) {
-                return layedit.sync(indexVal);
-            }
-        });
         form.render();//使select可以显示option
         //-------------文件上传开始----------
         upload.render({
@@ -56,5 +45,27 @@
             }
         });
         //-------------文件上传结束----------
-    })
+
+    });
+    var c = document.getElementById('div1');
+    var E = window.wangEditor
+    var editor = new E(c)
+    editor.customConfig.uploadImgServer = '/upload'
+    editor.customConfig.uploadFileName = 'file'
+    editor.customConfig.menus = [
+        'head',  // 标题
+        'bold',  // 粗体
+        'fontSize',  // 字号
+        'fontName',  // 字体
+        'italic',  // 斜体
+        'underline',  // 下划线
+        'strikeThrough',  // 删除线
+        'foreColor',  // 文字颜色
+        'backColor',  // 背景颜色
+        'list',  // 列表
+        'justify',  // 对齐方式
+        'image',  // 插入图片
+        'undo',  // 撤销
+    ];
+    editor.create()
 </script>

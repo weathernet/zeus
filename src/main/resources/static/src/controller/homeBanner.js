@@ -67,11 +67,11 @@ layui.define(['table', 'form'], function (exports) {
                 , area: ['550px', '550px']
                 , success: function (layero, index) {
                     view(this.id).render('homeBanner/form', data).done(function () {//跳转的路径
-                        form.render(null, 'LAY-homeBanner-list');//读取表格的信息
+                        form.render(null, 'homeBanner-form');//读取表格的信息
                         //监听提交
                         form.on('submit(homeBanner-form-submit)', function (data) {//form 表单提交的按钮
                             var field = data.field; //获取提交的字段
-                            console.log(field)
+                            field.goodsDetails=editor.txt.html();
                             $.ajax({
                                 type: "POST", //请求方式 post
                                 dataType: 'json', //数据类型 json

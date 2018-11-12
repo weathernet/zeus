@@ -32,6 +32,7 @@ public class LayUiHouseLabelController {
 
     @RequestMapping("delete")
     public boolean delete(@RequestParam Integer id) {
+
         return this.LayUihouseLabelservice.delete(id);
     }
 

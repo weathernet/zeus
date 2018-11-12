@@ -12,7 +12,7 @@ import java.util.*;
  * Created by YuanQJ on 2018/10/18.
  */
 public class FileUploadUtils {
-    private static final String IMAGE_URL = "http://localhost:8080/zeus/";
+    private static final String IMAGE_URL = "http://localhost:8089/";
 
     public static Map wangEditorImageUpload(MultipartFile file, String pathVal, String customPath) {
         List<String> url = new ArrayList<>();
@@ -94,7 +94,6 @@ public class FileUploadUtils {
      * String pathval = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/";
      */
     public static String fileUpload(MultipartFile file, String pathVal, String customPath) {
-        long startTime = System.currentTimeMillis();// 用来检测程序运行时间
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
         String format = df.format(new Date());
         String saveFilePath = customPath + format + "/";
@@ -114,12 +113,10 @@ public class FileUploadUtils {
             System.out.println(path);
             File newFile = new File(path);//创建文件路径
             try {
-                file.transferTo(newFile); // 通过CommonsMultipartFile的方法直接写文件（注意这个时候）
+                file.transferTo(newFile); // 通过MultipartFile的方法直接写文件（注意这个时候）
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            long endTime = System.currentTimeMillis();
-            System.out.println("方法二的运行时间：" + String.valueOf(endTime - startTime) + "ms");
             System.err.println(FileName);
             return FileName;
         }

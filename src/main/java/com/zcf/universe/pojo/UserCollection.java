@@ -1,147 +1,51 @@
 package com.zcf.universe.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Data
 @Table(name = "user_collection")
+@ApiModel(value = "用户收藏模型", description = "用户收藏信息")
 public class UserCollection {
+    @ApiModelProperty(value = "收藏ID")
     @Id
     @Column(name = "collection_id")
     private Integer collectionId;
 
+    @ApiModelProperty(value = "收藏用户")
     @Column(name = "collection_user_id")
     private String collectionUserId;
 
+    @ApiModelProperty(value = "房间的ID")
     @Column(name = "collection_housing_id")
     private Integer collectionHousingId;
 
+    @ApiModelProperty(value = "房间的图片")
     @Column(name = "collection_housing_image")
     private String collectionHousingImage;
 
+    @ApiModelProperty(value = "房间的价格")
     @Column(name = "collection_housing_price")
     private BigDecimal collectionHousingPrice;
 
+    @ApiModelProperty(value = "房间的标题")
     @Column(name = "collection_housing_title")
     private String collectionHousingTitle;
 
+    @ApiModelProperty(value = "创建时间")
     @Column(name = "create_time")
     private Date createTime;
 
+    @ApiModelProperty(value = "更新时间")
     @Column(name = "update_time")
     private Date updateTime;
 
-    /**
-     * @return collection_id
-     */
-    public Integer getCollectionId() {
-        return collectionId;
-    }
 
-    /**
-     * @param collectionId
-     */
-    public void setCollectionId(Integer collectionId) {
-        this.collectionId = collectionId;
-    }
-
-    /**
-     * @return collection_user_id
-     */
-    public String getCollectionUserId() {
-        return collectionUserId;
-    }
-
-    /**
-     * @param collectionUserId
-     */
-    public void setCollectionUserId(String collectionUserId) {
-        this.collectionUserId = collectionUserId;
-    }
-
-    /**
-     * @return collection_housing_id
-     */
-    public Integer getCollectionHousingId() {
-        return collectionHousingId;
-    }
-
-    /**
-     * @param collectionHousingId
-     */
-    public void setCollectionHousingId(Integer collectionHousingId) {
-        this.collectionHousingId = collectionHousingId;
-    }
-
-    /**
-     * @return collection_housing_image
-     */
-    public String getCollectionHousingImage() {
-        return collectionHousingImage;
-    }
-
-    /**
-     * @param collectionHousingImage
-     */
-    public void setCollectionHousingImage(String collectionHousingImage) {
-        this.collectionHousingImage = collectionHousingImage;
-    }
-
-    /**
-     * @return collection_housing_price
-     */
-    public BigDecimal getCollectionHousingPrice() {
-        return collectionHousingPrice;
-    }
-
-    /**
-     * @param collectionHousingPrice
-     */
-    public void setCollectionHousingPrice(BigDecimal collectionHousingPrice) {
-        this.collectionHousingPrice = collectionHousingPrice;
-    }
-
-    /**
-     * @return collection_housing_title
-     */
-    public String getCollectionHousingTitle() {
-        return collectionHousingTitle;
-    }
-
-    /**
-     * @param collectionHousingTitle
-     */
-    public void setCollectionHousingTitle(String collectionHousingTitle) {
-        this.collectionHousingTitle = collectionHousingTitle;
-    }
-
-    /**
-     * @return create_time
-     */
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    /**
-     * @param createTime
-     */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    /**
-     * @return update_time
-     */
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    /**
-     * @param updateTime
-     */
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 }

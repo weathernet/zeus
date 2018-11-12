@@ -32,6 +32,16 @@
                 <button class="layui-btn userLend-form" data-type="add">新增</button>
             </div>
             <table id="LAY-userLend-list" lay-filter="LAY-userLend-list"></table>
+            <script type="text/html" id="Status">
+                {{#  if(d.lendStatus==0){     }}
+                <button class="layui-btn ayui-btn-danger layui-btn-xs">待审核</button>
+                {{#  }else if(d.lendStatus==1){   }}
+                <button class="layui-btn ayui-btn-danger layui-btn-xs">已通过</button>
+                {{#  }else if(d.lendStatus==2){   }}
+                <button class="layui-btn ayui-btn-danger layui-btn-xs">未通过</button>
+                {{#       }                    }}
+            </script>
+
             <script type="text/html" id="Img">
                 <img style="display: inline-block; width: 50%; height: 100%;" src=/mall/{{ d.avatar }} onclick="previewImg(this)">
             </script>

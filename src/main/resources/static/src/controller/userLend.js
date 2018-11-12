@@ -45,10 +45,11 @@ layui.define(['table', 'form'], function (exports) {
         elem: '#LAY-userLend-list'
         , url: '/user/lend/query'
         , cols: [[
-             {field: 'additionalTitle',  title: '标题'}
-            , {field: 'additionalContext', title: '佣金比例设置'}
-            , {field: 'createTime', title: '创建日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
-            , {field: 'updateTime', title: '修改日期',templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
+             {field: 'lendUserId',  title: '用户ID'}
+            , {field: 'lendPrice', title: '借款金额'}
+            , {field: 'lendStatus', title: '借款状态'}
+            , {field: 'lendRepayStatus', title: '还款状态',templet:'#Status'}
+            , {field: 'createTime', title: '申请日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
             , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-userLend-toolbar'}//设置表格工具条的名称
         ]]
         , page: true//开启分页
@@ -67,7 +68,7 @@ layui.define(['table', 'form'], function (exports) {
                 , area: ['550px', '550px']
                 , success: function (layero, index) {
                     view(this.id).render('userLend/form', data).done(function () {//跳转的路径
-                        form.render(null, 'LAY-userLend-list');//读取表格的信息
+                        form.render(null, 'userLend-form');//读取表格的信息
                         //监听提交
                         form.on('submit(userLend-form-submit)', function (data) {//form 表单提交的按钮
                             var field = data.field; //获取提交的字段

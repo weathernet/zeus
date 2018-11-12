@@ -1,4 +1,4 @@
-package com.zcf.universe.common.config;
+package com.zcf.universe.common.config.transaction;
 
 /**
  * @author yuan

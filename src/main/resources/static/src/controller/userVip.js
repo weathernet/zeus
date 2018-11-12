@@ -45,10 +45,10 @@ layui.define(['table', 'form'], function (exports) {
         elem: '#LAY-userVip-list'
         , url: '/user/vip/query'
         , cols: [[
-             {field: 'additionalTitle',  title: '标题'}
-            , {field: 'additionalContext', title: '佣金比例设置'}
-            , {field: 'createTime', title: '创建日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
-            , {field: 'updateTime', title: '修改日期',templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
+             {field: 'vipId',  title: '会员标识'}
+            , {field: 'vipName', title: '名称'}
+            , {field: 'vipDiscount', title: '会员折扣'}
+            , {field: 'create_time', title: '创建时间',templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
             , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-userVip-toolbar'}//设置表格工具条的名称
         ]]
         , page: true//开启分页

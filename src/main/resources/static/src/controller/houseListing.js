@@ -46,7 +46,7 @@ layui.define(['table', 'form'], function (exports) {
         , url: '/house/listing/query'
         , cols: [[
              {field: 'housingId',  title: '编号'}
-            , {field: 'housingImage', title: '图片'}
+            , {field: 'housingImage', title: '图片',templet: '#Img'}
             , {field: 'housingTitle', title: '标题'}
             , {field: 'housingCity', title: '所在城市'}
             , {field: 'housingPosition', title: '具体位置'}

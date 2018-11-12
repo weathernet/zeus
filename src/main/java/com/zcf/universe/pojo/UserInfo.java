@@ -7,6 +7,8 @@ import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Data
@@ -18,13 +20,13 @@ public class UserInfo {
     @Column(name = "user_id")
     private Integer userId;
 
-
     @ApiModelProperty(value = "真实姓名", required = true)
     @Column(name = "user_real_name")
-        private String userRealName;
+    private String userRealName;
 
     @ApiModelProperty(value = "用户昵称")
     @Column(name = "user_nike_name")
+    @NotBlank(message = "用户名不能为空")
     private String userNikeName;
 
     @ApiModelProperty(value = "用户密码", required = true)
@@ -50,6 +52,7 @@ public class UserInfo {
 
     @ApiModelProperty(value = "用户的邮箱")
     @Column(name = "user_email")
+    @Email(message = "请输入正确的邮箱格式")
     private String userEmail;
 
     @ApiModelProperty(value = "微信开放平台")

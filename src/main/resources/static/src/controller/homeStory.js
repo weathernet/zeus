@@ -45,11 +45,11 @@ layui.define(['table', 'form'], function (exports) {
         elem: '#LAY-homeStory-list'
         , url: '/home/story/query'
         , cols: [[
-             {field: 'additionalTitle',  title: '标题'}
-            , {field: 'additionalContext', title: '佣金比例设置'}
-            , {field: 'createTime', title: '创建日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
-            , {field: 'updateTime', title: '修改日期',templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
-            , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-homeStory-toolbar'}//设置表格工具条的名称
+            {field: 'storyTitle', title: '标题'}
+            , {field: 'storyContent', title: '故事内容'}
+            , {field: 'createTime', title: '创建日期', templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
+            , {field: 'updateTime', title: '修改日期', templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
+            , {title: '操作', width: 250, align: 'center', fixed: 'right', toolbar: '#table-homeStory-toolbar'}//设置表格工具条的名称
         ]]
         , page: true//开启分页
         , limit: 20
@@ -64,14 +64,15 @@ layui.define(['table', 'form'], function (exports) {
         if (obj.event === 'edit') {//匹配工具栏的edit字段
             admin.popup({
                 title: '修改词条信息'
-                , area: ['1500px', '700px']
+                , area: ['1500px', '1000px']
                 , success: function (layero, index) {
                     view(this.id).render('homeStory/form', data).done(function () {//跳转的路径
-                        form.render(null, 'LAY-homeStory-list');//读取表格的信息
+                        form.render(null, 'homeStory-form');//读取表格的信息
                         //监听提交
                         form.on('submit(homeStory-form-submit)', function (data) {//form 表单提交的按钮
                             var field = data.field; //获取提交的字段
-                            console.log(field)
+                            field.storyContent = editor.txt.html();
+                            console.log(editor.txt.html())
                             $.ajax({
                                 type: "POST", //请求方式 post
                                 dataType: 'json', //数据类型 json
@@ -95,6 +96,27 @@ layui.define(['table', 'form'], function (exports) {
                     layer.close(index);
                 })
             });
+        } else if (obj.event === 'preview') {//匹配工具栏的del字段
+            var content = data.storyContent;
+            admin.popup({
+                title: '上传'
+                , area: ['600px', '600px']
+                , resize: false
+                , success: function (layero, index) {
+                    var html = "";
+                    html += '<!DOCTYPE>'
+                    html += '<html>'
+                    html += '<head>'
+                    html += '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'
+                    html += '<title>multiple="multiple"</title>'
+                    html += '</head>'
+                    html += '<body>'
+                    html += content
+                    html += '</body>'
+                    html += '</html>'
+                    $("#LAY-system-view-popup").html(html);
+                }
+            });
         }
     });
     //++++++++++监听工具条操作开始++++++++++
@@ -104,12 +126,13 @@ layui.define(['table', 'form'], function (exports) {
         add: function () {
             admin.popup({
                 title: '添加词条'
-                , area: ['1500px', '700px']//设置弹出框大小
+                , area: ['1500px', '1000px']//设置弹出框大小
                 , success: function (layero, index) {
                     view(this.id).render('homeStory/form').done(function () {
                         //监听提交
                         form.on('submit(homeStory-form-submit)', function (data) {
                             var field = data.field; //获取提交的字段
+                            field.storyContent = editor.txt.html();
                             console.log(field)
                             $.ajax({
                                 type: "POST", //请求方式 post
@@ -128,7 +151,8 @@ layui.define(['table', 'form'], function (exports) {
             });
         }
     }
-    $('.layui-btn.homeStory-form').on('click', function() {var type = $(this).data('type');
+    $('.layui-btn.homeStory-form').on('click', function () {
+        var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
     //**********新增结束**********
@@ -136,7 +160,7 @@ layui.define(['table', 'form'], function (exports) {
     //==========搜索开始==========
     form.render(null, 'lay-admin-homeStory-form');
     form.on('submit(LAY-homeStory-back-search)',
-        function(data) {
+        function (data) {
             var field = data.field;
             console.log(field)
             //执行重载
