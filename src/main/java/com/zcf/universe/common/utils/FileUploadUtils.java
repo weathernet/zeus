@@ -12,11 +12,14 @@ import java.util.*;
  * Created by YuanQJ on 2018/10/18.
  */
 public class FileUploadUtils {
-    private static final String IMAGE_URL = "http://localhost:8089/";
+
+    private static final String IMAGE_URL = "G:/images/";//nginx 图片服务器的存储路径
+
+    private static final String RETURN_IMAGE_URL = "http://172.16.1.97:8088/";//nginx 图片服务器的端口
 
     public static Map wangEditorImageUpload(MultipartFile file, String pathVal, String customPath) {
         List<String> url = new ArrayList<>();
-        String ImgURL = IMAGE_URL+fileUpload(file, pathVal, customPath);
+        String ImgURL =fileUpload(file, pathVal, customPath);
         url.add(ImgURL);
         Map map = new HashMap();
         map.put("errno", "0");
@@ -98,7 +101,7 @@ public class FileUploadUtils {
         String format = df.format(new Date());
         String saveFilePath = customPath + format + "/";
         /* 构建文件目录 */
-        File fileDir = new File(pathVal + saveFilePath);
+        File fileDir = new File(IMAGE_URL + saveFilePath);
         if (!fileDir.exists()) {
             fileDir.mkdirs();
         }
@@ -108,8 +111,8 @@ public class FileUploadUtils {
             String Millisecond = String.valueOf(System.currentTimeMillis());// 获取当前时间的毫秒数
             String Milliseconds = Millisecond + Random();
             String NewFileName = Milliseconds + "." + ExtensionName;// 该文件在系统中的名字
-            String FileName = saveFilePath + NewFileName;// 文件存储的路径
-            String path = pathVal + saveFilePath + NewFileName; // 文件储存绝对路径
+            String FileName = RETURN_IMAGE_URL+saveFilePath + NewFileName;// 文件存储的路径
+            String path = IMAGE_URL + saveFilePath + NewFileName; // 文件储存绝对路径
             System.out.println(path);
             File newFile = new File(path);//创建文件路径
             try {

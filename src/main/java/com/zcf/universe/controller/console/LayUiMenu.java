@@ -36,7 +36,7 @@ public class LayUiMenu {
     }
 
     @PostMapping("upload")
-    public Map uploadimages(MultipartFile file, HttpServletRequest request) throws FileNotFoundException {
+    public Map uploadImages(MultipartFile file) throws FileNotFoundException {
         String pathVal = ResourceUtils.getURL("classpath:").getPath() + "static/";
         String customPath = "img/";
         return FileUploadUtils.wangEditorImageUpload(file, pathVal, customPath);

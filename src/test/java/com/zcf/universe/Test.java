@@ -16,7 +16,7 @@ public class Test {
 
 
     public static void main(String[] args) {
-    /*   String a = "account, article, atlas, banner, bill, chat, code, comment, correlation, discussion, eqitem, eqresult, eqtest, feedback, handbook, help, highlight, panels, policy, report, special, user, vip";
+      String a = "advertising, banner, commodity, user, verifycode";
         List<String>  TableName= new ArrayList<>();
         String[] split = a.split(", ");
         for (int i = 0; i < split.length; i++) {
@@ -25,9 +25,8 @@ public class Test {
         }
         String s1 = TableName.toString();
         String s = s1.replaceAll(" ", "");
-        System.out.println(s);*/
-        int i = RandomUtils.nextInt();
-        System.out.println(i);
+        System.out.println(s);
+
     }
 
 }

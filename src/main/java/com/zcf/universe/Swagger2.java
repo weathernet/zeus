@@ -20,8 +20,7 @@ public class Swagger2 {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                //为当前包路径
-                .apis(RequestHandlerSelectors.basePackage("com.zcf.universe.controller.api"))
+                .apis(RequestHandlerSelectors.basePackage("com.zcf.universe.controller.api")) //为当前包路径
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -35,7 +34,7 @@ public class Swagger2 {
                 //版本号
                 .version("1.0")
                 //描述
-                .description("用户管理")
+                .description("接口管理")
                 .build();
     }
 

@@ -45,8 +45,7 @@ layui.define(['table', 'form'], function (exports) {
         elem: '#LAY-houseMultiple-list'
         , url: '/house/multiple/query'
         , cols: [[
-             {field: 'additionalTitle',  title: '标题'}
-            , {field: 'additionalContext', title: '佣金比例设置'}
+             {field: 'multipleProportion', title: '佣金比例'}
             , {field: 'createTime', title: '创建日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
             , {field: 'updateTime', title: '修改日期',templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
             , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-houseMultiple-toolbar'}//设置表格工具条的名称

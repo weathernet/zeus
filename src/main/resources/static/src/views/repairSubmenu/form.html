@@ -1,0 +1,77 @@
+<div class="layui-form" lay-filter="repairSubmenu-form" id="repairSubmenu-form" style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">父菜单</label>
+        <div class="layui-input-inline">
+            <select name="aid" id="aids" lay-filter="search_type">
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">子标题</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="repairSubName" value="{{ d.params.repairSubName || '' }}" lay-verify="required"
+                       placeholder="请输入地址" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">图片</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="repairSubImage" value="{{ d.params.repairSubImage || '' }}"
+                       lay-verify="required"
+                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
+            </script>
+        </div>
+        <button style="float: left;" type="button" class="layui-btn" id="repairSubmenu-upload-repairSubmenu">上传图片
+        </button>
+    </div>
+    <script type="text/html" template>
+        <input type="hidden" value="{{ d.params.repairMenuId || '' }}" id="repairMenuId">
+    </script>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <input type="button" lay-submit lay-filter="repairSubmenu-form-submit" value="确认" class="layui-btn">
+        </div>
+    </div>
+</div>
+<script>
+    var aid;
+    layui.use(['admin', 'form', 'upload', 'jquery'], function () {
+        var $ = layui.$, form = layui.form, upload = layui.upload, jquery = layui.jquery;
+        form.render();//使select可以显示option
+        //-------------文件上传开始----------
+        upload.render({
+            elem: '#repairSubmenu-upload-repairSubmenu',
+            url: '/repair/submenu/upload',
+            done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                console.log(res.data.src);
+                document.getElementById("img_url").value = res.data.src;//
+            }
+        });
+        //-------------文件上传结束----------
+        //>>>>>>>>>>动态下拉框开始<<<<<<<<<<
+        $.get("/RepairMenu", {},
+            function (data) {
+                var $html = "";
+                if (data != null) {
+                    $.each(data,
+                        function (index, item) {
+                            $html += "<option value='" + item.repairId + "'>" + item.repairName + "</option>";
+                        });
+                    $("select[name='aid']").append($html);
+                    $('#aids').find("option[value=" + aid + "]").attr("selected", true);
+                    form.render('select');
+                }
+        });
+        //>>>>>>>>>>动态下拉框结束<<<<<<<<<<
+    })
+
+</script>

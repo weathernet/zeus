@@ -26,6 +26,7 @@ public class HomePageController {
 
     @GetMapping("homeGroup")
     @ApiOperation(value = "获取首页分类")
+
     public ResponseEntity<List<HomeGroups>> getHomeGroups() {
         return ResponseEntity.ok(this.homePageService.getHomeGroups());
     }

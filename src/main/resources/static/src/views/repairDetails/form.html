@@ -1,0 +1,103 @@
+<div class="layui-form" lay-filter="repairDetails-form" id="repairDetails-form" style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">父菜单</label>
+        <div class="layui-input-inline">
+            <select name="repairMenuId" id="repairMenuId" lay-filter="repairMenuId_type">
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">子菜单</label>
+        <div class="layui-input-inline">
+            <select name="repairSubmenuId" id="repairSubmenuId">
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">品牌名称</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="detailsTitle" value="{{ d.params.detailsTitle || '' }}" lay-verify="required"
+                       placeholder="请输入地址" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">图片</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="detailsImage" value="{{ d.params.detailsImage || '' }}" lay-verify="required"
+                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
+            </script>
+        </div>
+        <button style="float: left;" type="button" class="layui-btn" id="repairDetails-upload-repairDetails">上传图片
+        </button>
+    </div>
+    <script type="text/html" template>
+        <input type="hidden" name="detailsId" value="{{ d.params.detailsId || '' }}">
+    </script>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <input type="button" lay-submit lay-filter="repairDetails-form-submit" value="确认" class="layui-btn">
+        </div>
+    </div>
+</div>
+<script>
+    var detailsRepairMenuId;
+    layui.use(['admin', 'form', 'upload'], function () {
+        var $ = layui.$, form = layui.form, upload = layui.upload;
+
+        form.render();//使select可以显示option
+        //-------------文件上传开始----------
+        upload.render({
+            elem: '#repairDetails-upload-repairDetails',
+            url: '/repair/details/upload',
+            done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                console.log(res.data.src);
+                document.getElementById("img_url").value = res.data.src;//
+            }
+        });
+        //-------------文件上传结束----------
+
+        //>>>>>>>>>>动态下拉框开始<<<<<<<<<<
+        $.get("/RepairMenu", {},
+            function (data) {
+                var $html = "";
+                if (data != null) {
+                    $.each(data,
+                        function (index, item) {
+                            $html += "<option value='" + item.repairId + "'>" + item.repairName + "</option>";
+                        });
+                    $("select[name='repairMenuId']").append($html);
+                    $('#repairMenuId').find("option[value=" + detailsRepairMenuId + "]").attr("selected", true);
+                    form.render('select');
+                }
+            });
+        //>>>>>>>>>>动态下拉框结束<<<<<<<<<<
+
+        //+++++++++++++二级下拉框开始++++++++++
+        form.on('select(repairMenuId_type)', function (data) {
+            var detailsRepairMenuIds = data.value;//获取一级下拉框的数据
+            $('#repairSubmenuId').html('')//清空下拉框防止option标签重叠
+            $.get("/repairParentMenu/" + detailsRepairMenuIds, {},
+                function (data) {
+                    var $html = "";
+                    if (data != null) {
+                        $.each(data,
+                            function (index, item) {
+                                $html += "<option value='" + item.repairSubId + "'>" + item.repairSubName + "</option>";
+                            });
+                        $("select[name='repairSubmenuId']").append($html);
+                        form.render('select');
+                    }
+                });
+        });
+        //+++++++++++++二级下拉框结束++++++++++
+    })
+</script>

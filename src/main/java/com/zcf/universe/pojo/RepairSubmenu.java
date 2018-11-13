@@ -1,105 +1,34 @@
 package com.zcf.universe.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Data
 @Table(name = "repair_submenu")
+@ApiModel(value = "维修子菜单模型", description = "维修子菜单")
 public class RepairSubmenu {
-    /**
-     * 子菜单主键
-     */
+
     @Id
     @Column(name = "repair_sub_id")
+    @ApiModelProperty(value = "子菜单主键")
     private Integer repairSubId;
 
-    /**
-     * 父菜单主键
-     */
     @Column(name = "repair_menu_id")
+    @ApiModelProperty(value = "父菜单主键")
     private Integer repairMenuId;
 
-    /**
-     * 子菜单名称
-     */
+    @ApiModelProperty(value = "子菜单名称")
     @Column(name = "repair_sub_name")
     private String repairSubName;
 
-    /**
-     * 子菜单的图片
-     */
     @Column(name = "repair_sub_image")
+    @ApiModelProperty(value = "子菜单的图片")
     private String repairSubImage;
 
-    /**
-     * 获取子菜单主键
-     *
-     * @return repair_sub_id - 子菜单主键
-     */
-    public Integer getRepairSubId() {
-        return repairSubId;
-    }
 
-    /**
-     * 设置子菜单主键
-     *
-     * @param repairSubId 子菜单主键
-     */
-    public void setRepairSubId(Integer repairSubId) {
-        this.repairSubId = repairSubId;
-    }
-
-    /**
-     * 获取父菜单主键
-     *
-     * @return repair_menu_id - 父菜单主键
-     */
-    public Integer getRepairMenuId() {
-        return repairMenuId;
-    }
-
-    /**
-     * 设置父菜单主键
-     *
-     * @param repairMenuId 父菜单主键
-     */
-    public void setRepairMenuId(Integer repairMenuId) {
-        this.repairMenuId = repairMenuId;
-    }
-
-    /**
-     * 获取子菜单名称
-     *
-     * @return repair_sub_name - 子菜单名称
-     */
-    public String getRepairSubName() {
-        return repairSubName;
-    }
-
-    /**
-     * 设置子菜单名称
-     *
-     * @param repairSubName 子菜单名称
-     */
-    public void setRepairSubName(String repairSubName) {
-        this.repairSubName = repairSubName;
-    }
-
-    /**
-     * 获取子菜单的图片
-     *
-     * @return repair_sub_image - 子菜单的图片
-     */
-    public String getRepairSubImage() {
-        return repairSubImage;
-    }
-
-    /**
-     * 设置子菜单的图片
-     *
-     * @param repairSubImage 子菜单的图片
-     */
-    public void setRepairSubImage(String repairSubImage) {
-        this.repairSubImage = repairSubImage;
-    }
 }
