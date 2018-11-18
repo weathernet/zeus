@@ -1,0 +1,84 @@
+<div class="layui-form" lay-filter="mallGoods-form" id="mallGoods-form" style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">商户Id</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="goodsTraderId" value="{{ d.params.goodsTraderId || '' }}" lay-verify="required" placeholder="请输入商户Id" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="goodsTitle" value="{{ d.params.goodsTitle || '' }}" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="goodsImage" value="{{ d.params.goodsImage || '' }}" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">单价</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="goodsPrice" value="{{ d.params.goodsPrice || '' }}" lay-verify="required" placeholder="请输入单价" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品分类</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="goodsSort" value="{{ d.params.goodsSort || '' }}" lay-verify="required" placeholder="请输入商品分类0:家政1.办公2.生活3.商家服务4.出行" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">图片</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="image" value="{{ d.params.image || '' }}" lay-verify="required"
+                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
+            </script>
+        </div>
+        <button style="float: left;" type="button" class="layui-btn" id="mallGoods-upload-mallGoods">上传图片</button>
+    </div>
+
+    <script type="text/html" template>
+        <input type="hidden" name="goodsId" value="{{ d.params.goodsId|| '' }}">
+    </script>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <input type="button" lay-submit lay-filter="mallGoods-form-submit" value="确认" class="layui-btn">
+        </div>
+    </div>
+</div>
+<script>
+    layui.use([ 'admin', 'form', 'upload' ], function() {
+        var $ = layui.$, form = layui.form, upload = layui.upload;
+
+        form.render();//使select可以显示option
+        //-------------文件上传开始----------
+        upload.render({
+            elem : '#mallGoods-upload-mallGoods',
+            url : '/mall/goods/upload',
+            done : function(res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                console.log(res.data.src);
+                document.getElementById("img_url").value = res.data.src;//
+            }
+        });
+        //-------------文件上传结束----------
+    })
+</script>

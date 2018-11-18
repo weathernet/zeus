@@ -12,7 +12,7 @@ import java.util.Date;
 
 @Data
 @Table(name = "user_collection")
-@ApiModel(value = "用户收藏模型", description = "用户收藏信息")
+@ApiModel(value = "用户收藏模型", description = "备注")
 public class UserCollection {
     @ApiModelProperty(value = "收藏ID")
     @Id

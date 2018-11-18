@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import java.util.Date;
 @Data
 @Table(name = "repair_cost")
-@ApiModel(value = "维修费用模型", description = "维修费用")
+@ApiModel(value = "维修费用模型", description = "备注")
 public class RepairCost {
     @Id
     @Column(name = "cost_id")

@@ -72,7 +72,7 @@ layui.define(['table', 'form'], function (exports) {
                         form.on('submit(homeStory-form-submit)', function (data) {//form 表单提交的按钮
                             var field = data.field; //获取提交的字段
                             field.storyContent = editor.txt.html();
-                            console.log(editor.txt.html())
+                            console.log(editor.txt.text())
                             $.ajax({
                                 type: "POST", //请求方式 post
                                 dataType: 'json', //数据类型 json

@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Data
-@ApiModel(value = "会员模型", description = "会员信息")
+@ApiModel(value = "会员模型", description = "备注")
 @Table(name = "user_vip")
 public class UserVip {
 

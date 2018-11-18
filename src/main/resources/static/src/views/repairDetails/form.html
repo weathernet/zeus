@@ -80,12 +80,10 @@
                 }
             });
         //>>>>>>>>>>动态下拉框结束<<<<<<<<<<
-
-        //+++++++++++++二级下拉框开始++++++++++
         form.on('select(repairMenuId_type)', function (data) {
-            var detailsRepairMenuIds = data.value;//获取一级下拉框的数据
+            var ids=data.value;
             $('#repairSubmenuId').html('')//清空下拉框防止option标签重叠
-            $.get("/repairParentMenu/" + detailsRepairMenuIds, {},
+            $.get("/repairParentMenu/" + ids, {},
                 function (data) {
                     var $html = "";
                     if (data != null) {
@@ -98,6 +96,6 @@
                     }
                 });
         });
-        //+++++++++++++二级下拉框结束++++++++++
+
     })
 </script>

@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Data
 @Table(name = "house_multiple")
-@ApiModel(value = "佣金模型", description = "佣金信息")
+@ApiModel(value = "佣金模型", description = "备注")
 public class HouseMultiple {
 
     @ApiModelProperty(value = "佣金比例ID")

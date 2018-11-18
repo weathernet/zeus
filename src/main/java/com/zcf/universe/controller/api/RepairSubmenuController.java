@@ -14,7 +14,7 @@ import java.util.List;
  * Created by YuanQJ on 2018/11/12.
  */
 @RestController
-@Api(value = "首页管理控制器", tags = {"首页管理接口"})
+@Api(value = "维修子菜单控制器", tags = {"维修子菜单接口"})
 public class RepairSubmenuController {
 
     @Autowired

@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Data
 @Table(name = "house_label")
-@ApiModel(value = "房源特点标签模型", description = "标签信息")
+@ApiModel(value = "房源特点标签模型", description = "备注")
 public class HouseLabel {
     @Id
     @Column(name = "label_id")

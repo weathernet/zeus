@@ -44,9 +44,10 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-userInfo-list'
         , url: '/user/info/query'
+        ,toolbar: true
         , cols: [[
              {field: 'userId',  title: '用户ID'}
-            , {field: 'userRealName', title: 'userRealName'}
+            , {field: 'userRealName', title: 'userRealName',edit: 'text'}
             , {field: 'userNikeName', title: '用户昵称'}
             , {field: 'userIdentification', title: '身份证号码'}
             , {field: 'userGender', title: '性别'}
@@ -64,6 +65,23 @@ layui.define(['table', 'form'], function (exports) {
         , text: '对不起，加载出现异常！'
     });
     //**********表格显示开始***********
+
+    //<<<<<<<<<<<<<<<监听单元格编辑开始<<<<<<<<<<<<<<<
+    table.on('edit(LAY-userInfo-list)', function(obj){
+        var value = obj.value //得到修改后的值
+            ,data = obj.data //得到所在行所有键值
+            $.ajax({
+                type: "POST", //请求方式 post
+                dataType: 'json', //数据类型 json
+                contentType: "application/json; charset=utf-8",
+                url: "/user/info/update", // 请求地址
+                data: JSON.stringify(data), //请求附带参数
+                success: function () {
+                    layui.table.reload('LAY-userInfo-list'); //重载表格
+                }
+            });
+    });
+    //<<<<<<<<<<<<<<<监听单元格编辑结束<<<<<<<<<<<<<<<
 
     //++++++++++监听工具条操作开始++++++++++
     table.on('tool(LAY-userInfo-list)', function (obj) {//表格的名称

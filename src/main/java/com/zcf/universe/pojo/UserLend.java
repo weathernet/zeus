@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Data
 @Table(name = "user_lend")
-@ApiModel(value = "免息借款模型", description = "免息借款信息")
+@ApiModel(value = "免息借款模型", description = "备注")
 public class UserLend {
 
     @ApiModelProperty(value = "借款ID")

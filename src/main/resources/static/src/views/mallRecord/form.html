@@ -1,0 +1,76 @@
+<div class="layui-form" lay-filter="mallRecord-form" id="mallRecord-form" style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="recordUserId" value="{{ d.params.recordUserId || '' }}" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">支付方式</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="recordType" value="{{ d.params.recordType || '' }}" lay-verify="required" placeholder="请输入支付方式" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">消费节介绍</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="recordContent" value="{{ d.params.recordContent || '' }}" lay-verify="required" placeholder="请输入消费节介绍" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">金额</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="recordPrice" value="{{ d.params.recordPrice || '' }}" lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">图片</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="image" value="{{ d.params.image || '' }}" lay-verify="required"
+                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
+            </script>
+        </div>
+        <button style="float: left;" type="button" class="layui-btn" id="mallRecord-upload-mallRecord">上传图片</button>
+    </div>
+
+    <script type="text/html" template>
+        <input type="hidden" name="recordId" value="{{ d.params.recordId|| '' }}">
+    </script>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <input type="button" lay-submit lay-filter="mallRecord-form-submit" value="确认" class="layui-btn">
+        </div>
+    </div>
+</div>
+<script>
+    layui.use([ 'admin', 'form', 'upload' ], function() {
+        var $ = layui.$, form = layui.form, upload = layui.upload;
+
+        form.render();//使select可以显示option
+        //-------------文件上传开始----------
+        upload.render({
+            elem : '#mallRecord-upload-mallRecord',
+            url : '/mall/record/upload',
+            done : function(res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                console.log(res.data.src);
+                document.getElementById("img_url").value = res.data.src;//
+            }
+        });
+        //-------------文件上传结束----------
+    })
+</script>

@@ -14,4 +14,9 @@ public class IndexController {
     public String Test() {
         return "Test";
     }
+
+    @GetMapping("/webSocket")
+    public String webSocket() {
+        return "websocket";
+    }
 }

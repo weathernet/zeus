@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Data
 @Table(name = "home_groups")
-@ApiModel(value = "首页分组模型", description = "分组信息")
+@ApiModel(value = "首页分组模型", description = "备注")
 public class HomeGroups{
     @Id
     @Column(name = "groups_id")

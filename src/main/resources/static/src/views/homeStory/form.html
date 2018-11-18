@@ -8,14 +8,7 @@
             </script>
         </div>
     </div>
-    <div class="layui-form-item layui-form-text" id="div1">
-        <script type="text/html" template>
-            <div >
-                {{d.params.storyContent || ''}}
-            </div>
-        </script>
-    </div>
-
+    <div class="layui-form-item layui-form-text" id="div1"><script type="text/html" template >{{ d.params.storyContent || ''}}</script></div>
     <script type="text/html" template>
         <input type="hidden" name="storyId" value="{{ d.params.storyId || '' }}">
     </script>
@@ -27,8 +20,8 @@
     </div>
 </div>
 <script>
-    layui.use(['admin', 'form', 'upload', 'layedit'], function () {
-        var $ = layui.$, form = layui.form, upload = layui.upload, layedit = layui.layedit;
+    layui.use(['admin', 'form', 'upload','jquery'], function () {
+        var $ = layui.$, form = layui.form, upload = layui.upload;
         form.render();//使select可以显示option
         //-------------文件上传开始----------
         upload.render({
@@ -49,7 +42,7 @@
     });
     var c = document.getElementById('div1');
     var E = window.wangEditor
-    var editor = new E(c)
+    var editor = new E("#div1")
     editor.customConfig.uploadImgServer = '/upload'
     editor.customConfig.uploadFileName = 'file'
     editor.customConfig.menus = [
@@ -67,5 +60,5 @@
         'image',  // 插入图片
         'undo',  // 撤销
     ];
-    editor.create()
+    editor.create();
 </script>

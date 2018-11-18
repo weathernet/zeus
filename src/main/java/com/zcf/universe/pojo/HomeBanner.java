@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Data
 @Table(name = "home_banner")
-@ApiModel(value = "首页轮播模型", description = "轮播信息")
+@ApiModel(value = "首页轮播模型", description = "备注")
 public class HomeBanner {
     @Id
     @Column(name = "banner_id")

@@ -24,14 +24,10 @@ import java.util.UUID;
 public class UEditorController {
 
 
-    @Autowired
-    private HttpServletRequest request;
-
-    static final String uploadRootDir = "words/src/main/resources";
 
     @RequestMapping("/ueditor")
     @ResponseBody
-    public String getUEditorConfig(@RequestParam("action") String param, MultipartFile upfile, HttpServletResponse response, HttpServletRequest request) throws UnsupportedEncodingException {
+    public String getUEditorConfig(@RequestParam("action") String param, MultipartFile upfile, HttpServletResponse response,HttpServletRequest request) throws UnsupportedEncodingException {
         Ueditor ueditor = new Ueditor();
         request.setCharacterEncoding("utf-8");
         response.setHeader("Content-Type", "text/html");
@@ -59,30 +55,18 @@ public class UEditorController {
      */
     public String uploadImage(MultipartFile file, Ueditor ueditor, HttpServletRequest request) {
         String pic_url = "";
-        try {
-            // 获取图片原始文件名
-            String originalFilename = file.getOriginalFilename();
-            // 文件名使用当前时间
-            String name = UUID.randomUUID().toString();
-            String fp = new SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
-            // 获取上传图片的扩展名(jpg/png/...)
-            String extension = FilenameUtils.getExtension(originalFilename);
-            // 图片上传的相对路径（因为相对路径放到页面上就可以显示图片）
-            String path = ResourceUtils.getURL("classpath:").getPath() + "static/";
-            // 上传图片
-            pic_url = FileUploadUtils.fileUpload(file, path, "/userfiles/fileupload/");
+        // 获取图片原始文件名
+        String originalFilename = file.getOriginalFilename();
+        // 上传图片
+        pic_url = FileUploadUtils.fileUpload(file, "", "img/");
+        ueditor.setState("SUCCESS");
+        ueditor.setTitle(originalFilename);
+        ueditor.setOriginal(originalFilename);
+        ueditor.setUrl(pic_url);
+        System.out.print(JSON.toJSONString(ueditor));
+        return JSON.toJSONString(ueditor);
 
-            ueditor.setState("SUCCESS");
-            ueditor.setTitle(originalFilename);
-            ueditor.setOriginal(originalFilename);
-            ueditor.setUrl("/words" + pic_url);
-            System.out.print(JSON.toJSONString(ueditor));
-            return JSON.toJSONString(ueditor);
-        } catch (IOException e) {
-            e.printStackTrace();
-            ueditor.setState("上传失败");
-            return JSON.toJSONString(ueditor);
-        }
+
     }
 
 }

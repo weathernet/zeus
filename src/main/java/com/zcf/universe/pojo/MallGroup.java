@@ -1,0 +1,34 @@
+package com.zcf.universe.pojo;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.util.Date;
+/**
+ * Created by YuanQJ on 2018/11/18.
+ */
+@Data
+@Table(name = "mall_group")
+@ApiModel(value = "商城分类模型", description = "备注")
+public class MallGroup{
+
+    @Id
+    @ApiModelProperty(value = "主键", required = true)
+    private Integer groupId;
+
+    @ApiModelProperty(value = "名称")
+    private String groupName;
+
+    @ApiModelProperty(value = "图片")
+    private String groupImage;
+
+    @ApiModelProperty(value = "创建时间")
+    private Date createTime;
+
+    @ApiModelProperty(value = "更新时间")
+    private Date updateTime;
+
+}

@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Data
 @Table(name = "user_order")
-@ApiModel(value = "用户订单模型", description = "用户订单信息")
+@ApiModel(value = "用户订单模型", description = "备注")
 public class UserOrder {
     /**
      * 订单号

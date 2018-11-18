@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-houseListing-list'
         , url: '/house/listing/query'
+        ,toolbar: true
         , cols: [[
              {field: 'housingId',  title: '编号'}
             , {field: 'housingImage', title: '图片',templet: '#Img'}

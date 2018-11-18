@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Data
 @Table(name = "user_info")
-@ApiModel(value = "用户信息模型", description = "用户对象user")
+@ApiModel(value = "用户信息模型", description = "备注")
 public class UserInfo {
     @Id
     @ApiModelProperty(value = "用户ID,主键", required = true)

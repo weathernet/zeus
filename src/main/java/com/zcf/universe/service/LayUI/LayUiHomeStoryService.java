@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by YuanQJ on 2018/11/07.
@@ -29,6 +30,9 @@ public class LayUiHomeStoryService {
     }
 
     public boolean update(HomeStory homeStory) {
+        //Layui整合wangeditor,每次修改时会加上layui的标签。用正则表达式去掉标签内容及空格
+        String str = homeStory.getStoryContent().replaceAll("<script[^>]*>[\\d\\D]*?</script>","").trim();
+        homeStory.setStoryContent(str);
         return this.LayUihomeStorymapper.updateByPrimaryKeySelective(homeStory) == 1;
     }
 

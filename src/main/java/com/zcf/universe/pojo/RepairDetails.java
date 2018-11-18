@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Data
 @Table(name = "repair_details")
-@ApiModel(value = "维修详情模型", description = "维修详情")
+@ApiModel(value = "维修详情模型", description = "备注")
 public class RepairDetails {
     @Id
     @Column(name = "details_id")

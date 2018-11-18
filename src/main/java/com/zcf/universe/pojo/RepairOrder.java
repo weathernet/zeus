@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 @Data
 @Table(name = "repair_order")
-@ApiModel(value = "维修订单模型", description = "维修订单")
+@ApiModel(value = "维修订单模型", description = "备注")
 public class RepairOrder {
     @Id
     @Column(name = "order_id")

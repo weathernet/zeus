@@ -1,0 +1,100 @@
+<div class="layui-form" lay-filter="mallOrder-form" id="mallOrder-form" style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户ID</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="orderUserId" value="{{ d.params.orderUserId || '' }}" lay-verify="required" placeholder="请输入用户ID" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商户的ID</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="orderTraderId" value="{{ d.params.orderTraderId || '' }}" lay-verify="required" placeholder="请输入商户的ID" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货人电话</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="orderPhone" value="{{ d.params.orderPhone || '' }}" lay-verify="required" placeholder="请输入收货人电话" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收货地址</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="orderAddress" value="{{ d.params.orderAddress || '' }}" lay-verify="required" placeholder="请输入收货地址" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">快递公司</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="orderCompany" value="{{ d.params.orderCompany || '' }}" lay-verify="required" placeholder="请输入快递公司" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">快递单号</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="orderExpressNumber" value="{{ d.params.orderExpressNumber || '' }}" lay-verify="required" placeholder="请输入快递单号" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">订单状态0.未付款1.待发货.2.待收货3.待评价4.已完成</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="orderStatus" value="{{ d.params.orderStatus || '' }}" lay-verify="required" placeholder="请输入订单状态0.未付款1.待发货.2.待收货3.待评价4.已完成" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">图片</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="image" value="{{ d.params.image || '' }}" lay-verify="required"
+                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
+            </script>
+        </div>
+        <button style="float: left;" type="button" class="layui-btn" id="mallOrder-upload-mallOrder">上传图片</button>
+    </div>
+
+    <script type="text/html" template>
+        <input type="hidden" name="orderId" value="{{ d.params.orderId|| '' }}">
+    </script>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <input type="button" lay-submit lay-filter="mallOrder-form-submit" value="确认" class="layui-btn">
+        </div>
+    </div>
+</div>
+<script>
+    layui.use([ 'admin', 'form', 'upload' ], function() {
+        var $ = layui.$, form = layui.form, upload = layui.upload;
+
+        form.render();//使select可以显示option
+        //-------------文件上传开始----------
+        upload.render({
+            elem : '#mallOrder-upload-mallOrder',
+            url : '/mall/order/upload',
+            done : function(res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                console.log(res.data.src);
+                document.getElementById("img_url").value = res.data.src;//
+            }
+        });
+        //-------------文件上传结束----------
+    })
+</script>

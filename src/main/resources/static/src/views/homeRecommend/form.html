@@ -3,22 +3,19 @@
         <label class="layui-form-label">品牌名称</label>
         <div class="layui-input-inline">
             <script type="text/html" template>
-                <input type="text" name="name" value="{{ d.params.name || '' }}" lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input">
+                <input type="text" name="recommendTitle" value="{{ d.params.recommendTitle || '' }}" lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input">
             </script>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">图片</label>
-        <div class="layui-input-inline">
-            <script type="text/html" template>
-                <input type="text" name="image" value="{{ d.params.image || '' }}" lay-verify="required"
-                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
-            </script>
+        <label class="layui-form-label">恋爱指南内容</label>
+        <div class="layui-input-inline" style="width: 500px;background-color:#FFFFFF;">
+            <script type="text/plain" lay-verify="content" id="recommendIntroduction" name="recommendIntroduction"></script>
         </div>
-        <button style="float: left;" type="button" class="layui-btn" id="homeRecommend-upload-homeRecommend">上传图片</button>
     </div>
+
     <script type="text/html" template>
-        <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+        <input type="hidden" name="recommendId" value="{{ d.params.recommendId || '' }}">
     </script>
     <div class="layui-form-item">
         <label class="layui-form-label"></label>
@@ -28,6 +25,11 @@
     </div>
 </div>
 <script>
+    var ue = UE.getEditor('recommendIntroduction');
+    var uedate;
+    ue.ready(function () {
+        ue.setContent(uedate, false);
+    });
     layui.use([ 'admin', 'form', 'upload' ], function() {
         var $ = layui.$, form = layui.form, upload = layui.upload;
 

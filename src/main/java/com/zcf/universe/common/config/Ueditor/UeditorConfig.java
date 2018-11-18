@@ -9,8 +9,8 @@ public class UeditorConfig {
             "    \"imageCompressEnable\": true,\n" +
             "    \"imageCompressBorder\": 1600,\n" +
             "    \"imageInsertAlign\": \"none\",\n" +
-            "    \"imageUrlPrefix\": \"http://172.16.1.233:3000\",\n" +
-            "    \"imagePathFormat\": \"/userfiles/{userid}/images/{yyyy}{mm}{dd}/{filename}_${time}{rand:6}\",\n" +
+            "    \"imageUrlPrefix\": \"\",\n" +
+            "    \"imagePathFormat\": \"/img/{userid}/images/{yyyy}{mm}{dd}/{filename}_${time}{rand:6}\",\n" +
             "\n" +
             "    \"scrawlActionName\": \"uploadscrawl\",\n" +
             "    \"scrawlFieldName\": \"upfile\",\n" +

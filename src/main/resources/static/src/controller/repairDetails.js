@@ -70,8 +70,22 @@ layui.define(['table', 'form'], function (exports) {
                 , success: function (layero, index) {
                     view(this.id).render('repairDetails/form', data).done(function () {//跳转的路径
                         detailsRepairMenuId = data.repairMenuId;
-                        detailsRepairSubmenuId = data.repairSubmenuId;
                         form.render(null, 'repairDetails-form');//读取表单的信息
+                        //+++++++++++++二级下拉框初始化开始++++++++++
+                        $('#repairSubmenuId').html('')//清空下拉框防止option标签重叠
+                        $.get("/repairParentMenu/" + detailsRepairMenuId, {},
+                            function (data) {
+                                var $html = "";
+                                if (data != null) {
+                                    $.each(data,
+                                        function (index, item) {
+                                            $html += "<option value='" + item.repairSubId + "'>" + item.repairSubName + "</option>";
+                                        });
+                                    $("select[name='repairSubmenuId']").append($html);
+                                    form.render('select');
+                                }
+                            });
+                        //+++++++++++++二级下拉框初始化结束++++++++++
                         //监听提交
                         form.on('submit(repairDetails-form-submit)', function (data) {//form 表单提交的按钮
                             var field = data.field; //获取提交的字段
@@ -99,25 +113,25 @@ layui.define(['table', 'form'], function (exports) {
                     layer.close(index);
                 })
             });
-        }else if (obj.event === 'more'){
-           var  id = data.repairSubmenuId;
+        } else if (obj.event === 'more') {
+            var id = data.repairSubmenuId;
             admin.popup({
                 title: '查看图片'
-                ,area: ['1200px', '600px']
-                ,resize: false
-                ,success: function(layero, index){
-                    var html="";
-                    html+='<div class="layui-fluid">'
-                    html+=	'<div class="layui-card">'
-                    html+=	'<div class="layui-card-body">	'
-                    html+=	'<table id="LAY-repairCostById-list" lay-filter="LAY-repairCostById-list"></table>'
-                    html+=	'</div>'
-                    html+=	'</div>'
-                    html+=	'</div>'
+                , area: ['1200px', '600px']
+                , resize: false
+                , success: function (layero, index) {
+                    var html = "";
+                    html += '<div class="layui-fluid">'
+                    html += '<div class="layui-card">'
+                    html += '<div class="layui-card-body">	'
+                    html += '<table id="LAY-repairCostById-list" lay-filter="LAY-repairCostById-list"></table>'
+                    html += '</div>'
+                    html += '</div>'
+                    html += '</div>'
                     $("#LAY-system-view-popup").html(html);
                     table.render({
                         elem: '#LAY-repairCostById-list'
-                        , url: '/repair/cost/queryById/'+id
+                        , url: '/repair/cost/queryById/' + id
                         , cols: [[
                             {field: 'costTitle', title: '标题'}
                             , {field: 'costSubTitle', title: '副标题'}
@@ -146,7 +160,6 @@ layui.define(['table', 'form'], function (exports) {
                         //监听提交
                         form.on('submit(repairDetails-form-submit)', function (data) {
                             var field = data.field; //获取提交的字段
-                            console.log(field)
                             $.ajax({
                                 type: "POST", //请求方式 post
                                 dataType: 'json', //数据类型 json

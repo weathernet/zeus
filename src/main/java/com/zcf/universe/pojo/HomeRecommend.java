@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Data
 @Table(name = "home_recommend")
-@ApiModel(value = "首页推荐模型", description = "推荐信息")
+@ApiModel(value = "首页推荐模型", description = "备注")
 public class HomeRecommend {
     @ApiModelProperty(value = "主键")
     @Id
