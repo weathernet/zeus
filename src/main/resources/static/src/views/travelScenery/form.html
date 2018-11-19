@@ -1,0 +1,108 @@
+<div class="layui-form" lay-filter="travelScenery-form" id="travelScenery-form" style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">景点标题</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="sceneryTitle" value="{{ d.params.sceneryTitle || '' }}" lay-verify="required" placeholder="请输入景点标题" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">副标题</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="scenerySbuTitle" value="{{ d.params.scenerySbuTitle || '' }}" lay-verify="required" placeholder="请输入副标题" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">景点图片</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="sceneryImage" value="{{ d.params.sceneryImage || '' }}" lay-verify="required" placeholder="请输入景点图片" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">风景分组</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="sceneryGroup" value="{{ d.params.sceneryGroup || '' }}" lay-verify="required" placeholder="请输入风景分组" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">景点价格</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="sceneryPrice" value="{{ d.params.sceneryPrice || '' }}" lay-verify="required" placeholder="请输入景点价格" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">城市</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="sceneryCity" value="{{ d.params.sceneryCity || '' }}" lay-verify="required" placeholder="请输入城市" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">景点地址</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="sceneryAddress" value="{{ d.params.sceneryAddress || '' }}" lay-verify="required" placeholder="请输入景点地址" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">访问量</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="sceneryNumber" value="{{ d.params.sceneryNumber || '' }}" lay-verify="required" placeholder="请输入访问量" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">图片</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="image" value="{{ d.params.image || '' }}" lay-verify="required"
+                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
+            </script>
+        </div>
+        <button style="float: left;" type="button" class="layui-btn" id="travelScenery-upload-travelScenery">上传图片</button>
+    </div>
+
+    <script type="text/html" template>
+        <input type="hidden" name="sceneryId" value="{{ d.params.sceneryId|| '' }}">
+    </script>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <input type="button" lay-submit lay-filter="travelScenery-form-submit" value="确认" class="layui-btn">
+        </div>
+    </div>
+</div>
+<script>
+    layui.use([ 'admin', 'form', 'upload' ], function() {
+        var $ = layui.$, form = layui.form, upload = layui.upload;
+
+        form.render();//使select可以显示option
+        //-------------文件上传开始----------
+        upload.render({
+            elem : '#travelScenery-upload-travelScenery',
+            url : '/travel/scenery/upload',
+            done : function(res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                console.log(res.data.src);
+                document.getElementById("img_url").value = res.data.src;//
+            }
+        });
+        //-------------文件上传结束----------
+    })
+</script>

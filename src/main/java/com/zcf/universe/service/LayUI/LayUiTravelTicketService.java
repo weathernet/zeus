@@ -1,0 +1,51 @@
+package com.zcf.universe.service.LayUI;
+
+import com.zcf.universe.pojo.TravelTicket;
+import com.zcf.universe.mapper.TravelTicketMapper;
+import com.zcf.universe.common.utils.LayUiResult;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import tk.mybatis.mapper.entity.Example;
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+/**
+ * Created by YuanQJ on 2018/11/19.
+ */
+@Service
+public class LayUiTravelTicketService{
+
+    @Autowired
+    private TravelTicketMapper LayUiTravelTicketMapper;
+
+    //新增
+    public boolean add(TravelTicket travelTicket) {
+        return this.LayUiTravelTicketMapper.insert(travelTicket) == 1;
+    }
+
+    //删除
+    public boolean delete(Integer id) {
+        return this.LayUiTravelTicketMapper.deleteByPrimaryKey(id) == 1;
+    }
+
+    //更新
+    public boolean update(TravelTicket travelTicket) {
+        return this.LayUiTravelTicketMapper.updateByPrimaryKeySelective(travelTicket) == 1;
+    }
+
+    //查询
+    public LayUiResult query(Integer page, Integer limit) {
+        PageHelper.startPage(page, limit);
+        List<TravelTicket> list = this.LayUiTravelTicketMapper.selectAll();
+        return new LayUiResult("0", "查询成功", new PageInfo<>(list).getTotal(), list);
+    }
+
+    //搜索
+     public LayUiResult search(Integer page, Integer limit,String keywords) {
+        Example example = new Example(TravelTicket.class);
+        example.createCriteria().andLike("ticketId", "%" + keywords + "%");
+        PageHelper.startPage(page, limit);
+        List<TravelTicket> list = this.LayUiTravelTicketMapper.selectByExample(example);
+        return new LayUiResult("0", "查询成功", new PageInfo<>(list).getTotal(), list);
+    }
+}

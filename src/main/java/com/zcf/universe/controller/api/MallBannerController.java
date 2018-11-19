@@ -20,8 +20,6 @@ public class MallBannerController {
     @Autowired
     private MallBannerService mallBannerService;
 
-
-
     @ApiOperation(value = "新增")
     @PostMapping("mallBanner")
     public ResponseEntity<Void> addMallBanner(MallBanner mallBanner) {
