@@ -63,8 +63,8 @@ layui.define(['table', 'form'], function (exports) {
         var data = obj.data;
         if (obj.event === 'edit') {//匹配工具栏的edit字段
             admin.popup({
-                title: '修改词条信息'
-                , area: ['1500px', '1000px']
+                title: '修改词条信息'//标题
+                ,area: ['1200px', '800px']//设置弹出框大小
                 , success: function (layero, index) {
                     view(this.id).render('homeStory/form', data).done(function () {//跳转的路径
                         form.render(null, 'homeStory-form');//读取表格的信息
@@ -126,7 +126,7 @@ layui.define(['table', 'form'], function (exports) {
         add: function () {
             admin.popup({
                 title: '添加词条'
-                , area: ['1500px', '1000px']//设置弹出框大小
+                ,area: ['1200px', '800px']//设置弹出框大小
                 , success: function (layero, index) {
                     view(this.id).render('homeStory/form').done(function () {
                         //监听提交
