@@ -14,11 +14,13 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/18.
 */
 @RestController
-@Api(value = "首页管理控制器", tags = {"首页管理接口"})
+@Api(value = "商城轮播图", tags = {"商城轮播图接口"})
 public class MallBannerController {
 
     @Autowired
     private MallBannerService mallBannerService;
+
+
 
     @ApiOperation(value = "新增")
     @PostMapping("mallBanner")
