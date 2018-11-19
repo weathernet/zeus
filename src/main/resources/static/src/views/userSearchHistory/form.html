@@ -1,0 +1,49 @@
+<div class="layui-form" lay-filter="userSearchHistory-form" id="userSearchHistory-form" style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户Id</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="historyUserId" value="{{ d.params.historyUserId || '' }}" lay-verify="required" placeholder="请输入用户Id" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">搜索内容</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="historyContent" value="{{ d.params.historyContent || '' }}" lay-verify="required" placeholder="请输入搜索内容" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <script type="text/html" template>
+        <input type="hidden" name="historyId" value="{{ d.params.historyId|| '' }}">
+    </script>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <input type="button" lay-submit lay-filter="userSearchHistory-form-submit" value="确认" class="layui-btn">
+        </div>
+    </div>
+</div>
+<script>
+    layui.use([ 'admin', 'form', 'upload' ], function() {
+        var $ = layui.$, form = layui.form, upload = layui.upload;
+
+        form.render();//使select可以显示option
+        //-------------文件上传开始----------
+        upload.render({
+            elem : '#userSearchHistory-upload-userSearchHistory',
+            url : '/user/search/history/upload',
+            done : function(res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                console.log(res.data.src);
+                document.getElementById("img_url").value = res.data.src;//
+            }
+        });
+        //-------------文件上传结束----------
+    })
+</script>

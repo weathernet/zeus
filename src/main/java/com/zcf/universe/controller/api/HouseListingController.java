@@ -30,15 +30,20 @@ public class HouseListingController {
             @ApiImplicitParam(name = "sortBy", value = "排序关键字", dataType = "String"),
             @ApiImplicitParam(name = "desc", value = "正序倒叙", dataType = "boolean"),
             @ApiImplicitParam(name = "key", value = "搜索关键字", dataType = "String"),
-            @ApiImplicitParam(name = "city", value = "所在城市", dataType = "String")
+            @ApiImplicitParam(name = "city", value = "所在城市", dataType = "String"),
+            @ApiImplicitParam(name = "userId", value = "用户的主键", dataType = "String")
     })
     @GetMapping("searchHouse")
     public ResponseEntity<List<HouseListing>> getHouseListings(
-            @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer rows,
-            @RequestParam(defaultValue = "20") String sortBy, @RequestParam(defaultValue = "true") Boolean desc, @RequestParam String key,
-            @RequestParam(defaultValue = "北京") String city
+            @RequestParam(defaultValue = "1") Integer page,
+            @RequestParam(defaultValue = "10") Integer rows,
+            @RequestParam String sortBy,
+            @RequestParam(defaultValue = "true") Boolean desc,
+            @RequestParam String key,
+            @RequestParam String city,
+            @RequestParam Integer userId
     ) {
-        return ResponseEntity.ok(this.houseListingService.getHouseListings(page, rows, sortBy, desc, key, city));
+        return ResponseEntity.ok(this.houseListingService.getHouseListings(page, rows, sortBy, desc, key, city,userId));
     }
 
     @ApiOperation(value = "发布房源")

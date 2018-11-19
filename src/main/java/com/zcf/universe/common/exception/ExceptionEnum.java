@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public enum ExceptionEnum {
+    CITY_BE_NULL(400, "未选择城市"),
     INVALID_FILE_TYPE(400, "无效文件类型"),
     PHONE_STORY_BE_NULL(404, "没有查到该故事"),
     PHONE_NUMBER_BE_NULL(400, "手机号不能为空"),

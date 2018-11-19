@@ -35,6 +35,7 @@ public class UserInfoService {
 
     //设置RedisKey的前缀
     public static final String PHONE_NUMBER = "PHONE_NUMBER:";
+
     @Autowired
     private UserInfoMapper userInfomapper;
 

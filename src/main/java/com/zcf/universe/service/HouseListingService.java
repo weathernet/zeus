@@ -5,6 +5,7 @@ import com.zcf.universe.common.exception.CommonException;
 import com.zcf.universe.common.exception.ExceptionEnum;
 import com.zcf.universe.mapper.HouseLabelMapper;
 import com.zcf.universe.mapper.HouseListingMapper;
+import com.zcf.universe.mapper.UserInfoMapper;
 import com.zcf.universe.pojo.HouseLabel;
 import com.zcf.universe.pojo.HouseListing;
 import org.apache.commons.lang3.StringUtils;
@@ -29,16 +30,24 @@ public class HouseListingService {
     @Autowired
     private HouseLabelMapper houseLabelMapper;
 
+    @Autowired
+    private UserInfoMapper userInfomapper;
+
     //查询房源
-    public List<HouseListing> getHouseListings(Integer page, Integer rows, String sortBy, boolean desc, String key, String city) {
+    public List<HouseListing> getHouseListings(Integer page, Integer rows, String sortBy, boolean desc, String key, String city, Integer userId) {
         //分页
         PageHelper.startPage(page, rows);
         //过滤
         Example example = new Example(HouseListing.class);
         Example.Criteria criteria = example.createCriteria();
-        if (StringUtils.isNotBlank(city)) {
-            criteria.andEqualTo("housingCity", city);
+        if (StringUtils.isBlank(city)) {
+            throw new CommonException(ExceptionEnum.CITY_BE_NULL);
         }
+        criteria.andEqualTo("housingCity", city);
+        if (userId != null) {
+
+        }
+
         if (StringUtils.isNotBlank(key)) {
             criteria.orLike("housingTitle", "%" + key + "%");
         }

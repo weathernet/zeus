@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.zcf.universe.common.LayUIMeun.Ueditor;
 import com.zcf.universe.common.config.Ueditor.UeditorConfig;
 import com.zcf.universe.common.utils.FileUploadUtils;
-import org.apache.commons.io.FilenameUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,16 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
-import java.util.UUID;
 
 @Controller
 public class UEditorController {
-
-
-
     @RequestMapping("/ueditor")
     @ResponseBody
     public String getUEditorConfig(@RequestParam("action") String param, MultipartFile upfile, HttpServletResponse response,HttpServletRequest request) throws UnsupportedEncodingException {
@@ -50,7 +41,6 @@ public class UEditorController {
     /**
      * 图片上传
      * file 图片文件
-     *
      * @return
      */
     public String uploadImage(MultipartFile file, Ueditor ueditor, HttpServletRequest request) {
@@ -65,8 +55,6 @@ public class UEditorController {
         ueditor.setUrl(pic_url);
         System.out.print(JSON.toJSONString(ueditor));
         return JSON.toJSONString(ueditor);
-
-
     }
 
 }
