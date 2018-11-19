@@ -17,10 +17,13 @@ public class FileUploadUtils {
 
     private static final String RETURN_IMAGE_URL = "http://172.16.1.97:8088/";//nginx 图片服务器的端口
 
-    public static Map wangEditorImageUpload(MultipartFile file, String pathVal, String customPath) {
+    public static Map wangEditorImagesUpload(MultipartFile[] file, String pathVal, String customPath) {
         List<String> url = new ArrayList<>();
-        String ImgURL =fileUpload(file, pathVal, customPath);
-        url.add(ImgURL);
+        String ImgURL =filesUpload(file, pathVal, customPath);
+        String[] split = ImgURL.split(",");
+        for (int i = 0; i <split.length; i++) {
+            url.add(split[i]);
+        }
         Map map = new HashMap();
         map.put("errno", "0");
         map.put("data", url);
@@ -50,14 +53,14 @@ public class FileUploadUtils {
      * @param pathVal 图片上传的路径
      * @return 返回字符拼接的图片路径
      */
-    public static String filesUpload(CommonsMultipartFile[] file, String pathVal, String customPath) {
+    public static String filesUpload(MultipartFile[] file, String pathVal, String customPath) {
         // 用来检测程序运行时间
         long startTime = System.currentTimeMillis();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
         String format = df.format(new Date());
         String saveFilePath = customPath + format + "/";
         /* 构建文件目录 */
-        File fileDir = new File(pathVal + saveFilePath);
+        File fileDir = new File(IMAGE_URL + saveFilePath);
         if (!fileDir.exists()) {
             fileDir.mkdirs();
         }
@@ -70,8 +73,8 @@ public class FileUploadUtils {
                         String ExtensionName = filename.substring(filename.lastIndexOf(".") + 1);// 获取文件的扩展名如:mp4
                         String Millisecond = String.valueOf(System.currentTimeMillis());// 获取当前时间的毫秒数
                         String NewFileName = Millisecond + "." + ExtensionName;// 该文件在系统中的名字
-                        String FileName = saveFilePath + NewFileName;// 文件存储的路径
-                        String path = pathVal + saveFilePath + NewFileName; // 文件储存绝对路径
+                        String FileName = RETURN_IMAGE_URL+saveFilePath + NewFileName;// 文件存储的路径
+                        String path = IMAGE_URL + saveFilePath + NewFileName; // 文件储存绝对路径
                         File newFile = new File(path);
                         if (i == file.length - 1) {
                             fileName.append(FileName);
