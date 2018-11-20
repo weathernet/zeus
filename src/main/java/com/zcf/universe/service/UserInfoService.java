@@ -7,6 +7,7 @@ import com.zcf.universe.common.utils.IDUtils;
 import com.zcf.universe.mapper.UserInfoMapper;
 import com.zcf.universe.pojo.UserInfo;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -167,6 +168,9 @@ public class UserInfoService {
 
     //验证数据库是否由此用户
     public UserInfo checkPhone(String phone) {
+        if (StringUtils.isBlank(phone)) {
+            throw new CommonException(ExceptionEnum.PHONE_NUMBER_BE_NULL);
+        }
         Example example = new Example(UserInfo.class);
         example.createCriteria().andEqualTo("userPhoneNumber", phone);
         UserInfo userInfo = this.userInfomapper.selectOneByExample(example);
@@ -196,4 +200,91 @@ public class UserInfoService {
             throw new CommonException(ExceptionEnum.UPDATE_FAILURE);
         }
     }
+
+    //绑定微信
+    public void bindWeChat(Integer id, String userWeChatOpenid) {
+        //用户主键不能为空
+        if (id == null) {
+            throw new CommonException(ExceptionEnum.USER_KET_MISMATCH);
+        }
+        //微信的OpenId不能为空
+        if (userWeChatOpenid == null) {
+            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
+        }
+        //查询此OpenId是否被绑定过
+        int count1 = checkWeChatAndAliPay(0, userWeChatOpenid);
+        //如果已存在抛异常
+        if (count1 != 0) {
+            throw new CommonException(ExceptionEnum.WE_CHAT_IS_ALREADY_EXISTED);
+        }
+        UserInfo userInfo = this.userInfomapper.selectByPrimaryKey(id);
+        //用户不能为空
+        if (userInfo == null) {
+            throw new CommonException(ExceptionEnum.USER_IS_NOT_FOUND);
+        }
+        //把微信的OpenId插入到用户表
+        userInfo.setUserWeChatOpenid(userWeChatOpenid);
+        int count = this.userInfomapper.updateByPrimaryKeySelective(userInfo);
+        if (count != 1) {
+            throw new CommonException(ExceptionEnum.UPDATE_FAILURE);
+        }
+    }
+
+    //绑定支付宝
+    public void bindAliPay(Integer id, String userAliPayOpenid) {
+        //用户Id不能为空 为空抛异常
+        if (id == null) {
+            throw new CommonException(ExceptionEnum.USER_KET_MISMATCH);
+        }
+        //支付宝OpenId不能为空 为空抛异常
+        if (userAliPayOpenid == null) {
+            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
+        }
+        //查询此OpenId是否被绑定过
+        int count1 = checkWeChatAndAliPay(1, userAliPayOpenid);
+        //如果已存在抛异常
+        if (count1 != 0) {
+            throw new CommonException(ExceptionEnum.ALI_PAY_IS_ALREADY_EXISTED);
+        }
+        //用户不能为空
+        UserInfo userInfo = this.userInfomapper.selectByPrimaryKey(id);
+        if (userInfo == null) {
+            throw new CommonException(ExceptionEnum.USER_IS_NOT_FOUND);
+        }
+        //把支付宝OpenId插入用户表
+        userInfo.setUserAliPayOpenid(userAliPayOpenid);
+        int count = this.userInfomapper.updateByPrimaryKeySelective(userInfo);
+        if (count != 1) {
+            throw new CommonException(ExceptionEnum.UPDATE_FAILURE);
+        }
+    }
+
+    //支付宝登陆
+    public void loginByAliPay(String userAliPayOpenid) {
+        //判断支付宝OpenId是否为空 为空抛异常
+        if (StringUtils.isBlank(userAliPayOpenid)) {
+            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
+        }
+
+        UserInfo user = new UserInfo();
+        user.setUserAliPayOpenid(userAliPayOpenid);
+        UserInfo userInfo = this.userInfomapper.selectOne(user);
+        if (userInfo == null) {
+            throw new CommonException(ExceptionEnum.UPDATE_FAILURE);
+        }
+    }
+
+    //检查支付宝或微信账号是否存在0.微信1.支付宝
+    private int checkWeChatAndAliPay(int type, String openId) {
+        if (type == 0) {
+            UserInfo userInfo = new UserInfo();
+            userInfo.setUserWeChatOpenid(openId);
+            return this.userInfomapper.selectCount(userInfo);
+        } else {
+            UserInfo userInfo = new UserInfo();
+            userInfo.setUserAliPayOpenid(openId);
+            return this.userInfomapper.selectCount(userInfo);
+        }
+    }
+
 }
