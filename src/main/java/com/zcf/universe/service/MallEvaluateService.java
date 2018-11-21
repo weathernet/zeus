@@ -22,7 +22,7 @@ public class MallEvaluateService {
 
     //新增
     public void addMallEvaluate(MallEvaluate mallEvaluate) {
-        int count = this.mallEvaluatemapper.insert(mallEvaluate);
+        int count = this.mallEvaluatemapper.insertSelective(mallEvaluate);
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

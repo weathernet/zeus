@@ -22,7 +22,7 @@ public class HouseMoveService {
 
     //新增
     public void addHouseMove(HouseMove houseMove) {
-        int count = this.houseMovemapper.insert(houseMove) ;
+        int count = this.houseMovemapper.insertSelective(houseMove) ;
         if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

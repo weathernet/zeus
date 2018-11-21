@@ -22,7 +22,7 @@ public class MallBannerService {
 
     //新增
     public void addMallBanner(MallBanner mallBanner) {
-        int count = this.mallBannermapper.insert(mallBanner);
+        int count = this.mallBannermapper.insertSelective(mallBanner);
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

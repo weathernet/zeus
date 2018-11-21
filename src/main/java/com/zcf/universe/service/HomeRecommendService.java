@@ -22,7 +22,7 @@ public class HomeRecommendService {
 
     //新增
     public void addHomeRecommend(HomeRecommend homeRecommend) {
-        int count = this.homeRecommendmapper.insert(homeRecommend) ;
+        int count = this.homeRecommendmapper.insertSelective(homeRecommend) ;
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

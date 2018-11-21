@@ -22,7 +22,7 @@ public class TravelSceneryService {
 
     //新增
     public void addTravelScenery(TravelScenery travelScenery) {
-        int count = this.travelScenerymapper.insert(travelScenery);
+        int count = this.travelScenerymapper.insertSelective(travelScenery);
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

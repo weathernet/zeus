@@ -22,7 +22,7 @@ public class MoveOrderService {
 
     //新增
     public void addMoveOrder(MoveOrder moveOrder) {
-        int count = this.moveOrdermapper.insert(moveOrder) ;
+        int count = this.moveOrdermapper.insertSelective(moveOrder) ;
         if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

@@ -20,7 +20,7 @@ public class TravelOrderService{
 
     //新增
     public void addTravelOrder(TravelOrder travelOrder) {
-        int count  = this.travelOrdermapper.insert(travelOrder) ;
+        int count  = this.travelOrdermapper.insertSelective(travelOrder) ;
         if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

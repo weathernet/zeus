@@ -22,7 +22,7 @@ public class MallGoodsService {
 
     //新增
     public void addMallGoods(MallGoods mallGoods) {
-        int count = this.mallGoodsmapper.insert(mallGoods);
+        int count = this.mallGoodsmapper.insertSelective(mallGoods);
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

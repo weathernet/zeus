@@ -22,7 +22,7 @@ public class HouseReserveService {
 
     //新增
     public void addHouseReserve(HouseReserve houseReserve) {
-        int count = this.houseReservemapper.insert(houseReserve) ;
+        int count = this.houseReservemapper.insertSelective(houseReserve) ;
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

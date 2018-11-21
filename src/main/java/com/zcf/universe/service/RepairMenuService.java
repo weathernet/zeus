@@ -22,7 +22,7 @@ public class RepairMenuService{
 
     //新增
     public void addRepairMenu(RepairMenu repairMenu) {
-        int count = this.repairMenumapper.insert(repairMenu) ;
+        int count = this.repairMenumapper.insertSelective(repairMenu) ;
         if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

@@ -22,7 +22,7 @@ public class RepairOrderService{
 
     //新增
     public void addRepairOrder(RepairOrder repairOrder) {
-        int count = this.repairOrdermapper.insert(repairOrder) ;
+        int count = this.repairOrdermapper.insertSelective(repairOrder) ;
         if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

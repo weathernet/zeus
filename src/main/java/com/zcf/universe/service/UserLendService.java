@@ -22,7 +22,7 @@ public class UserLendService {
 
     //新增
     public void addUserLend(UserLend userLend) {
-        int count = this.userLendmapper.insert(userLend) ;
+        int count = this.userLendmapper.insertSelective(userLend) ;
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

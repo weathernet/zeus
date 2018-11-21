@@ -81,8 +81,8 @@ public class UserInfoService {
         userInfo.setUserNikeName("品家用户" + new Date());
         userInfo.setCreateTime(new Date());
         userInfo.setUpdateTime(new Date());
-        int insert = this.userInfomapper.insert(userInfo);
-        if (insert != 1) {
+        int insertSelective = this.userInfomapper.insertSelective(userInfo);
+        if (insertSelective != 1) {
             throw new CommonException(ExceptionEnum.SAVE_FAILURE);
         }
 
@@ -269,9 +269,9 @@ public class UserInfoService {
             user.setUserNikeName("品家用户" + new Date());
             user.setCreateTime(new Date());
             user.setUpdateTime(new Date());
-            int insert = this.userInfomapper.insertSelective(user);
+            int insertSelective = this.userInfomapper.insertSelective(user);
             //插入不成功抛异常
-            if (insert == 0) {
+            if (insertSelective == 0) {
                 throw new CommonException(ExceptionEnum.SAVE_FAILURE);
             }
             UserInfo userInfo = this.userInfomapper.selectOne(user);

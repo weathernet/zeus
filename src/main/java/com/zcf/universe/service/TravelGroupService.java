@@ -22,7 +22,7 @@ public class TravelGroupService {
 
     //新增
     public void addTravelGroup(TravelGroup travelGroup) {
-        int count = this.travelGroupmapper.insert(travelGroup);
+        int count = this.travelGroupmapper.insertSelective(travelGroup);
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

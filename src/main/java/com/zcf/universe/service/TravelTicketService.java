@@ -22,7 +22,7 @@ public class TravelTicketService {
 
     //新增
     public void addTravelTicket(TravelTicket travelTicket) {
-        int count = this.travelTicketmapper.insert(travelTicket);
+        int count = this.travelTicketmapper.insertSelective(travelTicket);
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

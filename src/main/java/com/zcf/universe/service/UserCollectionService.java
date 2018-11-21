@@ -22,7 +22,7 @@ public class UserCollectionService {
 
     //新增
     public void addUserCollection(UserCollection userCollection) {
-        int count = this.userCollectionmapper.insert(userCollection);
+        int count = this.userCollectionmapper.insertSelective(userCollection);
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

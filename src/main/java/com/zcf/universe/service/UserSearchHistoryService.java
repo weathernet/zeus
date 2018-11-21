@@ -22,7 +22,7 @@ public class UserSearchHistoryService {
 
     //新增
     public void addUserSearchHistory(UserSearchHistory userSearchHistory) {
-        int count = this.userSearchHistorymapper.insert(userSearchHistory);
+        int count = this.userSearchHistorymapper.insertSelective(userSearchHistory);
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

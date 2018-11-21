@@ -22,7 +22,7 @@ public class MoveDetailsService {
 
     //新增
     public void addMoveDetails(MoveDetails moveDetails) {
-        int count = this.moveDetailsmapper.insert(moveDetails) ;
+        int count = this.moveDetailsmapper.insertSelective(moveDetails) ;
         if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

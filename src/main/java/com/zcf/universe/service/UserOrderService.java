@@ -22,7 +22,7 @@ public class UserOrderService {
 
     //新增
     public void addUserOrder(UserOrder userOrder) {
-        int count = this.userOrdermapper.insert(userOrder) ;
+        int count = this.userOrdermapper.insertSelective(userOrder) ;
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

@@ -22,7 +22,7 @@ public class RepairDetailsService {
 
     //新增
     public void addRepairDetails(RepairDetails repairDetails) {
-        int count = this.repairDetailsmapper.insert(repairDetails) ;
+        int count = this.repairDetailsmapper.insertSelective(repairDetails) ;
         if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

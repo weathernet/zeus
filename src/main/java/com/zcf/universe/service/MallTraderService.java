@@ -22,7 +22,7 @@ public class MallTraderService {
 
     //新增
     public void addMallTrader(MallTrader mallTrader) {
-        int count = this.mallTradermapper.insert(mallTrader);
+        int count = this.mallTradermapper.insertSelective(mallTrader);
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

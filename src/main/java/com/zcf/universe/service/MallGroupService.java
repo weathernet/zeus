@@ -22,7 +22,7 @@ public class MallGroupService {
 
     //新增
     public void addMallGroup(MallGroup mallGroup) {
-        int count = this.mallGroupmapper.insert(mallGroup);
+        int count = this.mallGroupmapper.insertSelective(mallGroup);
         if (count != 1) {
             throw new CommonException(ExceptionEnum.GOODS_LISTING_BE_REPEAT);
         }

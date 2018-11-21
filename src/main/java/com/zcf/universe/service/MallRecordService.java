@@ -22,7 +22,7 @@ public class MallRecordService {
 
     //新增
     public void addMallRecord(MallRecord mallRecord) {
-        int count = this.mallRecordmapper.insert(mallRecord);
+        int count = this.mallRecordmapper.insertSelective(mallRecord);
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

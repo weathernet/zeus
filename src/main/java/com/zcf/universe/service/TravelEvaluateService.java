@@ -20,7 +20,7 @@ public class TravelEvaluateService{
 
     //新增
     public void addTravelEvaluate(TravelEvaluate travelEvaluate) {
-        int count = this.travelEvaluatemapper.insert(travelEvaluate) ;
+        int count = this.travelEvaluatemapper.insertSelective(travelEvaluate) ;
         if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

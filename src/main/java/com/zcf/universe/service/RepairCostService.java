@@ -22,7 +22,7 @@ public class RepairCostService{
 
     //新增
     public void addRepairCost(RepairCost repairCost) {
-        int count = this.repairCostmapper.insert(repairCost) ;
+        int count = this.repairCostmapper.insertSelective(repairCost) ;
         if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }

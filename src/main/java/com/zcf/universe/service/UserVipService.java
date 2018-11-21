@@ -22,7 +22,7 @@ public class UserVipService {
 
     //新增
     public void addUserVip(UserVip userVip) {
-        int count = this.userVipmapper.insert(userVip);
+        int count = this.userVipmapper.insertSelective(userVip);
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
