@@ -22,24 +22,24 @@ public class UserCollectionService {
 
     //新增
     public void addUserCollection(UserCollection userCollection) {
-        boolean flag = this.userCollectionmapper.insert(userCollection) == 1;
-        if (flag) {
+        int count = this.userCollectionmapper.insert(userCollection);
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //删除
     public void deleteUserCollection(Integer id) {
-        boolean flag = this.userCollectionmapper.deleteByPrimaryKey(id) == 1;
-        if (flag) {
+        int count = this.userCollectionmapper.deleteByPrimaryKey(id);
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //更新
     public void updateUserCollection(UserCollection userCollection) {
-        boolean flag = this.userCollectionmapper.updateByPrimaryKeySelective(userCollection) == 1;
-        if (flag) {
+        int count = this.userCollectionmapper.updateByPrimaryKeySelective(userCollection);
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }

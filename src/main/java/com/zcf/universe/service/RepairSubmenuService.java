@@ -23,24 +23,24 @@ public class RepairSubmenuService{
 
     //新增
     public void addRepairSubmenu(RepairSubmenu repairSubmenu) {
-        boolean flag = this.repairSubmenumapper.insert(repairSubmenu) == 1;
-        if(flag){
+        int count = this.repairSubmenumapper.insert(repairSubmenu) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //删除
     public void deleteRepairSubmenu(Integer id) {
-        boolean flag = this.repairSubmenumapper.deleteByPrimaryKey(id) == 1;
-        if(flag){
+        int count = this.repairSubmenumapper.deleteByPrimaryKey(id) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //更新
     public void updateRepairSubmenu(RepairSubmenu repairSubmenu) {
-        boolean flag =this.repairSubmenumapper.updateByPrimaryKeySelective(repairSubmenu) == 1;
-        if(flag){
+        int count =this.repairSubmenumapper.updateByPrimaryKeySelective(repairSubmenu) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }

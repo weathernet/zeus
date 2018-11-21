@@ -8,51 +8,53 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import com.zcf.universe.common.exception.CommonException;
 import com.zcf.universe.common.exception.ExceptionEnum;
+
 import java.util.List;
+
 /**
  * Created by YuanQJ on 2018/11/19.
  */
 @Service
-public class TravelGroupService{
+public class TravelGroupService {
 
     @Autowired
     private TravelGroupMapper travelGroupmapper;
 
     //新增
     public void addTravelGroup(TravelGroup travelGroup) {
-        boolean flag = this.travelGroupmapper.insert(travelGroup) == 1;
-        if(flag){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+        int count = this.travelGroupmapper.insert(travelGroup);
+        if (count != 1) {
+            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //删除
     public void deleteTravelGroup(Integer id) {
-        boolean flag = this.travelGroupmapper.deleteByPrimaryKey(id) == 1;
-        if(flag){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+        int count = this.travelGroupmapper.deleteByPrimaryKey(id);
+        if (count != 1) {
+            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //更新
     public void updateTravelGroup(TravelGroup travelGroup) {
-        boolean flag =this.travelGroupmapper.updateByPrimaryKeySelective(travelGroup) == 1;
-        if(flag){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+        int count = this.travelGroupmapper.updateByPrimaryKeySelective(travelGroup);
+        if (count != 1) {
+            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //查询所有
     public List<TravelGroup> getAllTravelGroup() {
         List<TravelGroup> list = this.travelGroupmapper.selectAll();
-       if(CollectionUtils.isEmpty(list)){
+        if (CollectionUtils.isEmpty(list)) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
         return list;
     }
 
     //查询单个
-    public TravelGroup getTravelGroup(Integer id){
+    public TravelGroup getTravelGroup(Integer id) {
         TravelGroup TravelGroup = this.travelGroupmapper.selectByPrimaryKey(id);
         if (TravelGroup == null) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
@@ -61,11 +63,11 @@ public class TravelGroupService{
     }
 
     //字段搜索
-     public List<TravelGroup> searchTravelGroup(String keywords) {
+    public List<TravelGroup> searchTravelGroup(String keywords) {
         Example example = new Example(TravelGroup.class);
         example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
         List<TravelGroup> list = this.travelGroupmapper.selectByExample(example);
-        if(CollectionUtils.isEmpty(list)){
+        if (CollectionUtils.isEmpty(list)) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
         return list;

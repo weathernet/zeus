@@ -22,24 +22,24 @@ public class MoveDetailsService {
 
     //新增
     public void addMoveDetails(MoveDetails moveDetails) {
-        boolean flag = this.moveDetailsmapper.insert(moveDetails) == 1;
-        if(flag){
+        int count = this.moveDetailsmapper.insert(moveDetails) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //删除
     public void deleteMoveDetails(Integer id) {
-        boolean flag = this.moveDetailsmapper.deleteByPrimaryKey(id) == 1;
-        if(flag){
+        int count = this.moveDetailsmapper.deleteByPrimaryKey(id) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //更新
     public void updateMoveDetails(MoveDetails moveDetails) {
-        boolean flag =this.moveDetailsmapper.updateByPrimaryKeySelective(moveDetails) == 1;
-        if(flag){
+        int count =this.moveDetailsmapper.updateByPrimaryKeySelective(moveDetails) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }

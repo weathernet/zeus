@@ -22,24 +22,24 @@ public class UserOrderService {
 
     //新增
     public void addUserOrder(UserOrder userOrder) {
-        boolean flag = this.userOrdermapper.insert(userOrder) == 1;
-        if (flag) {
+        int count = this.userOrdermapper.insert(userOrder) ;
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //删除
     public void deleteUserOrder(Integer id) {
-        boolean flag = this.userOrdermapper.deleteByPrimaryKey(id) == 1;
-        if (flag) {
+        int count = this.userOrdermapper.deleteByPrimaryKey(id) ;
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //更新
     public void updateUserOrder(UserOrder userOrder) {
-        boolean flag = this.userOrdermapper.updateByPrimaryKeySelective(userOrder) == 1;
-        if (flag) {
+        int count = this.userOrdermapper.updateByPrimaryKeySelective(userOrder) ;
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }

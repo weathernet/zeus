@@ -71,4 +71,16 @@ public class HouseListingController {
     public ResponseEntity<List<HouseLabel>> getHouseLabel() {
         return ResponseEntity.ok(this.houseListingService.getHouseLabel());
     }
+
+    @ApiOperation(value = "地图找房")
+    @GetMapping("mapLookingForRoom")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "longitude", value = "经度", dataType = "String"),
+            @ApiImplicitParam(name = "latitude", value = "纬度", dataType = "String"),
+            @ApiImplicitParam(name = "range", value = "范围", dataType = "int")
+
+    })
+    public ResponseEntity<List<HouseListing>> mapLookingForRoom(@RequestParam String longitude,@RequestParam String latitude,@RequestParam Integer range) {
+        return ResponseEntity.ok(this.houseListingService.mapLookingForRoom(longitude,latitude,range));
+    }
 }

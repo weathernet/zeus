@@ -22,24 +22,24 @@ public class RepairCostService{
 
     //新增
     public void addRepairCost(RepairCost repairCost) {
-        boolean flag = this.repairCostmapper.insert(repairCost) == 1;
-        if(flag){
+        int count = this.repairCostmapper.insert(repairCost) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //删除
     public void deleteRepairCost(Integer id) {
-        boolean flag = this.repairCostmapper.deleteByPrimaryKey(id) == 1;
-        if(flag){
+        int count = this.repairCostmapper.deleteByPrimaryKey(id) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //更新
     public void updateRepairCost(RepairCost repairCost) {
-        boolean flag =this.repairCostmapper.updateByPrimaryKeySelective(repairCost) == 1;
-        if(flag){
+        int count =this.repairCostmapper.updateByPrimaryKeySelective(repairCost) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }

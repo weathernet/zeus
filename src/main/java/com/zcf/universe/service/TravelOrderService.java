@@ -20,24 +20,24 @@ public class TravelOrderService{
 
     //新增
     public void addTravelOrder(TravelOrder travelOrder) {
-        boolean flag = this.travelOrdermapper.insert(travelOrder) == 1;
-        if(flag){
+        int count  = this.travelOrdermapper.insert(travelOrder) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //删除
     public void deleteTravelOrder(Integer id) {
-        boolean flag = this.travelOrdermapper.deleteByPrimaryKey(id) == 1;
-        if(flag){
+        int count  = this.travelOrdermapper.deleteByPrimaryKey(id) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //更新
     public void updateTravelOrder(TravelOrder travelOrder) {
-        boolean flag =this.travelOrdermapper.updateByPrimaryKeySelective(travelOrder) == 1;
-        if(flag){
+        int count  =this.travelOrdermapper.updateByPrimaryKeySelective(travelOrder) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }

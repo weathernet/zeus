@@ -92,4 +92,12 @@ public class HouseListingService {
         }
         return list;
     }
+
+    public List<HouseListing> mapLookingForRoom(String longitude,String latitude,Integer range) {
+        List<HouseListing> list = this.houseListingMapper.mapLookingForRoom(longitude,latitude,range);
+        if (CollectionUtils.isEmpty(list)) {
+            throw new CommonException(ExceptionEnum.HOUSE_LABEL_BE_REPEAT);
+        }
+        return list;
+    }
 }

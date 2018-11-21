@@ -57,4 +57,9 @@ public class LayUiMenu {
     public String webSocket() {
         return "websocket";
     }
+
+    @GetMapping("/map")
+    public String map() {
+        return "map";
+    }
 }

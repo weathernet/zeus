@@ -37,6 +37,11 @@ public class HouseListing {
     @Column(name = "housing_position")
     private String housingPosition;
 
+    @ApiModelProperty(value = "房源的朝向", required = true)
+    @Column(name = "housing_direction")
+    private String housingDirection;
+
+
     @ApiModelProperty(value = "房源所在小区", required = true)
     @Column(name = "housing_community")
     private String housingCommunity;

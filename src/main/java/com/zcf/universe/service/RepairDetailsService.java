@@ -22,24 +22,24 @@ public class RepairDetailsService {
 
     //新增
     public void addRepairDetails(RepairDetails repairDetails) {
-        boolean flag = this.repairDetailsmapper.insert(repairDetails) == 1;
-        if(flag){
+        int count = this.repairDetailsmapper.insert(repairDetails) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //删除
     public void deleteRepairDetails(Integer id) {
-        boolean flag = this.repairDetailsmapper.deleteByPrimaryKey(id) == 1;
-        if(flag){
+        int count = this.repairDetailsmapper.deleteByPrimaryKey(id) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //更新
     public void updateRepairDetails(RepairDetails repairDetails) {
-        boolean flag =this.repairDetailsmapper.updateByPrimaryKeySelective(repairDetails) == 1;
-        if(flag){
+        int count =this.repairDetailsmapper.updateByPrimaryKeySelective(repairDetails) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }

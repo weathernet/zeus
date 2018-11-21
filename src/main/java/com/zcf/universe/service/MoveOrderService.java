@@ -22,24 +22,24 @@ public class MoveOrderService {
 
     //新增
     public void addMoveOrder(MoveOrder moveOrder) {
-        boolean flag = this.moveOrdermapper.insert(moveOrder) == 1;
-        if(flag){
+        int count = this.moveOrdermapper.insert(moveOrder) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //删除
     public void deleteMoveOrder(Integer id) {
-        boolean flag = this.moveOrdermapper.deleteByPrimaryKey(id) == 1;
-        if(flag){
+        int count = this.moveOrdermapper.deleteByPrimaryKey(id) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //更新
     public void updateMoveOrder(MoveOrder moveOrder) {
-        boolean flag =this.moveOrdermapper.updateByPrimaryKeySelective(moveOrder) == 1;
-        if(flag){
+        int count =this.moveOrdermapper.updateByPrimaryKeySelective(moveOrder) ;
+        if(count != 1){
              throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }

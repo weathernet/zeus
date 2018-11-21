@@ -7,7 +7,6 @@ import com.zcf.universe.common.utils.IDUtils;
 import com.zcf.universe.mapper.UserInfoMapper;
 import com.zcf.universe.pojo.UserInfo;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -30,12 +29,13 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Service
+
 public class UserInfoService {
     //设置拦截图片的格式
-    public static final List<String> ALLOW_TYPES = Arrays.asList("image/jpeg", "image/png", "image/jpg");
+    private static final List<String> ALLOW_TYPES = Arrays.asList("image/jpeg", "image/png", "image/jpg");
 
     //设置RedisKey的前缀
-    public static final String PHONE_NUMBER = "PHONE_NUMBER:";
+    private static final String PHONE_NUMBER = "PHONE_NUMBER:";
 
     @Autowired
     private UserInfoMapper userInfomapper;
@@ -123,7 +123,7 @@ public class UserInfoService {
     }
 
     //上传图片返回图片的地址
-    public String uploadImage(MultipartFile file) {
+    private String uploadImage(MultipartFile file) {
         try {
             //校验文件类型
             String contentType = file.getContentType();//获取文件的上传类型
@@ -138,23 +138,18 @@ public class UserInfoService {
             //上传文件
             String path = ResourceUtils.getURL("classpath:").getPath() + "static/";
             String customPath = "user/";//自定义图片存储路径
-            String userHeadPortrait = FileUploadUtils.fileUpload(file, path, customPath);
-            return userHeadPortrait;
+            return FileUploadUtils.fileUpload(file, path, customPath);
         } catch (IOException e) {
             log.error("上传文件失败", e);
+            return null;
         }
-        return null;
     }
 
-    //查看该用户是否已经实名认证
+    //查看该用户是否已经实名认证0.未实名1.已实名
     public boolean isAuthentication(Integer id) {
         UserInfo userInfo = this.getUserInfo(id);
         int userState = userInfo.getUserState();
-        if (1 == userState) {
-            return true;//已经实名
-        } else {
-            return false;//未实名
-        }
+        return 1 == userState;
     }
 
     // 根据主键获取用户的信息
@@ -167,7 +162,7 @@ public class UserInfoService {
     }
 
     //验证数据库是否由此用户
-    public UserInfo checkPhone(String phone) {
+    private UserInfo checkPhone(String phone) {
         if (StringUtils.isBlank(phone)) {
             throw new CommonException(ExceptionEnum.PHONE_NUMBER_BE_NULL);
         }
@@ -259,20 +254,61 @@ public class UserInfoService {
         }
     }
 
-    //支付宝登陆
-    public void loginByAliPay(String userAliPayOpenid) {
+    //微信登录
+    public UserInfo loginWeChat(String WeChaOpenId) {
         //判断支付宝OpenId是否为空 为空抛异常
-        if (StringUtils.isBlank(userAliPayOpenid)) {
+        if (StringUtils.isBlank(WeChaOpenId)) {
             throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
         }
-
+        //查询微信OpenId是否被绑定过
+        int count = checkWeChatAndAliPay(0, WeChaOpenId);
         UserInfo user = new UserInfo();
-        user.setUserAliPayOpenid(userAliPayOpenid);
+        user.setUserWeChatOpenid(WeChaOpenId);
+        //该用户不存则创建用户
+        if (count == 0) {
+            user.setUserNikeName("品家用户" + new Date());
+            user.setCreateTime(new Date());
+            user.setUpdateTime(new Date());
+            int insert = this.userInfomapper.insertSelective(user);
+            //插入不成功抛异常
+            if (insert == 0) {
+                throw new CommonException(ExceptionEnum.SAVE_FAILURE);
+            }
+            UserInfo userInfo = this.userInfomapper.selectOne(user);
+            //没有查到该用户抛异常
+            if (userInfo == null) {
+                throw new CommonException(ExceptionEnum.USER_IS_NOT_FOUND);
+            }
+            //返回用户信息
+            return userInfo;
+        }
+        //用户存在
         UserInfo userInfo = this.userInfomapper.selectOne(user);
         if (userInfo == null) {
             throw new CommonException(ExceptionEnum.UPDATE_FAILURE);
         }
+        return userInfo;
     }
+
+
+    //第三方绑定手机号
+    public void bandWeChatAndAliPay(Integer id, String userPhoneNumber, String userPassword, String type) {
+        //如果ID为空抛异常
+        if (id == null) {
+            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
+        }
+        //如果密码和手机号为空抛异常
+        if (StringUtils.isBlank(userPassword) && StringUtils.isBlank(userPhoneNumber)) {
+            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
+        }
+        UserInfo userInfo = this.userInfomapper.selectByPrimaryKey(id);
+        //如果该用户不存在 抛异常
+        if (userInfo == null) {
+            throw new CommonException(ExceptionEnum.USER_IS_NOT_FOUND);
+        }
+
+    }
+
 
     //检查支付宝或微信账号是否存在0.微信1.支付宝
     private int checkWeChatAndAliPay(int type, String openId) {
@@ -286,5 +322,4 @@ public class UserInfoService {
             return this.userInfomapper.selectCount(userInfo);
         }
     }
-
 }

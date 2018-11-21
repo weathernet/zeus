@@ -22,24 +22,24 @@ public class UserLendService {
 
     //新增
     public void addUserLend(UserLend userLend) {
-        boolean flag = this.userLendmapper.insert(userLend) == 1;
-        if (flag) {
+        int count = this.userLendmapper.insert(userLend) ;
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //删除
     public void deleteUserLend(Integer id) {
-        boolean flag = this.userLendmapper.deleteByPrimaryKey(id) == 1;
-        if (flag) {
+        int count = this.userLendmapper.deleteByPrimaryKey(id) ;
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //更新
     public void updateUserLend(UserLend userLend) {
-        boolean flag = this.userLendmapper.updateByPrimaryKeySelective(userLend) == 1;
-        if (flag) {
+        int count = this.userLendmapper.updateByPrimaryKeySelective(userLend) ;
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }

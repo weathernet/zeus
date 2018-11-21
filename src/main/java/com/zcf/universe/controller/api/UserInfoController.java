@@ -102,18 +102,33 @@ public class UserInfoController {
         return ResponseEntity.ok().build();
     }
 
-  /*  @GetMapping("Authentication/{id}")
+    @GetMapping("Authentication/{id}")
     @ApiOperation(value = "查看该用户是否已经实名")
     @ApiImplicitParam(name = "id", value = "用户的主键", required = true, dataType = "int")
     public ResponseEntity<Boolean> isAuthentication(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(this.userInfoservice.isAuthentication(id));
     }
 
-    @GetMapping("Authentication/{id}")
-    @ApiOperation(value = "绑定微信")
+    @GetMapping("WeChat")
+    @ApiOperation(value = "微信登录")
     @ApiImplicitParam(name = "userWeChatOpenid", value = "微信的OpenId", required = true, dataType = "int")
-    public ResponseEntity<Void> bindWeChat(@PathVariable("id") Integer id,@RequestParam String userWeChatOpenid) {
-        this.userInfoservice.bindWeChat(id,userWeChatOpenid);
-        return ResponseEntity.ok().build();
-    }*/
+    public ResponseEntity<UserInfo> loginByWeChat(@RequestParam String userWeChatOpenid) {
+        return ResponseEntity.ok(this.userInfoservice.loginWeChat(userWeChatOpenid));
+    }
+    @PutMapping("bandWeChatAndAliPay/{id}")
+    @ApiOperation(value = "绑定手机号")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userPhoneNumber", value = "用户的手机号码", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "Openid", value = "开放平台的OpenId", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "type", value = "微信0，支付宝1", required = true, dataType = "int")
+    })
+    public ResponseEntity<Void> bandWeChatAndAliPay(
+            @PathVariable("id") Integer id,
+            @RequestParam("userPhoneNumber") String userPhoneNumber,
+            @RequestParam("userPassword") String userPassword,
+            @RequestParam("type") String type
+    ){
+        this.userInfoservice.bandWeChatAndAliPay(id,userPhoneNumber,userPassword,type);
+        return null;
+    }
 }

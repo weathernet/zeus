@@ -22,24 +22,24 @@ public class HomeRecommendService {
 
     //新增
     public void addHomeRecommend(HomeRecommend homeRecommend) {
-        boolean flag = this.homeRecommendmapper.insert(homeRecommend) == 1;
-        if (flag) {
+        int count = this.homeRecommendmapper.insert(homeRecommend) ;
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //删除
     public void deleteHomeRecommend(Integer id) {
-        boolean flag = this.homeRecommendmapper.deleteByPrimaryKey(id) == 1;
-        if (flag) {
+        int count = this.homeRecommendmapper.deleteByPrimaryKey(id) ;
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //更新
     public void updateHomeRecommend(HomeRecommend homeRecommend) {
-        boolean flag = this.homeRecommendmapper.updateByPrimaryKeySelective(homeRecommend) == 1;
-        if (flag) {
+        int count = this.homeRecommendmapper.updateByPrimaryKeySelective(homeRecommend) ;
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }

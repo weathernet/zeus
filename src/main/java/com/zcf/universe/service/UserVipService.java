@@ -22,24 +22,24 @@ public class UserVipService {
 
     //新增
     public void addUserVip(UserVip userVip) {
-        boolean flag = this.userVipmapper.insert(userVip) == 1;
-        if (flag) {
+        int count = this.userVipmapper.insert(userVip);
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //删除
     public void deleteUserVip(Integer id) {
-        boolean flag = this.userVipmapper.deleteByPrimaryKey(id) == 1;
-        if (flag) {
+        int count = this.userVipmapper.deleteByPrimaryKey(id);
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
     //更新
     public void updateUserVip(UserVip userVip) {
-        boolean flag = this.userVipmapper.updateByPrimaryKeySelective(userVip) == 1;
-        if (flag) {
+        int count = this.userVipmapper.updateByPrimaryKeySelective(userVip);
+        if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }

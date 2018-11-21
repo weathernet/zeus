@@ -64,3 +64,11 @@ logging:
   level:
     com.zcf.universe.mapper : debug #:打印SQL语句
     io.swagger.models.parameters.AbstractSerializableParameter: error #:为了解决swagger日志无端的报错
+wx:
+  pay:
+    appID: wxbdd47ded08ff0796
+    mchID: 1513337541
+    Key: 128490DJU487FJLQ9875A254DY5AM782
+    httpConnectTimeoutMs: 1000
+    httpReadTimeoutMs: 8000
+    notifyUrl: www.baidu.com
