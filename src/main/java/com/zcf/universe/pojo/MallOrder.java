@@ -17,7 +17,7 @@ public class MallOrder{
 
     @Id
     @ApiModelProperty(value = "主键", required = true)
-    private Integer orderId;
+    private Long orderId;
 
     @ApiModelProperty(value = "用户ID")
     private Integer orderUserId;

@@ -11,7 +11,7 @@ import javax.persistence.Table;
  */
 @Data
 @Table(name = "mall_trader")
-@ApiModel(value = "MallTrader模型", description = "备注")
+@ApiModel(value = "商户模型", description = "备注")
 public class MallTrader{
 
     @Id

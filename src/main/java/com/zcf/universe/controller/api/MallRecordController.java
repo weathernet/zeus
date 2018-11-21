@@ -14,7 +14,7 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/18.
 */
 @RestController
-@Api(value = "首页管理控制器", tags = {"首页管理接口"})
+@Api(value = "商城记录控制器", tags = {"商城记录接口"})
 public class MallRecordController {
 
     @Autowired

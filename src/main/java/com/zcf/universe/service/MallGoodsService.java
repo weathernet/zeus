@@ -61,6 +61,17 @@ public class MallGoodsService{
     }
 
     //字段搜索
+    public List<MallGoods> searchMallGoodsByGroupId(Integer groupid) {
+        Example example = new Example(MallGoods.class);
+        example.createCriteria().andEqualTo("goodsSort", groupid.toString());//name为你想要搜索的字段
+        List<MallGoods> list = this.mallGoodsmapper.selectByExample(example);
+        if(CollectionUtils.isEmpty(list)){
+            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+        }
+        return list;
+    }
+
+    //字段搜索
      public List<MallGoods> searchMallGoods(String keywords) {
         Example example = new Example(MallGoods.class);
         example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段

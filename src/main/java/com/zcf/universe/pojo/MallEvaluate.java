@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Data
 @Table(name = "mall_evaluate")
-@ApiModel(value = "MallEvaluate模型", description = "备注")
+@ApiModel(value = "评论", description = "备注")
 public class MallEvaluate{
 
     @Id

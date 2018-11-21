@@ -14,6 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public enum ExceptionEnum {
+
+    INVALID_PAY_TYPE(400, "暂不支持的支付类型"),
+    PAY_NO_MONEY(400, "金额不足"),
     ALI_PAY_IS_ALREADY_EXISTED(400, "该支付宝账号已被注册"),
     WE_CHAT_IS_ALREADY_EXISTED(400, "该微信号已被注册"),
     CITY_BE_NULL(400, "未选择城市"),
@@ -27,6 +30,7 @@ public enum ExceptionEnum {
     PHONE_NUMBER_IS_NOT_FOUND(404, "该手机号不存在"),
     USER_IS_NOT_FOUND(404, "该用户不存在"),
     HOUSE_LISTING_BE_REPEAT(404, "没有查到该房源"),
+    GOODS_LISTING_BE_REPEAT(404, "没有查到该分类"),
     HOUSE_LABEL_BE_REPEAT(404, "没有查到该房源"),
     HOME_PAGE_GROUPS_BE_NULL(404, "没有找到首页分组"),
     HONE_BANNER_BE_NULL(404, "没有找到轮播图"),

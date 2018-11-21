@@ -22,7 +22,7 @@ public class MallGroupService{
     public void addMallGroup(MallGroup mallGroup) {
         boolean flag = this.mallGroupmapper.insert(mallGroup) == 1;
         if(flag){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+             throw new CommonException(ExceptionEnum.GOODS_LISTING_BE_REPEAT);
         }
     }
 
@@ -30,7 +30,7 @@ public class MallGroupService{
     public void deleteMallGroup(Integer id) {
         boolean flag = this.mallGroupmapper.deleteByPrimaryKey(id) == 1;
         if(flag){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+             throw new CommonException(ExceptionEnum.GOODS_LISTING_BE_REPEAT);
         }
     }
 
@@ -38,7 +38,7 @@ public class MallGroupService{
     public void updateMallGroup(MallGroup mallGroup) {
         boolean flag =this.mallGroupmapper.updateByPrimaryKeySelective(mallGroup) == 1;
         if(flag){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+             throw new CommonException(ExceptionEnum.GOODS_LISTING_BE_REPEAT);
         }
     }
 
@@ -46,7 +46,7 @@ public class MallGroupService{
     public List<MallGroup> getAllMallGroup() {
         List<MallGroup> list = this.mallGroupmapper.selectAll();
        if(CollectionUtils.isEmpty(list)){
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+            throw new CommonException(ExceptionEnum.GOODS_LISTING_BE_REPEAT);
         }
         return list;
     }
@@ -55,9 +55,31 @@ public class MallGroupService{
     public MallGroup getMallGroup(Integer id){
         MallGroup MallGroup = this.mallGroupmapper.selectByPrimaryKey(id);
         if (MallGroup == null) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+            throw new CommonException(ExceptionEnum.GOODS_LISTING_BE_REPEAT);
         }
         return MallGroup;
+    }
+
+    //字段搜索
+    public List<MallGroup> searchMallGroupByHot() {
+        Example example = new Example(MallGroup.class);
+        example.createCriteria().andEqualTo("group_hot", "1");//name为你想要搜索的字段
+        List<MallGroup> list = this.mallGroupmapper.selectByExample(example);
+        if(CollectionUtils.isEmpty(list)){
+            throw new CommonException(ExceptionEnum.GOODS_LISTING_BE_REPEAT);
+        }
+        return list;
+    }
+
+    //字段搜索
+    public List<MallGroup> searchMallGroupById(Integer byid) {
+        Example example = new Example(MallGroup.class);
+        example.createCriteria().andEqualTo("group_by", byid.toString());//name为你想要搜索的字段
+        List<MallGroup> list = this.mallGroupmapper.selectByExample(example);
+        if(CollectionUtils.isEmpty(list)){
+            throw new CommonException(ExceptionEnum.GOODS_LISTING_BE_REPEAT);
+        }
+        return list;
     }
 
     //字段搜索
@@ -66,7 +88,7 @@ public class MallGroupService{
         example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
         List<MallGroup> list = this.mallGroupmapper.selectByExample(example);
         if(CollectionUtils.isEmpty(list)){
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+            throw new CommonException(ExceptionEnum.GOODS_LISTING_BE_REPEAT);
         }
         return list;
     }

@@ -25,6 +25,15 @@ public class MallGroup{
     @ApiModelProperty(value = "图片")
     private String groupImage;
 
+    @ApiModelProperty(value = "图标")
+    private String group_icon;//分类小图片
+
+    @ApiModelProperty(value = "热门")
+    private String group_hot;//是否热门 0不热 1热
+
+    @ApiModelProperty(value = "服务")
+    private String group_by;//所属服务类型 0入住必备 1设备采购 2创业精选
+
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
 

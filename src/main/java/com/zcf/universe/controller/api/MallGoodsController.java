@@ -14,11 +14,18 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/18.
 */
 @RestController
-@Api(value = "首页管理控制器", tags = {"首页管理接口"})
+@Api(value = "商品控制器", tags = {"商品接口"})
 public class MallGoodsController {
 
     @Autowired
     private MallGoodsService mallGoodsService;
+
+    @ApiOperation(value = "根据分类获取所有商品")
+    @GetMapping("MallGoods/{groupid}")
+    public  ResponseEntity<List<MallGoods>> getAllMallGoodsByGroupId(@PathVariable Integer groupid) {
+        return ResponseEntity.ok(this.mallGoodsService.searchMallGoodsByGroupId(groupid));
+    }
+
 
     @ApiOperation(value = "新增")
     @PostMapping("mallGoods")
