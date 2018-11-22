@@ -5,6 +5,7 @@ import com.zcf.universe.service.MoveDetailsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/14.
 */
 @RestController
-@Api(value = "首页管理控制器", tags = {"首页管理接口"})
+@Api(value = "搬家详情控制器", tags = {"搬家详情接口"})
 public class MoveDetailsController {
 
     @Autowired
@@ -24,14 +25,14 @@ public class MoveDetailsController {
     @PostMapping("moveDetails")
     public ResponseEntity<Void> addMoveDetails(MoveDetails moveDetails) {
         this.moveDetailsService.addMoveDetails(moveDetails);
-        return ResponseEntity.ok(null);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @ApiOperation(value = "删除")
     @DeleteMapping("moveDetails/{id}")
     public ResponseEntity<Void> deleteMoveDetails(@PathVariable Integer id) {
         this.moveDetailsService.deleteMoveDetails(id);
-        return ResponseEntity.ok(null);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @ApiOperation(value = "修改")

@@ -14,8 +14,8 @@ public class TestController {
     @Autowired
     private WeChatPAyHelp help;
 
-    @PostMapping("WeChatPay")
+    @PostMapping(value = "WeChatPay", produces = "application/xml;charset=UTF-8")
     public void Test() {
-         String order = help.createOrder();
+        String order = help.createOrder();
     }
 }

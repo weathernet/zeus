@@ -29,7 +29,7 @@ public class MallGoodsController {
 
     @ApiOperation(value = "新增")
     @PostMapping("mallGoods")
-    public ResponseEntity<Void> addMallGoods(MallGoods mallGoods) {
+    public ResponseEntity<Void> addMallGoods(@RequestBody MallGoods mallGoods) {
         this.mallGoodsService.addMallGoods(mallGoods);
         return ResponseEntity.ok(null);
     }

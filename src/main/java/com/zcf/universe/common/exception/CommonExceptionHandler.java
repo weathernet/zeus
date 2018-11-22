@@ -1,7 +1,5 @@
 package com.zcf.universe.common.exception;
 
-import com.zcf.universe.common.exception.CommonException;
-import com.zcf.universe.common.exception.ExceptionResult;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

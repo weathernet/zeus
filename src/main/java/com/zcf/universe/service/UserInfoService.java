@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
+
 /**
  * Created by YuanQJ on 2018/10/31.
  */
@@ -99,12 +100,13 @@ public class UserInfoService {
 
     //用户登录
     public UserInfo loginUser(String userPhoneNumber, String userPassword) {
+        //查询手机号是否存在
         this.checkPhone(userPhoneNumber);
+        //查询用户是否存在
         UserInfo userinfo = new UserInfo();
         userinfo.setUserPhoneNumber(userPhoneNumber);
         UserInfo userInfo = this.userInfomapper.selectOne(userinfo);
-        boolean equals = StringUtils.equals(userInfo.getUserPassword(), userPassword);
-        if (!equals) {
+        if (!StringUtils.equals(userInfo.getUserPassword(), userPassword)) {
             throw new CommonException(ExceptionEnum.USER_PASSWORD_MISMATCH);
         }
         return userInfo;
@@ -161,22 +163,13 @@ public class UserInfoService {
         return userInfo;
     }
 
-    //验证数据库是否由此用户
-    private UserInfo checkPhone(String phone) {
-        if (StringUtils.isBlank(phone)) {
-            throw new CommonException(ExceptionEnum.PHONE_NUMBER_BE_NULL);
-        }
-        Example example = new Example(UserInfo.class);
-        example.createCriteria().andEqualTo("userPhoneNumber", phone);
-        UserInfo userInfo = this.userInfomapper.selectOneByExample(example);
-        if (userInfo == null) {
-            throw new CommonException(ExceptionEnum.PHONE_NUMBER_IS_NOT_FOUND);
-        }
-        return userInfo;
-    }
 
     //修改用户密码
     public void updateUSerPasswords(String phone, String password) {
+        //验证是否为空
+        if (StringUtils.isBlank(phone) && StringUtils.isBlank(password)) {
+            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
+        }
         UserInfo userInfo = this.checkPhone(phone);
         userInfo.setUserPassword(password);
         int count = this.userInfomapper.updateByPrimaryKeySelective(userInfo);
@@ -254,61 +247,87 @@ public class UserInfoService {
         }
     }
 
-    //微信登录
-    public UserInfo loginWeChat(String WeChaOpenId) {
-        //判断支付宝OpenId是否为空 为空抛异常
-        if (StringUtils.isBlank(WeChaOpenId)) {
+    //微信和支付宝登录
+    public UserInfo loginByWeChatAndAliPay(String OpenId, int type) {
+        //判断微信OpenId是否为空 为空抛异常
+        if (StringUtils.isBlank(OpenId)) {
             throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
         }
         //查询微信OpenId是否被绑定过
-        int count = checkWeChatAndAliPay(0, WeChaOpenId);
-        UserInfo user = new UserInfo();
-        user.setUserWeChatOpenid(WeChaOpenId);
-        //该用户不存则创建用户
+        int count = checkWeChatAndAliPay(type, OpenId);
+        UserInfo userInfo = new UserInfo();
+        //未绑定 返回空
         if (count == 0) {
-            user.setUserNikeName("品家用户" + new Date());
-            user.setCreateTime(new Date());
-            user.setUpdateTime(new Date());
-            int insertSelective = this.userInfomapper.insertSelective(user);
-            //插入不成功抛异常
-            if (insertSelective == 0) {
-                throw new CommonException(ExceptionEnum.SAVE_FAILURE);
-            }
-            UserInfo userInfo = this.userInfomapper.selectOne(user);
-            //没有查到该用户抛异常
-            if (userInfo == null) {
-                throw new CommonException(ExceptionEnum.USER_IS_NOT_FOUND);
-            }
-            //返回用户信息
             return userInfo;
         }
-        //用户存在
-        UserInfo userInfo = this.userInfomapper.selectOne(user);
+        //已绑定0.微信1. 支付宝
+        if (0==type) {
+            userInfo.setUserWeChatOpenid(OpenId);
+        } else {
+            userInfo.setUserAliPayOpenid(OpenId);
+        }
+        //绑定过返回用户信息,登录
+        return this.userInfomapper.selectOne(userInfo);
+    }
+
+
+    //绑定手机号并登录
+    public UserInfo bandWeChatAndAliPay(String OpenId, String userPhoneNumber, String userPassword, String type) {
+        //如果参数为空抛异常
+        if (StringUtils.isBlank(OpenId) && StringUtils.isBlank(userPhoneNumber) &&
+                StringUtils.isBlank(userPassword) && StringUtils.isBlank(type)) {
+            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
+        }
+        //获取用户信息
+        UserInfo userInfo = checkPhone(userPhoneNumber);
+        //用户不为空
         if (userInfo == null) {
-            throw new CommonException(ExceptionEnum.UPDATE_FAILURE);
+            //创建用户
+            userInfo.setUserPhoneNumber(userPhoneNumber);
+            userInfo.setUserPassword(userPassword);
+            //0.微信1.支付宝
+            if (StringUtils.equals("0", type)) {
+                userInfo.setUserWeChatOpenid(OpenId);
+            } else {
+                userInfo.setUserAliPayOpenid(OpenId);
+            }
+            int count = this.userInfomapper.insertSelective(userInfo);
+            if (count != 1) {
+                throw new CommonException(ExceptionEnum.SAVE_FAILURE);
+            }
+            return userInfo;
+        } else {
+            //创建用户
+            userInfo.setUserPhoneNumber(userPhoneNumber);
+            userInfo.setUserPassword(userPassword);
+            //0.微信1.支付宝
+            if (StringUtils.equals("0", type)) {
+                userInfo.setUserWeChatOpenid(OpenId);
+            } else {
+                userInfo.setUserAliPayOpenid(OpenId);
+            }
+            int count = this.userInfomapper.updateByPrimaryKey(userInfo);
+            if (count != 1) {
+                throw new CommonException(ExceptionEnum.SAVE_FAILURE);
+            }
+            return userInfo;
+        }
+    }
+
+
+    //根据手机号验证数据库是否由此用户
+    private UserInfo checkPhone(String phone) {
+        if (StringUtils.isBlank(phone)) {
+            throw new CommonException(ExceptionEnum.PHONE_NUMBER_BE_NULL);
+        }
+        Example example = new Example(UserInfo.class);
+        example.createCriteria().andEqualTo("userPhoneNumber", phone);
+        UserInfo userInfo = this.userInfomapper.selectOneByExample(example);
+        if (userInfo == null) {
+            throw new CommonException(ExceptionEnum.PHONE_NUMBER_IS_NOT_FOUND);
         }
         return userInfo;
     }
-
-
-    //第三方绑定手机号
-    public void bandWeChatAndAliPay(Integer id, String userPhoneNumber, String userPassword, String type) {
-        //如果ID为空抛异常
-        if (id == null) {
-            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
-        }
-        //如果密码和手机号为空抛异常
-        if (StringUtils.isBlank(userPassword) && StringUtils.isBlank(userPhoneNumber)) {
-            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
-        }
-        UserInfo userInfo = this.userInfomapper.selectByPrimaryKey(id);
-        //如果该用户不存在 抛异常
-        if (userInfo == null) {
-            throw new CommonException(ExceptionEnum.USER_IS_NOT_FOUND);
-        }
-
-    }
-
 
     //检查支付宝或微信账号是否存在0.微信1.支付宝
     private int checkWeChatAndAliPay(int type, String openId) {

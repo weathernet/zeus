@@ -12,8 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileNotFoundException;
-
 /**
  * Created by YuanQJ on 2018/10/31.
  */
@@ -59,15 +57,14 @@ public class UserInfoController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("user")
+    @GetMapping(value = "user")
     @ApiOperation(value = "用户手机号密码登录", notes = "手机号和密码不能为空")
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "userPhoneNumber", value = "手机号", required = true, dataType = "int"),
             @ApiImplicitParam(name = "userPassword", value = "密码", required = true, dataType = "String")
     })
     public ResponseEntity<UserInfo> loginUser(@RequestParam String userPhoneNumber, @RequestParam String userPassword) {
-        UserInfo userInfo = this.userInfoservice.loginUser(userPhoneNumber, userPassword);
-        return ResponseEntity.ok(userInfo);
+        return ResponseEntity.ok(this.userInfoservice.loginUser(userPhoneNumber, userPassword));
     }
 
     @GetMapping("user/{id}")
@@ -109,13 +106,17 @@ public class UserInfoController {
         return ResponseEntity.ok(this.userInfoservice.isAuthentication(id));
     }
 
-    @GetMapping("WeChat")
-    @ApiOperation(value = "微信登录")
-    @ApiImplicitParam(name = "userWeChatOpenid", value = "微信的OpenId", required = true, dataType = "int")
-    public ResponseEntity<UserInfo> loginByWeChat(@RequestParam String userWeChatOpenid) {
-        return ResponseEntity.ok(this.userInfoservice.loginWeChat(userWeChatOpenid));
+    @GetMapping("loginByWeChatAndAliPay")
+    @ApiOperation(value = "微信和支付宝登录")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "Openid", value = "OpenId", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "type", value = "微信0,支付宝1", required = true, dataType = "int")
+    })
+    public ResponseEntity<UserInfo> loginByWeChatAndAliPay(@RequestParam String Openid,@RequestParam int type) {
+        return ResponseEntity.ok(this.userInfoservice.loginByWeChatAndAliPay(Openid, type));
     }
-    @PutMapping("bandWeChatAndAliPay/{id}")
+
+    @PutMapping("bandWeChatAndAliPayByPhone")
     @ApiOperation(value = "绑定手机号")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "userPhoneNumber", value = "用户的手机号码", required = true, dataType = "String"),
@@ -123,12 +124,14 @@ public class UserInfoController {
             @ApiImplicitParam(name = "type", value = "微信0，支付宝1", required = true, dataType = "int")
     })
     public ResponseEntity<Void> bandWeChatAndAliPay(
-            @PathVariable("id") Integer id,
+            @RequestParam("Openid") String Openid,
             @RequestParam("userPhoneNumber") String userPhoneNumber,
             @RequestParam("userPassword") String userPassword,
             @RequestParam("type") String type
-    ){
-        this.userInfoservice.bandWeChatAndAliPay(id,userPhoneNumber,userPassword,type);
+    ) {
+        this.userInfoservice.bandWeChatAndAliPay(Openid, userPhoneNumber, userPassword, type);
         return null;
     }
+
+
 }
