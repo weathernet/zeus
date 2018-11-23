@@ -65,10 +65,22 @@ public class TravelSceneryService {
     //字段搜索
     public List<TravelScenery> searchTravelScenery(String keywords) {
         Example example = new Example(TravelScenery.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
+        example.createCriteria().orLike("sceneryTitle","%" + keywords + "%")
+                .orLike("sceneryAddress", "%" + keywords + "%");//name为你想要搜索的字段
         List<TravelScenery> list = this.travelScenerymapper.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+            throw new CommonException(ExceptionEnum.GOODS_LISTING_BE_REPEAT);
+        }
+        return list;
+    }
+
+    //字段搜索
+    public List<TravelScenery> searchTravelSceneryByGroup(String groupid) {
+        Example example = new Example(TravelScenery.class);
+        example.createCriteria().andEqualTo("sceneryGroup",groupid);
+        List<TravelScenery> list = this.travelScenerymapper.selectByExample(example);
+        if (CollectionUtils.isEmpty(list)) {
+            throw new CommonException(ExceptionEnum.GOODS_LISTING_BE_REPEAT);
         }
         return list;
     }

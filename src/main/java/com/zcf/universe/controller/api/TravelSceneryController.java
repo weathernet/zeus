@@ -15,11 +15,24 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/19.
 */
 @RestController
-@Api(value = "首页管理控制器", tags = {"首页管理接口"})
+@Api(value = "景点管理控制器", tags = {"景点管理接口"})
 public class TravelSceneryController {
 
     @Autowired
     private TravelSceneryService travelSceneryService;
+
+
+    @ApiOperation(value = "根据搜索条件获取景点")
+    @GetMapping("scenery/{keywords}")
+    public  ResponseEntity<List<TravelScenery>> getTravelScenery(@PathVariable String keywords) {
+        return ResponseEntity.ok(this.travelSceneryService.searchTravelScenery(keywords));
+    }
+
+    @ApiOperation(value = "根据搜索条件获取景点")
+    @GetMapping("scenery/group/{groupid}")
+    public  ResponseEntity<List<TravelScenery>> getTravelSceneryByGroup(@PathVariable String groupid) {
+        return ResponseEntity.ok(this.travelSceneryService.searchTravelSceneryByGroup(groupid));
+    }
 
     @ApiOperation(value = "新增")
     @PostMapping("travelScenery")

@@ -65,7 +65,7 @@ public class TravelTicketService {
     //字段搜索
     public List<TravelTicket> searchTravelTicket(String keywords) {
         Example example = new Example(TravelTicket.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
+        example.createCriteria().andLike("ticketSceneryId",keywords);//name为你想要搜索的字段
         List<TravelTicket> list = this.travelTicketmapper.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);

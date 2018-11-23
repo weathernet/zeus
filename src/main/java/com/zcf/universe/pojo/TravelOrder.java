@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Data
 @Table(name = "travel_order")
-@ApiModel(value = "TravelOrder模型", description = "TravelOrder信息")
+@ApiModel(value = "旅游订单模型", description = "旅游订单信息")
 public class TravelOrder{
 
     @Id
@@ -23,7 +23,7 @@ public class TravelOrder{
     private Integer orderUserId;
 
     @ApiModelProperty(value = "旅游的人")
-    private Integer orderPeopleId;
+    private String orderPeopleId;
 
     @ApiModelProperty(value = "门票数量")
     private Integer orderNumber;
@@ -33,6 +33,15 @@ public class TravelOrder{
 
     @ApiModelProperty(value = "门票标题")
     private String orderTitle;
+
+    @ApiModelProperty(value = "使用日期")
+    private Date orderServiceDate;
+
+    @ApiModelProperty(value = "订单状态")
+    private String orderState;//订单状态 0代付款 1待使用 2已使用 3已过期
+
+    @ApiModelProperty(value = "支付类型")
+    private String orderPaytype;//支付类型 1微信支付 2支付宝支付 3余额支付
 
     @ApiModelProperty(value = "创建时间")
     private Date createTime;

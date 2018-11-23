@@ -30,14 +30,14 @@ public class MallOrderController {
 
 
     @ApiOperation(value = "查询订单")
-    @GetMapping("orders")
+    @GetMapping("mallorders")
     public  ResponseEntity<List<MallOrder>> getOrder(String orderstate) {
         return ResponseEntity.ok(this.mallOrderService.searchOrder(orderstate));
     }
 
     //创建订单
     @ApiOperation(value = "创建订单")
-    @PostMapping("order")
+    @PostMapping("mallorder")
     public ResponseEntity<Void> addOrder(MallOrder mallOrder) {
         mallOrder.setOrderId(IDUtils.genItemId());
         mallOrder.setCreateTime(new Date());
@@ -49,7 +49,7 @@ public class MallOrderController {
 
     //订单付款
     @ApiOperation(value = "订单付款")
-    @PutMapping("update_order")
+    @PutMapping("update_mallorder")
     public ResponseEntity<Void> updateOrder(String orderid,Integer userid
             ,String money,String paytype) {
         return this.mallOrderService.updateOrder(orderid,userid,money,paytype);
@@ -57,14 +57,14 @@ public class MallOrderController {
 
     //订单发货
     @ApiOperation(value = "订单发货")
-    @PutMapping("send_order")
+    @PutMapping("send_mallorder")
     public ResponseEntity<Void> updateOrderSendGoods(String orderid,String userid,String expressnumber) {
         return this.mallOrderService.updateOrderSendGoods(orderid,userid,expressnumber);
     }
 
     //订单收货
     @ApiOperation(value = "订单收货")
-    @PutMapping("get_order")
+    @PutMapping("get_mallorder")
     public ResponseEntity<Void> updateOrderGetGoods(String orderid,String userid) {
         return this.mallOrderService.updateOrderGetGoods(orderid,userid);
     }

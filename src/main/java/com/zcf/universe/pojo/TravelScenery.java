@@ -41,7 +41,13 @@ public class TravelScenery{
     private String sceneryAddress;
 
     @ApiModelProperty(value = "访问量")
-    private Date sceneryNumber;
+    private Integer sceneryNumber;
+
+    @ApiModelProperty(value = "景点评分")
+    private String sceneryPoint;//景点评分
+
+    @ApiModelProperty(value = "景点备注")
+    private String sceneryRemark;//景点备注
 
     @ApiModelProperty(value = "创建时间")
     private Date createTime;

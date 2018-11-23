@@ -63,7 +63,7 @@ public class TravelEvaluateService{
     //字段搜索
      public List<TravelEvaluate> searchTravelEvaluate(String keywords) {
         Example example = new Example(TravelEvaluate.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
+        example.createCriteria().andLike("evaluateSceneryId", keywords);//name为你想要搜索的字段
         List<TravelEvaluate> list = this.travelEvaluatemapper.selectByExample(example);
         if(CollectionUtils.isEmpty(list)){
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);

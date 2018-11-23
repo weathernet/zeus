@@ -15,11 +15,19 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/19.
 */
 @RestController
-@Api(value = "首页管理控制器", tags = {"首页管理接口"})
+@Api(value = "门票管理控制器", tags = {"门票首页管理接口"})
 public class TravelTicketController {
 
     @Autowired
     private TravelTicketService travelTicketService;
+
+
+    @ApiOperation(value = "获取景点门票信息")
+    @PostMapping("get_travelticket")
+    public ResponseEntity<Void> getTicket(String sceneryId) {
+        this.travelTicketService.searchTravelTicket(sceneryId);
+        return ResponseEntity.ok(null);
+    }
 
     @ApiOperation(value = "新增")
     @PostMapping("travelTicket")

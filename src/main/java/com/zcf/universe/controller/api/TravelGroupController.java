@@ -15,7 +15,7 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/19.
 */
 @RestController
-@Api(value = "首页管理控制器", tags = {"首页管理接口"})
+@Api(value = "景点分类管理控制器", tags = {"景点分类管理接口"})
 public class TravelGroupController {
 
     @Autowired

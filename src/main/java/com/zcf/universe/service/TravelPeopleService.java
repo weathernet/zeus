@@ -65,7 +65,7 @@ public class TravelPeopleService {
     //字段搜索
     public List<TravelPeople> searchTravelPeople(String keywords) {
         Example example = new Example(TravelPeople.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
+        example.createCriteria().andEqualTo("peopleUserId", keywords);//name为你想要搜索的字段
         List<TravelPeople> list = this.travelPeoplemapper.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
