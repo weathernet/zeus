@@ -126,18 +126,7 @@ public class MallOrderService {
     //字段搜索
     public List<MallOrder> searchOrder(String keywords) {
         Example example = new Example(MallOrder.class);
-        example.createCriteria().andLike("orderStatus", keywords);//name为你想要搜索的字段
-        List<MallOrder> list = this.mallOrdermapper.selectByExample(example);
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
-
-    //字段搜索
-    public List<MallOrder> searchMallOrder(String keywords) {
-        Example example = new Example(MallOrder.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
+        example.createCriteria().andLike("orderStatus", keywords);
         List<MallOrder> list = this.mallOrdermapper.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);

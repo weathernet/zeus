@@ -20,26 +20,6 @@ public class MallBannerController {
     @Autowired
     private MallBannerService mallBannerService;
 
-    @ApiOperation(value = "新增")
-    @PostMapping("mallBanner")
-    public ResponseEntity<Void> addMallBanner(MallBanner mallBanner) {
-        this.mallBannerService.addMallBanner(mallBanner);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "删除")
-    @DeleteMapping("mallBanner/{id}")
-    public ResponseEntity<Void> deleteMallBanner(@PathVariable Integer id) {
-        this.mallBannerService.deleteMallBanner(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("mallBanner")
-    public ResponseEntity<Void> updateMallBanner(MallBanner mallBanner) {
-        this.mallBannerService.updateMallBanner(mallBanner);
-        return ResponseEntity.ok(null);
-    }
 
     @ApiOperation(value = "获取单个")
     @GetMapping("mallBanner/{id}")

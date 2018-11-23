@@ -19,7 +19,7 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/18.
 */
 @RestController
-@Api(value = "评论管理控制器", tags = {"评论管理接口"})
+@Api(value = "商城评论管理控制器", tags = {"商城评论管理接口"})
 public class MallEvaluateController {
 
     @Autowired
@@ -32,14 +32,14 @@ public class MallEvaluateController {
     //发布评论
     @ApiOperation(value = "发布评论")
     @PostMapping("evaluate")
-    public ResponseEntity<Void> addEvaluate(MallEvaluate mallEvaluate,String orderid) {
+    public ResponseEntity<Void> addEvaluate(MallEvaluate mallEvaluate,String orderId) {
         //添加评论
         this.mallEvaluateService.addMallEvaluate(mallEvaluate);
         //修改订单状态（已评论）
         MallOrder mallOrder = new MallOrder();
         mallOrder.setUpdateTime(new Date());
         mallOrder.setOrderStatus(4);
-        mallOrder.setOrderId(Long.parseLong(orderid));
+        mallOrder.setOrderId(Long.parseLong(orderId));
         mallOrderService.updateMallOrder(mallOrder);
         return ResponseEntity.ok(null);
     }
@@ -50,13 +50,6 @@ public class MallEvaluateController {
     @PostMapping("mallEvaluate")
     public ResponseEntity<Void> addMallEvaluate(MallEvaluate mallEvaluate) {
         this.mallEvaluateService.addMallEvaluate(mallEvaluate);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "删除")
-    @DeleteMapping("mallEvaluate/{id}")
-    public ResponseEntity<Void> deleteMallEvaluate(@PathVariable Integer id) {
-        this.mallEvaluateService.deleteMallEvaluate(id);
         return ResponseEntity.ok(null);
     }
 

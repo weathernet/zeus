@@ -23,7 +23,7 @@ public class MallEvaluate{
     private Integer evaluateTraderId;
 
     @ApiModelProperty(value = "商品的主键")
-    private Integer evaluateGoodsId;
+    private Long evaluateGoodsId;
 
     @ApiModelProperty(value = "用户ID")
     private Integer evaluateUserId;

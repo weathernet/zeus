@@ -28,14 +28,6 @@ public class MallEvaluateService {
         }
     }
 
-    //删除
-    public void deleteMallEvaluate(Integer id) {
-        int count = this.mallEvaluatemapper.deleteByPrimaryKey(id);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
     //更新
     public void updateMallEvaluate(MallEvaluate mallEvaluate) {
         int count = this.mallEvaluatemapper.updateByPrimaryKeySelective(mallEvaluate);

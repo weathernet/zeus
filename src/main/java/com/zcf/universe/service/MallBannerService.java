@@ -20,31 +20,6 @@ public class MallBannerService {
     @Autowired
     private MallBannerMapper mallBannermapper;
 
-    //新增
-    public void addMallBanner(MallBanner mallBanner) {
-        int count = this.mallBannermapper.insertSelective(mallBanner);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //删除
-    public void deleteMallBanner(Integer id) {
-        int count = this.mallBannermapper.deleteByPrimaryKey(id);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateMallBanner(MallBanner mallBanner) {
-        int count = this.mallBannermapper.updateByPrimaryKeySelective(mallBanner);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //查询所有
     public List<MallBanner> getAllMallBanner() {
         List<MallBanner> list = this.mallBannermapper.selectAll();
         if (CollectionUtils.isEmpty(list)) {
@@ -62,14 +37,4 @@ public class MallBannerService {
         return MallBanner;
     }
 
-    //字段搜索
-    public List<MallBanner> searchMallBanner(String keywords) {
-        Example example = new Example(MallBanner.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
-        List<MallBanner> list = this.mallBannermapper.selectByExample(example);
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
 }
