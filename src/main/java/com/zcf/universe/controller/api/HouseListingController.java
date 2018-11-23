@@ -83,4 +83,31 @@ public class HouseListingController {
     public ResponseEntity<List<HouseListing>> mapLookingForRoom(@RequestParam String longitude,@RequestParam String latitude,@RequestParam Integer range) {
         return ResponseEntity.ok(this.houseListingService.mapLookingForRoom(longitude,latitude,range));
     }
+
+    @ApiOperation(value = "房屋估价")
+    @GetMapping("houseAppraisal")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "city", value = "城市", dataType = "String"),
+            @ApiImplicitParam(name = "villageName", value = "小区名称", dataType = "String"),
+            @ApiImplicitParam(name = "buildingNumber", value = "楼栋号", dataType = "String"),
+            @ApiImplicitParam(name = "numberOfLivingRooms", value = "居室数量", dataType = "String"),
+            @ApiImplicitParam(name = "coveredArea", value = "建筑总面积", dataType = "String"),
+            @ApiImplicitParam(name = "orientation", value = "房屋朝向(选填)", dataType = "String"),
+            @ApiImplicitParam(name = "decorateADegree", value = "装修程度", dataType = "String"),
+            @ApiImplicitParam(name = "theLeaseTime", value = "可出租时长", dataType = "String")
+    })
+    public ResponseEntity houseAppraisal(
+            @RequestParam("city") String city,
+            @RequestParam("villageName") String villageName,
+            @RequestParam("buildingNumber") String buildingNumber,
+            @RequestParam("numberOfLivingRooms") String numberOfLivingRooms,
+            @RequestParam("coveredArea") String coveredArea,
+            @RequestParam("orientation") String orientation,
+            @RequestParam("decorateADegree")String decorateADegree,
+            @RequestParam("theLeaseTime") String theLeaseTime
+    ) {
+    //TODO  房屋估价接口
+        return ResponseEntity.ok().build();
+    }
+
 }

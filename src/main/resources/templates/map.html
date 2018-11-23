@@ -16,6 +16,7 @@
 </style>
 <body ng-app='apiview' ng-controller="PublicController">
 	<div id="allmap"></div>
+    <div id="r-result"></div>
 </div>
 </body>
 <script type="text/javascript">
@@ -39,27 +40,45 @@ circle.addEventListener("lineupdate", function (e) {
         },
         success: function (data) {
             console.log(data)
-
             var marker = new BMap.Marker(mPoint);
-            var mapPoints = [
-                // {x:39.92,y:116.4},
-                // {x:39.93,y:116.41},
-            ];
+            var mapPoints = [];//创建数组
             for ( var j = 0 ;j<data.length;j++ ){
-                mapPoints.push( { x:data[j].housingLatitude,y:data[j].housingLongitude } )
+                //添加信息 进 数组
+                mapPoints.push( { x:data[j].housingLatitude,y:data[j].housingLongitude ,title:data[j].housingPrice,con: data[j].housingId,branch:data[j].housingPrice} )
             }
             console.log(mapPoints)
             var i = 0;
             map.addOverlay(marker);
             map.enableScrollWheelZoom(true);
+
+
             // 函数 创建多个标注
-            function markerFun (points) {
+            function markerFun (points,label,infoWindows,con) {
                 var markers = new BMap.Marker(points);
                 map.addOverlay(markers);
+                markers.setLabel(label);
+                markers.addEventListener("click",function (event) {
+                    console.log(infoWindows);
+                    console.log(con);
+
+                    map.openInfoWindow(infoWindows,points);//参数：窗口、点  根据点击的点出现对应的窗口
+                });
             }
+
             for (;i<mapPoints.length;i++) {
                 var points = new BMap.Point(mapPoints[i].y,mapPoints[i].x);//创建坐标点
-                markerFun(points);
+
+                var opts = {
+                    width:200,
+                    height: 100,
+                    title:mapPoints[i].title
+                };
+                var label = new BMap.Label(mapPoints[i].branch,{
+                    offset:new BMap.Size(25,5)
+                });
+                var infoWindows = new BMap.InfoWindow(mapPoints[i].title,opts);
+
+                markerFun(points,label,infoWindows,mapPoints[i].con);
             }
         },
         error: function (data, textStatus) {
@@ -69,10 +88,5 @@ circle.addEventListener("lineupdate", function (e) {
     });
 });
 }
-
-
-
-
-
 </script>
 </html>

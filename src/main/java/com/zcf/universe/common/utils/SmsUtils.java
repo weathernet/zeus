@@ -31,7 +31,7 @@ public class SmsUtils {
     //产品域名,开发者无需替换
     static final String DO_MAIN = "dysmsapi.aliyuncs.com";
 
-    // TODO 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
+    // 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
     static final String ACCESS_KEY_ID = "LTAI8ZEVyJ2AMkKn";
     static final String ACCESS_KEY_SECRET = "vvDrrr1WZ8LAjgaKSzmJFY3Wu6kDwT";
 
