@@ -104,6 +104,7 @@ layui.define(['table', 'form'], function (exports) {
     //**********新增开始**********
     var active = {
         add: function () {
+
             admin.popup({
                 title: '添加词条'
                 , area: ['550px', '550px']//设置弹出框大小

@@ -47,13 +47,13 @@ layui.define(['table', 'form'], function (exports) {
         ,toolbar: true
         , cols: [[
              {field: 'userId',  title: '用户ID'}
-            , {field: 'userRealName', title: 'userRealName',edit: 'text'}
+            , {field: 'userRealName', title: '真实姓名',edit: 'text'}
             , {field: 'userNikeName', title: '用户昵称'}
             , {field: 'userIdentification', title: '身份证号码'}
             , {field: 'userGender', title: '性别'}
             , {field: 'user_head_portrait', title: '头像'}
-            , {field: 'userEmail', title: 'userEmail'}
-            , {field: 'userPhoneNumber', title: 'userPhoneNumber'}
+            , {field: 'userEmail', title: '用户邮箱'}
+            , {field: 'userPhoneNumber', title: '用户手机号'}
             , {field: 'userSesameScore', title: '芝麻信用分'}
             , {field: 'userWallet', title: '钱包'}
             , {field: 'userState', title: '实名认证'}

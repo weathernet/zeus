@@ -132,6 +132,4 @@ public class UserInfoController {
         this.userInfoservice.bandWeChatAndAliPay(Openid, userPhoneNumber, userPassword, type);
         return null;
     }
-
-
 }

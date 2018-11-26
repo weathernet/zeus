@@ -15,7 +15,7 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/22.
 */
 @RestController
-@Api(value = "OwnerNews控制器", tags = {"OwnerNews接口"})
+@Api(value = "业主新闻控制器", tags = {"业主新闻接口"})
 public class OwnerNewsController {
 
     @Autowired

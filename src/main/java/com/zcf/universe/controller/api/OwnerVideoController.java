@@ -15,7 +15,7 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/22.
 */
 @RestController
-@Api(value = "OwnerVideo控制器", tags = {"OwnerVideo接口"})
+@Api(value = "业主视频控制器", tags = {"业主视频接口"})
 public class OwnerVideoController {
 
     @Autowired

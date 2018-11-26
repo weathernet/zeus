@@ -20,9 +20,10 @@
                 console.log(textStatus)
                 console.log(data)
             },
-            error: function (data, textStatus) {
-                console.log(textStatus)
-                console.log(JSON.parse(data.responseText))
+            error: function (jqXHR) {
+                debugger;
+                console.log(">>>>>>>>>>>>"+jqXHR.statusText)
+                console.log("<<<<<<<<<<<<"+jqXHR.responseText )
             }
         });
     }

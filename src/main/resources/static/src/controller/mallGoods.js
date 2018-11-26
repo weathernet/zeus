@@ -47,8 +47,8 @@ layui.define(['table', 'form'], function (exports) {
         , cols: [[
              {field: 'goodsId',  title: '编号'}
             , {field: 'goodsTraderId', title: ' 商户Id',edit: 'text', sort: true}
-            , {field: 'goodsTitle', title: ' ',edit: 'text', sort: true}
-            , {field: 'goodsImage', title: ' ',edit: 'text', sort: true}
+            , {field: 'goodsTitle', title: '商品标题 ',edit: 'text', sort: true}
+            , {field: 'goodsImage', title: '商品图片 ',edit: 'text', sort: true}
             , {field: 'goodsPrice', title: ' 单价',edit: 'text', sort: true}
             , {field: 'goodsSort', title: ' 商品分类',edit: 'text', sort: true}
             , {field: 'createTime', title: '创建日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
