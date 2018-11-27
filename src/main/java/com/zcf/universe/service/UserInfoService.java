@@ -4,6 +4,7 @@ import com.zcf.universe.common.exception.CommonException;
 import com.zcf.universe.common.exception.ExceptionEnum;
 import com.zcf.universe.common.utils.FileUploadUtils;
 import com.zcf.universe.common.utils.IDUtils;
+import com.zcf.universe.common.utils.SmsUtils;
 import com.zcf.universe.mapper.UserInfoMapper;
 import com.zcf.universe.pojo.UserInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 
 
 /**
@@ -55,7 +55,7 @@ public class UserInfoService {
             throw new CommonException(ExceptionEnum.PHONE_NUMBER_IS_REGISTERED);
         }
         String random = IDUtils.Random();//获取随机数
-        //SmsUtils.sendRegister(phone, random);//发送验证码
+        SmsUtils.sendRegister(phone, random);//发送验证码
         //把验证码放入Redis中并设置3分钟的过期时间
         redisTemplate.opsForValue().set(PHONE_NUMBER + phone, random, 60 * 3, TimeUnit.SECONDS);
     }
@@ -65,21 +65,34 @@ public class UserInfoService {
         if (StringUtils.isEmpty(phone)) {
             throw new CommonException(ExceptionEnum.PHONE_NUMBER_BE_NULL);
         }
-        this.checkPhone(phone);
+        //查询是否有此用户
+        UserInfo userInfo = this.checkPhone(phone);
+        //没有去注册
+        if (userInfo == null) {
+            throw new CommonException(ExceptionEnum.USER_IS_NOT_FOUND);
+        }
         String random = IDUtils.Random();//获取随机数
-        //SmsUtils.sendRegister(phone, random);//发送验证码
+        SmsUtils.sendRegister(phone, random);//发送验证码
         //把验证码放入Redis中并设置3分钟的过期时间
         redisTemplate.opsForValue().set(PHONE_NUMBER + phone, random, 60 * 3, TimeUnit.SECONDS);
     }
 
     //用户注册
-    public void registerUser(UserInfo userInfo, String registerCode) {
+    public void registerUser(String userPhoneNumber, String userPassword, String registerCode) {
         //获取手机号的验证码
-        String code = (String) redisTemplate.opsForValue().get(PHONE_NUMBER + userInfo.getUserPhoneNumber());
+        String code = (String) redisTemplate.opsForValue().get(PHONE_NUMBER + userPhoneNumber);
         if (!StringUtils.equals(code, registerCode)) {
             throw new CommonException(ExceptionEnum.REGISTER_CODE_MISMATCH);
         }
+        UserInfo user = this.checkPhone(userPhoneNumber);
+        //如果信息不为空表示改手机号已被注册过
+        if (user != null) {
+            throw new CommonException(ExceptionEnum.PHONE_NUMBER_IS_REGISTERED);
+        }
+        UserInfo userInfo = new UserInfo();
         userInfo.setUserNikeName("品家用户" + new Date());
+        userInfo.setUserPhoneNumber(userPhoneNumber);
+        userInfo.setUserPassword(userPassword);
         userInfo.setCreateTime(new Date());
         userInfo.setUpdateTime(new Date());
         int insertSelective = this.userInfomapper.insertSelective(userInfo);
@@ -101,11 +114,11 @@ public class UserInfoService {
     //用户登录
     public UserInfo loginUser(String userPhoneNumber, String userPassword) {
         //查询手机号是否存在
-        this.checkPhone(userPhoneNumber);
+        UserInfo userInfo = this.checkPhone(userPhoneNumber);
         //查询用户是否存在
-        UserInfo userinfo = new UserInfo();
-        userinfo.setUserPhoneNumber(userPhoneNumber);
-        UserInfo userInfo = this.userInfomapper.selectOne(userinfo);
+        if (userInfo == null) {
+            throw new CommonException(ExceptionEnum.USER_IS_NOT_FOUND);
+        }
         if (!StringUtils.equals(userInfo.getUserPassword(), userPassword)) {
             throw new CommonException(ExceptionEnum.USER_PASSWORD_MISMATCH);
         }
@@ -165,7 +178,12 @@ public class UserInfoService {
 
 
     //修改用户密码
-    public void updateUSerPasswords(String phone, String password) {
+    public void updateUSerPasswords(String phone, String password, String forgetCode) {
+        //获取手机号的验证码
+        String code = (String) redisTemplate.opsForValue().get(PHONE_NUMBER + phone);
+        if (!StringUtils.equals(code, forgetCode)) {
+            throw new CommonException(ExceptionEnum.REGISTER_CODE_MISMATCH);
+        }
         //验证是否为空
         if (StringUtils.isBlank(phone) && StringUtils.isBlank(password)) {
             throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
@@ -261,7 +279,7 @@ public class UserInfoService {
             return userInfo;
         }
         //已绑定0.微信1. 支付宝
-        if (0==type) {
+        if (0 == type) {
             userInfo.setUserWeChatOpenid(OpenId);
         } else {
             userInfo.setUserAliPayOpenid(OpenId);
@@ -272,16 +290,22 @@ public class UserInfoService {
 
 
     //绑定手机号并登录
-    public UserInfo bandWeChatAndAliPay(String OpenId, String userPhoneNumber, String userPassword, String type) {
+    public UserInfo bandWeChatAndAliPay(String OpenId, String userPhoneNumber, String userPassword, String type, String registerCode) {
         //如果参数为空抛异常
         if (StringUtils.isBlank(OpenId) && StringUtils.isBlank(userPhoneNumber) &&
-                StringUtils.isBlank(userPassword) && StringUtils.isBlank(type)) {
+                StringUtils.isBlank(userPassword) && StringUtils.isBlank(type) && StringUtils.isBlank(registerCode)) {
             throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
         }
+        //验证注册码是否正确
+        String code = (String) redisTemplate.opsForValue().get(PHONE_NUMBER + userPhoneNumber);
+        if (!StringUtils.equals(code, registerCode)) {
+            throw new CommonException(ExceptionEnum.REGISTER_CODE_MISMATCH);
+        }
         //获取用户信息
-        UserInfo userInfo = checkPhone(userPhoneNumber);
-        //用户不为空
-        if (userInfo == null) {
+        UserInfo userInfo1 = checkPhone(userPhoneNumber);
+        //用户为空创建一个用户
+        if (userInfo1 == null) {
+            UserInfo userInfo = new UserInfo();
             //创建用户
             userInfo.setUserPhoneNumber(userPhoneNumber);
             userInfo.setUserPassword(userPassword);
@@ -297,6 +321,7 @@ public class UserInfoService {
             }
             return userInfo;
         } else {
+            UserInfo userInfo = new UserInfo();
             //创建用户
             userInfo.setUserPhoneNumber(userPhoneNumber);
             userInfo.setUserPassword(userPassword);
@@ -322,11 +347,8 @@ public class UserInfoService {
         }
         Example example = new Example(UserInfo.class);
         example.createCriteria().andEqualTo("userPhoneNumber", phone);
-        UserInfo userInfo = this.userInfomapper.selectOneByExample(example);
-        if (userInfo == null) {
-            throw new CommonException(ExceptionEnum.PHONE_NUMBER_IS_NOT_FOUND);
-        }
-        return userInfo;
+        return this.userInfomapper.selectOneByExample(example);
+
     }
 
     //检查支付宝或微信账号是否存在0.微信1.支付宝

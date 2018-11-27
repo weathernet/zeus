@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * Created by YuanQJ on 2018/10/31.
  */
+@CrossOrigin
 @RestController
 @Api(value = "用户控制器", tags = {"用户控制器"})
 public class UserInfoController {
@@ -42,18 +43,31 @@ public class UserInfoController {
     @ApiOperation(value = "修改用户密码", notes = "手机号,密码必填")
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "phone", value = "用户的手机号", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "password", value = "新密码", required = true, dataType = "String")
+            @ApiImplicitParam(name = "password", value = "新密码", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "forgetCode", value = "验证码", required = true, dataType = "String")
     })
-    public ResponseEntity<Void> updateUserPassword(@RequestParam("phone") String phone, @RequestParam("password") String password) {
-        this.userInfoservice.updateUSerPasswords(phone, password);
+    public ResponseEntity<Void> updateUserPassword(
+            @RequestParam("phone") String phone,
+            @RequestParam("password") String password,
+            @RequestParam("forgetCode") String forgetCode
+    ) {
+        this.userInfoservice.updateUSerPasswords(phone, password, forgetCode);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("user")
     @ApiOperation(value = "用户注册", notes = "手机号不能为空")
-    @ApiImplicitParam(name = "id", value = "用户的主键", required = true, dataType = "int")
-    public ResponseEntity<Void> registerUser(UserInfo userInfo, @RequestParam("code") String code) {
-        this.userInfoservice.registerUser(userInfo, code);
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "userPhoneNumber", value = "用户的手机号", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "userPassword", value = "用户密码", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "registerCode", value = "验证码", required = true, dataType = "String")
+    })
+    public ResponseEntity<Void> registerUser(
+            @RequestParam("userPhoneNumber") String userPhoneNumber,
+            @RequestParam("userPassword") String userPassword,
+            @RequestParam("registerCode") String registerCode
+    ) {
+        this.userInfoservice.registerUser(userPhoneNumber, userPassword, registerCode);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -112,7 +126,7 @@ public class UserInfoController {
             @ApiImplicitParam(name = "Openid", value = "OpenId", required = true, dataType = "String"),
             @ApiImplicitParam(name = "type", value = "微信0,支付宝1", required = true, dataType = "int")
     })
-    public ResponseEntity<UserInfo> loginByWeChatAndAliPay(@RequestParam String Openid,@RequestParam int type) {
+    public ResponseEntity<UserInfo> loginByWeChatAndAliPay(@RequestParam String Openid, @RequestParam int type) {
         return ResponseEntity.ok(this.userInfoservice.loginByWeChatAndAliPay(Openid, type));
     }
 
@@ -120,16 +134,19 @@ public class UserInfoController {
     @ApiOperation(value = "绑定手机号")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "userPhoneNumber", value = "用户的手机号码", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "Openid", value = "开放平台的OpenId", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "userPassword", value = "用户密码", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "weChatAndAliPayId", value = "开放平台的OpenId", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "registerCode", value = "验证码", required = true, dataType = "String"),
             @ApiImplicitParam(name = "type", value = "微信0，支付宝1", required = true, dataType = "int")
     })
     public ResponseEntity<Void> bandWeChatAndAliPay(
-            @RequestParam("Openid") String Openid,
-            @RequestParam("userPhoneNumber") String userPhoneNumber,
-            @RequestParam("userPassword") String userPassword,
-            @RequestParam("type") String type
+            @RequestParam(value = "userPhoneNumber",required = false) String userPhoneNumber,
+            @RequestParam(value = "userPassword",required = false) String userPassword,
+            @RequestParam(value = "registerCode",required = false) String registerCode,
+            @RequestParam(value = "type",required = false) String type,
+            @RequestParam(value = "weChatAndAliPayId",required = false) String weChatAndAliPayId
     ) {
-        this.userInfoservice.bandWeChatAndAliPay(Openid, userPhoneNumber, userPassword, type);
-        return null;
+        this.userInfoservice.bandWeChatAndAliPay(weChatAndAliPayId, userPhoneNumber, userPassword, type, registerCode);
+        return ResponseEntity.ok().build();
     }
 }

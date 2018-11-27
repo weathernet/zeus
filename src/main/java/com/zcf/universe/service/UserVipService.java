@@ -20,30 +20,6 @@ public class UserVipService {
     @Autowired
     private UserVipMapper userVipmapper;
 
-    //新增
-    public void addUserVip(UserVip userVip) {
-        int count = this.userVipmapper.insertSelective(userVip);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //删除
-    public void deleteUserVip(Integer id) {
-        int count = this.userVipmapper.deleteByPrimaryKey(id);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateUserVip(UserVip userVip) {
-        int count = this.userVipmapper.updateByPrimaryKeySelective(userVip);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
     //查询所有
     public List<UserVip> getAllUserVip() {
         List<UserVip> list = this.userVipmapper.selectAll();

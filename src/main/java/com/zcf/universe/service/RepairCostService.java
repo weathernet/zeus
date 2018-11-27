@@ -20,29 +20,6 @@ public class RepairCostService{
     @Autowired
     private RepairCostMapper repairCostmapper;
 
-    //新增
-    public void addRepairCost(RepairCost repairCost) {
-        int count = this.repairCostmapper.insertSelective(repairCost) ;
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //删除
-    public void deleteRepairCost(Integer id) {
-        int count = this.repairCostmapper.deleteByPrimaryKey(id) ;
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateRepairCost(RepairCost repairCost) {
-        int count =this.repairCostmapper.updateByPrimaryKeySelective(repairCost) ;
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
 
     //查询所有
     public List<RepairCost> getAllRepairCost() {

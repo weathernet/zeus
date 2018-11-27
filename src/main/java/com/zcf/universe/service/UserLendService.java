@@ -44,9 +44,11 @@ public class UserLendService {
         }
     }
 
-    //查询所有
-    public List<UserLend> getAllUserLend() {
-        List<UserLend> list = this.userLendmapper.selectAll();
+    //查询当前用户的信息
+    public List<UserLend> getAllUserLend(Integer id) {
+        Example example =new Example(UserLend.class);
+        example.createCriteria().andEqualTo("lendUserId",id);
+        List<UserLend> list = this.userLendmapper.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
@@ -62,14 +64,4 @@ public class UserLendService {
         return UserLend;
     }
 
-    //字段搜索
-    public List<UserLend> searchUserLend(String keywords) {
-        Example example = new Example(UserLend.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
-        List<UserLend> list = this.userLendmapper.selectByExample(example);
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
 }

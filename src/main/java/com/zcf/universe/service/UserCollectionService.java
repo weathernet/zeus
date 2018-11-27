@@ -36,17 +36,11 @@ public class UserCollectionService {
         }
     }
 
-    //更新
-    public void updateUserCollection(UserCollection userCollection) {
-        int count = this.userCollectionmapper.updateByPrimaryKeySelective(userCollection);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //查询所有
-    public List<UserCollection> getAllUserCollection() {
-        List<UserCollection> list = this.userCollectionmapper.selectAll();
+    //查询所有用戶收藏
+    public List<UserCollection> getAllUserCollection(Integer id) {
+        Example example =new Example(UserCollection.class);
+        example.createCriteria().andEqualTo("collectionUserId",id);
+        List<UserCollection> list = this.userCollectionmapper.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
@@ -62,14 +56,4 @@ public class UserCollectionService {
         return UserCollection;
     }
 
-    //字段搜索
-    public List<UserCollection> searchUserCollection(String keywords) {
-        Example example = new Example(UserCollection.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
-        List<UserCollection> list = this.userCollectionmapper.selectByExample(example);
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
 }

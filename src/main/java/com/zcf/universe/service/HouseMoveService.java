@@ -20,30 +20,6 @@ public class HouseMoveService {
     @Autowired
     private HouseMoveMapper houseMovemapper;
 
-    //新增
-    public void addHouseMove(HouseMove houseMove) {
-        int count = this.houseMovemapper.insertSelective(houseMove) ;
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //删除
-    public void deleteHouseMove(Integer id) {
-        int count = this.houseMovemapper.deleteByPrimaryKey(id) ;
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateHouseMove(HouseMove houseMove) {
-        int count =this.houseMovemapper.updateByPrimaryKeySelective(houseMove) ;
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
     //查询所有
     public List<HouseMove> getAllHouseMove() {
         List<HouseMove> list = this.houseMovemapper.selectAll();

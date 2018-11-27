@@ -21,27 +21,6 @@ public class OwnerNewsController {
     @Autowired
     private OwnerNewsService ownerNewsService;
 
-    @ApiOperation(value = "新增")
-    @PostMapping("ownerNews")
-    public ResponseEntity<Void> addOwnerNews(OwnerNews ownerNews) {
-        this.ownerNewsService.addOwnerNews(ownerNews);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
-
-    @ApiOperation(value = "删除")
-    @DeleteMapping("ownerNews/{id}")
-    public ResponseEntity<Void> deleteOwnerNews(@PathVariable Integer id) {
-        this.ownerNewsService.deleteOwnerNews(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("ownerNews")
-    public ResponseEntity<Void> updateOwnerNews(OwnerNews ownerNews) {
-        this.ownerNewsService.updateOwnerNews(ownerNews);
-        return ResponseEntity.ok(null);
-    }
-
     @ApiOperation(value = "获取单个")
     @GetMapping("ownerNews/{id}")
     public ResponseEntity<OwnerNews> getOwnerNews(@PathVariable Integer id) {

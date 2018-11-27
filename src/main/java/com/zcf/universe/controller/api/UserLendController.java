@@ -20,7 +20,7 @@ public class UserLendController {
     @Autowired
     private UserLendService userLendService;
 
-    @ApiOperation(value = "新增")
+    @ApiOperation(value = "添加贷款信息")
     @PostMapping("userLend")
     public ResponseEntity<Void> addUserLend(UserLend userLend) {
         this.userLendService.addUserLend(userLend);
@@ -47,9 +47,9 @@ public class UserLendController {
         return ResponseEntity.ok(this.userLendService.getUserLend(id));
     }
 
-    @ApiOperation(value = "获取所有")
+    @ApiOperation(value = "获取当前用户的借款信息")
     @GetMapping("UserLend")
-    public ResponseEntity<List<UserLend>> getAllUserLend() {
-        return ResponseEntity.ok(this.userLendService.getAllUserLend());
+    public ResponseEntity<List<UserLend>> getAllUserLend(Integer id) {
+        return ResponseEntity.ok(this.userLendService.getAllUserLend(id));
     }
 }

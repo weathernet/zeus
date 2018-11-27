@@ -20,30 +20,6 @@ public class RepairDetailsService {
     @Autowired
     private RepairDetailsMapper repairDetailsmapper;
 
-    //新增
-    public void addRepairDetails(RepairDetails repairDetails) {
-        int count = this.repairDetailsmapper.insertSelective(repairDetails) ;
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //删除
-    public void deleteRepairDetails(Integer id) {
-        int count = this.repairDetailsmapper.deleteByPrimaryKey(id) ;
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateRepairDetails(RepairDetails repairDetails) {
-        int count =this.repairDetailsmapper.updateByPrimaryKeySelective(repairDetails) ;
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
     //查询所有
     public List<RepairDetails> getAllRepairDetails() {
         List<RepairDetails> list = this.repairDetailsmapper.selectAll();
@@ -62,14 +38,4 @@ public class RepairDetailsService {
         return RepairDetails;
     }
 
-    //字段搜索
-     public List<RepairDetails> searchRepairDetails(String keywords) {
-        Example example = new Example(RepairDetails.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
-        List<RepairDetails> list = this.repairDetailsmapper.selectByExample(example);
-        if(CollectionUtils.isEmpty(list)){
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
 }

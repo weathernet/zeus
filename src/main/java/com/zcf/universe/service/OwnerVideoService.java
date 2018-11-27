@@ -18,30 +18,6 @@ public class OwnerVideoService{
     @Autowired
     private OwnerVideoMapper ownerVideomapper;
 
-    //新增
-    public void addOwnerVideo(OwnerVideo ownerVideo) {
-        int count = this.ownerVideomapper.insert(ownerVideo);
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //删除
-    public void deleteOwnerVideo(Integer id) {
-        int count = this.ownerVideomapper.deleteByPrimaryKey(id);
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateOwnerVideo(OwnerVideo ownerVideo) {
-        int count = this.ownerVideomapper.updateByPrimaryKeySelective(ownerVideo);
-         if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
     //查询所有
     public List<OwnerVideo> getAllOwnerVideo() {
         List<OwnerVideo> list = this.ownerVideomapper.selectAll();
@@ -60,14 +36,4 @@ public class OwnerVideoService{
         return OwnerVideo;
     }
 
-    //字段搜索
-     public List<OwnerVideo> searchOwnerVideo(String keywords) {
-        Example example = new Example(OwnerVideo.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
-        List<OwnerVideo> list = this.ownerVideomapper.selectByExample(example);
-        if(CollectionUtils.isEmpty(list)){
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
 }

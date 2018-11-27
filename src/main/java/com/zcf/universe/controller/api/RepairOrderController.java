@@ -20,26 +20,13 @@ public class RepairOrderController {
     @Autowired
     private RepairOrderService repairOrderService;
 
-    @ApiOperation(value = "新增")
+    @ApiOperation(value = "新增维修订单")
     @PostMapping("repairOrder")
     public ResponseEntity<Void> addRepairOrder(RepairOrder repairOrder) {
         this.repairOrderService.addRepairOrder(repairOrder);
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "删除")
-    @DeleteMapping("repairOrder/{id}")
-    public ResponseEntity<Void> deleteRepairOrder(@PathVariable Integer id) {
-        this.repairOrderService.deleteRepairOrder(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("repairOrder")
-    public ResponseEntity<Void> updateRepairOrder(RepairOrder repairOrder) {
-        this.repairOrderService.updateRepairOrder(repairOrder);
-        return ResponseEntity.ok(null);
-    }
 
     @ApiOperation(value = "获取单个")
     @GetMapping("repairOrder/{id}")

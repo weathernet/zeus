@@ -18,29 +18,6 @@ public class OwnerCaseService{
     @Autowired
     private OwnerCaseMapper ownerCasemapper;
 
-    //新增
-    public void addOwnerCase(OwnerCase ownerCase) {
-        int count = this.ownerCasemapper.insert(ownerCase);
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //删除
-    public void deleteOwnerCase(Integer id) {
-        int count = this.ownerCasemapper.deleteByPrimaryKey(id);
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateOwnerCase(OwnerCase ownerCase) {
-        int count = this.ownerCasemapper.updateByPrimaryKeySelective(ownerCase);
-         if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
 
     //查询所有
     public List<OwnerCase> getAllOwnerCase() {
@@ -60,14 +37,4 @@ public class OwnerCaseService{
         return OwnerCase;
     }
 
-    //字段搜索
-     public List<OwnerCase> searchOwnerCase(String keywords) {
-        Example example = new Example(OwnerCase.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
-        List<OwnerCase> list = this.ownerCasemapper.selectByExample(example);
-        if(CollectionUtils.isEmpty(list)){
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
 }

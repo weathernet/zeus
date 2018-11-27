@@ -20,27 +20,6 @@ public class UserVipController {
     @Autowired
     private UserVipService userVipService;
 
-    @ApiOperation(value = "新增")
-    @PostMapping("userVip")
-    public ResponseEntity<Void> addUserVip(UserVip userVip) {
-        this.userVipService.addUserVip(userVip);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "删除")
-    @DeleteMapping("userVip/{id}")
-    public ResponseEntity<Void> deleteUserVip(@PathVariable Integer id) {
-        this.userVipService.deleteUserVip(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("userVip")
-    public ResponseEntity<Void> updateUserVip(UserVip userVip) {
-        this.userVipService.updateUserVip(userVip);
-        return ResponseEntity.ok(null);
-    }
-
     @ApiOperation(value = "获取单个")
     @GetMapping("userVip/{id}")
     public ResponseEntity<UserVip> getUserVip(@PathVariable Integer id) {

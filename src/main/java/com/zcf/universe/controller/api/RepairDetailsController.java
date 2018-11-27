@@ -22,26 +22,6 @@ public class RepairDetailsController {
     @Autowired
     private RepairDetailsService repairDetailsService;
 
-    @ApiOperation(value = "新增")
-    @PostMapping("repairDetails")
-    public ResponseEntity<Void> addRepairDetails(RepairDetails repairDetails) {
-        this.repairDetailsService.addRepairDetails(repairDetails);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
-
-    @ApiOperation(value = "删除")
-    @DeleteMapping("repairDetails/{id}")
-    public ResponseEntity<Void> deleteRepairDetails(@PathVariable Integer id) {
-        this.repairDetailsService.deleteRepairDetails(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("repairDetails")
-    public ResponseEntity<Void> updateRepairDetails(RepairDetails repairDetails) {
-        this.repairDetailsService.updateRepairDetails(repairDetails);
-        return ResponseEntity.ok(null);
-    }
 
     @ApiOperation(value = "获取单个")
     @GetMapping("repairDetails/{id}")

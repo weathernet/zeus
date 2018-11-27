@@ -14,32 +14,12 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/14.
 */
 @RestController
-@Api(value = "首页管理控制器", tags = {"首页管理接口"})
+@Api(value = "搬家菜单控制器", tags = {"搬家菜单接口"})
 public class HouseMoveController {
 
     @Autowired
     private HouseMoveService houseMoveService;
 
-    @ApiOperation(value = "新增")
-    @PostMapping("houseMove")
-    public ResponseEntity<Void> addHouseMove(HouseMove houseMove) {
-        this.houseMoveService.addHouseMove(houseMove);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "删除")
-    @DeleteMapping("houseMove/{id}")
-    public ResponseEntity<Void> deleteHouseMove(@PathVariable Integer id) {
-        this.houseMoveService.deleteHouseMove(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("houseMove")
-    public ResponseEntity<Void> updateHouseMove(HouseMove houseMove) {
-        this.houseMoveService.updateHouseMove(houseMove);
-        return ResponseEntity.ok(null);
-    }
 
     @ApiOperation(value = "获取单个")
     @GetMapping("houseMove/{id}")

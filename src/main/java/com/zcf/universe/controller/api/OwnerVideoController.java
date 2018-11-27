@@ -21,27 +21,6 @@ public class OwnerVideoController {
     @Autowired
     private OwnerVideoService ownerVideoService;
 
-    @ApiOperation(value = "新增")
-    @PostMapping("ownerVideo")
-    public ResponseEntity<Void> addOwnerVideo(OwnerVideo ownerVideo) {
-        this.ownerVideoService.addOwnerVideo(ownerVideo);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
-
-    @ApiOperation(value = "删除")
-    @DeleteMapping("ownerVideo/{id}")
-    public ResponseEntity<Void> deleteOwnerVideo(@PathVariable Integer id) {
-        this.ownerVideoService.deleteOwnerVideo(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("ownerVideo")
-    public ResponseEntity<Void> updateOwnerVideo(OwnerVideo ownerVideo) {
-        this.ownerVideoService.updateOwnerVideo(ownerVideo);
-        return ResponseEntity.ok(null);
-    }
-
     @ApiOperation(value = "获取单个")
     @GetMapping("ownerVideo/{id}")
     public ResponseEntity<OwnerVideo> getOwnerVideo(@PathVariable Integer id) {

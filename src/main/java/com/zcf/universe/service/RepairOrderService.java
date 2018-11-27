@@ -28,22 +28,6 @@ public class RepairOrderService{
         }
     }
 
-    //删除
-    public void deleteRepairOrder(Integer id) {
-        int count = this.repairOrdermapper.deleteByPrimaryKey(id) ;
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateRepairOrder(RepairOrder repairOrder) {
-        int count =this.repairOrdermapper.updateByPrimaryKeySelective(repairOrder) ;
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
     //查询所有
     public List<RepairOrder> getAllRepairOrder() {
         List<RepairOrder> list = this.repairOrdermapper.selectAll();

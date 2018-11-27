@@ -22,9 +22,9 @@ public class UserCollectionController {
 
     @ApiOperation(value = "新增")
     @PostMapping("userCollection")
-    public ResponseEntity<Void> addUserCollection(UserCollection userCollection) {
+    public ResponseEntity addUserCollection(UserCollection userCollection) {
         this.userCollectionService.addUserCollection(userCollection);
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok().build();
     }
 
     @ApiOperation(value = "删除")
@@ -34,12 +34,6 @@ public class UserCollectionController {
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "修改")
-    @PutMapping("userCollection")
-    public ResponseEntity<Void> updateUserCollection(UserCollection userCollection) {
-        this.userCollectionService.updateUserCollection(userCollection);
-        return ResponseEntity.ok(null);
-    }
 
     @ApiOperation(value = "获取单个")
     @GetMapping("userCollection/{id}")
@@ -47,9 +41,9 @@ public class UserCollectionController {
         return ResponseEntity.ok(this.userCollectionService.getUserCollection(id));
     }
 
-    @ApiOperation(value = "获取所有")
+    @ApiOperation(value = "获取当前用戶所有的收藏")
     @GetMapping("UserCollection")
-    public ResponseEntity<List<UserCollection>> getAllUserCollection() {
-        return ResponseEntity.ok(this.userCollectionService.getAllUserCollection());
+    public ResponseEntity<List<UserCollection>> getAllUserCollection(Integer id) {
+        return ResponseEntity.ok(this.userCollectionService.getAllUserCollection(id));
     }
 }

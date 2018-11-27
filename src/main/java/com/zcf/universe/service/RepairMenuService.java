@@ -20,29 +20,6 @@ public class RepairMenuService{
     @Autowired
     private RepairMenuMapper repairMenumapper;
 
-    //新增
-    public void addRepairMenu(RepairMenu repairMenu) {
-        int count = this.repairMenumapper.insertSelective(repairMenu) ;
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //删除
-    public void deleteRepairMenu(Integer id) {
-        int count = this.repairMenumapper.deleteByPrimaryKey(id) ;
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateRepairMenu(RepairMenu repairMenu) {
-        int count =this.repairMenumapper.updateByPrimaryKeySelective(repairMenu) ;
-        if(count != 1){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
 
     //查询所有
     public List<RepairMenu> getAllRepairMenu() {

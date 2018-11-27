@@ -19,27 +19,7 @@ public class RepairSubmenuController {
 
     @Autowired
     private RepairSubmenuService repairSubmenuService;
-
-    @ApiOperation(value = "新增")
-    @PostMapping("repairSubmenu")
-    public ResponseEntity<Void> addRepairSubmenu(RepairSubmenu repairSubmenu) {
-        this.repairSubmenuService.addRepairSubmenu(repairSubmenu);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "删除")
-    @DeleteMapping("repairSubmenu/{id}")
-    public ResponseEntity<Void> deleteRepairSubmenu(@PathVariable Integer id) {
-        this.repairSubmenuService.deleteRepairSubmenu(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("repairSubmenu")
-    public ResponseEntity<Void> updateRepairSubmenu(RepairSubmenu repairSubmenu) {
-        this.repairSubmenuService.updateRepairSubmenu(repairSubmenu);
-        return ResponseEntity.ok(null);
-    }
+    
 
     @ApiOperation(value = "获取单个")
     @GetMapping("repairSubmenu/{id}")
