@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Data
 @Table(name = "owner_case")
-@ApiModel(value = "OwnerCase模型", description = "OwnerCase信息")
+@ApiModel(value = "情况模型", description = "情况信息")
 public class OwnerCase{
 
     @Id

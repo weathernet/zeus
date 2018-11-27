@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Data
 @Table(name = "owner_video")
-@ApiModel(value = "OwnerVideo模型", description = "OwnerVideo信息")
+@ApiModel(value = "视频模型", description = "视频信息")
 public class OwnerVideo{
 
     @Id

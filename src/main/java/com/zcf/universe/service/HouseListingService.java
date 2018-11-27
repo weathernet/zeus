@@ -44,9 +44,7 @@ public class HouseListingService {
             throw new CommonException(ExceptionEnum.CITY_BE_NULL);
         }
         criteria.andEqualTo("housingCity", city);
-        if (userId != null) {
 
-        }
 
         if (StringUtils.isNotBlank(key)) {
             criteria.orLike("housingTitle", "%" + key + "%");

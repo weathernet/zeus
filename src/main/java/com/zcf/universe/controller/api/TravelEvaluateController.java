@@ -25,7 +25,7 @@ public class TravelEvaluateController {
     @ApiOperation(value = "评论景点")
     @PostMapping("crt_travelEvaluate")
     public ResponseEntity<Void> addEvaluate(TravelEvaluate travelEvaluate) {
-        this.travelEvaluateService.addTravelEvaluate(travelEvaluate);
+        this.travelEvaluateService.addEvaluate(travelEvaluate);
         return ResponseEntity.ok(null);
     }
 
@@ -37,6 +37,7 @@ public class TravelEvaluateController {
         return ResponseEntity.ok(null);
     }
 
+    /**********************************************************************************/
 
     @ApiOperation(value = "新增")
     @PostMapping("travelEvaluate")

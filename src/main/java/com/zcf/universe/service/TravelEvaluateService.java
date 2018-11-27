@@ -18,6 +18,15 @@ public class TravelEvaluateService{
     @Autowired
     private TravelEvaluateMapper travelEvaluatemapper;
 
+    //评论
+    public void addEvaluate(TravelEvaluate travelEvaluate) {
+        int count = this.travelEvaluatemapper.insertSelective(travelEvaluate) ;
+        if(count != 1){
+            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+        }
+    }
+
+
     //新增
     public void addTravelEvaluate(TravelEvaluate travelEvaluate) {
         int count = this.travelEvaluatemapper.insertSelective(travelEvaluate) ;

@@ -32,13 +32,36 @@ public class TravelOrderController {
 
     @ApiOperation(value = "用户获取购票订单")
     @PostMapping("sel_travelorder")
-    public ResponseEntity<Void> getOrder(String userid) {
-        this.travelOrderService.searchTravelOrder(userid);
-        return ResponseEntity.ok(null);
+    public ResponseEntity<List<TravelOrder>> getOrder(String userid) {
+        return ResponseEntity.ok(this.travelOrderService.searchTravelOrder(userid));
     }
 
     //使用订单
+    @ApiOperation(value = "使用订单")
+    @PutMapping("use_travelorder")
+    public ResponseEntity<Void> useTravelOrder(String orderid) {
+        this.travelOrderService.useTravelOrder(orderid);
+        return ResponseEntity.ok(null);
+    }
 
+    //订单过期
+    @ApiOperation(value = "订单过期")
+    @PutMapping("over_travelorder")
+    public ResponseEntity<Void> overTravelOrder(String orderid) {
+        this.travelOrderService.overTravelOrder(orderid);
+        return ResponseEntity.ok(null);
+    }
+
+    //取消订单
+    @ApiOperation(value = "取消订单")
+    @DeleteMapping("cancel_travelorder")
+    public ResponseEntity<Void> cancelTravelOrder(String orderid) {
+        this.travelOrderService.cancelTravelOrder(Integer.parseInt(orderid));
+        return ResponseEntity.ok(null);
+    }
+
+
+    /*****************************************************************************/
 
 
     @ApiOperation(value = "新增")
