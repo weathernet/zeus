@@ -28,21 +28,6 @@ public class UserLendService {
         }
     }
 
-    //删除
-    public void deleteUserLend(Integer id) {
-        int count = this.userLendmapper.deleteByPrimaryKey(id) ;
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateUserLend(UserLend userLend) {
-        int count = this.userLendmapper.updateByPrimaryKeySelective(userLend) ;
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
 
     //查询当前用户的信息
     public List<UserLend> getAllUserLend(Integer id) {

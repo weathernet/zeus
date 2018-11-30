@@ -12,10 +12,10 @@
 
     function send() {
         $.ajax({
-            type: "GET", //请求方式 post
+            type: "DELETE", //请求方式 post
             dataType: 'json', //数据类型 json
             contentType: "application/json; charset=utf-8",
-            url: "/user/9", // 请求地址
+            url: "/userAddress/6", // 请求地址
             success: function (data, textStatus) {
                 console.log(textStatus)
                 console.log(data)

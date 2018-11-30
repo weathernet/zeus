@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ public class HouseListingController {
             @ApiImplicitParam(name = "city", value = "所在城市", dataType = "String"),
             @ApiImplicitParam(name = "userId", value = "用户的主键", dataType = "String")
     })
-    @GetMapping("searchHouse")
+    @GetMapping("getHouse")
     public ResponseEntity<List<HouseListing>> getHouseListings(
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "10") Integer rows,
@@ -43,7 +44,29 @@ public class HouseListingController {
             @RequestParam String city,
             @RequestParam Integer userId
     ) {
-        return ResponseEntity.ok(this.houseListingService.getHouseListings(page, rows, sortBy, desc, key, city,userId));
+        return ResponseEntity.ok(this.houseListingService.getHouseListings(page, rows, sortBy, desc, key, city, userId));
+    }
+
+    @ApiOperation(value = "搜索房源", notes = "城市不可为空")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "key", value = "搜索关键字", dataType = "String"),
+            @ApiImplicitParam(name = "city", value = "所在城市", dataType = "String"),
+            @ApiImplicitParam(name = "min", value = "最小金额", dataType = "Integer"),
+            @ApiImplicitParam(name = "max", value = "最大金额", dataType = "Integer"),
+            @ApiImplicitParam(name = "group", value = "排序的字段", dataType = "String"),
+            @ApiImplicitParam(name = "desc", value = "正序倒叙", dataType = "Boolean")
+    })
+    @GetMapping("searchHouses")
+    public ResponseEntity<List<HouseListing>> searchHouses(
+            @RequestParam String key,
+            @RequestParam String city,
+            Integer min,
+            Integer max,
+            String group,
+            @RequestParam(defaultValue = "true") boolean desc
+
+    ) {
+        return ResponseEntity.ok(this.houseListingService.searchHouses(key, city, min, max,group,desc));
     }
 
     @ApiOperation(value = "发布房源")
@@ -80,8 +103,8 @@ public class HouseListingController {
             @ApiImplicitParam(name = "range", value = "范围", dataType = "int")
 
     })
-    public ResponseEntity<List<HouseListing>> mapLookingForRoom(@RequestParam String longitude,@RequestParam String latitude,@RequestParam Integer range) {
-        return ResponseEntity.ok(this.houseListingService.mapLookingForRoom(longitude,latitude,range));
+    public ResponseEntity<List<HouseListing>> mapLookingForRoom(@RequestParam String longitude, @RequestParam String latitude, @RequestParam Integer range) {
+        return ResponseEntity.ok(this.houseListingService.mapLookingForRoom(longitude, latitude, range));
     }
 
     @ApiOperation(value = "房屋估价")
@@ -103,10 +126,10 @@ public class HouseListingController {
             @RequestParam("numberOfLivingRooms") String numberOfLivingRooms,
             @RequestParam("coveredArea") String coveredArea,
             @RequestParam("orientation") String orientation,
-            @RequestParam("decorateADegree")String decorateADegree,
-            @RequestParam("theLeaseTime") String theLeaseTime
+            @RequestParam("decorateADegree") String decorateADegree,
+            @RequestParam("theLeaseTime") @NotBlank(message = "theLeaseTime 不能为空") String theLeaseTime
     ) {
-    //TODO  房屋估价接口
+        //TODO  房屋估价接口
         return ResponseEntity.ok().build();
     }
 

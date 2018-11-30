@@ -47,9 +47,9 @@ layui.define(['table', 'form'], function (exports) {
         , cols: [[
              {field: 'reserveUserName',  title: '姓名'}
             , {field: 'reserveUserPhone', title: '用户手机号'}
-            , {field: 'reserveUserGender', title: '性别'}
+            , {field: 'reserveUserGender', title: '性别',templet:'#userGender'}
             , {field: 'reserveHouseTitle', title: '房间标题'}
-            , {field: 'reserveHouseImage', title: '房间图片'}
+            , {field: 'reserveHouseImage', title: '房间图片',templet:'#Img'}
             , {field: 'reserveHouseArea', title: '房屋面积'}
             , {field: 'reserveHousePrice', title: '房屋价格'}
             , {field: 'reserveTime', title: '预约时间'}

@@ -1,9 +1,14 @@
 package com.zcf.universe.controller.api;
 
 import com.zcf.universe.common.wx.WeChatPAyHelp;
+import com.zcf.universe.pojo.Test;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.constraints.NotBlank;
 
 /**
  * @author yuan
@@ -17,5 +22,12 @@ public class TestController {
     @PostMapping(value = "WeChatPay", produces = "application/xml;charset=UTF-8")
     public void Test() {
         String order = help.createOrder();
+    }
+
+    @PostMapping(value = "TestDemo")
+    public String Tests(@Validated Test r
+    ) {
+        System.err.println(r);
+        return "success";
     }
 }

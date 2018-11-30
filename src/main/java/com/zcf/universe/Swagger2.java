@@ -30,7 +30,7 @@ public class Swagger2 {
                 //页面标题
                 .title("品家的API")
                 //创建人
-                .contact(new Contact("YUAN", "http://www.baidu.com", "1486643453@qq.com"))
+                .contact(new Contact("袁齐吉", "http://www.baidu.com", "1486643453@qq.com"))
                 //版本号
                 .version("1.0")
                 //描述

@@ -36,9 +36,13 @@ public enum ExceptionEnum {
     HONE_BANNER_BE_NULL(404, "没有找到轮播图"),
     SAVE_FAILURE(500, "创建失败"),
     UPDATE_FAILURE(500, "更新失败"),
+    DELETE_FAILURE(500, "删除失败"),
     PARAMETER_CAN_NOT_BE_EMPTY(400, "参数不能为空"),
     WE_CHAT_PAY_FILE(400, "微信下单失败"),
-    SIGN_IS_INCORRECT(400, "微信签名异常"),;
+    SIGN_IS_INCORRECT(400, "微信签名异常"),
+    DATA_DOES_NOT_EXIST(404,"没有查询到该数据"),
+    THE_DEFAULT_ADDRESS_DOES_NOT_EXIST(404,"默认地址不存在"),
+    ;
     private int code;
     private String msg;
 }

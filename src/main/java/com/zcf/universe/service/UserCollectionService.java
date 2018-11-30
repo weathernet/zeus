@@ -29,17 +29,24 @@ public class UserCollectionService {
     }
 
     //删除
-    public void deleteUserCollection(Integer id) {
-        int count = this.userCollectionmapper.deleteByPrimaryKey(id);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+    public void deleteUserCollection(Integer userId, Integer houseId) {
+        //非空
+        if (userId == null && houseId == null) {
+            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
         }
+        //条件删除
+        //创建查询条件
+        Example example = new Example(UserCollection.class);
+        example.createCriteria().andEqualTo("collectionUserId", userId)
+                .andEqualTo("collectionHousingId", houseId);
+        int count = this.userCollectionmapper.deleteByExample(example);
+
     }
 
     //查询所有用戶收藏
     public List<UserCollection> getAllUserCollection(Integer id) {
-        Example example =new Example(UserCollection.class);
-        example.createCriteria().andEqualTo("collectionUserId",id);
+        Example example = new Example(UserCollection.class);
+        example.createCriteria().andEqualTo("collectionUserId", id);
         List<UserCollection> list = this.userCollectionmapper.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
@@ -56,4 +63,16 @@ public class UserCollectionService {
         return UserCollection;
     }
 
+    public boolean checkCollection(Integer userId, Integer houseId) {
+        //非空验证
+        if (userId == null && houseId == null) {
+            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
+        }
+        //创建查询条件
+        Example example = new Example(UserCollection.class);
+        example.createCriteria().andEqualTo("collectionUserId", userId)
+                .andEqualTo("collectionHousingId", houseId);
+        int count = this.userCollectionmapper.selectCountByExample(example);
+        return count == 1;
+    }
 }

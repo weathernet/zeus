@@ -29,13 +29,32 @@
                 </div>
             </div>
             <table id="LAY-userInfo-list" lay-filter="LAY-userInfo-list"></table>
+            <script type="text/html" id="Status">
+                {{#  if(d.userState == 0){     }}
+                <button class="layui-btn layui-btn-warm layui-btn-xs">待审核</button>
+                {{#  }else if(d.userState ==1){   }}
+                <button class="layui-btn  layui-btn-normal layui-btn-xs">已通过</button>
+                {{#  }else if(d.userState==2){   }}
+                <button class="layui-btn layui-btn-danger layui-btn-xs">未通过</button>
+                {{#       }                    }}
+            </script>
+            <script type="text/html" id="userGender">
+                {{#  if(d.userGender == 0){     }}
+                <button class="layui-btn   layui-btn-danger layui-btn-xs">女</button>
+                {{#  }else{ }}
+                <button class="layui-btn layui-btn-normal layui-btn-xs">男</button>
+                {{#       }                    }}
+            </script>
             <script type="text/html" id="Img">
-                <img style="display: inline-block; width: 50%; height: 100%;" src=/mall/{{ d.avatar }} onclick="previewImg(this)">
+                <img style="display: inline-block; width: 50%; height: 100%;" src={{ d.userHeadPortrait }}
+                     onclick="previewImg(this)">
             </script>
+
             <script type="text/html" id="table-userInfo-toolbar">
-                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"> <i class="layui-icon  layui-icon-del"></i>删除</a>
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i
+                        class="layui-icon layui-icon-edit"></i>审核</a>
             </script>
+
         </div>
     </div>
 </div>
@@ -47,19 +66,20 @@
         var imgHtml = "<img src='" + obj.src + "' width='500px' height='500px'/>";
         //弹出层
         layer.open({
-            type : 1,
-            shade : 0.8,
-            offset : 'auto',
-            area : [ 500 + 'px', 550 + 'px' ],
-            shadeClose : true,
-            scrollbar : false,
-            title : "图片预览", //不显示标题
-            content : imgHtml, //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
-            cancel : function() {
+            type: 1,
+            shade: 0.8,
+            offset: 'auto',
+            area: [500 + 'px', 550 + 'px'],
+            shadeClose: true,
+            scrollbar: false,
+            title: "图片预览", //不显示标题
+            content: imgHtml, //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+            cancel: function () {
                 //layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', { time: 5000, icon: 6 });
             }
         });
     }
+
     //----------图片弹出结束-------------
     //============使用外部引入的JS===========
     layui.use('userInfo', layui.factory('userInfo')).use('userInfo')

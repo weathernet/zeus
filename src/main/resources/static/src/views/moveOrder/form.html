@@ -1,24 +1,46 @@
 <div class="layui-form" lay-filter="moveOrder-form" id="moveOrder-form" style="padding: 20px 30px 0 0;">
     <div class="layui-form-item">
-        <label class="layui-form-label">品牌名称</label>
+        <label class="layui-form-label">搬出地址</label>
         <div class="layui-input-inline">
             <script type="text/html" template>
-                <input type="text" name="name" value="{{ d.params.name || '' }}" lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input">
+                <input type="text" name="orderMoveOut" value="{{ d.params.orderMoveOut || '' }}" lay-verify="required" placeholder="请输入搬出地址" autocomplete="off" class="layui-input">
             </script>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">图片</label>
+        <label class="layui-form-label">搬入地址</label>
         <div class="layui-input-inline">
             <script type="text/html" template>
-                <input type="text" name="image" value="{{ d.params.image || '' }}" lay-verify="required"
-                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
+                <input type="text" name="orderMoveInto" value="{{ d.params.orderMoveInto || '' }}" lay-verify="required" placeholder="请输入搬入地址" autocomplete="off" class="layui-input">
             </script>
         </div>
-        <button style="float: left;" type="button" class="layui-btn" id="moveOrder-upload-moveOrder">上传图片</button>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系人手机号</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="orderLinkmanPhone" value="{{ d.params.orderLinkmanPhone || '' }}" lay-verify="required" placeholder="请输入联系人手机号" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">搬家的特殊需求</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="orderSpecial" value="{{ d.params.orderSpecial || '' }}" lay-verify="required" placeholder="请输入搬家的特殊需求" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">搬家时间</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="orderMoveTime" value="{{ d.params.orderMoveTime || '' }}" lay-verify="required" placeholder="请输入搬家时间" autocomplete="off" class="layui-input">
+            </script>
+        </div>
     </div>
     <script type="text/html" template>
-        <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+        <input type="hidden" name="orderId" value="{{ d.params.orderId|| '' }}">
     </script>
     <div class="layui-form-item">
         <label class="layui-form-label"></label>

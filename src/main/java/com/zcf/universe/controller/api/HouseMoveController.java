@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
-* Created by YuanQJ on 2018/11/14.
-*/
+ * Created by YuanQJ on 2018/11/14.
+ */
 @RestController
 @Api(value = "搬家菜单控制器", tags = {"搬家菜单接口"})
 public class HouseMoveController {
@@ -29,7 +29,7 @@ public class HouseMoveController {
 
     @ApiOperation(value = "获取所有")
     @GetMapping("HouseMove")
-    public  ResponseEntity<List<HouseMove>> getAllHouseMove() {
-       return ResponseEntity.ok(this.houseMoveService.getAllHouseMove());
+    public ResponseEntity<List<HouseMove>> getAllHouseMove() {
+        return ResponseEntity.ok(this.houseMoveService.getAllHouseMove());
     }
 }

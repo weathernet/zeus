@@ -15,7 +15,7 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/22.
 */
 @RestController
-@Api(value = "业主案例控制器", tags = {"OwnerCase接口"})
+@Api(value = "业主案例控制器", tags = {"业主案例接口"})
 public class OwnerCaseController {
 
     @Autowired

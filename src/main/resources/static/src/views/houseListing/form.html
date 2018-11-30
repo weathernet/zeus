@@ -1,24 +1,157 @@
 <div class="layui-form" lay-filter="houseListing-form" id="houseListing-form" style="padding: 20px 30px 0 0;">
+
     <div class="layui-form-item">
-        <label class="layui-form-label">品牌名称</label>
+        <label class="layui-form-label">房源的图片</label>
+        <div class="layui-input-inline" style="width: 500px;background-color:#FFFFFF;">
+            <script type="text/plain" lay-verify="content" id="housingImage" name="housingImage"></script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">房源的标题</label>
         <div class="layui-input-inline">
             <script type="text/html" template>
-                <input type="text" name="name" value="{{ d.params.name || '' }}" lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input">
+                <input type="text" name="housingTitle" value="{{ d.params.housingTitle || '' }}" lay-verify="required" placeholder="请输入房源的标题" autocomplete="off" class="layui-input">
             </script>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">图片</label>
+        <label class="layui-form-label">房源所在城市</label>
         <div class="layui-input-inline">
             <script type="text/html" template>
-                <input type="text" name="image" value="{{ d.params.image || '' }}" lay-verify="required"
-                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
+                <input type="text" name="housingCity" value="{{ d.params.housingCity || '' }}" lay-verify="required" placeholder="请输入房源所在城市" autocomplete="off" class="layui-input">
             </script>
         </div>
-        <button style="float: left;" type="button" class="layui-btn" id="brand-upload-brand">上传图片</button>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">朝向</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingDirection" value="{{ d.params.housingDirection || '' }}" lay-verify="required" placeholder="请输入朝向" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">房源位置</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingPosition" value="{{ d.params.housingPosition || '' }}" lay-verify="required" placeholder="请输入房源位置" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">房源所在小区</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingCommunity" value="{{ d.params.housingCommunity || '' }}" lay-verify="required" placeholder="请输入房源所在小区" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">房源的名称</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingName" value="{{ d.params.housingName || '' }}" lay-verify="required" placeholder="请输入房源的名称" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">房源的价格</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingPrice" value="{{ d.params.housingPrice || '' }}" lay-verify="required" placeholder="请输入房源的价格" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">住房楼层</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingFloor" value="{{ d.params.housingFloor || '' }}" lay-verify="required" placeholder="请输入住房楼层:9层" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">面积</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingArea" value="{{ d.params.housingArea || '' }}" lay-verify="required" placeholder="请输入面积:80MM" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">户型如</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingType" value="{{ d.params.housingType || '' }}" lay-verify="required" placeholder="请输入户型如:三室一厅" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电梯</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingElevator" value="{{ d.params.housingElevator || '' }}" lay-verify="required" placeholder="请输入电梯0没有1有" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">简介</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingIntroduction" value="{{ d.params.housingIntroduction || '' }}" lay-verify="required" placeholder="请输入简介" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">房源标签</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingLabel" value="{{ d.params.housingLabel || '' }}" lay-verify="required" placeholder="请输入房源标签" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">房源交通交通</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingTraffic" value="{{ d.params.housingTraffic || '' }}" lay-verify="required" placeholder="请输入房源交通交通" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">经度</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingLongitude" value="{{ d.params.housingLongitude || '' }}" lay-verify="required" placeholder="请输入经度" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">纬度</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingLatitude" value="{{ d.params.housingLatitude || '' }}" lay-verify="required" placeholder="请输入纬度" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">出租状态</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingLiveStatus" value="{{ d.params.housingLiveStatus || '' }}" lay-verify="required" placeholder="请输入出租状态：0未出租；1已出租" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">租用类型</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="housingLeaseType" value="{{ d.params.housingLeaseType || '' }}" lay-verify="required" placeholder="请输入租用类型：0短租;1长租;2合租" autocomplete="off" class="layui-input">
+            </script>
+        </div>
     </div>
     <script type="text/html" template>
-        <input type="hidden" name="id" value="{{ d.params.id || '' }}">
+        <input type="hidden" name="housingId" value="{{ d.params.housingId|| '' }}">
     </script>
     <div class="layui-form-item">
         <label class="layui-form-label"></label>
@@ -28,6 +161,15 @@
     </div>
 </div>
 <script>
+    var house = UE.getEditor('housingImage', {
+        toolbars: [[//工具条
+            'insertimage'
+        ]]
+    });
+    var houseImage;
+    house.ready(function () {
+        house.setContent(houseImage, false);
+    });
     layui.use([ 'admin', 'form', 'upload' ], function() {
         var $ = layui.$, form = layui.form, upload = layui.upload;
 

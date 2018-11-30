@@ -27,20 +27,6 @@ public class UserLendController {
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "删除")
-    @DeleteMapping("userLend/{id}")
-    public ResponseEntity<Void> deleteUserLend(@PathVariable Integer id) {
-        this.userLendService.deleteUserLend(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("userLend")
-    public ResponseEntity<Void> updateUserLend(UserLend userLend) {
-        this.userLendService.updateUserLend(userLend);
-        return ResponseEntity.ok(null);
-    }
-
     @ApiOperation(value = "获取单个")
     @GetMapping("userLend/{id}")
     public ResponseEntity<UserLend> getUserLend(@PathVariable Integer id) {

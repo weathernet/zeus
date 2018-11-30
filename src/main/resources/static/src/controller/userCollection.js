@@ -51,7 +51,7 @@ layui.define(['table', 'form'], function (exports) {
             , {field: 'collectionHousingImage', title: '图片'}
             , {field: 'collectionHousingPrice', title: '价格'}
             , {field: 'createTime', title: '收藏时间',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
-            , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-userCollection-toolbar'}//设置表格工具条的名称
+
         ]]
         , page: true//开启分页
         , limit: 20

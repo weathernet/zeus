@@ -13,6 +13,7 @@ import java.util.List;
 /**
 * Created by YuanQJ on 2018/11/18.
 */
+@CrossOrigin
 @RestController
 @Api(value = "商城轮播图控制器", tags = {"商城轮播图接口"})
 public class MallBannerController {

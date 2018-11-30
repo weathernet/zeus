@@ -52,7 +52,7 @@ public class HouseListing {
 
     @ApiModelProperty(value = "房源的价格", required = true)
     @Column(name = "housing_price")
-    private String housingPrice;
+    private Integer housingPrice;
 
     @ApiModelProperty(value = "住房楼层", required = true)
     @Column(name = "housing_floor")

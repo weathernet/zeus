@@ -21,7 +21,7 @@ public class UserCollection {
 
     @ApiModelProperty(value = "收藏用户")
     @Column(name = "collection_user_id")
-    private String collectionUserId;
+    private Integer collectionUserId;
 
     @ApiModelProperty(value = "房间的ID")
     @Column(name = "collection_housing_id")
@@ -33,7 +33,7 @@ public class UserCollection {
 
     @ApiModelProperty(value = "房间的价格")
     @Column(name = "collection_housing_price")
-    private BigDecimal collectionHousingPrice;
+    private String collectionHousingPrice;
 
     @ApiModelProperty(value = "房间的标题")
     @Column(name = "collection_housing_title")

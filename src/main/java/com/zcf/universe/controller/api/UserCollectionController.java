@@ -3,8 +3,11 @@ package com.zcf.universe.controller.api;
 import com.zcf.universe.pojo.UserCollection;
 import com.zcf.universe.service.UserCollectionService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +30,6 @@ public class UserCollectionController {
         return ResponseEntity.ok().build();
     }
 
-    @ApiOperation(value = "删除")
-    @DeleteMapping("userCollection/{id}")
-    public ResponseEntity<Void> deleteUserCollection(@PathVariable Integer id) {
-        this.userCollectionService.deleteUserCollection(id);
-        return ResponseEntity.ok(null);
-    }
-
 
     @ApiOperation(value = "获取单个")
     @GetMapping("userCollection/{id}")
@@ -45,5 +41,33 @@ public class UserCollectionController {
     @GetMapping("UserCollection")
     public ResponseEntity<List<UserCollection>> getAllUserCollection(Integer id) {
         return ResponseEntity.ok(this.userCollectionService.getAllUserCollection(id));
+    }
+
+    @ApiOperation(value = "查看当前房源用户是否已收藏")
+    @GetMapping("Collection")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "houseId", value = "房源ID", required = true, dataType = "Integer")
+
+    })
+    public ResponseEntity<Boolean> checkCollection(
+            @RequestParam("userId") Integer userId,
+            @RequestParam("houseId") Integer houseId
+    ) {
+        return ResponseEntity.ok(this.userCollectionService.checkCollection(userId, houseId));
+    }
+
+    @ApiOperation(value = "删除收藏的房源")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "userId", value = "用户ID", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "houseId", value = "房源ID", required = true, dataType = "Integer")
+    })
+    @PostMapping("Collection")
+    public ResponseEntity<Void> deleteUserCollection(
+            @RequestParam("userId") Integer userId,
+            @RequestParam("houseId") Integer houseId
+    ) {
+        this.userCollectionService.deleteUserCollection(userId, houseId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

@@ -140,13 +140,47 @@ public class UserInfoController {
             @ApiImplicitParam(name = "type", value = "微信0，支付宝1", required = true, dataType = "int")
     })
     public ResponseEntity<Void> bandWeChatAndAliPay(
-            @RequestParam(value = "userPhoneNumber",required = false) String userPhoneNumber,
-            @RequestParam(value = "userPassword",required = false) String userPassword,
-            @RequestParam(value = "registerCode",required = false) String registerCode,
-            @RequestParam(value = "type",required = false) String type,
-            @RequestParam(value = "weChatAndAliPayId",required = false) String weChatAndAliPayId
+            @RequestParam(value = "userPhoneNumber", required = false) String userPhoneNumber,
+            @RequestParam(value = "userPassword", required = false) String userPassword,
+            @RequestParam(value = "registerCode", required = false) String registerCode,
+            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "weChatAndAliPayId", required = false) String weChatAndAliPayId
     ) {
         this.userInfoservice.bandWeChatAndAliPay(weChatAndAliPayId, userPhoneNumber, userPassword, type, registerCode);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("passWord/{id}")
+    @ApiOperation(value = "修改密码")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "用户主键", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "OldPassword", value = "旧用户密码", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "newPassword", value = "验证码", required = true, dataType = "String"),
+
+    })
+    public ResponseEntity changePassWord(
+            @PathVariable("id") Integer id,
+            @RequestParam("oldPassWord") String oldPassWord,
+            @RequestParam("newPassWord") String newPassWord
+    ) {
+        this.userInfoservice.changePassWord(id, oldPassWord, newPassWord);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("userPhoneNumber/{id}")
+    @ApiOperation(value = "修改绑定手机号")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "用户主键", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "userPhone", value = "用户手机号码", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "changeCode", value = "验证码", required = true, dataType = "String"),
+
+    })
+    public ResponseEntity changeUserPhoneNumber(
+            @PathVariable("id") Integer id,
+            @RequestParam("userPhoneNumber") String userPhoneNumber,
+            @RequestParam("changeCode") String changeCode
+    ) {
+        this.userInfoservice.changeUserPhoneNumber(id, userPhoneNumber, changeCode);
         return ResponseEntity.ok().build();
     }
 }

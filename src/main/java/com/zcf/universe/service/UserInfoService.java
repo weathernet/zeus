@@ -179,14 +179,15 @@ public class UserInfoService {
 
     //修改用户密码
     public void updateUSerPasswords(String phone, String password, String forgetCode) {
+
+        //验证是否为空
+        if (StringUtils.isBlank(phone) && StringUtils.isBlank(password)) {
+            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
+        }
         //获取手机号的验证码
         String code = (String) redisTemplate.opsForValue().get(PHONE_NUMBER + phone);
         if (!StringUtils.equals(code, forgetCode)) {
             throw new CommonException(ExceptionEnum.REGISTER_CODE_MISMATCH);
-        }
-        //验证是否为空
-        if (StringUtils.isBlank(phone) && StringUtils.isBlank(password)) {
-            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
         }
         UserInfo userInfo = this.checkPhone(phone);
         userInfo.setUserPassword(password);
@@ -361,6 +362,52 @@ public class UserInfoService {
             UserInfo userInfo = new UserInfo();
             userInfo.setUserAliPayOpenid(openId);
             return this.userInfomapper.selectCount(userInfo);
+        }
+    }
+
+    //更换密码
+    public void changePassWord(Integer id, String oldPassWord, String newPassWord) {
+        //非空验证
+        if (StringUtils.isBlank(oldPassWord) && StringUtils.isBlank(newPassWord) && id == null) {
+            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
+        }
+        //查询用户信息
+        UserInfo userInfo = this.userInfomapper.selectByPrimaryKey(id);
+        if (userInfo == null) {
+            throw new CommonException(ExceptionEnum.USER_IS_NOT_FOUND);
+        }
+        //匹配用户的密码
+        if (!StringUtils.equals(oldPassWord, userInfo.getUserPassword())) {
+            throw new CommonException(ExceptionEnum.USER_PASSWORD_MISMATCH);
+        }
+        //更新用户的密码
+        userInfo.setUserPassword(newPassWord);
+        int count = this.userInfomapper.updateByPrimaryKeySelective(userInfo);
+        if (count != 1) {
+            throw new CommonException(ExceptionEnum.UPDATE_FAILURE);
+        }
+    }
+
+    //更换手机号
+    public void changeUserPhoneNumber(Integer id, String phoneNumber, String changeCode) {
+        //非空验证
+        if (StringUtils.isBlank(phoneNumber) && StringUtils.isBlank(changeCode) && id == null) {
+            throw new CommonException(ExceptionEnum.PARAMETER_CAN_NOT_BE_EMPTY);
+        }
+        //验证验证码
+        String code = (String) redisTemplate.opsForValue().get(PHONE_NUMBER + phoneNumber);
+        if (!StringUtils.equals(code, changeCode)) {
+            throw new CommonException(ExceptionEnum.REGISTER_CODE_MISMATCH);
+        }
+        //获取用户信息
+        UserInfo userInfo = this.userInfomapper.selectByPrimaryKey(id);
+        if (userInfo == null) {
+            throw new CommonException(ExceptionEnum.USER_IS_NOT_FOUND);
+        }
+        userInfo.setUserPhoneNumber(phoneNumber);
+        int count = this.userInfomapper.updateByPrimaryKeySelective(userInfo);
+        if (count != 1) {
+            throw new CommonException(ExceptionEnum.UPDATE_FAILURE);
         }
     }
 }

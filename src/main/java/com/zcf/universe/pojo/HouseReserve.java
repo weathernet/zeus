@@ -63,6 +63,15 @@ public class HouseReserve {
     @Column(name = "reserve_message")
     private String reserveMessage;
 
+    @ApiModelProperty(value = "预约状态0.未完成1.已完成2.已取消")
+    @Column(name = "reserve_status")
+    private String reserveStatus;
+
+    @ApiModelProperty(value = "管家手机号")
+    @Column(name = "reserve_butler_phone")
+    private String reserveButlerPhone;
+
+
     @ApiModelProperty(value = "创建时间")
     @Column(name = "create_time")
     private Date createTime;

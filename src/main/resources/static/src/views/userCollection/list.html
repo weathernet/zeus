@@ -28,17 +28,14 @@
                     </div>
                 </div>
             </div>
-            <div style="padding-bottom: 10px;">
-                <button class="layui-btn userCollection-form" data-type="add">新增</button>
-            </div>
             <table id="LAY-userCollection-list" lay-filter="LAY-userCollection-list"></table>
             <script type="text/html" id="Img">
-                <img style="display: inline-block; width: 50%; height: 100%;" src=/mall/{{ d.avatar }} onclick="previewImg(this)">
+                <img style="display: inline-block; width: 50%; height: 100%;" src={{ d.avatar }} onclick="previewImg(this)">
             </script>
-            <script type="text/html" id="table-userCollection-toolbar">
+           <!-- <script type="text/html" id="table-userCollection-toolbar">
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"> <i class="layui-icon  layui-icon-del"></i>删除</a>
-            </script>
+            </script>-->
         </div>
     </div>
 </div>

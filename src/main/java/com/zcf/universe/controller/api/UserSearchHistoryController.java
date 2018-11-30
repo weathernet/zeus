@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
-* Created by YuanQJ on 2018/11/19.
-*/
+ * Created by YuanQJ on 2018/11/19.
+ */
 @RestController
 @Api(value = "用户搜索历史控制器", tags = {"用户搜索历史接口"})
 public class UserSearchHistoryController {
@@ -29,17 +29,17 @@ public class UserSearchHistoryController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @ApiOperation(value = "清除所有历史记录")
-    @DeleteMapping("userSearchHistory/{id}")
+    @ApiOperation(value = "清除所有用户历史记录")
+    @PostMapping("deleteHistory/{id}")
     public ResponseEntity<Void> deleteUserSearchHistory(@PathVariable Integer id) {
         this.userSearchHistoryService.deleteUserSearchHistory(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.ok().build();
     }
 
 
     @ApiOperation(value = "获取当前用户的搜索历史")
     @GetMapping("userSearchHistory/{id}")
-    public ResponseEntity <List<UserSearchHistory>> getUserSearchHistory(@PathVariable Integer id) {
+    public ResponseEntity<List<UserSearchHistory>> getUserSearchHistory(@PathVariable Integer id) {
         return ResponseEntity.ok(this.userSearchHistoryService.getUserSearchHistory(id));
     }
 }

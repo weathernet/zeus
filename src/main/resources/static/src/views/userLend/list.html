@@ -34,11 +34,20 @@
             <table id="LAY-userLend-list" lay-filter="LAY-userLend-list"></table>
             <script type="text/html" id="Status">
                 {{#  if(d.lendStatus==0){     }}
-                <button class="layui-btn ayui-btn-danger layui-btn-xs">待审核</button>
+                <button class="layui-btn layui-btn-warm layui-btn-xs">待审核</button>
                 {{#  }else if(d.lendStatus==1){   }}
-                <button class="layui-btn ayui-btn-danger layui-btn-xs">已通过</button>
+                <button class="layui-btn layui-btn-normal layui-btn-xs">已通过</button>
                 {{#  }else if(d.lendStatus==2){   }}
-                <button class="layui-btn ayui-btn-danger layui-btn-xs">未通过</button>
+                <button class="layui-btn layui-btn-danger layui-btn-xs">未通过</button>
+                {{#       }                    }}
+            </script>
+            <script type="text/html" id="Status">
+                {{#  if(d.lendStatus==0){     }}
+                <button class="layui-btn layui-btn-warm layui-btn-xs">待审核</button>
+                {{#  }else if(d.lendStatus==1){   }}
+                <button class="layui-btn layui-btn-normal layui-btn-xs">已通过</button>
+                {{#  }else if(d.lendStatus==2){   }}
+                <button class="layui-btn layui-btn-danger layui-btn-xs">未通过</button>
                 {{#       }                    }}
             </script>
 

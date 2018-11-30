@@ -1,138 +1,188 @@
-<div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-md8">
-            <div class="layui-row layui-col-space15">
-                <div class="layui-col-md6">
-                    <div class="layui-card">
-                        <div class="layui-card-header">快捷方式</div>
-                        <div class="layui-card-body">
-                            <div class="layui-carousel layadmin-carousel layadmin-shortcut">
-                                <div carousel-item>
-                                    <ul class="layui-row layui-col-space10">
-                                        <li class="layui-col-xs3">
-                                            <a href="#">
-                                                <i class="layui-icon layui-icon-console"></i>
-                                                <cite>主页</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="user/user">
-                                                <i class="layui-icon layui-icon-chart"></i>
-                                                <cite>用户信息</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="puts/puts">
-                                                <i class="layui-icon layui-icon-template-1"></i>
-                                                <cite>提现申请</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="goods/goods">
-                                                <i class="layui-icon layui-icon-chat"></i>
-                                                <cite>商品信息</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="evaluate/evaluate">
-                                                <i class="layui-icon layui-icon-find-fill"></i>
-                                                <cite>商品的评论</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="activitys/activitys">
-                                                <i class="layui-icon layui-icon-survey"></i>
-                                                <cite>商品的活动</cite>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs3">
-                                            <a lay-href="mission/mission">
-                                                <i class="layui-icon layui-icon-user"></i>
-                                                <cite>发布推荐任务</cite>
-                                            </a>
-                                        </li>
-                                      <li class="layui-col-xs3">
-                                            <a lay-href="broadcast/broadcast">
-                                                <i class="layui-icon layui-icon-set"></i>
-                                                <cite>首页管理</cite>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-col-md6">
-                    <div class="layui-card">
-                        <div class="layui-card-header">待办事项</div>
-                        <div class="layui-card-body">
 
-                            <div class="layui-carousel layadmin-carousel layadmin-backlog">
-                                <div carousel-item>
-                                    <ul class="layui-row layui-col-space10">
-                                        <li class="layui-col-xs6">
-                                            <a lay-href="order/order1"
-                                               class="layadmin-backlog-body">
-                                                <h3>代付款</h3>
-                                                <p><cite>去看看</cite></p>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs6">
-                                            <a lay-href="order/order2"
-                                               class="layadmin-backlog-body">
-                                                <h3>待发货</h3>
-                                                <p><cite>去看看</cite></p>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs6">
-                                            <a lay-href="order/order3"
-                                               class="layadmin-backlog-body">
-                                                <h3>待收货</h3>
-                                                <p><cite>去看看</cite></p>
-                                            </a>
-                                        </li>
-                                        <li class="layui-col-xs6">
-                                            <a lay-href="order/order4"
-                                               class="layadmin-backlog-body">
-                                                <h3>待评价</h3>
-                                                <p><cite>去看看</cite></p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-<!--                 <div class="layui-col-md12">
-                    <div class="layui-card">
-                        <div class="layui-card-header">数据概览</div>
-                        <div class="layui-card-body">
-                            <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade"
-                                 lay-filter="LAY-index-dataview">
-                                <div carousel-item id="LAY-index-dataview">
-                                    <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-        </div>
+<title>主页</title>
 
-
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">主页</a>
+        <a><cite>主页</cite></a>
     </div>
 </div>
-<script>
-    layui.use('console', layui.factory('console')).use(['admin', 'console', 'table'], function () {
-        var $ = layui.$
-            , admin = layui.admin
-            , view = layui.view
-            , table = layui.table
-            , form = layui.form;
-    });
-</script>
 
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    访问量
+                    <span class="layui-badge layui-bg-blue layuiadmin-badge">周</span>
+                </div>
+                <div class="layui-card-body layuiadmin-card-list">
+                    <p class="layuiadmin-big-font">9,999,666</p>
+                    <p>
+                        总计访问量
+                        <span class="layuiadmin-span-color">88万 <i class="layui-icon">&#xe66c;</i></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    下载
+                    <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span>
+                </div>
+                <div class="layui-card-body layuiadmin-card-list">
+                    <p class="layuiadmin-big-font">33,555</p>
+                    <p>
+                        新下载
+                        <span class="layuiadmin-span-color">10% <i class="layui-icon">&#xe650;</i></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    收入
+                    <span class="layui-badge layui-bg-green layuiadmin-badge">年</span>
+                </div>
+                <div class="layui-card-body layuiadmin-card-list">
+
+                    <p class="layuiadmin-big-font">999,666</p>
+                    <p>
+                        总收入
+                        <span class="layuiadmin-span-color">*** <i class="layui-icon">&#xe659;</i></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    活跃用户
+                    <span class="layui-badge layui-bg-orange layuiadmin-badge">月</span>
+                </div>
+                <div class="layui-card-body layuiadmin-card-list">
+
+                    <p class="layuiadmin-big-font">66,666</p>
+                    <p>
+                        最近一个月
+                        <span class="layuiadmin-span-color">15% <i class="layui-icon">&#xe770;</i></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-sm12">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    访问量
+                    <div class="layui-btn-group layuiadmin-btn-group">
+                        <button class="layui-btn layui-btn-primary layui-btn-xs">去年</button>
+                        <button class="layui-btn layui-btn-primary layui-btn-xs">今年</button>
+                    </div>
+                </div>
+                <div class="layui-card-body">
+                    <div class="layui-row">
+                        <div class="layui-col-sm8">
+                            <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-pagetwo">
+                                <div carousel-item id="LAY-index-pagetwo">
+                                    <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <div class="layuiadmin-card-list">
+                                <p class="layuiadmin-normal-font">月访问数</p>
+                                <span>同上期增长</span>
+                                <div class="layui-progress layui-progress-big" lay-showPercent="yes">
+                                    <div class="layui-progress-bar" lay-percent="30%"></div>
+                                </div>
+                            </div>
+                            <div class="layuiadmin-card-list">
+                                <p class="layuiadmin-normal-font">月下载数</p>
+                                <span>同上期增长</span>
+                                <div class="layui-progress layui-progress-big" lay-showPercent="yes">
+                                    <div class="layui-progress-bar" lay-percent="20%"></div>
+                                </div>
+                            </div>
+                            <div class="layuiadmin-card-list">
+                                <p class="layuiadmin-normal-font">月收入</p>
+                                <span>同上期增长</span>
+                                <div class="layui-progress layui-progress-big" lay-showPercent="yes">
+                                    <div class="layui-progress-bar" lay-percent="25%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-sm12">
+            <div class="layui-row layui-col-space18">
+                <div class="layui-col-sm12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">用户全国分布</div>
+                        <div class="layui-card-body">
+                            <div class="layui-row layui-col-space15">
+                                <div class="layui-col-sm4">
+                                    <table class="layui-table layuiadmin-page-table" lay-skin="line">
+                                        <thead>
+                                        <tr>
+                                            <th>排名</th>
+                                            <th>地区</th>
+                                            <th>人数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>浙江</td>
+                                            <td>62310</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>上海</td>
+                                            <td>59190</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>广东</td>
+                                            <td>55891</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>北京</td>
+                                            <td>51919</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>山东</td>
+                                            <td>39231</td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>湖北</td>
+                                            <td>37109</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="layui-col-sm8">
+                                    <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-pagethree">
+                                        <div carousel-item id="LAY-index-pagethree">
+                                            <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('sample', layui.factory('sample'));
+</script>

@@ -8,14 +8,22 @@ import java.util.List;
 public class Test {
 
 
+    //    public static void main(String[] args) {
+//       String a = "account, article, atlas, banner, bill, chat, code, comment, correlation, discussion, eqitem, eqresult, eqtest, feedback, handbook, help, highlight, panels, policy, report, special, user, vip";
+//       List<String>  TableName= new ArrayList<>();
+//        String[] split = a.split(",");
+//        for (int i = 0; i < split.length; i++) {
+//            String sss='"'+split[i]+'"';
+//            TableName.add(sss);
+//        }
+//        System.out.println(TableName.toString());
+//    }
     public static void main(String[] args) {
-       String a = "account, article, atlas, banner, bill, chat, code, comment, correlation, discussion, eqitem, eqresult, eqtest, feedback, handbook, help, highlight, panels, policy, report, special, user, vip";
-       List<String>  TableName= new ArrayList<>();
-        String[] split = a.split(",");
-        for (int i = 0; i < split.length; i++) {
-            String sss='"'+split[i]+'"';
-            TableName.add(sss);
-        }
-        System.out.println(TableName.toString());
+        String a = "10000 元/月 ";
+        String[] s = a.split(" 元");
+
+            System.out.println(s[0]);
+
+
     }
 }

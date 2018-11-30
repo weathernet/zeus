@@ -20,56 +20,53 @@ public class HouseReserveService {
     @Autowired
     private HouseReserveMapper houseReservemapper;
 
-    //新增
+    //新增约看内容
     public void addHouseReserve(HouseReserve houseReserve) {
-        int count = this.houseReservemapper.insertSelective(houseReserve) ;
+        int count = this.houseReservemapper.insertSelective(houseReserve);
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
+    //取消约看
+    public void cancelHouseReserve(Integer id) {
+        HouseReserve houseReserve = this.houseReservemapper.selectByPrimaryKey(id);
+        houseReserve.setReserveStatus("2");
+        int count = this.houseReservemapper.updateByPrimaryKeySelective(houseReserve);
+        if (count != 1) {
+            throw new CommonException(ExceptionEnum.UPDATE_FAILURE);
+        }
+    }
 
-    //删除
+    //删除约看内容
     public void deleteHouseReserve(Integer id) {
-        int count = this.houseReservemapper.deleteByPrimaryKey(id) ;
+        int count = this.houseReservemapper.deleteByPrimaryKey(id);
         if (count != 1) {
             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
         }
     }
 
-    //更新
-    public void updateHouseReserve(HouseReserve houseReserve) {
-        int count = this.houseReservemapper.updateByPrimaryKeySelective(houseReserve) ;
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
 
-    //查询所有
-    public List<HouseReserve> getAllHouseReserve() {
-        List<HouseReserve> list = this.houseReservemapper.selectAll();
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
-
-    //查询单个
-    public HouseReserve getHouseReserve(Integer id) {
-        HouseReserve HouseReserve = this.houseReservemapper.selectByPrimaryKey(id);
-        if (HouseReserve == null) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return HouseReserve;
-    }
-
-    //字段搜索
-    public List<HouseReserve> searchHouseReserve(String keywords) {
+    //查询当前用户的未完成预约
+    public List<HouseReserve> getHouseReserve(Integer id) {
         Example example = new Example(HouseReserve.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
-        List<HouseReserve> list = this.houseReservemapper.selectByExample(example);
+        example.createCriteria().andEqualTo("reserveUserId", id).andEqualTo("reserveStatus", 0);
+        final List<HouseReserve> list = this.houseReservemapper.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+            throw new CommonException(ExceptionEnum.DATA_DOES_NOT_EXIST);
         }
         return list;
     }
+
+    //查询当前用户的非未完成预约
+    public List<HouseReserve> houseReserveStatus(Integer id) {
+        Example example = new Example(HouseReserve.class);
+        example.createCriteria().andNotEqualTo("reserveStatus", 0).andEqualTo("reserveUserId", id);
+        final List<HouseReserve> list = this.houseReservemapper.selectByExample(example);
+        if (CollectionUtils.isEmpty(list)) {
+            throw new CommonException(ExceptionEnum.DATA_DOES_NOT_EXIST);
+        }
+        return list;
+    }
+
+
 }

@@ -15,7 +15,7 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/26.
 */
 @RestController
-@Api(value = "ServiceEvaluation控制器", tags = {"ServiceEvaluation接口"})
+@Api(value = "服务评价控制器", tags = {"服务评价接口"})
 public class ServiceEvaluationController {
 
     @Autowired

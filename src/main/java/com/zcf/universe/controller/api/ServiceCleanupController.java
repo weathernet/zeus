@@ -15,7 +15,7 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/26.
 */
 @RestController
-@Api(value = "ServiceCleanup控制器", tags = {"ServiceCleanup接口"})
+@Api(value = "清洁服务控制器", tags = {"清洁服务   接口"})
 public class ServiceCleanupController {
 
     @Autowired
