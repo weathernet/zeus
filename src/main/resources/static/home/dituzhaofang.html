@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>地图找房</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/mui.picker.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/swiper-3.4.2.min.css" />
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Vcz5RFH6LPDbRco6cj2wxGoi55A3mqID"></script>
+		<style type="text/css">
+			#allmap {
+				width: 100%;
+				height: 1000px;
+			}
+			#size {
+				position: fixed;
+				width: 100%;
+				left: 0;
+				top: 85%;
+				
+			}
+			#openPopover {
+				position: fixed;
+				left: 0;
+				top: 75%;
+				height: .6rem;
+				line-height: .6rem;
+				font-size: .28rem;
+				padding: 0;
+				background: orange;
+				border: none;
+			}
+		</style>
+	</head>
+
+	<body ng-app='apiview' ng-controller="PublicController">
+		<div id="allmap"></div>
+		<div id="r-result"></div>
+		
+		<div id="popover" class="mui-popover">
+		  <ul class="mui-table-view">
+		    <li class="mui-table-view-cell">
+		    	<a href="#">
+		    	    
+		        </a>
+		    </li>
+		    
+		  </ul>
+		</div>
+		<!--<a href="#popover" id="openPopover" class="mui-btn mui-btn-primary mui-btn-block">查看房源信息</a>-->
+        <input id="size" type="range"  max="1500" min="500"/>
+        
+		<footer>
+			<ul class="clearfix">
+				<li>
+					<a href="index.html">
+						<img src="images/footer/tab_sy.png" alt="" />
+						<p>首页</p>
+					</a>
+				</li>
+				<li class="active">
+					<a href="dituzhaofang.html">
+						<img src="images/footer/tab_dtzf_pre.png" alt="" />
+						<p>地图找房</p>
+					</a>
+
+				</li>
+				<li>
+					<a href="jiazhengweixiu.html">
+						<img src="images/footer/tab_shgc.png" alt="" />
+						<p>生活广场</p>
+					</a>
+				</li>
+				<li>
+					<a href="pinjiajihua.html">
+						<img src="images/footer/tab_pjjh.png" alt="" />
+						<p>品家计划</p>
+					</a>
+				</li>
+				<li>
+					<a href="mine.html">
+						<img src="images/footer/tab_wode.png" alt="" />
+						<p>我的</p>
+					</a>
+				</li>
+			</ul>
+		</footer>
+		<!--footer结束-->
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.picker.js"></script>
+		<script src="js/swiper-3.4.2.min.js"></script>
+		<script src="js/baseUrl.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<script src="js/style.js"></script>
+		<script>
+			var size = 1000;     // 圆圈面积
+			var longitude = 116.404; // 经度
+			var latitude = 39.915; // 维度
+			$("#size").on("input",function(){
+				size = $(this).val();
+				console.log(size);
+				var map = new BMap.Map("allmap"); // 创建Map实例
+			
+		   
+			var geoc = new BMap.Geocoder();
+			var mPoint = new BMap.Point(longitude, latitude);
+			console.log(mPoint)
+			map.enableScrollWheelZoom();
+			map.centerAndZoom(mPoint, 15);
+			var circle = new BMap.Circle(mPoint, size, {
+				fillColor: "blue",
+				strokeWeight: 1,
+				fillOpacity: 0.3,
+				strokeOpacity: 0.3,
+//				enableEditing: true
+			});
+			map.addOverlay(circle);
+			map.addEventListener("click", function(e) {
+				//通过点击百度地图，可以获取到对应的point, 由point的lng、lat属性就可以获取对应的经度纬度     
+				
+				var pt = e.point;
+				geoc.getLocation(pt, function(rs) {
+					//addressComponents对象可以获取到详细的地址信息
+					var addComp = rs.addressComponents;
+					var site = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
+					//将对应的HTML元素设置值
+					console.log(site);
+					console.log(pt.lng);
+					console.log(pt.lat);
+					longitude = pt.lng;
+					latitude = pt.lat;
+			
+
+					map.clearOverlays();
+					circle = new BMap.Circle(rs.point, size, {
+						fillColor: "blue",
+						strokeWeight: 1,
+						fillOpacity: 0.3,
+						strokeOpacity: 0.3,
+//						enableEditing: true
+					});
+					map.addOverlay(circle);
+
+					if(mPoint != null) {
+						console.log("***********")
+//						circle.addEventListener("lineupdate", function(e) {
+							console.log(e)
+							var mi = parseInt(circle.getRadius())
+							$.ajax({
+								type: "GET", //请求方式 post
+								dataType: 'json', //数据类型 json
+								url: baseUrl + "/mapLookingForRoom", // 请求地址
+								data: {
+									longitude: longitude,
+									latitude: latitude,
+									range: mi
+								},
+								success: function(data) {
+									console.log(data, "$$$$$$$$$$") //-----------------------------------------------
+									var marker = new BMap.Marker(mPoint);
+									var mapPoints = []; //创建数组
+									for(var j = 0; j < data.length; j++) {
+										//添加信息 进 数组
+										mapPoints.push({
+											x: data[j].housingLatitude,
+											y: data[j].housingLongitude,
+											title: data[j].housingPrice,
+											con: data[j].housingId,
+											branch: data[j].housingPrice
+										})
+									}
+									console.log(mapPoints, "￥￥￥￥￥￥￥￥￥") //---------------------------------------
+									var i = 0;
+									map.addOverlay(marker);
+									map.enableScrollWheelZoom(true);
+
+									// 函数 创建多个标注
+									function markerFun(points, label, infoWindows, con) {
+										var markers = new BMap.Marker(points);
+										map.addOverlay(markers);
+										markers.setLabel(label);
+										markers.addEventListener("click", function(event) {
+											console.log(infoWindows);
+											console.log(con);
+
+											map.openInfoWindow(infoWindows, points); //参数：窗口、点  根据点击的点出现对应的窗口
+										});
+									}
+
+									for(; i < mapPoints.length; i++) {
+										var points = new BMap.Point(mapPoints[i].y, mapPoints[i].x); //创建坐标点
+
+										var opts = {
+											width: 200,
+											height: 100,
+											title: mapPoints[i].title
+										};
+										var label = new BMap.Label(mapPoints[i].branch, {
+											offset: new BMap.Size(25, 5)
+										});
+										var infoWindows = new BMap.InfoWindow(mapPoints[i].title, opts);
+
+										markerFun(points, label, infoWindows, mapPoints[i].con);
+									}
+								},
+								error: function(data, textStatus) {
+									console.log(textStatus)
+									console.log(data)
+								}
+							});
+//						});
+					}
+				});
+			});
+				
+			});
+//			drawCircle(size);
+//		function drawCircle() {
+			var map = new BMap.Map("allmap"); // 创建Map实例
+			
+		   
+			var geoc = new BMap.Geocoder();
+			var mPoint = new BMap.Point(longitude, latitude);
+			console.log(mPoint)
+			map.enableScrollWheelZoom();
+			map.centerAndZoom(mPoint, 15);
+			var circle = new BMap.Circle(mPoint, size, {
+				fillColor: "blue",
+				strokeWeight: 1,
+				fillOpacity: 0.3,
+				strokeOpacity: 0.3,
+//				enableEditing: true
+			});
+			map.addOverlay(circle);
+
+			map.addEventListener("click", function(e) {
+				//通过点击百度地图，可以获取到对应的point, 由point的lng、lat属性就可以获取对应的经度纬度     
+				
+				var pt = e.point;
+				geoc.getLocation(pt, function(rs) {
+					//addressComponents对象可以获取到详细的地址信息
+					var addComp = rs.addressComponents;
+					var site = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
+					//将对应的HTML元素设置值
+					console.log(site);
+					console.log(pt.lng);
+					console.log(pt.lat);
+					longitude = pt.lng;
+					latitude = pt.lat;
+			
+
+					map.clearOverlays();
+					circle = new BMap.Circle(rs.point, size, {
+						fillColor: "blue",
+						strokeWeight: 1,
+						fillOpacity: 0.3,
+						strokeOpacity: 0.3,
+//						enableEditing: true
+					});
+					map.addOverlay(circle);
+
+					if(mPoint != null) {
+						console.log("***********")
+//						circle.addEventListener("lineupdate", function(e) {
+							console.log(e)
+							var mi = parseInt(circle.getRadius())
+							$.ajax({
+								type: "GET", //请求方式 post
+								dataType: 'json', //数据类型 json
+								url: baseUrl + "/mapLookingForRoom", // 请求地址
+								data: {
+									longitude: longitude,
+									latitude: latitude,
+									range: mi
+								},
+								success: function(data) {
+									console.log(data, "$$$$$$$$$$") //-----------------------------------------------
+									var marker = new BMap.Marker(mPoint);
+									var mapPoints = []; //创建数组
+									for(var j = 0; j < data.length; j++) {
+										//添加信息 进 数组
+										mapPoints.push({
+											x: data[j].housingLatitude,
+											y: data[j].housingLongitude,
+											title: data[j].housingPrice,
+											con: data[j].housingId,
+											branch: data[j].housingPrice
+										})
+									}
+									console.log(mapPoints, "￥￥￥￥￥￥￥￥￥") //---------------------------------------
+									var i = 0;
+									map.addOverlay(marker);
+									map.enableScrollWheelZoom(true);
+
+									// 函数 创建多个标注
+									function markerFun(points, label, infoWindows, con) {
+										var markers = new BMap.Marker(points);
+										map.addOverlay(markers);
+										markers.setLabel(label);
+										markers.addEventListener("click", function(event) {
+											console.log(infoWindows);
+											console.log(con);
+
+											map.openInfoWindow(infoWindows, points); //参数：窗口、点  根据点击的点出现对应的窗口
+										});
+									}
+
+									for(; i < mapPoints.length; i++) {
+										var points = new BMap.Point(mapPoints[i].y, mapPoints[i].x); //创建坐标点
+
+										var opts = {
+											width: 200,
+											height: 100,
+											title: mapPoints[i].title
+										};
+										var label = new BMap.Label(mapPoints[i].branch, {
+											offset: new BMap.Size(25, 5)
+										});
+										var infoWindows = new BMap.InfoWindow(mapPoints[i].title, opts);
+
+										markerFun(points, label, infoWindows, mapPoints[i].con);
+									}
+								},
+								error: function(data, textStatus) {
+									console.log(textStatus)
+									console.log(data)
+								}
+							});
+//						});
+					}
+				});
+			});
+//			}
+			
+
+//			map.addEventListener("click", function(e) {
+				//通过点击百度地图，可以获取到对应的point, 由point的lng、lat属性就可以获取对应的经度纬度     
+				
+//				var pt = e.point;
+//				geoc.getLocation(pt, function(rs) {
+//					//addressComponents对象可以获取到详细的地址信息
+//					var addComp = rs.addressComponents;
+//					var site = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
+//					//将对应的HTML元素设置值
+//					console.log(site);
+//					console.log(pt.lng);
+//					console.log(pt.lat);
+//					longitude = pt.lng;
+//					latitude = pt.lat;
+//			
+//
+//					map.clearOverlays();
+//					circle = new BMap.Circle(rs.point, size, {
+//						fillColor: "blue",
+//						strokeWeight: 1,
+//						fillOpacity: 0.3,
+//						strokeOpacity: 0.3,
+////						enableEditing: true
+//					});
+					map.addOverlay(circle);
+
+					if(mPoint != null) {
+						console.log("***********")
+//						circle.addEventListener("lineupdate", function(e) {
+							var mi = parseInt(circle.getRadius())
+							$.ajax({
+								type: "GET", //请求方式 post
+								dataType: 'json', //数据类型 json
+								url: baseUrl + "/mapLookingForRoom", // 请求地址
+								data: {
+									longitude: longitude,
+									latitude: latitude,
+									range: mi
+								},
+								success: function(data) {
+									console.log(data, "$$$$$$$$$$") //-----------------------------------------------
+									var marker = new BMap.Marker(mPoint);
+									var mapPoints = []; //创建数组
+									for(var j = 0; j < data.length; j++) {
+										//添加信息 进 数组
+										mapPoints.push({
+											x: data[j].housingLatitude,
+											y: data[j].housingLongitude,
+											title: data[j].housingPrice,
+											con: data[j].housingId,
+											branch: data[j].housingPrice
+										})
+									}
+									console.log(mapPoints, "￥￥￥￥￥￥￥￥￥") //---------------------------------------
+									var i = 0;
+									map.addOverlay(marker);
+									map.enableScrollWheelZoom(true);
+
+									// 函数 创建多个标注
+									function markerFun(points, label, infoWindows, con) {
+										var markers = new BMap.Marker(points);
+										map.addOverlay(markers);
+										markers.setLabel(label);
+										markers.addEventListener("click", function(event) {
+											console.log(infoWindows);
+											console.log(con);
+
+											map.openInfoWindow(infoWindows, points); //参数：窗口、点  根据点击的点出现对应的窗口
+										});
+									}
+
+									for(; i < mapPoints.length; i++) {
+										var points = new BMap.Point(mapPoints[i].y, mapPoints[i].x); //创建坐标点
+
+										var opts = {
+											width: 200,
+											height: 100,
+											title: mapPoints[i].title
+										};
+										var label = new BMap.Label(mapPoints[i].branch, {
+											offset: new BMap.Size(25, 5)
+										});
+										var infoWindows = new BMap.InfoWindow(mapPoints[i].title, opts);
+
+										markerFun(points, label, infoWindows, mapPoints[i].con);
+									}
+								},
+								error: function(data, textStatus) {
+									console.log(textStatus)
+									console.log(data)
+								}
+							});
+//						});
+					}
+//				});
+//			});
+		</script>
+	</body>
+
+</html>

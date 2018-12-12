@@ -20,27 +20,6 @@ public class HomeRecommendController {
     @Autowired
     private HomeRecommendService homeRecommendService;
 
-    @ApiOperation(value = "新增")
-    @PostMapping("homeRecommend")
-    public ResponseEntity<Void> addHomeRecommend(HomeRecommend homeRecommend) {
-        this.homeRecommendService.addHomeRecommend(homeRecommend);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "删除")
-    @DeleteMapping("homeRecommend/{id}")
-    public ResponseEntity<Void> deleteHomeRecommend(@PathVariable Integer id) {
-        this.homeRecommendService.deleteHomeRecommend(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("homeRecommend")
-    public ResponseEntity<Void> updateHomeRecommend(HomeRecommend homeRecommend) {
-        this.homeRecommendService.updateHomeRecommend(homeRecommend);
-        return ResponseEntity.ok(null);
-    }
-
     @ApiOperation(value = "获取单个推荐")
     @GetMapping("homeRecommend/{id}")
     public ResponseEntity<HomeRecommend> getHomeRecommend(@PathVariable Integer id) {
@@ -53,9 +32,4 @@ public class HomeRecommendController {
         return ResponseEntity.ok(this.homeRecommendService.getHomeRecommendType(type));
     }
 
-    @ApiOperation(value = "获取所有推荐")
-    @GetMapping("homeRecommends")
-    public ResponseEntity<List<HomeRecommend>> getAllHomeRecommend() {
-        return ResponseEntity.ok(this.homeRecommendService.getAllHomeRecommend());
-    }
 }

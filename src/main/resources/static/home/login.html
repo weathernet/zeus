@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="referrer" content="no-referrer" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+
+	<body style="background: #fff;">
+		<header class="mui-bar mui-bar-nav login">
+			<a class="mui-action-back mui-icon mui-icon-close mui-pull-left quit"></a>
+			<h3 class="mui-title">快捷登录</h3>
+		</header>
+		<div class="mui-content" style="background: #fff;margin-bottom: 1.2rem">
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>账号</label>
+					<input type="text" class="mui-input-clear phone" placeholder="请输入账号">
+				</div>
+				<div class="mui-input-row">
+					<label>密码</label>
+					<input type="password" class="pwd mui-input-password" placeholder="请输入密码">
+				</div>
+			</form>
+			<button type="button" class="mui-btn mui-btn-primary login_btn">登 录</button>
+			<p class="login_tip flex_b">
+				<a href="register.html"><span>立即注册</span></a>
+				<a href="forget_password.html"><span>忘记密码</span></a>
+			</p>
+			<p class="login_else">
+				<i></i>
+				<span>或使用以下方式登录</span>
+				<i></i>
+			</p>
+			<ul class="login_method clearfix">
+				<li>
+					<a class="zhifubao">
+						<img src="images/shouye/btn_zfb.png" alt="" />
+						<p>支付宝</p>
+					</a>
+				</li>
+				<li>
+					<a class="weixin">
+						<img src="images/shouye/btn_wx.png" alt="" />
+						<p>微信</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/style.js"></script>
+		<script src="js/baseUrl.js"></script>
+
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<script>
+			// 关闭当前页
+			$(".quit").on("click", function() {
+
+			})
+			// 登录
+			$(".login_btn").on("click", function() {
+				var reg = /1[3456789]\d{9}/g;
+				var phone = $(".phone").val();
+				var pwd = $(".pwd").val();
+				if(phone == "" || $.trim(phone) == "") {
+					mui.toast("请输入手机号")
+				}else if(reg.test(phone) == false) {
+					mui.toast("手机号格式错误")
+				}
+				else if(pwd == "" || $.trim(pwd) == "") {
+					mui.toast("请输入密码")
+				} else {
+					$.ajax({
+						type: "GET",
+						url: baseUrl + "/user",
+						data: {
+							userPassword: pwd,
+							userPhoneNumber: phone
+						},
+						success: function(data) {
+							console.log(data);
+							mui.toast("登录成功");
+							localStorage.setItem("userId", data.userId);
+							localStorage.setItem("userPhoneNumber", data.userPhoneNumber);
+							localStorage.setItem("userPassword", data.userPassword);
+							localStorage.setItem("userNikeName", data.userNikeName);
+							localStorage.setItem("createTime", data.createTime);
+							localStorage.setItem("updateTime", data.updateTime);
+							window.location.href = "index.html"
+						},
+						error: function(xhr) {
+							console.log(xhr.responseText);
+							var obj = eval("(" + xhr.responseText + ")");
+							mui.toast(obj.message);
+						}
+					})
+				}
+			})
+			// 支付宝登录
+			var z = "666"; // Openid
+			var zt = 1; // 支付宝为1，微信为0
+			$(".zhifubao").on("click", function() {
+				mui.confirm("支付宝登录", function(e) {
+					if(e.index == 1) {
+						$.ajax({
+							type: "GET",
+							url: baseUrl + "/loginByWeChatAndAliPay",
+							data: {
+								Openid: z,
+								type: zt
+							},
+							success: function(data) {
+								localStorage.setItem("z", z);
+								localStorage.setItem("zt", zt);
+								console.log(data);
+								if(data.userId == null) {
+									mui.confirm("是否有此账号", function(e) {
+										if(e.index == 1) {
+											window.location.href = "login.html";
+										}
+										if(e.index == 0) {
+											window.location.href = "bangding_shoujihao.html";
+										}
+									})
+								}
+							},
+							error: function(xhr) {
+								console.log(xhr.responseText);
+								var obj = eval("(" + xhr.responseText + ")");
+								mui.toast(obj.message);
+							}
+						})
+					}
+				});
+			})
+			// 微信登录
+			$(".weixin").on("click", function() {
+				mui.confirm("微信登录", function() {
+					mui.toast("确认登陆");
+				}, function() {
+					mui.toast("您取消了登录")
+				});
+			})
+		</script>
+	</body>
+
+</html>

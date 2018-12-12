@@ -1,0 +1,94 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+.one{
+	width: 100%;
+	height: 44px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #EAEAEA;
+}
+.d1{
+	margin-left: 15px;
+}
+.d2{
+	margin: 0 auto;
+	font-size: 18px;
+	color: #000000;
+}
+.d3-2{
+	width: 260px;
+	border-left: 1px solid #EAEAEA;
+	border-bottom: 1px solid #EAEAEA;
+	font-size: 12px;
+	color: #8A8A8A;
+	padding: 10px 0;
+}
+.d3-2 span{
+	margin-left: 10px;
+}
+.three{
+	display: flex;
+}
+.three-1{
+	width: 30%;
+	border-right: 1px solid #EAEAEA;
+}
+.d4-1{
+	text-align: center;
+	font-size: 14px;
+	padding: 4px 0;
+	display: flex;
+	align-items: center;
+}
+.d4-1 span{
+	width: 5px;
+	height: 25px;
+	border: 1px solid #F99736;
+	background-color: #F99736;
+}
+.d4-1 div{
+	margin-left: 20px;
+}
+.d4{
+	text-align: center;
+	font-size: 14px;
+	padding: 12px 0;
+}
+.d5{
+	display: flex;
+	font-size: 12px;
+	width: 230px;
+	justify-content: space-between;
+	margin-top: 15px;
+	margin-left: 10px;
+}
+.f1{
+	text-align: center;
+	
+}
+.fk{
+	width: 60px;
+	height: 60px;
+	background-color: #F99736;
+}
+.d6{
+	font-size: 12px;
+	margin-left: 10px;
+	margin-top: 15px;
+}
+.text{
+	margin-left: 7px;
+	margin-top: 10px;
+}
+.d7{
+	font-size: 12px;
+	color: #8A8A8A;
+	margin-top: 30px;
+	border-bottom: 1px solid #EAEAEA;
+	padding: 10px 0; 
+}
+.d7 span{
+	margin-left: 10px;
+}

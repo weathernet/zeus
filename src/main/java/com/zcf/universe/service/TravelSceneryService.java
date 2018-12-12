@@ -20,29 +20,6 @@ public class TravelSceneryService {
     @Autowired
     private TravelSceneryMapper travelScenerymapper;
 
-    //新增
-    public void addTravelScenery(TravelScenery travelScenery) {
-        int count = this.travelScenerymapper.insertSelective(travelScenery);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //删除
-    public void deleteTravelScenery(Integer id) {
-        int count = this.travelScenerymapper.deleteByPrimaryKey(id);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateTravelScenery(TravelScenery travelScenery) {
-        int count = this.travelScenerymapper.updateByPrimaryKeySelective(travelScenery);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
 
     //查询所有
     public List<TravelScenery> getAllTravelScenery() {
@@ -65,7 +42,7 @@ public class TravelSceneryService {
     //字段搜索
     public List<TravelScenery> searchTravelScenery(String keywords) {
         Example example = new Example(TravelScenery.class);
-        example.createCriteria().orLike("sceneryTitle","%" + keywords + "%")
+        example.createCriteria().orLike("sceneryTitle", "%" + keywords + "%")
                 .orLike("sceneryAddress", "%" + keywords + "%");//name为你想要搜索的字段
         List<TravelScenery> list = this.travelScenerymapper.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
@@ -77,7 +54,7 @@ public class TravelSceneryService {
     //字段搜索
     public List<TravelScenery> searchTravelSceneryByGroup(String groupid) {
         Example example = new Example(TravelScenery.class);
-        example.createCriteria().andEqualTo("sceneryGroup",groupid);
+        example.createCriteria().andEqualTo("sceneryGroup", groupid);
         List<TravelScenery> list = this.travelScenerymapper.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
             throw new CommonException(ExceptionEnum.GOODS_LISTING_BE_REPEAT);

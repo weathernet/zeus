@@ -1,21 +1,58 @@
 <div class="layui-form" lay-filter="homeRecommend-form" id="homeRecommend-form" style="padding: 20px 30px 0 0;">
     <div class="layui-form-item">
-        <label class="layui-form-label">品牌名称</label>
+        <label class="layui-form-label">推荐标题</label>
         <div class="layui-input-inline">
             <script type="text/html" template>
-                <input type="text" name="recommendTitle" value="{{ d.params.recommendTitle || '' }}" lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input">
+                <input type="text" name="recommendTitle" value="{{ d.params.recommendTitle || '' }}"
+                       lay-verify="required" placeholder="请输入推荐标题" autocomplete="off" class="layui-input">
             </script>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">推荐内容</label>
-        <div class="layui-input-inline" style="width: 500px;background-color:#FFFFFF;">
-            <script type="text/plain" lay-verify="content" id="recommendIntroduction" name="recommendIntroduction"></script>
+        <label class="layui-form-label">照片</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="recommendImage" value="{{ d.params.recommendImage || '' }}"
+                       lay-verify="required" placeholder="请输入照片" autocomplete="off" class="layui-input">
+            </script>
         </div>
     </div>
-
+    <!-- <div class="layui-form-item">
+         <label class="layui-form-label">推荐简介</label>
+         <div class="layui-input-inline">
+             <script type="text/html" template>
+                 <input type="text" name="recommendIntroduction" value="{{ d.params.recommendIntroduction || '' }}" lay-verify="required" placeholder="请输入推荐简介" autocomplete="off" class="layui-input">
+             </script>
+         </div>
+     </div>-->
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">普通文本域</label>
+        <div class="layui-input-block">
+            <script type="text/html" template>
+                <textarea placeholder="请输入内容" name="recommendIntroduction" class="layui-textarea">{{ d.params.recommendIntroduction || '' }}</textarea>
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">推荐类型</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="recommendType" value="{{ d.params.recommendType || '' }}" lay-verify="required"
+                       placeholder="请输入推荐类型:0短租推荐,1长租推荐,2写字楼推荐,3商业推荐" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">跳转页面</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="recommendUrl" value="{{ d.params.recommendUrl || '' }}" lay-verify="required"
+                       placeholder="请输入跳转页面" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
     <script type="text/html" template>
-        <input type="hidden" name="recommendId" value="{{ d.params.recommendId || '' }}">
+        <input type="hidden" name="recommendId" value="{{ d.params.recommendId|| '' }}">
     </script>
     <div class="layui-form-item">
         <label class="layui-form-label"></label>
@@ -25,20 +62,14 @@
     </div>
 </div>
 <script>
-    var ue = UE.getEditor('recommendIntroduction');
-    var uedate;
-    ue.ready(function () {
-        ue.setContent(uedate, false);
-    });
-    layui.use([ 'admin', 'form', 'upload' ], function() {
+    layui.use(['admin', 'form', 'upload'], function () {
         var $ = layui.$, form = layui.form, upload = layui.upload;
-
         form.render();//使select可以显示option
         //-------------文件上传开始----------
         upload.render({
-            elem : '#homeRecommend-upload-homeRecommend',
-            url : '/home/recommend/upload',
-            done : function(res) {
+            elem: '#homeRecommend-upload-homeRecommend',
+            url: '/home/recommend/upload',
+            done: function (res) {
                 //如果上传失败
                 if (res.code > 0) {
                     return layer.msg('上传失败');

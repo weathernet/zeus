@@ -13,9 +13,9 @@ import java.util.*;
  */
 public class FileUploadUtils {
 
-    private static final String IMAGE_URL = "G:/images/";//nginx 图片服务器的存储路径
+    private static final String IMAGE_URL = "C:/images/";//nginx 图片服务器的存储路径
 
-    private static final String RETURN_IMAGE_URL = "http://172.16.1.201:8088/";//nginx 图片服务器的端口
+    private static final String RETURN_IMAGE_URL = "http://101.132.125.248:9230/";//nginx 图片服务器的端口
 
     public static Map wangEditorImagesUpload(MultipartFile[] file, String pathVal, String customPath) {
         List<String> url = new ArrayList<>();

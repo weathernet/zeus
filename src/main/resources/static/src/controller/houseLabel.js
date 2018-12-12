@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-houseLabel-list'
         , url: '/house/label/query'
+        ,toolbar: true
         , cols: [[
              {field: 'labelName',  title: '房源的特色标签'}
             , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-houseLabel-toolbar'}//设置表格工具条的名称

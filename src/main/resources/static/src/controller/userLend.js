@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-userLend-list'
         , url: '/user/lend/query'
+        ,toolbar: true
         , cols: [[
              {field: 'lendUserId',  title: '用户ID'}
             , {field: 'lendPrice', title: '借款金额'}

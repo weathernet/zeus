@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-houseMove-list'
         , url: '/house/move/query'
+        ,toolbar: true
         , cols: [[
              {field: 'additionalTitle',  title: '标题'}
             , {field: 'moveName', title: '大标题'}

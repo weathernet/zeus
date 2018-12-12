@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by YuanQJ on 2018/11/29.
  */
@@ -43,23 +45,29 @@ public class UserAddressController {
         return ResponseEntity.ok().build();
     }
 
-    @ApiOperation(value = "获取单个")
+    @ApiOperation(value = "获取用户默认地址")
     @GetMapping("userAddress/{id}")
     public ResponseEntity<UserAddress> getUserAddress(@PathVariable Integer id) {
         return ResponseEntity.ok(this.userAddressService.getUserAddress(id));
     }
 
+    @ApiOperation(value = "获取当前用户所有的地址")
+    @GetMapping("getUserAddress/{id}")
+    public ResponseEntity<List<UserAddress>> getAllUserAddress(@PathVariable Integer id) {
+        return ResponseEntity.ok(this.userAddressService.getAllUserAddress(id));
+    }
+
     @ApiOperation(value = "选择收货地址")
-    @GetMapping("selectUserAddress/{id}")
+    @GetMapping("selectUserAddress")
     @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "id", value = "地址的主键", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "addressId", value = "地址的主键", required = true, dataType = "Integer"),
             @ApiImplicitParam(name = "userId", value = "用户的主键", required = true, dataType = "Integer")
 
     })
     public ResponseEntity<UserAddress> selectUserAddress(
-            @PathVariable Integer id,
+            @RequestParam("addressId") Integer addressId,
             @RequestParam("userId") Integer userId
     ) {
-        return ResponseEntity.ok(this.userAddressService.selectUserAddress(id,userId));
+        return ResponseEntity.ok(this.userAddressService.selectUserAddress(addressId, userId));
     }
 }

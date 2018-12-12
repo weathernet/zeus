@@ -21,33 +21,6 @@ public class TravelGroupController {
     @Autowired
     private TravelGroupService travelGroupService;
 
-    @ApiOperation(value = "新增")
-    @PostMapping("travelGroup")
-    public ResponseEntity<Void> addTravelGroup(TravelGroup travelGroup) {
-        this.travelGroupService.addTravelGroup(travelGroup);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "删除")
-    @DeleteMapping("travelGroup/{id}")
-    public ResponseEntity<Void> deleteTravelGroup(@PathVariable Integer id) {
-        this.travelGroupService.deleteTravelGroup(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("travelGroup")
-    public ResponseEntity<Void> updateTravelGroup(TravelGroup travelGroup) {
-        this.travelGroupService.updateTravelGroup(travelGroup);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "获取单个")
-    @GetMapping("travelGroup/{id}")
-    public ResponseEntity<TravelGroup> getTravelGroup(@PathVariable Integer id) {
-        return ResponseEntity.ok(this.travelGroupService.getTravelGroup(id));
-    }
-
     @ApiOperation(value = "获取所有")
     @GetMapping("TravelGroup")
     public  ResponseEntity<List<TravelGroup>> getAllTravelGroup() {

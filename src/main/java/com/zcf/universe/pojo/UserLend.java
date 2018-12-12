@@ -24,9 +24,17 @@ public class UserLend {
     @Column(name = "lend_user_name")
     private String lendUserName;
 
+    @ApiModelProperty(value = "借款人手机号")
+    @Column(name = "lend_user_phone")
+    private String lendUserPhone;
+
     @ApiModelProperty(value = "借款金额")
     @Column(name = "lend_price")
     private String lendPrice;
+
+    @ApiModelProperty(value = "用户身份证号")
+    @Column(name = "lend_user_identification")
+    private String lendUserIdentification;
 
     @ApiModelProperty(value = "借款状态:0待审核1.已通过2.未通过")
     @Column(name = "lend_status")

@@ -1,0 +1,69 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.m1{
+    margin-left: 5%;
+    margin-top: 10px;
+    width: 5%;
+}
+.d1{
+    margin: 10px 5% 0 5%;
+    position: relative;
+}
+.d1 input{
+    text-indent: 4%;
+    border-radius: 5px;
+    min-font-size: 10px;
+    background-color: #f8f8f8;
+    border: solid 1px #f8f8f8;
+    font-size: 15px;
+    color: #d1d1d1;
+}
+.d2{
+    background-color:#f8f8f8;
+    display: inline-block;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    border-radius: 3px;
+}
+.s1{
+    font-size: 15px;
+    color: #ff9f03;
+    position: absolute;
+    right: 5%;
+    margin-top: 7px;
+}
+.d3{
+    margin-top: 40px;
+    margin-right: 15px;
+    position: relative;
+}
+.s2{
+    font-size: 15px;
+    margin-left: 16px;
+}
+.d3 img{
+    position: absolute;
+    right: 0;
+}
+.d4{
+    margin-top: 19px;
+    margin-left: 16px;
+    color: #000000;
+    font-size: 15px;
+}
+.d4 img{
+	width: 8%;
+    padding-bottom: 10px;
+    vertical-align: middle;
+}
+.d4 span{
+    margin-left: 17px;
+    vertical-align: middle;
+}
+.p1{
+    border-bottom: solid 1px gainsboro;
+    margin-left: 64px;
+}

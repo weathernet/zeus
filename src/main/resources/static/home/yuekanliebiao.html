@@ -1,0 +1,446 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>约看列表</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<style>
+			.liebiao_class li {
+				width: 50%;
+				text-align: center;
+				float: left;
+				font-size: .3rem;
+				
+			}
+			.liebiao_class li span {
+				border-bottom: .05rem solid transparent;
+			}
+			.liebiao_class li.active {
+				color: orange;
+			}
+			.liebiao_class li.active span {
+				border-bottom: .05rem solid orange;
+			}
+			.liebiao_title {
+				margin-top: .3rem;
+			}
+			.liebiao_title p:nth-of-type(1) {
+				color: #000;
+				margin-bottom: .1rem;
+			}
+			.liebiao_title p:nth-of-type(2) img {
+				width: .2rem;
+				margin-right: .2rem;
+			}
+			.liebiao_time>p {
+				color: #000;
+				margin-top: .25rem;
+			}
+			.liebiao_content {
+				display: flex;
+			    /*justify-content: center;*/
+			    align-items: center;
+			}
+			.liebiao_content div {
+				margin-left: .2rem;
+			}
+			.liebiao_content div p {
+				margin-top: .2rem;
+			}
+			.liebiao_content img {
+				width: 2rem;
+			}
+			.liebiao_content div p:nth-of-type(1) {
+				color: #000;
+			}
+			.liebiao_btn {
+				text-align: right;
+				margin-bottom: .2rem;
+			}
+			.liebiao_btn span {
+				display: inline-block;
+				width: 1.5rem;
+				text-align: center;
+				margin-right: .2rem;
+				height: .45rem;
+				line-height: .45rem;
+				border: .02rem solid #999;
+				border-radius: .1rem;
+			}
+			
+			.liebiao_btn span:nth-of-type(2) {
+				color: orange;
+				border-color: orange;
+			}
+			.biao_wrap {
+				border-bottom: .1rem solid #eee;
+			}
+			.alerdy {
+				display: none;
+			}
+		</style>
+	</head>
+   
+	<body>
+		<header class="mui-bar mui-bar-nav ">
+			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left quit" style="color: #000"></a>
+			<h3 class="mui-title">约看列表</h3>
+		</header>
+		<div class="mui-content" style="background: #fff;padding: 0 .25rem;">
+			<ul class="liebiao_class clearfix">
+				<li class="active"><span>未完成约看</span></li>
+				<li ><span>已完成约看</span></li>
+			</ul>
+			<div class="biao notyet">
+				<!--<div class="biao_wrap">
+					<div class="liebiao_title">
+						<p>心悦花园</p>
+						<p>
+							<img src="images/mine/dizhi.png" alt="" />
+							北京-昌平-南环路新锐家园小区
+						</p>
+					</div>
+					<div class="liebiao_time">
+						
+						<p>
+							约看时间：-
+						</p>
+						<p>
+							约看地点：-
+						</p>
+						<p>
+							品家-新锐家园四居室-05卧室
+						</p>
+						<div class="liebiao_content">
+							<img src="images/mine/tu1.png" alt="" />
+							<div>
+								<p>￥1890元/月（季付）</p>
+								<p>20.3平米-6层</p>
+								<p>待租中</p>
+							</div>
+						</div>
+						<p class="liebiao_btn">
+							<span>取消约看</span>
+							<span>联系管家</span>
+						</p>
+					</div>
+				</div>
+				<div class="biao_wrap">
+					<div class="liebiao_title">
+						<p>心悦花园</p>
+						<p>
+							<img src="images/mine/dizhi.png" alt="" />
+							北京-昌平-南环路新锐家园小区
+						</p>
+					</div>
+					<div class="liebiao_time">
+						
+						<p>
+							约看时间：-
+						</p>
+						<p>
+							约看地点：-
+						</p>
+						<p>
+							品家-新锐家园四居室-05卧室
+						</p>
+						<div class="liebiao_content">
+							<img src="images/mine/tu1.png" alt="" />
+							<div>
+								<p>￥1890元/月（季付）</p>
+								<p>20.3平米-6层</p>
+								<p>待租中</p>
+							</div>
+						</div>
+						<p class="liebiao_btn">
+							<span>取消约看</span>
+							<span>联系管家</span>
+						</p>
+					</div>
+				</div>-->
+			</div>
+			<div class="biao alerdy">
+				<!--<div class="biao_wrap">
+					<div class="liebiao_title">
+						<p>心悦花园</p>
+						<p>
+							<img src="images/mine/dizhi.png" alt="" />
+							北京-昌平-南环路新锐家园小区
+						</p>
+					</div>
+					<div class="liebiao_time">
+						
+						<p>
+							约看时间：-
+						</p>
+						<p>
+							约看地点：-
+						</p>
+						<p>
+							品家-新锐家园四居室-05卧室
+						</p>
+						<div class="liebiao_content">
+							<img src="images/mine/tu1.png" alt="" />
+							<div>
+								<p>￥1890元/月（季付）</p>
+								<p>20.3平米-6层</p>
+								<p>待租中</p>
+							</div>
+						</div>
+						<p class="liebiao_btn">
+							<span>取消约看</span>
+							<span>联系管家</span>
+						</p>
+					</div>
+				</div>-->
+			</div>
+		</div>
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/style.js"></script>
+		<script src="js/baseUrl.js"></script>
+
+		<script type="text/javascript">
+			mui.init()
+			// 取消约看
+			var mid;  // 商品id
+			var tel;  // 管家电话
+			var type = 0
+			$("body").on("click",".cancel",function(){
+				mid = $(this).attr("data-mid");
+				$.ajax({
+					type: "PUT",
+					url: baseUrl + "/houseReserve/" + mid ,
+					data: {},
+					success: function(data){
+						console.log(data);
+						mui.toast("取消成功");
+						window.location.reload()
+					},
+					error: function (xhr) {
+					    console.log(xhr.responseText);
+						var obj = eval("(" + xhr.responseText + ")");
+						mui.toast(obj.message);
+					}
+				})
+			})
+			// 联系管家
+			$("body").on("click",".contact",function(){
+				console.log(tel);
+				mui.confirm(tel,"联系管家",function(e){
+					if(e.index == 1) {
+						console.log(`<a href="tel:${tel}"></a>`)
+						$(`<a href="tel:${tel}"></a>`).trigger("click",function(){
+							
+						});
+					}
+				});
+			})
+			// 删除约看
+			$("body").on("click",".delete",function(){
+				mid = $(this).attr("data-mid");
+				$.ajax({
+					type: "DELETE",
+					url: baseUrl + "/houseReserve/" + mid ,
+					data: {},
+					success: function(data) {
+						console.log(data);
+						mui.toast("删除成功");
+						console.log(localStorage.getItem("index"));
+						$(".liebiao_class li:nth-of-type(2)").trigger("click");
+					},
+					error: function (xhr) {
+					    console.log(xhr.responseText);
+						var obj = eval("(" + xhr.responseText + ")");
+						mui.toast(obj.message);
+					}
+				})
+			})
+
+			//tab选项
+			$(".liebiao_class li").on("click",function(){
+				var index = $(this).index();
+				localStorage.setItem("index",index);
+				$(".liebiao_class li").removeClass("active")
+				$(this).addClass("active");
+				$(".biao").hide();
+				$(".biao").eq(index).show();
+				if(index == 0){
+					// 获取未完成的预约
+				  	$.ajax({
+		  		type: "GET",
+		  		url: baseUrl + "/houseReserve/" + localStorage.getItem("userId"),
+		  		data: {
+		  			
+		  			
+		  		},
+		  		success: function(data) {
+		  			console.log(data);
+		  			$(".biao").empty();
+		  			data.forEach(function(val,index){
+		  				if(val.reserveTime == null){
+		  					val.reserveTime = ""
+		  				}
+		  				val.reserveHouseArea = parseInt(val.reserveHouseArea) + "平米";
+		  				var str = `<div class="biao_wrap">
+										<div class="liebiao_title">
+											<p>${val.reserveHouseTitle}</p>
+											
+										</div>
+										<div class="liebiao_time">
+											<p>
+												约看时间：${val.reserveTime}
+											</p>
+											
+											
+											<div class="liebiao_content">
+												<img src="${val.reserveHouseImage}" alt="" />
+												<div>
+													<p>￥${val.reserveHousePrice}/月（季付）</p>
+													<p>${val.reserveHouseArea}</p>
+												</div>
+											</div>
+											<p class="liebiao_btn">
+												<span data-mid="${val.reserveId}" class="cancel">取消约看</span>
+												<span class="contact">联系管家</span>
+											</p>
+										</div>
+									</div>`;
+						
+					    $(".notyet").append(str);				
+		  			})
+		  			
+		  		},
+		  		error: function (xhr) {
+				    console.log(xhr.responseText);
+					var obj = eval("(" + xhr.responseText + ")");
+					mui.toast(obj.message);
+				}
+		  	})
+				}
+				if(index == 1) {
+					
+					// 获取已完成的预约
+				  	$.ajax({
+				  		type: "GET",
+				  		url: baseUrl + "/houseReserveStatus/" + localStorage.getItem("userId"), 
+				  		data: {
+				  			
+				  			
+				  		},
+				  		success: function(data) {
+				  			console.log(data);
+				  			$(".biao").empty();	
+				  			data.forEach(function(val,index){
+				  				if(val.reserveTime == null){
+				  					val.reserveTime = ""
+				  				}
+				  				val.reserveHouseArea = parseInt(val.reserveHouseArea) + "平米";
+				  				
+				  				var str = `<div class="biao_wrap">
+												<div class="liebiao_title">
+													<p>${val.reserveHouseTitle}</p>
+													
+												</div>
+												<div class="liebiao_time">
+													
+													<p>
+														约看时间：${val.reserveTime}
+													</p>
+													
+													
+													<div class="liebiao_content">
+														<img src="${val.reserveHouseImage}" alt="" />
+														<div>
+															<p>￥${val.reserveHousePrice}/月（季付）</p>
+															<p>${val.reserveHouseArea}</p>
+														</div>
+													</div>
+													<p class="liebiao_btn">
+														<span data-mid="${val.reserveId}" class="delete">删除</span>
+												        <span class="contact">联系管家</span>
+													</p>
+												</div>
+											</div>`;
+										
+							    $(".alerdy").append(str);				
+				  			})
+				  			
+				  		},
+				  		error: function (xhr) {
+						    console.log(xhr.responseText);
+							var obj = eval("(" + xhr.responseText + ")");
+							mui.toast(obj.message);
+						}
+				  	})
+				}
+			})
+			function initPage (){
+				
+			}
+			// 获取未完成的预约
+		  	$.ajax({
+		  		type: "GET",
+		  		url: baseUrl + "/houseReserve/" + localStorage.getItem("userId"),
+		  		data: {
+		  			
+		  			
+		  		},
+		  		success: function(data) {
+		  			console.log(data);
+		  			$(".biao").empty();	
+		  			data.forEach(function(val,index){
+		  				tel = val.reserveButlerPhone;
+		  				if(val.reserveTime == null){
+		  					val.reserveTime = ""
+		  				}
+		  				val.reserveHouseArea = parseInt(val.reserveHouseArea) + "平米";
+		  				var str = `<div class="biao_wrap">
+										<div class="liebiao_title">
+											<p>${val.reserveHouseTitle}</p>
+											
+										</div>
+										<div class="liebiao_time">
+											<p>
+												约看时间：${val.reserveTime}
+											</p>
+											
+											
+											<div class="liebiao_content">
+												<img src="${val.reserveHouseImage}" alt="" />
+												<div>
+													<p>￥${val.reserveHousePrice}/月（季付）</p>
+													<p>${val.reserveHouseArea}</p>
+												</div>
+											</div>
+											<p class="liebiao_btn">
+												<span data-mid="${val.reserveId}"  class="cancel">取消约看</span>
+												<span class="contact">联系管家</span>
+											</p>
+										</div>
+									</div>`;
+								
+					    $(".notyet").append(str);				
+		  			})
+		  			
+		  		},
+		  		error: function (xhr) {
+				    console.log(xhr.responseText);
+					var obj = eval("(" + xhr.responseText + ")");
+					mui.toast(obj.message);
+				}
+		  	})
+		</script>
+		<script>
+			
+		</script>
+	</body>
+
+</html>

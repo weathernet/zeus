@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>免息借款</title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/mui.picker.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/swiper-3.4.2.min.css" />
+</head>
+<body style="background: #fff;">
+	<header class="mui-bar mui-bar-nav mianxi_head">
+		<a class="mui-action-back  mui-pull-left" ><img src="images/shenghuo/nav_back.png" alt="" /></a>
+		<h3 class="mui-title">免息借款</h3>
+	</header>
+	<!--header结束-->
+	<div class="mui-content mianxi" style="margin-bottom:1.2rem;background: #fff;">
+		<label>
+			<span>姓名</span>
+			<input type="text" placeholder="姓名" />
+		</label>
+		<label>
+			<span>身份证号码</span>
+			<input type="text" placeholder="322124184" />
+		</label>
+		<label>
+			<span>手机号</span>
+			<input type="text" placeholder="18421841" />
+		</label>
+		<label>
+			<span>借款额度</span>
+			<input type="text" placeholder="1000元" />
+		</label>
+	</div>
+	<button class="tijiao">提交</button>
+    <script src="js/mui.min.js"></script>
+    <script src="js/mui.picker.js"></script>
+    <script src="js/swiper-3.4.2.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <script src="js/style.js"></script>
+    <script>
+    	var mySwiper = new Swiper('.swiper-container', {
+			slidesPerView : 1.7,
+			spaceBetween : "2%",
+		})
+    </script>
+</body>
+</html>

@@ -28,31 +28,10 @@ public class TravelSceneryController {
         return ResponseEntity.ok(this.travelSceneryService.searchTravelScenery(keywords));
     }
 
-    @ApiOperation(value = "根据搜索条件获取景点")
+    @ApiOperation(value = "根据分组数据获取景点")
     @GetMapping("scenery/group/{groupid}")
     public  ResponseEntity<List<TravelScenery>> getTravelSceneryByGroup(@PathVariable String groupid) {
         return ResponseEntity.ok(this.travelSceneryService.searchTravelSceneryByGroup(groupid));
-    }
-
-    @ApiOperation(value = "新增")
-    @PostMapping("travelScenery")
-    public ResponseEntity<Void> addTravelScenery(TravelScenery travelScenery) {
-        this.travelSceneryService.addTravelScenery(travelScenery);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "删除")
-    @DeleteMapping("travelScenery/{id}")
-    public ResponseEntity<Void> deleteTravelScenery(@PathVariable Integer id) {
-        this.travelSceneryService.deleteTravelScenery(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("travelScenery")
-    public ResponseEntity<Void> updateTravelScenery(TravelScenery travelScenery) {
-        this.travelSceneryService.updateTravelScenery(travelScenery);
-        return ResponseEntity.ok(null);
     }
 
     @ApiOperation(value = "获取单个")

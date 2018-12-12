@@ -20,38 +20,7 @@ public class HomeRecommendService {
     @Autowired
     private HomeRecommendMapper homeRecommendmapper;
 
-    //新增
-    public void addHomeRecommend(HomeRecommend homeRecommend) {
-        int count = this.homeRecommendmapper.insertSelective(homeRecommend) ;
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
 
-    //删除
-    public void deleteHomeRecommend(Integer id) {
-        int count = this.homeRecommendmapper.deleteByPrimaryKey(id) ;
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateHomeRecommend(HomeRecommend homeRecommend) {
-        int count = this.homeRecommendmapper.updateByPrimaryKeySelective(homeRecommend) ;
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //查询所有
-    public List<HomeRecommend> getAllHomeRecommend() {
-        List<HomeRecommend> list = this.homeRecommendmapper.selectAll();
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
 
     //根据状态查询推荐
     public List<HomeRecommend> getHomeRecommendType(Integer type) {
@@ -72,17 +41,5 @@ public class HomeRecommendService {
         }
         return HomeRecommend;
     }
-
-    //字段搜索
-    public List<HomeRecommend> searchHomeRecommend(String keywords) {
-        Example example = new Example(HomeRecommend.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
-        List<HomeRecommend> list = this.homeRecommendmapper.selectByExample(example);
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
-
 
 }

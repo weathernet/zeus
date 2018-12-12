@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-houseReserve-list'
         , url: '/house/reserve/query'
+        ,toolbar: true
         , cols: [[
              {field: 'reserveUserName',  title: '姓名'}
             , {field: 'reserveUserPhone', title: '用户手机号'}

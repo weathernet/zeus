@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-mallGroup-list'
         , url: '/mall/group/query'
+        ,toolbar: true
         , cols: [[
              {field: 'groupId',  title: '编号'}
             , {field: 'groupName', title: ' 名称',edit: 'text', sort: true}

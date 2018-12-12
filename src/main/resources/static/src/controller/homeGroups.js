@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-homeGroups-list'
         , url: '/home/groups/query'
+        ,toolbar: true
         , cols: [[
              {field: 'groupsName',  title: '标题'}
             , {field: 'groupsImage', width: 120, title: '图片',templet:'#Img'}

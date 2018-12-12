@@ -90,7 +90,7 @@ public class UserInfoService {
             throw new CommonException(ExceptionEnum.PHONE_NUMBER_IS_REGISTERED);
         }
         UserInfo userInfo = new UserInfo();
-        userInfo.setUserNikeName("品家用户" + new Date());
+        userInfo.setUserNikeName("品家用户");
         userInfo.setUserPhoneNumber(userPhoneNumber);
         userInfo.setUserPassword(userPassword);
         userInfo.setCreateTime(new Date());

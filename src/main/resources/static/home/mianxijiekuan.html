@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>免息借款</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/mui.min.css" />
+   <link href="css/mianxijiekuan.css" type="text/css" rel="stylesheet">
+    <style>
+    	li {
+    		/*padding-left: 0;
+    		padding-right: 0;*/
+    		padding: 0;
+    		display: flex;
+    		justify-content: space-between;
+    		align-items: center;
+    	}
+    	#ul input {
+    		border: none;
+    		outline: none;
+    		margin: 0;
+    		font-size: 15px;
+    		text-align: right;
+    		width: 70%;
+    	}
+    	#ul span {
+    		font-size: 15px;
+    	}
+    	.tijiao {
+    		position: fixed;
+    		height: 40px;
+    		background: orange;
+    		color: #fff;
+    		line-height: 40px;
+    		text-align: center;
+    		width: 100%;
+    		left: 0;
+    		bottom: 0;
+    	}
+    </style>
+</head>
+<body style="background: #fff;">
+    <div id="title">
+        <img src="images/suosou/nav-back.png" class="m1">
+        免息借款
+    </div>
+    <p class="p1"></p>
+    <ul id="ul">
+        <li>
+            <span class="s1">姓名</span>
+            <input class="name" type="text"  placeholder="请输入姓名"/>
+        </li>
+        <li>
+            <span class="s1">身份证号码</span>
+            <input class="id" type="text" placeholder="请输入身份证号" />
+        </li>
+        <li>
+            <span class="s1">手机号</span>
+            <input class="phone" type="text"  placeholder="请输入手机号"/>
+        </li>
+        <li>
+            <span class="s1">借款额度</span>
+            <input class="limit" type="text"  placeholder="1000元"/>
+        </li>
+    </ul>
+    <p class="tijiao" style="margin:0">提交</p>
+    <script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  <script src="js/baseUrl.js"></script>
+  <script src="js/mui.min.js"></script>
+  <script>
+  	$(".m1").on("click",function(){
+		window.history.back();
+	})
+  	// 查看用户是否已借款
+//	var isCan;
+//	$.ajax({
+//		type: "GET",
+//		url: baseUrl + "/userLend/" + localStorage.getItem("userId"),
+//		data: {
+//			
+//		},
+//		success: function(data) {
+//			console.log(data);
+//			isCan = data;
+//		},
+//		error: function(xhr) {
+//			console.log(xhr.responseText);
+//			var obj = eval("(" + xhr.responseText + ")");
+//			mui.toast(obj.message);
+//		}
+//	})
+  	// 借款
+  	$(".tijiao").on("click",function(){
+  		var phoReg = /^1[3456789]\d{9}$/g;
+  		var idReg =  /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; // 身份证正则
+  		var name = $(".name").val();
+  		var id = $(".id").val();
+  		var phone= $(".phone").val();
+  		var limit = $(".limit").val();
+  		if(name == "" || name.trim() == ""){
+  			mui.toast("请输入姓名");
+  		}else if(id == "" || id.trim() == "") {
+  			mui.toast("请输入身份证号码")
+  		}else if(idReg.test(id) == false) {
+  			mui.toast("身份证号码格式错误");
+  		}else if(phone == "" || phone.trim() == "") {
+  			mui.toast("请输入手机号")
+  		}else if(phoReg.test(phone) == false) {
+  			mui.toast("手机号格式错误")
+  		}else if(limit == "" || limit.trim() == "") {
+  			mui.toast("请输入借款金额")
+  		}
+  		else {
+  			$.ajax({
+				type: "POST",
+				url: baseUrl + "/userLend",
+				data: {
+					lendUserPhone: phone,
+					lendUserName: name,
+					lendUserIdentification: id,
+					lendPrice: limit,
+					lendUserId: localStorage.getItem("userId")
+					
+				},
+				success: function(data) {
+					console.log(data);
+					mui.confirm("申请成功，请等待审核")
+				},
+				error: function(xhr) {
+					console.log(xhr.responseText);
+					var obj = eval("(" + xhr.responseText + ")");
+					mui.toast(obj.message);
+				}
+		  	})
+  		}
+  	})
+  </script>
+</body>
+</html>

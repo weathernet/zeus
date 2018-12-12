@@ -1,0 +1,169 @@
+html,body{
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #F8F8F8;
+}
+.one{
+	background-color: #333333;
+	padding-bottom: 21px;
+}
+.one-1{
+	display: flex;
+	justify-content: space-between;
+	padding-top: 15px;
+}
+.d1{
+	margin-left: 15px;
+}
+.d1 img{
+	width: 20px;
+}
+.d2{
+	margin-right: 16px;
+	font-size: 14px;
+	color: #FFFFFF;
+}
+.d3{
+	width: 70px;
+	height: 70px;	
+	margin: 0 auto;
+}
+.d3 img{
+	width: 100%;
+	height: 100%;
+	border-radius:40px ;
+}
+.d4{
+	text-align: center;
+	margin-top: 12px;
+	font-size: 18px;
+	color: #FFFFFF;
+}
+.one-2{
+	margin-top: 20px;
+}
+.d5{
+	width: 50px;
+	text-align: center;
+}
+.d6{
+	font-size: 11px;
+	color: #333333;
+	margin-top: 11px;
+}
+.two{
+	padding-top: 14px;
+	padding-bottom: 16px;
+	background-color: #FFFFFF;
+}
+.two-1{
+	width: 85%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+.three{
+	height: 8px;
+}
+.four{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	background-color: #FFFFFF;
+}
+.d7{
+	width: 90%;
+	height: auto;
+	margin: auto;
+}
+.d7 img{
+	width: 100%;
+	height: 100%;
+}
+.five{
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+.five-1{
+	width: 65px;
+	text-align: center;
+}
+.d9{
+	margin-top: 7px;
+	font-size: 11px;
+}
+.five2{
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 15px;
+}
+.ff{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.six-1{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 12px;
+	padding-bottom: 13px;
+	border-bottom: 3px solid #EAEAEA;
+}
+.d10{
+	margin-left: 16px;
+	font-size: 18px;
+}
+.d11{
+	margin-right: 15px;
+	font-size:15px;
+	color: #8A8A8A;
+}
+.six-2{
+	padding-top: 9px;
+	padding-bottom: 9px;
+	border-bottom: 3px solid #EAEAEA;
+}
+.d12{
+	font-size: 14px;
+	color: #222222;
+}
+.d13{
+	font-size:15px;
+	color: #E22018;
+	margin-top: 20px;
+}
+.d14 img{
+	width: 80px;
+}
+.d15{
+	margin-left: 12px;
+}
+.ss{
+	display: flex;
+	width: 90%;
+	margin: 0 auto;
+}
+.seven{
+	height: 50px;
+	background-color: #EAEAEA;
+}
+.eight{
+	padding-top: 20px;
+	padding-bottom: 19px;
+	background-color: #FFFFFF;
+}
+.eight img{
+	width: 14px;
+}
+.eight-1{
+	text-align: center;
+}
+.s3{
+	font-size: 14px;
+	color: #000000;
+}

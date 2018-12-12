@@ -154,8 +154,8 @@ public class UserInfoController {
     @ApiOperation(value = "修改密码")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "用户主键", required = true, dataType = "Integer"),
-            @ApiImplicitParam(name = "OldPassword", value = "旧用户密码", required = true, dataType = "String"),
-            @ApiImplicitParam(name = "newPassword", value = "验证码", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "oldPassWord", value = "旧用户密码", required = true, dataType = "String"),
+            @ApiImplicitParam(name = "newPassWord", value = "验证码", required = true, dataType = "String"),
 
     })
     public ResponseEntity changePassWord(

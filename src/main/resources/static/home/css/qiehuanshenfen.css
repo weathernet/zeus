@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.m1{
+    margin-left: 5%;
+    width: 5%;
+    position: absolute;
+    left: 0;
+    margin-top: 1%;
+}
+#title{
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+    padding: 14px 0;
+}
+.border{
+    border-bottom: solid 1px gainsboro;
+}
+.fangdong,.shangjia{
+    padding: 88px 0 88px 0;
+}
+.fangzi{
+    margin: 0 auto;
+    text-align: center;
+    font-size: 18px;
+}
+.fangzi img{
+    width: 20%;
+}

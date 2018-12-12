@@ -27,11 +27,12 @@ public class UserLendController {
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "获取单个")
+    @ApiOperation(value = "获取用户的是否有贷款信息")
     @GetMapping("userLend/{id}")
-    public ResponseEntity<UserLend> getUserLend(@PathVariable Integer id) {
-        return ResponseEntity.ok(this.userLendService.getUserLend(id));
+    public ResponseEntity<Boolean> getUserLendStatus(@PathVariable Integer id) {
+        return ResponseEntity.ok(this.userLendService.getUserLendStatus(id));
     }
+
 
     @ApiOperation(value = "获取当前用户的借款信息")
     @GetMapping("UserLend")

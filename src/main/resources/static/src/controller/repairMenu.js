@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-repairMenu-list'
         , url: '/repair/menu/query'
+        ,toolbar: true
         , cols: [[
              {field: 'repairName',  title: '标题'}
             , {field: 'repairImage', title: '图标',templet:'#Img'}

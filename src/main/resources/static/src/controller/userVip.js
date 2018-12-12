@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-userVip-list'
         , url: '/user/vip/query'
+        ,toolbar: true
         , cols: [[
              {field: 'vipId',  title: '会员标识'}
             , {field: 'vipName', title: '名称'}

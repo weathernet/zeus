@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>昵称</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="css/nicheng.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="css/mui.min.css" />
+    <style>
+    	.mui-bar {
+    		box-shadow: none;
+    	}
+    	.mui-input-group {
+    		margin-top: 30px;
+    	}
+    	.mui-input-group:after,.mui-input-group .mui-input-row:after{
+    		display: none !important;
+    	}
+    	.mui-input-group:before {
+    		display: none !important;
+    	}
+    </style>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav" style="background: #fff;">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #000"></a>
+		<h3 class="mui-title">修改昵称</h3>
+	</header>
+	<div class="mui-content">
+	    <form class="mui-input-group">
+		    <div class="mui-input-row">
+		        <label>昵称</label>
+		    <input class="nickname" type="text" class="mui-input-clear" placeholder="请输入昵称">
+		    </div>
+		</form>
+	    <div class="xiugai">立即修改</div>
+	</div>
+   
+    
+    
+      <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <script src="js/mui.min.js"></script>
+  <script src="js/baseUrl.js"></script>
+  <script src="js/mui.min.js"></script>
+  <script>
+  	$(".m1").on("click",function(){
+  		window.history.back();
+  	})
+  	// 修改昵称
+  	$(".xiugai").on("click",function(){
+  		var nickname = $(".nickname").val();
+  		if(nickname == "" || nickname.trim() == "") {
+  			mui.toast("请输入昵称");
+  		}else {
+  			$.ajax({
+  				type: "PUT",
+  				url: baseUrl + "/user/" + localStorage.getItem("userId"),
+  				data: {
+  					userNikeName: nickname
+  				},
+  				success: function(data) {
+  					console.log(data);
+  					mui.toast("修改成功");
+  				},
+  				error: function(xhr) {
+					console.log(xhr.responseText);
+					var obj = eval("(" + xhr.responseText + ")");
+					mui.toast(obj.message);
+				}
+  			})
+  		}
+  	})
+  </script>
+</body>
+</html>

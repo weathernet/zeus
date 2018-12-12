@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color:#F5F5F5 ;
+}
+.m1{
+    margin-left: 5%;
+    width: 5%;
+}
+.d1{
+    position: relative;
+    background-color: #333333;
+    padding: 10px 0;
+}
+.d1 span{
+    font-size: 14px;
+    color: #fefefe;
+    position: absolute;
+    right: 5%;
+}
+.touxiang{
+    padding: 21px 0;
+    background-color: #333333;
+}
+.touxiang div{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    margin: 0 auto;
+}
+.touxiang p{
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 12px;
+}
+.d2{
+    padding: 14px 0;
+    background-color: white;
+}
+.t2{
+    width: 100%;
+}
+.t2 td{
+    color: #333333;
+    font-size: 11px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+.p7{
+    width: 50%;
+    margin-left: 14%;
+    background-color:#EEEEEE ;
+    border-radius: 50%;
+    padding: 12px 5px;
+}
+.d3{
+    padding: 5% 5%;
+    background-color: white;
+    margin-top: 8px;
+}
+.d3 img{
+    width: 100%;
+}
+.t2 div{
+    width: 50px;
+    height: 50px;
+    border: solid 1px gainsboro;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 auto;
+}
+.d4{
+    padding: 5%;
+    background-color: white;
+    margin-top: 8px;
+    font-size: 18px;
+}
+.d4 img{
+    width: 100%;
+    margin-top: 8px;
+}
+.d4 p:nth-of-type(2){
+    color: #A5A5A5;
+    margin-top: 8px;
+}
+.border{
+    border-bottom: solid 1px gainsboro;
+}
+.footer{
+    background-color: white;
+    margin-top: 8px;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 13px;
+    letter-spacing:1.5px;
+}
+.footer img,span{
+    vertical-align: middle;
+}

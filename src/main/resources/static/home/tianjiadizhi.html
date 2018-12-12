@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/tianjiadizhi.css" />
+	</head>
+
+	<body>
+		<div class="one">
+			<div class="d1">
+				<img src="img/nav_back.png" />
+			</div>
+			<div class="d2">
+				添加地址
+			</div>
+		</div>
+		<div class="two">
+			<div class="d3">收货人</div>
+			<div class="d3">手机号码</div>
+			<div class="d4">
+				<span>地区</span>
+				<span class="tt">
+					<img src="img/btn_enter@2x.png"/>
+				</span>
+			</div>
+			<div class="d5">详细地址</div>
+		</div>
+		<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  <script>
+  	$(".d1").on("click",function(){
+  		window.history.back()
+  	})
+  	$(".d2").on("click",function(){
+  		window.location.href = "tianjiadizhi.html"
+  	})
+  </script>
+	</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改手机号</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/mui.min.css" />
+   <link href="css/weixin.css" type="text/css" rel="stylesheet">
+    <style>
+    	#btn {
+		    color: #F86E78;
+		    border: solid 1px #F86E78;
+		    border-radius: 20px;
+		    padding: 0.2rem 0.3rem;
+		    position: absolute;
+		    right: 5%;
+		    background: #fff;
+		    outline: none;
+		}
+		.xiugai input {
+			margin: 0;
+			padding: 0;
+			width: 60%;
+			border: none;
+			font-size: 16px !important;
+		}
+    </style>
+</head>
+<body>
+    <div id="title">
+        <img src="image/nav_back.png" class="m1">
+        <span>修改手机号</span>
+    </div>
+    <ul class="xiugai">
+        <li style="border-bottom: solid 1px #F5F5F5;">
+            <span>手机号</span>
+            <input class="phone" type="text" placeholder="新手机号码" >
+        </li>
+        <li class="yanzheng">
+            <span>验证码</span>
+            <input class="code" type="text" placeholder="请输入验证码"  >
+            <button id="btn" class="registerCode_btn" >获取验证码</button>
+        </li>
+    </ul>
+    <div class="tijiao xinshouji" style="background: red;">验证后绑定新手机</div>
+    
+       <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <script src="js/mui.min.js"></script>
+  <script src="js/baseUrl.js"></script>
+  <script>
+  	$(".m1").on("click",function(){
+  		window.history.back();
+  	})
+  	// 验证码倒计时
+  	function getRegisterCode(){
+		var seconds = 60;
+	    $(".registerCode_btn").attr("disabled",true);
+	    var timer = setInterval(function(){
+	        seconds --;
+	        $(".registerCode_btn").text("重新发送"+seconds);
+	        if(seconds == 0) {
+	            $(".registerCode_btn").attr("disabled",false);
+	            $(".registerCode_btn").text("获取验证码");
+	            clearInterval(timer);
+	        }
+	    },1000)
+	}
+  	// 获取验证码
+  	$(".registerCode_btn").on("click",function(){
+  		var phone = $(".phone").val();
+  		var reg = /^1[3456789]\d{9}$/g;
+		if(phone == "" || $.trim(phone) == "") {
+			mui.toast("请输入手机号")
+		}else if(reg.test(phone) == false) {
+			mui.toast("手机号格式错误")
+		}
+		else {
+			$.ajax({
+				type: "GET",
+				url: baseUrl + "/registerCode",
+				data: {
+					phone: phone
+				},
+				success: function(data) {
+					console.log(data);
+					mui.toast("验证码已发送");
+					getRegisterCode();
+					
+				},
+				error: function(xhr) {
+					console.log(xhr.responseText);
+					var obj = eval("(" + xhr.responseText + ")");
+					mui.toast(obj.message);
+				}
+			})
+		}
+  	})
+  	// 确认修改
+  	$(".tijiao").on("click",function(){
+  		var phone = $(".phone").val();
+  		var code = $(".code").val();
+  		var reg = /1[3456789]\d{9}/g;
+		if(phone == "" || $.trim(phone) == "") {
+			mui.toast("请输入手机号")
+		}else if(reg.test(phone) == false) {
+			mui.toast("手机号格式错误")
+		}
+		else if(code == "" || $.trim(code) == "") {
+			mui.toast("请输入验证码")
+		} else {
+			$.ajax({
+				type: "PUT",
+  				url: baseUrl + "/user/" + localStorage.getItem("userId"),
+  				data: {
+  					userPhoneNumber: phone
+  				},
+				success: function(data) {
+					console.log(data);
+					mui.toast("修改成功");
+					
+				},
+				error: function(xhr) {
+					console.log(xhr.responseText);
+					var obj = eval("(" + xhr.responseText + ")");
+					mui.toast(obj.message);
+				}
+			})
+		}
+  	})
+  </script>
+</body>
+</html>

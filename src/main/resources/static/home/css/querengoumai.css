@@ -1,0 +1,132 @@
+html,body{
+	margin: 0;
+	padding: 0;
+}
+.one{
+	width: 100%;
+	height: 44px;
+	display: flex;
+	align-items: center;
+	background-color: white;
+	border-bottom:1px solid #EAEAEA ;
+	position: fixed;
+	top: 0;
+	overflow: hidden;
+}
+.d1{
+	margin-left: 15px;
+}
+.d2{
+	margin: 0 auto;
+	font-size: 18px;
+	color: #000000;
+}
+.two{
+	display: flex;
+	align-items: center;
+	justify-content:space-around;
+	margin-top: 60px;
+}
+.two-1{
+	width: 10px;
+	height: 15px;
+}
+.two-1 img{
+	width: 100%;
+	height: 100%;
+}
+.two-2{
+	font-size: 15px;
+	color: #000000;
+}
+.d3{
+	display: flex;
+	justify-content:space-between;
+}
+.three{
+	height: 5px;
+	background-color: #EAEAEA;
+	margin-top: 15px;
+}
+.four{
+	display: flex;
+	border-bottom: 2px solid #EAEAEA;
+}
+.four-1{
+	width: 140px;
+	height: 150px;
+}
+.four-1 img{
+	width: 100%;
+	height: 100%;
+}
+.four-2{
+	font-size: 15px;
+	color: #000000;
+}
+.d5{
+	margin-top: 10px;
+}
+.d6{
+	display: flex;
+	justify-content:space-between;
+	margin-top: 50px;
+}
+.d6 .jg{
+	color: #F99736;
+}
+.d6 .sl{
+	font-size: 14px;
+	color: #8A8A8A;
+}
+.five{
+	display: flex;
+	justify-content:flex-end;
+	align-items: center;
+	height: 50px;
+}
+.five div{
+	margin: 0px 10px;
+}
+.d9{
+	color: #F99736;
+}
+.eight{
+	height: 400px;
+	background-color: #EAEAEA;
+}
+.nine{
+	width: 100%;
+	display: flex;
+	height: 50px;
+	position: fixed;
+	bottom: 0;
+	overflow: hidden;
+}
+.nine-1{
+	width: 60%;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	background-color: #FFFFFF;
+}
+
+.nine-2{
+	width: 40%;
+	display: flex;
+	align-items: center;
+	height: 50px;
+	background-color: #F99736;
+}
+.hj{
+	margin-left: 10px;
+	color: #222222;
+}
+.hj2{
+	color: #F99736;
+}
+.hj3{
+	margin: 0 auto;
+	font-size: 18px;
+	color: white;
+}

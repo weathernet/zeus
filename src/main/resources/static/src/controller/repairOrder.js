@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-repairOrder-list'
         , url: '/repair/order/query'
+        ,toolbar: true
         , cols: [[
              {field: 'orderPrice',  title: '价格'}
             , {field: 'orderProject', title: '维修的项目'}

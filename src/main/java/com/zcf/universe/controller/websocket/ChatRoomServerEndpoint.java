@@ -33,7 +33,6 @@ public class ChatRoomServerEndpoint {
         String message = "欢迎用户[" + username + "] 来到聊天室！";
         log.info(message);
         sendMessageAll(message);
-
     }
 
     @OnMessage

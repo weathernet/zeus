@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-mallOrder-list'
         , url: '/mall/order/query'
+        ,toolbar: true
         , cols: [[
              {field: 'orderId',  title: '编号'}
             , {field: 'orderUserId', title: ' 用户ID',edit: 'text', sort: true}

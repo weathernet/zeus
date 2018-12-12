@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-homeStory-list'
         , url: '/home/story/query'
+        ,toolbar: true
         , cols: [[
             {field: 'storyTitle', title: '标题'}
             , {field: 'storyContent', title: '故事内容'}

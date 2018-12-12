@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-moveDetails-list'
         , url: '/move/details/query'
+        ,toolbar: true
         , cols: [[
              {field: 'additionalTitle',  title: '标题'}
             , {field: 'additionalContext', title: '佣金比例设置',templet: '#Img'}

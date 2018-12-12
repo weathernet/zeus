@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-mallBanner-list'
         , url: '/mall/banner/query'
+        ,toolbar: true
         , cols: [[
              {field: 'bannerId',  title: '编号'}
             , {field: 'bannerImage', title: ' 轮播图',edit: 'text', sort: true}

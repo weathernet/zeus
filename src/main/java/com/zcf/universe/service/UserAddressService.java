@@ -40,6 +40,17 @@ public class UserAddressService {
         }
     }
 
+    //获取当前用户的所有地址
+    public List<UserAddress> getAllUserAddress(Integer userId) {
+        Example example = new Example(UserAddress.class);
+        example.createCriteria().andEqualTo("addressUserId", userId);
+        List<UserAddress> userAddresses = this.userAddressmapper.selectByExample(example);
+        if (CollectionUtils.isEmpty(userAddresses)) {
+            throw new CommonException(ExceptionEnum.DATA_DOES_NOT_EXIST);
+        }
+        return userAddresses;
+    }
+
     //更新
     public void updateUserAddress(UserAddress userAddress) {
         userAddress.setUpdateTime(new Date());
@@ -63,7 +74,7 @@ public class UserAddressService {
     }
 
     //选择地址
-    public UserAddress selectUserAddress(Integer id, Integer userId) {
+    public UserAddress selectUserAddress(Integer addressid, Integer userId) {
         //查询出当前用户所有的地址
         Example example = new Example(UserAddress.class);
         example.createCriteria().andEqualTo("addressUserId", userId);
@@ -77,7 +88,7 @@ public class UserAddressService {
             this.userAddressmapper.updateByPrimaryKey(aList);
         }
         //把当前传入的地址设置为默认
-        UserAddress userAddress = this.userAddressmapper.selectByPrimaryKey(id);
+        UserAddress userAddress = this.userAddressmapper.selectByPrimaryKey(addressid);
         if (userAddress == null) {
             throw new CommonException(ExceptionEnum.DATA_DOES_NOT_EXIST);
         }
@@ -87,7 +98,7 @@ public class UserAddressService {
         if (count != 1) {
             throw new CommonException(ExceptionEnum.UPDATE_FAILURE);
         }
-        return this.userAddressmapper.selectByPrimaryKey(id);
+        return this.userAddressmapper.selectByPrimaryKey(addressid);
 
     }
 }

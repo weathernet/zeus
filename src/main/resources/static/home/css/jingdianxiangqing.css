@@ -1,0 +1,173 @@
+html,body{
+	 margin: 0;
+     padding: 0;
+     width: 100%;
+     height: 100%;
+}
+.one{
+	width: 100%;
+	height: 200px;
+	background: url(../img/banner_haidishijie.png)no-repeat;
+	background-size:100% 100%;
+	
+}
+.o1{
+	padding: 15px 15px;
+}
+.two{
+	width: 100%;
+	height: 700px;
+	background-color: #FFFFFF;
+	margin-top: -20px;
+	border-radius: 10px;
+}
+.flex{
+	display: flex;
+	justify-content:space-around;
+}
+.t1{
+	font-size: 18px;
+	color: #000000;
+}
+.t2 span{
+	font-size: 12px;
+	color: #158ae7;
+}
+.t2 .s1{margin-left: 8px;}
+.t3{
+	font-size: 12px;
+	color: #8A8A8A;
+}
+.two2{
+	margin-right: 80px;
+}
+.two3{
+	text-align: center;
+}
+.t4{
+	font-size: 18px;
+	color: #f99736;
+}
+.t5{
+	font-size: 12px;
+	color: #f99736;
+}
+.two4{
+	display: flex;
+	padding: 10px 0;
+	border-top: 1px solid #EAEAEA;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 10px;
+}
+.d1{
+	margin-left: 5px;
+}
+.d2{
+	margin-left: 10px;
+	font-size: 12px;
+	color: #010101;
+	margin-top: 3px;
+	width: 200px;
+}
+.flex2{
+	display: flex;
+	justify-content:space-around;
+	align-items: center;
+}
+.two5{
+	display: flex;
+	align-items: center;
+	margin-top: 7px;
+}
+.two5 .d3{
+	margin-right: 10px;
+	font-size: 12px;
+	color: #8A8A8A;
+}
+.three{
+	width: 100%;
+	height: 5px;
+	background-color: #EAEAEA;
+}
+.four{
+	display: flex;
+	justify-content:space-around;
+	border-bottom: 1px solid #EAEAEA;
+	margin-left: 15px;
+	margin-right: 15px;
+	padding-bottom: 20px;
+}
+.four2{
+	margin-right: 80px;
+}
+.four3{
+	margin-left: 80px;
+	text-align: center;
+}
+.d5{
+	font-size: 14px;
+	color: #010101;
+	margin-top: 15px;
+	width: 85px;
+}
+.d6{
+	font-size: 12px;
+	color: #8A8A8A;
+	margin-top: 14px;
+}
+.d7{
+	font-size: 12px;
+	color: #F99736;
+	margin-top: 16px;
+}
+.d8{
+	margin-top: 12px;
+}
+.five{
+	display: flex;
+	justify-content:space-around;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+.seven2{
+	display: flex;
+}
+.yh{
+	padding: 15px;
+}
+.tp{
+	margin-left: 13px;
+}
+.s3{
+	margin-left: 15px;
+}
+.s5 span{
+	font-size: 14px;
+	color: #8A8A8A;
+	margin-left: 13px;
+}
+.s6{
+	font-size: 12px;
+	color: #000000;
+	margin-left: 13px;
+	margin-top: 17px;
+}
+.s7{
+	display: flex;
+	margin-left: 5px;
+	margin-top: 15px;
+	width: 90%;
+}
+.s7 div{
+	margin: 0 10px;
+}
+.s7 div img{
+	width: 100%;
+	height: 100%;
+}
+.x{
+	border-bottom: 1px solid #EAEAEA;
+	width: 95%;
+	margin: 15px auto;
+}

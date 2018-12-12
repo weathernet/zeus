@@ -1,0 +1,72 @@
+article,
+aside,
+blockquote,
+body,
+button,
+code,
+dd,
+details,
+div,
+dl,
+dt,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+hr,
+input,
+legend,
+li,
+menu,
+nav,
+ol,
+p,
+pre,
+section,
+td,
+textarea,
+th,
+ul {
+    margin: 0;
+    padding: 0;
+}
+* {
+	box-sizing: border-box;
+}
+ul,ol {
+	list-style: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+button {
+	border: none;
+}
+a {
+	text-decoration: none;
+}
+img {
+	max-width: 100%;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.clearfix::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+

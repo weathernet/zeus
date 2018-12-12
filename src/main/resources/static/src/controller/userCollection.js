@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-userCollection-list'
         , url: '/user/collection/query'
+        ,toolbar: true
         , cols: [[
              {field: 'collectionUserId',  title: '用户ID'}
             , {field: 'collectionHousingId', title: '编号'}

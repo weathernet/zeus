@@ -20,30 +20,6 @@ public class TravelGroupService {
     @Autowired
     private TravelGroupMapper travelGroupmapper;
 
-    //新增
-    public void addTravelGroup(TravelGroup travelGroup) {
-        int count = this.travelGroupmapper.insertSelective(travelGroup);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //删除
-    public void deleteTravelGroup(Integer id) {
-        int count = this.travelGroupmapper.deleteByPrimaryKey(id);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateTravelGroup(TravelGroup travelGroup) {
-        int count = this.travelGroupmapper.updateByPrimaryKeySelective(travelGroup);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
     //查询所有
     public List<TravelGroup> getAllTravelGroup() {
         List<TravelGroup> list = this.travelGroupmapper.selectAll();
@@ -53,23 +29,4 @@ public class TravelGroupService {
         return list;
     }
 
-    //查询单个
-    public TravelGroup getTravelGroup(Integer id) {
-        TravelGroup TravelGroup = this.travelGroupmapper.selectByPrimaryKey(id);
-        if (TravelGroup == null) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return TravelGroup;
-    }
-
-    //字段搜索
-    public List<TravelGroup> searchTravelGroup(String keywords) {
-        Example example = new Example(TravelGroup.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
-        List<TravelGroup> list = this.travelGroupmapper.selectByExample(example);
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
 }

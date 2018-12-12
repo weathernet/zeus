@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>预约看房</title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/mui.picker.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/swiper-3.4.2.min.css" />
+    <style>
+    	.room {
+    		padding-top: .3rem;
+    		padding-bottom: .3rem;
+    	}
+    	.room img {
+    		width: 2rem;
+    	}
+    	.room_info {
+    		margin: 0;
+    	}
+    	.yuyue label input {
+    		width: 60%;
+    		text-align: right;
+    		color: #000;
+    		font-size: .28rem;
+    	}
+    </style>
+</head>
+<body >
+	<header class="mui-bar mui-bar-nav ">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#000"></a>
+		<h1 class="mui-title">预约看房</h1>
+	</header>
+	<div class="mui-content">
+		<div class="room clearfix flex_b">
+			<!--<img class="fl" src="" alt="房子" />
+			<div class="room_info fl">
+				<p>长阳半岛1号院-1室一厅</p>
+				<p>4009/月</p>
+				<p>13.2m<sup>2</sup>|2/6层 </p>
+			</div>-->
+		</div>
+		<p class="user_info">联系人信息</p>
+		<form class="yuyue">
+			<label>姓名 <input class="name" type="text" placeholder="请输入姓名"  /></label>
+			<label>
+				性别 <input type="text" disabled />
+				<div class="mui-switch mui-active" id="mySwitch">
+				  <div class="mui-switch-handle"></div>
+				</div>
+			</label>
+			<label>手机号 <input class="phone" type="text" placeholder="请输入手机号" /></label>
+		</form>
+	    <label class="watch_time">期望看房时间 <input type="date" class="time"/>随时可看</label>
+		<p class="textarea" style="margin-bottom:1rem;">
+			<textarea  name="" id="des" cols="30" rows="10" placeholder="更多看房或找房需求（选填）"></textarea>
+		</p>
+		<button class="tijiao">提 交 约 看</button>
+	</div>
+    <script src="js/mui.min.js"></script>
+    <script src="js/mui.picker.js"></script>
+    <script src="js/swiper-3.4.2.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  <script src="js/baseUrl.js"></script>
+    <script src="js/style.js"></script>
+    <script>
+    	// 获取房子信息
+    	var str = window.location.search;
+    	var arr = str.split("&");
+    	var arr2 = [];
+    	arr.forEach(function(val,index){
+    		arr2.push(val.split("="));
+    	})
+    	var tel = decodeURIComponent(arr2[6][1]);
+    	console.log(tel)
+    	var size = decodeURIComponent(arr2[4][1]);
+    	var id = decodeURIComponent(arr2[0][1]);
+    	var img = decodeURIComponent(arr2[1][1]);
+    	var title = decodeURIComponent(arr2[2][1]);
+    	var price = decodeURIComponent(arr2[3][1]);
+    	var fl = decodeURIComponent(arr2[5][1]);
+    	console.log(arr2);
+    	console.log(decodeURIComponent(arr2[2][1]));
+    	var str2 = `<img class="fl" src="${decodeURIComponent(arr2[1][1])}" alt="房子" />
+						<div class="room_info fl">
+							<p>${decodeURIComponent(arr2[2][1])}</p>
+							<p>${decodeURIComponent(arr2[3][1])}/月</p>
+							<p>${decodeURIComponent(arr2[4][1])}| ${decodeURIComponent(arr2[5][1])} </p>
+						</div>`;
+		$(".room").append(str2);				
+    	// 约看
+    	var sex;
+    	
+    	var reg;
+    	$(".tijiao").on("click",function(){
+    		reg = /^1[3456789]\d{9}$/g;
+    		console.log($(".time").val())
+    		var name = $(".name").val();
+    		var phone = $(".phone").val();
+    		var des = $("#des").val();
+    		var isActive = document.getElementById("mySwitch").classList.contains("mui-active");
+			if(isActive){
+			  sex = "1";
+			}else{
+			  sex = "0";  
+			}
+			if(name == "" || $.trim(name) == "") {
+				mui.toast("请输入姓名");
+			}else if(phone == "") {
+				mui.toast("请输入手机号");
+				
+			}else if(reg.test(phone) == false) {
+				mui.toast("手机号格式错误")
+			}else {
+				$.ajax({
+					type: "POST",
+					url: baseUrl + "/houseReserve",
+					data: {
+						reserveHouseArea: size,
+						reserveHouseId: id,
+						reserveHouseImage: img,
+						reserveHousePrice: price,
+						reserveHouseTitle: title,
+						reserveUserGender: sex,
+						reserveUserId: localStorage.getItem("userId"),
+						reserveUserName: name,
+						reserveUserPhone: phone,
+						reserveMessage: des,
+						reserveTime: $(".time").val(),
+						reserveButlerPhone: tel
+						
+					},
+					success: function(data) {
+						console.log(data);
+						mui.toast("提交成功");
+					},
+					error:function(xhr){
+						console.log(xhr.responseText);
+						var obj = eval("(" + xhr.responseText + ")");
+						mui.toast(obj.message);
+					}
+				})
+			}
+			
+    	})
+    </script>
+</body>
+</html>

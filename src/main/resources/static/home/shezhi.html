@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设置</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/mui.min.css" />
+    <link href="css/weixin.css" type="text/css" rel="stylesheet">
+    <style>
+    	#text {
+    		width: 60%;
+    		padding: 0;
+    		margin: 0;
+    		height: 20px;
+    		padding-left: 20px;
+    		border: none;
+    	}
+    </style>
+</head>
+<body>
+    <div id="title">
+        <img src="image/nav_back.png" class="m1">
+        <span>设置</span>
+    </div>
+    <div class="touxiang">
+        <div id="my_bac"><input type="file" id="file" / style="width:50px;height:50px;overflow: hidden;opacity: 0;"></div>
+        <p>点击修改头像</p>
+    </div>
+    <ul class="u1" id="nickname">
+        <li style="border-bottom: solid 1px #F5F5F5">
+            <span>昵称</span>
+            <input type="text" id="text" placeholder="">
+            <span>修改</span>
+        </li>
+        <!--<li>
+            <span>个性绑定</span>
+            <span>修改</span>
+        </li>-->
+    </ul>
+    <ul class="u1" style="margin-top: 0.5rem">
+        <li style="border-bottom: solid 1px #F5F5F5" id="zhi">
+            <span>支付宝绑定</span>
+            <span>未绑定</span>
+        </li>
+        <li id="wei">
+            <span>微信绑定</span>
+            <span>未绑定</span>
+        </li>
+    </ul>
+    <ul class="u1" style="margin-top: 0.5rem">
+        <li style="border-bottom: solid 1px #F5F5F5" id="change_tel">
+            <span>修改手机号</span>
+            <span>修改</span>
+        </li>
+        <li id="change_code">
+            <span>修改密码</span>
+            <span>修改</span>
+        </li>
+    </ul>
+    <div class="tuichu">退出登录</div>
+    
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <script src="js/mui.min.js"></script>
+  <script src="js/baseUrl.js"></script>
+  <script>
+  	$(".m1").on("click",function(){
+  		window.history.back();
+  	})
+  	$("#nickname").on("click",function(){
+  		window.location.href = "nicheng.html"
+  	})
+  	$("#zhi").on("click",function(){
+  		window.location.href = "bangding_zhifubao.html"
+  	})
+  	$("#wei").on("click",function(){
+  		window.location.href = "bangdingweixin.html"
+  	})
+  	$("#change_tel").on("click",function(){
+  		window.location.href = "xiugaishoujihao.html"
+  	})
+  	$("#change_code").on("click",function(){
+  		window.location.href = "xiugaimima.html"
+  	})
+  	// 获取用户信息
+    	$.ajax({
+    		type: "GET",
+    		url: baseUrl + "/user/"+localStorage.getItem('userId'),
+    		data:{
+    			
+    		},
+    		success:function(data){
+    			console.log(data);
+    			$(".my_name").text(data.userNikeName);
+    			if(data.userHeadPortrait != null) {
+    				$("#my_bac").css({
+	    				background: `url("${data.userHeadPortrait}")`,
+						backgroundSize: "100% 100%"
+	    			})
+    			}
+    			
+    		},
+    		error:function(xhr){
+				console.log(xhr.responseText);
+				var obj = eval("(" + xhr.responseText + ")");
+				mui.toast(obj.message);
+			}
+    	})
+  	// 上传头像
+		$("#file").on("change", function() {
+			$(this).prev().css("opacity","1")
+			filePath = $(this).val();//读取图片路径
+			var fr = new FileReader();//创建new FileReader()对象
+			var imgObj = this.files[0];//获取图片
+			
+			var formData = new FormData();
+		    formData.append("file",$("#file")[0].files[0]);
+			$.ajax({
+			    url: baseUrl + '/userPortrait/'+localStorage.getItem('userId'),
+			    type: 'POST',
+			    dataType: "text",
+			    processData: false, 
+				contentType : false,
+			    data: formData,
+			    success:function(data){
+					console.log(data);
+					mui.toast("头像上传成功")
+				},
+				error:function(xhr){
+					console.log(xhr.responseText);
+					if(xhr.responseText){
+						var obj = eval('(' + xhr.responseText + ')');
+						mui.toast(obj.message);
+					}
+				}
+		  });
+			fr.readAsDataURL(imgObj);//将图片读取为DataURL
+			var obj = $(this).parent()[0];//
+			if(filePath.indexOf("jpg") != -1 || filePath.indexOf("JPG") != -1 || filePath.indexOf("PNG") != -1 || filePath.indexOf("png") != -1) {
+				var arr = filePath.split('\\');
+				var fileName = arr[arr.length - 1];
+				$(this).parent().next().show();
+				fr.onload = function() {
+					//obj.src = this.result;
+                  //console.log(this.result)
+					$(obj).css({
+						background: `url("${this.result}")`,
+						backgroundSize: "100% 100%"
+					})
+				};
+			} else {
+				mui.toast("您未上传文件，或者您上传文件类型有误！");
+				return false
+			}
+		});
+        // 退出登录
+        $(".tuichu").on("click",function(){
+        	localStorage.clear();
+        	window.location.href = "login.html";
+        })
+  </script>
+</body>
+</html>

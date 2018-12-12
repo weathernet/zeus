@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<style>
+			.arrange-container {
+		width: 100%;
+		height: 100%;
+		background: #FFFFFF;
+	}
+	
+	.arrange-header {
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+	}
+	
+	.arrange-between {
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	.arrange-jiantou img {
+		width: auto;
+		height: 1.5rem;
+		margin-left: 1rem;
+	}
+	
+	.arrange-baojie {
+		font-size: 1.8rem;
+		color: #000000;
+	}
+	
+	.arrange-content {
+		width: 100%;
+		height: calc(100% - 105px);
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+	.arrange-mingcheng{
+		font-size: 1.3rem;
+		color: #000000;
+		padding: 1rem;
+	}
+	.arrange-flex{
+		display: flex;
+	}
+	.arrange-dibiao img{
+		width: auto;
+		height: 1.5rem;
+		margin: 0 1.5rem;
+	}
+	.arrange-xq{
+		font-size: 1.3rem;
+		color: #8A8A8A;
+	}
+	.arrange-touxiang img{
+		width: auto;
+		height: 2.5rem;
+		margin-top: 2rem;
+		margin-left: 1rem;
+		margin-right: 1rem;
+		margin-bottom: 0.5rem;
+	}
+	.arrange-shangjia{
+		font-size: 1.5rem;
+		color: #000000;
+		padding-top: 2.2rem;
+	}
+	.arrange-zhuangtai{
+		font-size: 1.5rem;
+		color: #8A8A8A;
+		padding-top: 2.2rem;
+		padding-right: 1rem;
+	}
+	.arrange-yuekan{
+		font-size: 1.3rem;
+		color: #000000;
+		padding: 0.5rem 1rem;
+	}
+	.arrange-tu img{
+		width: auto;
+		height: 5rem;
+		margin: 1rem;
+	}
+	.arrange-jiage{
+		font-size: 1.3rem;
+		color: #000000;
+		padding-top: 0.5rem;
+	}
+	.arrange-daxiao{
+		font-size: 1.3rem;
+		color: #8A8A8A;
+		padding-top: 0.5rem;
+	}
+	.arrange-dao{
+		display: flex;
+		flex-direction: row-reverse;
+	}
+	.arrange-lainxi{
+		border: 1px solid #F99736;
+		color: #F99736;
+		font-size: 1.3rem;
+		padding: 0.2rem 0.5rem;
+		margin-right: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+	.arrange-quxiao{
+		border: 1px solid #8A8A8A;
+		color: #222;
+		font-size: 1.3rem;
+		padding: 0.2rem 0.5rem;
+		margin-right: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+	.arrange-yuekan1{
+		font-size: 1.3rem;
+		color: #000000;
+		/*padding: 0.5rem 1rem;*/
+		padding-top: 2.2rem;
+		padding-left: 1rem;
+	}
+	.container {
+		padding: 0;
+	}
+	
+	/deep/ .mu-tab-link-highlight {
+		background-color: #f99736
+	}
+		</style>
+	</head>
+
+	<body>
+		<div class="arrange-container">
+		<div class="arrange-header">
+			<div class="arrange-between">
+				<div class="arrange-jiantou">
+					<img src="assets/jiantou.png" class="m1">
+				</div>
+				<div class="arrange-baojie">约看列表</div>
+				<div></div>
+			</div>
+		</div>
+		<div class="arrange-content">
+			<mu-container>
+				<mu-tabs :value.sync="active1" inverse="" color="#f99736" full-width>
+					<mu-tab>未完成的约看</mu-tab>
+					<mu-tab>已完成的约看</mu-tab>
+				</mu-tabs>
+				<div class="demo-text" v-if="active1 === 0">
+					<div class="arrange-mingcheng">新悦家园</div>
+					<div class="arrange-flex">
+						<div class="arrange-dibiao">
+							<img src="assets/dizhi.png">
+						</div>
+						<div class="arrange-xq">北京——昌平——南环路心悦家园</div>
+					</div>
+					<div class="arrange-between">
+						<div class="arrange-flex">
+							<div class="arrange-touxiang">
+								<img src="assets/img_anatar.png">
+							</div>
+							<div class="arrange-shangjia">品家</div>
+						</div>
+						<div class="arrange-zhuangtai">待确认</div>
+					</div>
+					<div class="arrange-yuekan">约看时间：-</div>
+					<div class="arrange-yuekan">约看地点：-</div>
+					<div class="arrange-yuekan">品家-新悦家园四居室-05卧室</div>
+					<div class="arrange-flex">
+						<div class="arrange-tu">
+							<img src="assets/img_1 (4).png">
+						</div>
+						<div>
+							<div class="arrange-jiage">￥1890元/月（季付）</div>
+							<div class="arrange-daxiao">20.3m<sup>2</sup> · 6层</div>
+							<div class="arrange-daxiao">待租中</div>
+						</div>
+					</div>
+					<div class="arrange-dao">
+						<div class="arrange-lainxi">联系管家</div>
+						<div class="arrange-quxiao">取消约看</div>
+					</div>
+				</div>
+				<div class="demo-text" v-if="active1 === 1">
+					<div class="arrange-mingcheng">新悦家园</div>
+					<div class="arrange-flex">
+						<div class="arrange-dibiao">
+							<img src="assets/dizhi.png">
+						</div>
+						<div class="arrange-xq">北京——昌平——南环路心悦家园</div>
+					</div>
+					<div class="arrange-between">
+						<div class="arrange-yuekan1">品家-新悦家园四居室-05卧室</div>
+						<div class="arrange-zhuangtai">待确认</div>
+					</div>
+					<div class="arrange-flex">
+						<div class="arrange-tu">
+							<img src="assets/img_1 (4).png">
+						</div>
+						<div>
+							<div class="arrange-jiage">￥1890元/月（季付）</div>
+							<div class="arrange-daxiao">20.3m<sup>2</sup> · 6层</div>
+							<div class="arrange-daxiao">待租中</div>
+						</div>
+					</div>
+					<div class="arrange-dao">
+						<div class="arrange-lainxi">联系管家</div>
+						<div class="arrange-quxiao">取消约看</div>
+					</div>
+					<div style="border: 0.5rem solid #EAEAEA;"></div>
+				</div>
+			</mu-container>
+		</div>
+		<div class="arrange-footer">
+
+		</div>
+	</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  <script>
+  	$(".m1").on("click",function(){
+  		window.history.back();
+  	})
+  </script>
+	</body>
+
+</html>

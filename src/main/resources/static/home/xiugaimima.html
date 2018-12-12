@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改密码</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/mui.min.css" />
+    <link href="css/weixin.css" type="text/css" rel="stylesheet">
+    <style>
+    	.xiugai input {
+			margin: 0;
+			padding: 0;
+			width: 60%;
+			border: none;
+			font-size: 15px !important;
+		}
+    </style>
+</head>
+<body>
+    <div id="title">
+        <img src="image/nav_back.png" class="m1">
+        <span>修改密码</span>
+    </div>
+    <ul class="xiugai">
+        <li style="border-bottom: solid 1px #F5F5F5;">
+            <span>旧密码</span>
+            <input class="phone" type="text" placeholder="请输入旧密码" >
+        </li>
+        <!--<li class="yanzheng">
+            <span>验证码</span>
+            <input class="code" type="text" placeholder="请输入验证码" >
+            <span class="registerCode_btn">获取验证码</span>
+        </li>-->
+        <li>
+            <span>新密码</span>
+            <input class="pwd" type="password" placeholder="请在此处输入新密码" >
+        </li>
+    </ul>
+    <div class="tijiao">确认修改</div>
+    
+       <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <script src="js/mui.min.js"></script>
+  <script src="js/baseUrl.js"></script>
+  <script>
+  	$(".m1").on("click",function(){
+  		window.history.back();
+  	})
+  
+  	// 确认修改
+  	$(".tijiao").on("click",function(){
+  		var oldpwd = $(".phone").val();
+  		var pwd = $(".pwd").val();
+		if(oldpwd == "" || $.trim(oldpwd) == "") {
+			mui.toast("请输入旧密码")
+		}else if(pwd == "" || pwd.trim() == ""){
+			mui.toast("请输入新密码")
+		} else {
+			$.ajax({
+				type: "PUT",
+  				url: baseUrl + "/passWord/" + localStorage.getItem("userId"),
+  				data: {
+  					oldPassWord: oldpwd,
+  					newPassWord: pwd
+  				},
+				success: function(data) {
+					console.log(data);
+					mui.toast("修改成功");
+					
+				},
+				error: function(xhr) {
+					console.log(xhr.responseText);
+					var obj = eval("(" + xhr.responseText + ")");
+					mui.toast(obj.message);
+				}
+			})
+		}
+  	})
+  </script>
+</body>
+</html>

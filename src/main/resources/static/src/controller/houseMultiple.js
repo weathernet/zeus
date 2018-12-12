@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-houseMultiple-list'
         , url: '/house/multiple/query'
+        ,toolbar: true
         , cols: [[
              {field: 'multipleProportion', title: '佣金比例'}
             , {field: 'createTime', title: '创建日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}

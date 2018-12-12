@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #F5F5F5;
+}
+#title{
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+    padding: 13px 5%;
+    background-color: white;
+}
+.m1{
+    margin-left: 5%;
+    width: 3%;
+    position: absolute;
+    left: 0;
+}
+.touxiang{
+    padding: 10px 0;
+    background-color: white;
+}
+.touxiang div{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #FF4E50;
+    margin: 0 auto;
+}
+.touxiang p{
+    font-size: 12px;
+    color: #8a8a8a;
+    text-align: center;
+    margin-top: 12px;
+}
+.u1{
+    margin-top: 0.1rem;
+    padding: 0.5rem 1rem;
+    list-style: none;
+    font-size: 15px;
+    background-color: white;
+}
+.u1 li{
+    padding: 0.5rem 0;
+}
+.u1 li span:nth-of-type(2){
+    display: inline-block;
+    position: absolute;
+    right: 1rem;
+    font-size: 13px;
+    color: #8a8a8a;
+}
+input{
+    outline: none;
+    border: none;
+    margin-left: 0.3rem;
+    font-size: 13px;
+}
+.tuichu{
+    margin-top: 1.5rem;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    line-height: 2.5rem;
+}
+.xiugai{
+    list-style: none;
+    padding:0 1rem;
+    margin-top: 0.5rem;
+    background-color: white;
+    font-size: 14px;
+}
+.xiugai li{
+    padding:0.5rem 0 ;
+}
+.xiugai li input{
+    margin-left: 8%;
+    line-height: 2rem;
+}
+.yanzheng span:nth-of-type(2){
+    color: #F86E78;
+    border: solid 1px #F86E78;
+    border-radius: 20px;
+    padding: 0.2rem 0.3rem;
+    position: absolute;
+    right: 5%;
+}
+.tijiao{
+    margin: 3rem 1rem;
+    background-color: #F41E2E ;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    line-height: 33px;
+    border-radius: 20px;
+}
+.xinshouji{
+    background-color: #CCCCCC;
+}

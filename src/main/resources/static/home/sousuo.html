@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="css/mui.min.css" rel="stylesheet" />
+    <link href="css/sousuo.css" type="text/css" rel="stylesheet">
+    
+    <style>
+    	.d1 {
+    		display: flex !important;
+    		justify-content: space-between;
+    		align-items: center;
+    	}
+    	.d1 input {
+    		padding: 0;
+    		margin: 0;
+    	}
+    	.d2 {
+    		display: flex;
+    		justify-content: space-between;
+    		align-items: center;
+    		width: 80%;
+    		padding: 0;
+    	}
+    	.d2 img {
+    		margin-left: 10px;
+    	}
+    	.s1 {
+    		margin: 0;
+    	}
+    	.d4 img {
+    		width: 15px;
+    		padding: 0;
+    	}
+    	.delete {
+    		width: 20px;
+    	}
+    </style>
+</head>
+<body style="background: #fff;">
+    <img src="images/suosou/nav-back.png" class="m1">
+    <div class="d1">
+        <div style="" class="d2">
+            <img src="images/suosou/icon_sousuo.png" style="vertical-align: middle">
+            <input type="text" class="text" placeholder="您想住哪儿" style="vertical-align: middle;outline: none;color:#000">
+        </div>
+        <span class="s1">搜索</span>
+    </div>
+    <div class="d3">
+        <span class="s2">搜索历史</span>
+        <img class="delete" src="images/suosou/icon_shanchu.png">
+    </div>
+    <div class="content">
+    	<!--<div class="d4">
+	        <img src="images/suosou/icon_lishi.png">
+	        <span>品家酒店</span>
+	    </div>
+	    <p class="p1"></p>-->
+	    <!--<div class="d4">
+	        <img src="images/suosou/icon_lishi.png">
+	        <span>品家酒店</span>
+	    </div>
+	    <p class="p1"></p>
+	    <div class="d4">
+	        <img src="images/suosou/icon_lishi.png">
+	        <span>品家酒店</span>
+	    </div>
+	    <p class="p1"></p>-->
+    </div>
+    
+    
+    
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+  <script src="js/baseUrl.js"></script>
+  <script src="js/mui.min.js"></script>
+  <script>
+  	$(".m1").on("click",function(){
+  		window.history.back();
+  	})
+  	// 新增搜索
+  	$(".s1").on("click",function(){
+  		var text = $(".text").val();
+  		if(text == "" || $.trim(text)  == "") {
+  			mui.toast("请输入你想入住的地点")
+  		}else {
+  			$.ajax({
+	  			type: "POST",
+	  			url: baseUrl + "/userSearchHistory",
+	  			data: {
+	  				historyContent: $(".text").val(),
+					historyUserId: localStorage.getItem("userId")
+	  			},
+	  			success:function(data){
+	  				console.log(data);
+	  				window.location.href = `zufangliebiao.html?content=${text}`;
+	  			},
+	  			error:function(xhr){
+					console.log(xhr.responseText);
+					var obj = eval("(" + xhr.responseText + ")");
+	  				mui.toast(obj.message);
+				}
+	  		})
+  		}
+  		
+  	})
+  	
+  	
+    // 获取当前用户搜索历史
+
+    var str;
+	$.ajax({
+		type: "GET",
+		url: baseUrl + "/userSearchHistory/"+localStorage.getItem("userId"),
+		data: {
+			
+		},
+		success: function(data) {
+			console.log(data);
+			data.forEach(function(val,index){
+				str = `<div class="d4">
+					        <img src="images/suosou/icon_lishi.png">
+					        <span>${val.historyContent}</span>
+					    </div>
+					    <p class="p1"></p>`;
+			    $(".content").prepend(str);
+			})
+		},
+		error:function(xhr){
+				console.log(xhr.responseText);
+				var obj = eval("(" + xhr.responseText + ")");
+				//mui.toast(obj.message);
+			}
+	})
+	// 删除搜索历史
+	$(".delete").on("click",function(){
+		mui.confirm("确定要删除所有搜索历史吗",function(e){
+			if(e.index == 1){
+				$.ajax({
+					type: "POST",
+					url: baseUrl + "/deleteHistory/"+localStorage.getItem("userId"),
+					data: {
+						
+					},
+					success: function(data) {
+						console.log(data);
+						window.location.reload();
+					},
+					error:function(xhr){
+						if(xhr.responseText){
+							console.log(xhr.responseText);
+							var obj = eval("(" + xhr.responseText + ")");
+			                mui.toast(obj.message);
+						}
+					}
+				})
+			}
+		})
+		
+	})
+  </script>
+</body>
+</html>

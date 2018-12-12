@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/wodeshoucang.css"/>
+		<link rel="stylesheet" href="css/mui.min.css" />
+	</head>
+	<body>
+		<div class="one">
+			<div class="d1">
+				<img src="img/nav_back.png" />
+			</div>
+			<div class="d2">
+				我的收藏
+			</div>
+			<div class="d3">
+				编辑
+			</div>
+		</div>
+		<div class="two">
+			
+			<!--<div class="d4">
+				<div class="tp">
+					<img src="img/img6.png" />
+				</div>
+				<div class="con">
+					<div class="con-1">
+						自如豪宅.使馆壹号院_4室1厅
+					</div>
+					<div class="con-2">
+						13000元/月
+						<span>(季付价)</span>
+					</div>
+					<div class="con-4">
+						待租中
+					</div>
+				</div>
+			</div>-->
+		</div>
+	</body>
+	<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  <script src="js/baseUrl.js"></script>
+  <script src="js/mui.min.js"></script>
+  <script>
+  	$(".d1").on("click",function(){
+  		window.history.back();
+  	})
+  	// 获取所有收藏
+  	$.ajax({
+  		type: "GET",
+  		url: baseUrl + "//UserCollection",
+  		data: {
+  			id: localStorage.getItem("userId"),
+  			
+  		},
+  		success: function(data) {
+  			console.log(data);
+  			data.forEach(function(val,index){
+  				var str = `<div class="d4">
+							<div class="tp">
+								<img src="${val.collectionHousingImage}" />
+							</div>
+							<div class="con">
+								<div class="con-1">
+									自如豪宅.${val.collectionHousingTitle}
+								</div>
+								<div class="con-2">
+									${val.collectionHousingPrice}
+									<span>(季付价)</span>
+								</div>
+								<div class="con-4">
+									待租中
+								</div>
+							</div>
+						</div>`;
+		    	$(".two").append(str);	
+  			})
+  						
+  		},
+  		error: function (xhr) {
+		    console.log(xhr.responseText);
+			var obj = eval("(" + xhr.responseText + ")");
+			mui.toast(obj.message);
+		}
+  	})
+  </script>
+</html>

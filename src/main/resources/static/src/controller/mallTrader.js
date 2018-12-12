@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-mallTrader-list'
         , url: '/mall/trader/query'
+        ,toolbar: true
         , cols: [[
              {field: 'traderId',  title: '编号'}
             , {field: 'traderName', title: ' 商户名称',edit: 'text', sort: true}

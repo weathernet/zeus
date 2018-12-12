@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>电脑设备</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<style>
+			.diannao {
+				padding: 0 .25rem;
+			}
+			.diannao_tit {
+				border-bottom: .02rem solid #eee;
+				border-top: .02rem solid #eee;
+				line-height: .6rem;
+				font-size: .3rem;
+			}
+			.diannao_tit span {
+				margin-right: 0.5rem;
+			}
+			
+			.diannao_list img {
+				width: 2rem;
+			}
+			.diannao_list div p {
+				font-size: .24rem;
+			}
+			
+			.diannao_list li {
+				width: 100%;
+			}
+			.diannao_des p:nth-of-type(1) {
+				color: #000;
+				font-size: .28rem;
+			}
+			.diannao_des p:nth-of-type(2) {
+				font-size: .24rem;
+			}
+			.diannao_des p:nth-of-type(3) {
+				color: orange;
+			}
+		</style>
+	</head>
+   
+	<body style="background: #fff;">
+		<header class="mui-bar mui-bar-nav ">
+			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left quit" style="color: #000"></a>
+			<h3 class="mui-title">电脑设备</h3>
+		</header>
+		<div class="mui-content diannao" style="background: #fff;">
+			<div class="diannao_tit">
+				<span>默认</span>
+			    <span>价格</span>
+			</div>
+			<ul class="diannao_list">
+				<li class="flex_b">
+					<img src="images/shouye/img_qrgm@2x.png" alt="" />
+					<div class="diannao_des">
+						<p>Apple iMac一体机（薄款一体机租赁)</p>
+						<p>高端外观超薄一体机</p>
+						<p>340.00元/台/月</p>
+					</div>
+				</li>
+				<li class="flex_b">
+					<img src="images/shouye/img_qrgm@2x.png" alt="" />
+					<div class="diannao_des">
+						<p>Apple iMac一体机（薄款一体机租赁)</p>
+						<p>高端外观超薄一体机</p>
+						<p>340.00元/台/月</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+			
+		<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/style.js"></script>
+		<script src="js/baseUrl.js"></script>
+
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<script>
+			$(".diannao_list li").on("click",function(){
+				window.location.href = "shangpinxiangqing.html";
+			})
+		</script>
+	</body>
+
+</html>

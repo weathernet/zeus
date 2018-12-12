@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <title>Apiview-Api文档管理工具-提升开发效率</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Vcz5RFH6LPDbRco6cj2wxGoi55A3mqID"></script>
+</head>
+<style type="text/css">
+	#allmap{
+		width: 100%;
+		height: 1000px;
+	}
+</style>
+<body ng-app='apiview' ng-controller="PublicController">
+	<div id="allmap"></div>
+    <div id="r-result"></div>
+</div>
+
+<script src="js/baseUrl.js"></script>
+</body>
+<script type="text/javascript">
+var map = new BMap.Map("allmap");               // 创建Map实例
+var mPoint = new BMap.Point(116.404, 39.915); 
+map.enableScrollWheelZoom();
+map.centerAndZoom(mPoint,15);
+var circle = new BMap.Circle(mPoint,1000,{fillColor:"blue", strokeWeight: 1 ,fillOpacity: 0.3, strokeOpacity: 0.3,enableEditing:true});
+map.addOverlay(circle);
+if (mPoint != null) {
+circle.addEventListener("lineupdate", function (e) {
+    var mi = parseInt( circle.getRadius() )
+    $.ajax({
+        type: "GET", //请求方式 post
+        dataType: 'json', //数据类型 json
+        url: baseUrl + "/mapLookingForRoom", // 请求地址
+        data:{
+            longitude:116.40397,
+            latitude:39.915477,
+            range:mi
+        },
+        success: function (data) {
+            console.log(data) //
+            var marker = new BMap.Marker(mPoint);
+            var mapPoints = [];//创建数组
+            for ( var j = 0 ;j<data.length;j++ ){
+                //添加信息 进 数组
+                mapPoints.push( { x:data[j].housingLatitude,y:data[j].housingLongitude ,title:data[j].housingPrice,con: data[j].housingId,branch:data[j].housingPrice} )
+            }
+            console.log(mapPoints)
+            var i = 0;
+            map.addOverlay(marker);
+            map.enableScrollWheelZoom(true);
+
+
+            // 函数 创建多个标注
+            function markerFun (points,label,infoWindows,con) {
+                var markers = new BMap.Marker(points);
+                map.addOverlay(markers);
+                markers.setLabel(label);
+                markers.addEventListener("click",function (event) {
+                    console.log(infoWindows);
+                    console.log(con);
+
+                    map.openInfoWindow(infoWindows,points);//参数：窗口、点  根据点击的点出现对应的窗口
+                });
+            }
+
+            for (;i<mapPoints.length;i++) {
+                var points = new BMap.Point(mapPoints[i].y,mapPoints[i].x);//创建坐标点
+
+                var opts = {
+                    width:200,
+                    height: 100,
+                    title:mapPoints[i].title
+                };
+                var label = new BMap.Label(mapPoints[i].branch,{
+                    offset:new BMap.Size(25,5)
+                });
+                var infoWindows = new BMap.InfoWindow(mapPoints[i].title,opts);
+
+                markerFun(points,label,infoWindows,mapPoints[i].con);
+            }
+        },
+        error: function (data, textStatus) {
+            console.log(textStatus)
+            console.log(data)
+        }
+    });
+});
+}
+</script>
+</html>

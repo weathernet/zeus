@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #F5F5F5;
+}
+#title{
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+    padding: 13px 5%;
+    background-color: white;
+}
+.m1{
+    margin-left: 5%;
+    width: 3%;
+    position: absolute;
+    left: 0;
+}
+input{
+    outline: none;
+    border: none;
+}
+.renzheng{
+    list-style: none;
+    padding:0 1rem;
+    margin-top: 0.5rem;
+    background-color: white;
+}
+.renzheng li{
+    padding:0.8rem 0 ;
+}
+.renzheng li input{
+    margin-left: 8%;
+    line-height: 2rem;
+}
+.yanzheng{
+    display: flex;
+}
+.yanzheng span:nth-of-type(2){
+    color: #F86E78;
+    border: solid 1px #F86E78;
+    border-radius: 20px;
+    padding: 0.2rem 0.3rem;
+    position: absolute;
+    right: 5%;
+}
+.bangding{
+    margin: 2rem 1rem;
+    background-color: #F41E2E ;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    line-height: 33px;
+    border-radius: 20px;
+}

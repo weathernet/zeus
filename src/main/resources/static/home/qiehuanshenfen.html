@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>切换身份</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="css/qiehuanshenfen.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div id="title">
+        <img src="image/qiehuanshenfen/nav-back.png" class="m1">
+        <span>切换身份</span>
+    </div>
+    <div class="border"></div>
+    <div class="fangdong">
+        <div class="fangzi">
+            <a href="pinjia_fangdong.html">
+            	<img src="image/qiehuanshenfen/fangzi.png">
+                <p>房东</p>
+            </a>
+        </div>
+    </div>
+    <div class="border"></div>
+    <div class="shangjia">
+        <div class="fangzi">
+            <a href="pinjia_fangdong.html">
+            	<img src="image/qiehuanshenfen/shangjia.png" style="width: 18%">
+                <p>商家</p>
+            </a>
+        </div>
+    </div>
+    <script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  <script>
+  	$(".m1").on("click",function(){
+  		window.history.back();
+  	})
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color:#EEEEEE;
+}
+.m1{
+    margin-left: 5%;
+    width: 5%;
+    position: absolute;
+    left: 0;
+    margin-top: 1%;
+}
+#title{
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+    padding: 14px 0;
+    background-color: white;
+}
+.dizhi{
+    background-color: white;
+    margin-top: 13px;
+    font-size: 15px;
+    position: relative;
+    padding: 18px 0;
+}
+.dizhi img:first-child{
+    vertical-align: middle;
+    margin-left: 6%;
+}
+.dizhi span{
+    vertical-align: middle;
+    margin-left: 15px;
+}
+.dizhi img:nth-of-type(2){
+    vertical-align: middle;
+    position: absolute;
+    right: 5%;
+}

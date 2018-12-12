@@ -44,6 +44,7 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-mallRecord-list'
         , url: '/mall/record/query'
+        ,toolbar: true
         , cols: [[
              {field: 'recordId',  title: '编号'}
             , {field: 'recordUserId', title: ' ',edit: 'text', sort: true}

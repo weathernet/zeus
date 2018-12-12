@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>积分兑换</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="css/jifenduihuan.css" type="text/css" rel="stylesheet">
+    <style>
+    	.content-one>div {
+    		/*display: flex;
+    		justify-content: space-between;
+    		align-items: center;*/
+    	}
+    </style>
+</head>
+<body>
+    <div id="title">
+        <img src="images/jifenduihuan/nav-back.png" class="m1">
+        <span>积分兑换</span>
+    </div>
+    <header>
+        <div class="H">
+            <p class="H-content1">积分值</p>
+            <p class="H-content2">2150</p>
+        </div>
+    </header>
+    <main>
+        <div class="content-one">
+            <img src="images/jifenduihuan/img_1415.png">
+            <p class="content-one1">MOREFUN香氛挂件</p>
+            <p class="content-one2">199积分</p>
+            <div>
+                <img src="images/jifenduihuan/-.png" style="margin: 0 2px 15px 10px" onclick="btn2(1)">
+                <input type="text" value="1" id="1">
+                <img src="images/jifenduihuan/jiahao.png" style="margin: 0 0px 15px 0px" class="jia" onclick="btn1(1)">
+                <span class="s1" onclick="btn()">立即兑换</span>
+            </div>
+        </div>
+        <script>
+//             //点击兑换
+//              function btn() {
+//                  var a=confirm("确认兑换吗？");
+//                  if (a==true){
+//                      alert("兑换成功！")
+//                  }else {
+//                      alert("兑换失败！")
+//                  }
+//              }
+//              //点击数字增加
+//             function btn1(id) {
+//                  var ids ="#"+id;
+//                 var a =$(ids);
+//                 var b =a.val();
+//                 a.val(++b);
+//             }
+//             //点击数字减少
+//             function btn2(id) {
+//                 var ids ="#"+id;
+//                 var a =$(ids);
+//                 var b =a.val();
+//                 if (a.val()>0){
+//                     a.val(--b);
+//                 }
+//             }
+
+        </script>
+        <div class="content-one content-two">
+            <img src="images/jifenduihuan/img_1415.png">
+            <p class="content-one1">MOREFUN香氛挂件</p>
+            <p class="content-one2">199积分</p>
+            <div>
+                <img src="images/jifenduihuan/-.png" style="margin: 0 2px 15px 10px" onclick="btn2(2)">
+                <input type="text" value="1" id="2">
+                <img src="images/jifenduihuan/jiahao.png" style="margin: 0 0px 15px 0px" onclick="btn1(2)">
+                <span class="s1" onclick="btn()">立即兑换</span>
+            </div>
+        </div>
+        <div class="d1">
+            <div class="content-one">
+                <img src="images/jifenduihuan/img_1415.png">
+                <p class="content-one1">MOREFUN香氛挂件</p>
+                <p class="content-one2">199积分</p>
+                <div>
+                    <img src="images/jifenduihuan/-.png" style="margin: 0 2px 15px 10px" onclick="btn2(3)">
+                    <input type="text" value="1" id="3">
+                    <img src="images/jifenduihuan/jiahao.png" style="margin: 0 0px 15px 0px" onclick="btn1(3)">
+                    <span class="s1" onclick="btn()">立即兑换</span>
+                </div>
+            </div>
+            <div class="content-one content-two">
+                <img src="images/jifenduihuan/img_1415.png">
+                <p class="content-one1">MOREFUN香氛挂件</p>
+                <p class="content-one2">199积分</p>
+                <div>
+                    <img src="images/jifenduihuan/-.png" style="margin: 0 2px 15px 10px" onclick="btn2(4)">
+                    <input type="text" value="1" class="num" id="4">
+                    <img src="images/jifenduihuan/jiahao.png" style="margin: 0 0px 15px 0px" onclick="btn1(4)">
+                    <span class="s1" onclick="btn()">立即兑换</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  <script>
+  	$(".m1").on("click",function(){
+  		window.history.back();
+  	})
+  </script>
+</body>
+</html>

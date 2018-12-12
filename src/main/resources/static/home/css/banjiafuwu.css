@@ -1,0 +1,155 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+.one{
+	width: 100%;
+	height: 44px;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #EAEAEA;
+}
+.d1{
+	margin-left: 15px;
+}
+.d2{
+	margin: 0 auto;
+	font-size: 18px;
+	color: #000000;
+}
+.two{
+	width: 100%;
+	height: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	font-size: 14px;
+}
+.two span{
+	height: 20px;
+	width: 25%;
+	padding-bottom:5px;
+}
+.s1{
+	color: #F99736;
+	border-bottom: 1px solid #F99736;
+	text-align: center;
+}
+.s2{
+	text-align: center;
+}
+.three{
+	width: 100%;
+}
+.three-1{
+	width: 90%;
+	margin: 0 auto;
+}
+.d3{
+	width: 50%;
+	height: auto;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+.d3 img{
+	width: 100%;
+	height: 100%;
+}
+.d4{
+	width: 80%;
+	font-size: 14px;
+	color: #000000;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+.d5{
+	width: 85%;
+	font-size: 12px;
+	color: #8A8A8A;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.four{
+	margin-top: 20px;
+}
+.four-1{
+	width: 90%;
+	margin: 0 auto;
+	border: 1px solid #EAEAEA;
+	border-radius: 10px;
+	border-top: none;
+	box-shadow: 0 2px 5px #EAEAEA;  
+}
+.four-1 ul{
+	margin-left: 45px;
+}
+.four-1 li{
+	
+	padding: 15px 0;
+}
+.four-1 li span{
+	font-size: 13px;
+	color: #8A8A8A;
+}
+.four-1 .dian1{
+	color: #32b16c;
+}
+.four-1 .dian2{
+	color: #f99736;
+}
+.dd{
+	border-bottom: 1px solid #EAEAEA;
+	width: 85%;
+	margin: 0 auto;
+}
+.five{
+	margin-top:40px ;
+}
+.five-1{
+	display: flex;
+	justify-content: space-between;
+	width: 50%;
+	font-size: 12px;
+	margin: 0 auto;
+}
+.d6 span{
+	margin: 0 3px;
+}
+.d6 .s5{
+	font-size: 23px;
+}
+.d6{
+	display: flex;
+	align-items: center;
+}
+.d7{
+	color: #F99736;
+	display: flex;
+	align-items: center;
+}
+.d7 span{
+	margin: 0 2px;
+}
+.d7 img{
+	height: 8px;
+	width: auto;
+}
+.six{
+	height: 40px;
+	display: flex;
+	align-items: center;
+	background-color: #F99736;
+	margin-top: 145px;
+	position: fixed;
+	bottom: 0;
+	overflow: hidden;
+	width: 100%;
+}
+.six span{
+	margin: 0 auto;
+	color: #FFFFFF;
+}
