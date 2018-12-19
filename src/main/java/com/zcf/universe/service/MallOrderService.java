@@ -89,21 +89,6 @@ public class MallOrderService {
         }
     }
 
-    //删除
-    public void deleteMallOrder(Integer id) {
-        int count = this.mallOrdermapper.deleteByPrimaryKey(id);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateMallOrder(MallOrder mallOrder) {
-        int count = this.mallOrdermapper.updateByPrimaryKeySelective(mallOrder);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
 
     //查询所有
     public List<MallOrder> getAllMallOrder() {
@@ -123,15 +108,19 @@ public class MallOrderService {
         return MallOrder;
     }
 
-    //字段搜索
-    public List<MallOrder> searchOrder(String keywords) {
+    public List<MallOrder> getMallOrderUser(Integer userId, Integer status) {
         Example example = new Example(MallOrder.class);
-        example.createCriteria().andLike("orderStatus", keywords);
-        List<MallOrder> list = this.mallOrdermapper.selectByExample(example);
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
+        example.createCriteria()
+                .andEqualTo("orderUserId", userId)
+                .andEqualTo("orderStatus", status);
+        return this.mallOrdermapper.selectByExample(example);
     }
 
+    public void updateMallOrder(MallOrder mallOrder) {
+        this.mallOrdermapper.updateByPrimaryKeySelective(mallOrder);
+    }
+
+    public Object searchOrder(String orderstate) {
+        return null;
+    }
 }

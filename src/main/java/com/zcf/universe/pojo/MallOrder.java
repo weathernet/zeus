@@ -3,10 +3,13 @@ package com.zcf.universe.pojo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.List;
+
 /**
  * Created by YuanQJ on 2018/11/18.
  */
@@ -45,5 +48,6 @@ public class MallOrder{
 
     @ApiModelProperty(value = "g更新时间")
     private Date updateTime;
+
 
 }

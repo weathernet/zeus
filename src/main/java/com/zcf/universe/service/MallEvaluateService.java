@@ -1,13 +1,12 @@
 package com.zcf.universe.service;
 
-import com.zcf.universe.pojo.MallEvaluate;
-import com.zcf.universe.mapper.MallEvaluateMapper;
-import tk.mybatis.mapper.entity.Example;
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.CollectionUtils;
 import com.zcf.universe.common.exception.CommonException;
 import com.zcf.universe.common.exception.ExceptionEnum;
+import com.zcf.universe.mapper.MallEvaluateMapper;
+import com.zcf.universe.pojo.MallEvaluate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -28,31 +27,16 @@ public class MallEvaluateService {
         }
     }
 
-    //更新
-    public void updateMallEvaluate(MallEvaluate mallEvaluate) {
-        int count = this.mallEvaluatemapper.updateByPrimaryKeySelective(mallEvaluate);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
+
+    public List<MallEvaluate> getAllMallEvaluateByShop(Integer shopId) {
+        Example example = new Example(MallEvaluate.class);
+        example.createCriteria().andEqualTo("evaluateTraderId", shopId);
+        return this.mallEvaluatemapper.selectByExample(example);
     }
 
-    //查询所有
-    public List<MallEvaluate> getAllMallEvaluate() {
-        List<MallEvaluate> list = this.mallEvaluatemapper.selectAll();
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
+    public List<MallEvaluate> getAllMallEvaluateByUser(Integer userId) {
+        Example example = new Example(MallEvaluate.class);
+        example.createCriteria().andEqualTo("evaluateUserId", userId);
+        return this.mallEvaluatemapper.selectByExample(example);
     }
-
-    //查询单个
-    public MallEvaluate getMallEvaluate(Integer id) {
-        MallEvaluate MallEvaluate = this.mallEvaluatemapper.selectByPrimaryKey(id);
-        if (MallEvaluate == null) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return MallEvaluate;
-    }
-
-
 }

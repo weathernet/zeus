@@ -33,34 +33,7 @@ public class MallGroupController {
         return ResponseEntity.ok(this.mallGroupService.searchMallGroupByHot());
     }
 
-    @ApiOperation(value = "新增")
-    @PostMapping("mallGroup")
-    public ResponseEntity<Void> addMallGroup(MallGroup mallGroup) {
-        this.mallGroupService.addMallGroup(mallGroup);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "删除")
-    @DeleteMapping("mallGroup/{id}")
-    public ResponseEntity<Void> deleteMallGroup(@PathVariable Integer id) {
-        this.mallGroupService.deleteMallGroup(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("mallGroup")
-    public ResponseEntity<Void> updateMallGroup(MallGroup mallGroup) {
-        this.mallGroupService.updateMallGroup(mallGroup);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "获取单个")
-    @GetMapping("mallGroup/{id}")
-    public ResponseEntity<MallGroup> getMallGroup(@PathVariable Integer id) {
-        return ResponseEntity.ok(this.mallGroupService.getMallGroup(id));
-    }
-
-    @ApiOperation(value = "获取所有")
+    @ApiOperation(value = "获取所有分组")
     @GetMapping("MallGroup")
     public  ResponseEntity<List<MallGroup>> getAllMallGroup() {
        return ResponseEntity.ok(this.mallGroupService.getAllMallGroup());

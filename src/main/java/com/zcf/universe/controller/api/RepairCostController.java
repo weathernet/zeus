@@ -20,7 +20,6 @@ public class RepairCostController {
     @Autowired
     private RepairCostService repairCostService;
 
-
     @ApiOperation(value = "获取单个")
     @GetMapping("repairCost/{id}")
     public ResponseEntity<RepairCost> getRepairCost(@PathVariable Integer id) {

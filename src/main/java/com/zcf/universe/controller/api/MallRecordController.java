@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
-* Created by YuanQJ on 2018/11/18.
-*/
+ * Created by YuanQJ on 2018/11/18.
+ */
 @RestController
 @Api(value = "商城记录控制器", tags = {"商城记录接口"})
 public class MallRecordController {
@@ -27,29 +27,9 @@ public class MallRecordController {
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "删除")
-    @DeleteMapping("mallRecord/{id}")
-    public ResponseEntity<Void> deleteMallRecord(@PathVariable Integer id) {
-        this.mallRecordService.deleteMallRecord(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("mallRecord")
-    public ResponseEntity<Void> updateMallRecord(MallRecord mallRecord) {
-        this.mallRecordService.updateMallRecord(mallRecord);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "获取单个")
-    @GetMapping("mallRecord/{id}")
-    public ResponseEntity<MallRecord> getMallRecord(@PathVariable Integer id) {
-        return ResponseEntity.ok(this.mallRecordService.getMallRecord(id));
-    }
-
-    @ApiOperation(value = "获取所有")
+    @ApiOperation(value = "获取当前用户的消费记录")
     @GetMapping("MallRecord")
-    public  ResponseEntity<List<MallRecord>> getAllMallRecord() {
-       return ResponseEntity.ok(this.mallRecordService.getAllMallRecord());
+    public ResponseEntity<List<MallRecord>> getAllMallRecord(@RequestParam Integer userId) {
+        return ResponseEntity.ok(this.mallRecordService.getAllMallRecord(userId));
     }
 }

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
-* Created by YuanQJ on 2018/11/15.
-*/
+ * Created by YuanQJ on 2018/11/15.
+ */
 @RestController
 @Api(value = "搬家订单管理控制器", tags = {"搬家订单管理接口"})
 public class MoveOrderController {
@@ -27,29 +27,10 @@ public class MoveOrderController {
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "删除")
-    @DeleteMapping("moveOrder/{id}")
-    public ResponseEntity<Void> deleteMoveOrder(@PathVariable Integer id) {
-        this.moveOrderService.deleteMoveOrder(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("moveOrder")
-    public ResponseEntity<Void> updateMoveOrder(MoveOrder moveOrder) {
-        this.moveOrderService.updateMoveOrder(moveOrder);
-        return ResponseEntity.ok(null);
-    }
-
     @ApiOperation(value = "获取单个")
     @GetMapping("moveOrder/{id}")
     public ResponseEntity<MoveOrder> getMoveOrder(@PathVariable Integer id) {
         return ResponseEntity.ok(this.moveOrderService.getMoveOrder(id));
     }
 
-    @ApiOperation(value = "获取所有")
-    @GetMapping("MoveOrder")
-    public  ResponseEntity<List<MoveOrder>> getAllMoveOrder() {
-       return ResponseEntity.ok(this.moveOrderService.getAllMoveOrder());
-    }
 }

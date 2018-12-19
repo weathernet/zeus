@@ -28,48 +28,11 @@ public class MallRecordService {
         }
     }
 
-    //删除
-    public void deleteMallRecord(Integer id) {
-        int count = this.mallRecordmapper.deleteByPrimaryKey(id);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //更新
-    public void updateMallRecord(MallRecord mallRecord) {
-        int count = this.mallRecordmapper.updateByPrimaryKeySelective(mallRecord);
-        if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-    }
-
-    //查询所有
-    public List<MallRecord> getAllMallRecord() {
-        List<MallRecord> list = this.mallRecordmapper.selectAll();
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
-
-    //查询单个
-    public MallRecord getMallRecord(Integer id) {
-        MallRecord MallRecord = this.mallRecordmapper.selectByPrimaryKey(id);
-        if (MallRecord == null) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return MallRecord;
-    }
-
-    //字段搜索
-    public List<MallRecord> searchMallRecord(String keywords) {
+    //查询该用户的消费状态
+    public List<MallRecord> getAllMallRecord(Integer userId) {
         Example example = new Example(MallRecord.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
-        List<MallRecord> list = this.mallRecordmapper.selectByExample(example);
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
+        example.createCriteria().andEqualTo("recordUserId", userId);
+        return this.mallRecordmapper.selectByExample(example);
     }
+
 }

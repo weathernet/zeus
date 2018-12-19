@@ -39,14 +39,4 @@ public class RepairCostService{
         return RepairCost;
     }
 
-    //字段搜索
-     public List<RepairCost> searchRepairCost(String keywords) {
-        Example example = new Example(RepairCost.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
-        List<RepairCost> list = this.repairCostmapper.selectByExample(example);
-        if(CollectionUtils.isEmpty(list)){
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
 }

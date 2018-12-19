@@ -21,27 +21,6 @@ public class MoveDetailsController {
     @Autowired
     private MoveDetailsService moveDetailsService;
 
-    @ApiOperation(value = "新增")
-    @PostMapping("moveDetails")
-    public ResponseEntity<Void> addMoveDetails(MoveDetails moveDetails) {
-        this.moveDetailsService.addMoveDetails(moveDetails);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
-
-    @ApiOperation(value = "删除")
-    @DeleteMapping("moveDetails/{id}")
-    public ResponseEntity<Void> deleteMoveDetails(@PathVariable Integer id) {
-        this.moveDetailsService.deleteMoveDetails(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("moveDetails")
-    public ResponseEntity<Void> updateMoveDetails(MoveDetails moveDetails) {
-        this.moveDetailsService.updateMoveDetails(moveDetails);
-        return ResponseEntity.ok(null);
-    }
-
     @ApiOperation(value = "获取单个")
     @GetMapping("moveDetails/{id}")
     public ResponseEntity<MoveDetails> getMoveDetails(@PathVariable Integer id) {

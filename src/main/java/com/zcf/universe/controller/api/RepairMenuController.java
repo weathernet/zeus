@@ -20,8 +20,6 @@ public class RepairMenuController {
     @Autowired
     private RepairMenuService repairMenuService;
 
-
-
     @ApiOperation(value = "获取单个")
     @GetMapping("repairMenu/{id}")
     public ResponseEntity<RepairMenu> getRepairMenu(@PathVariable Integer id) {

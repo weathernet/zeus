@@ -44,15 +44,6 @@ public class MallGoodsService {
         }
     }
 
-    //查询所有
-    public List<MallGoods> getAllMallGoods() {
-        List<MallGoods> list = this.mallGoodsmapper.selectAll();
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
-
     //查询单个
     public MallGoods getMallGoods(Integer id) {
         MallGoods MallGoods = this.mallGoodsmapper.selectByPrimaryKey(id);
@@ -73,14 +64,4 @@ public class MallGoodsService {
         return list;
     }
 
-    //字段搜索
-    public List<MallGoods> searchMallGoods(String keywords) {
-        Example example = new Example(MallGoods.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
-        List<MallGoods> list = this.mallGoodsmapper.selectByExample(example);
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
 }

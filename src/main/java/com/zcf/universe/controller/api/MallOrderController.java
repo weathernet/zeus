@@ -1,14 +1,11 @@
 package com.zcf.universe.controller.api;
 
-import com.zcf.universe.common.exception.CommonException;
-import com.zcf.universe.common.exception.ExceptionEnum;
 import com.zcf.universe.common.utils.IDUtils;
-import com.zcf.universe.mapper.UserInfoMapper;
 import com.zcf.universe.pojo.MallOrder;
-import com.zcf.universe.pojo.UserInfo;
 import com.zcf.universe.service.MallOrderService;
-import com.zcf.universe.service.UserInfoService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,22 +15,14 @@ import java.util.Date;
 import java.util.List;
 
 /**
-* Created by YuanQJ on 2018/11/18.
-*/
+ * Created by YuanQJ on 2018/11/18.
+ */
 @RestController
 @Api(value = "订单管理控制器", tags = {"订单管理接口"})
 public class MallOrderController {
 
     @Autowired
     private MallOrderService mallOrderService;
-
-
-
-    @ApiOperation(value = "查询订单")
-    @GetMapping("mallorders")
-    public  ResponseEntity<List<MallOrder>> getOrder(String orderstate) {
-        return ResponseEntity.ok(this.mallOrderService.searchOrder(orderstate));
-    }
 
     //创建订单
     @ApiOperation(value = "创建订单")
@@ -50,23 +39,23 @@ public class MallOrderController {
     //订单付款
     @ApiOperation(value = "订单付款")
     @PutMapping("update_mallorder")
-    public ResponseEntity<Void> updateOrder(String orderid,Integer userid
-            ,String money,String paytype) {
-        return this.mallOrderService.updateOrder(orderid,userid,money,paytype);
+    public ResponseEntity<Void> updateOrder(String orderid, Integer userid
+            , String money, String paytype) {
+        return this.mallOrderService.updateOrder(orderid, userid, money, paytype);
     }
 
     //订单发货
     @ApiOperation(value = "订单发货")
     @PutMapping("send_mallorder")
-    public ResponseEntity<Void> updateOrderSendGoods(String orderid,String userid,String expressnumber) {
-        return this.mallOrderService.updateOrderSendGoods(orderid,userid,expressnumber);
+    public ResponseEntity<Void> updateOrderSendGoods(String orderid, String userid, String expressnumber) {
+        return this.mallOrderService.updateOrderSendGoods(orderid, userid, expressnumber);
     }
 
     //订单收货
     @ApiOperation(value = "订单收货")
     @PutMapping("get_mallorder")
-    public ResponseEntity<Void> updateOrderGetGoods(String orderid,String userid) {
-        return this.mallOrderService.updateOrderGetGoods(orderid,userid);
+    public ResponseEntity<Void> updateOrderGetGoods(String orderid, String userid) {
+        return this.mallOrderService.updateOrderGetGoods(orderid, userid);
     }
 
 
@@ -79,29 +68,19 @@ public class MallOrderController {
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "删除")
-    @DeleteMapping("mallOrder/{id}")
-    public ResponseEntity<Void> deleteMallOrder(@PathVariable Integer id) {
-        this.mallOrderService.deleteMallOrder(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("mallOrder")
-    public ResponseEntity<Void> updateMallOrder(MallOrder mallOrder) {
-        this.mallOrderService.updateMallOrder(mallOrder);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "获取单个")
+    @ApiOperation(value = "获取订单的信息")
     @GetMapping("mallOrder/{id}")
     public ResponseEntity<MallOrder> getMallOrder(@PathVariable Integer id) {
         return ResponseEntity.ok(this.mallOrderService.getMallOrder(id));
     }
 
-    @ApiOperation(value = "获取所有")
-    @GetMapping("MallOrder")
-    public  ResponseEntity<List<MallOrder>> getAllMallOrder() {
-       return ResponseEntity.ok(this.mallOrderService.getAllMallOrder());
+    @ApiOperation(value = "根据状态查询用户的订单状态")
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "userId", value = "用户的Id", required = true, dataType = "Integer"),
+            @ApiImplicitParam(name = "status", value = "状态", required = true, dataType = "Integer"),
+    })
+    @GetMapping("mallOrderUser")
+    public ResponseEntity<List<MallOrder>> getMallOrderUser(@RequestParam Integer userId, @RequestParam Integer status) {
+        return ResponseEntity.ok(this.mallOrderService.getMallOrderUser(userId, status));
     }
 }

@@ -16,8 +16,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
-* Created by YuanQJ on 2018/11/18.
-*/
+ * Created by YuanQJ on 2018/11/18.
+ */
 @RestController
 @Api(value = "商城评论管理控制器", tags = {"商城评论管理接口"})
 public class MallEvaluateController {
@@ -31,8 +31,8 @@ public class MallEvaluateController {
 
     //发布评论
     @ApiOperation(value = "发布评论")
-    @PostMapping("evaluate")
-    public ResponseEntity<Void> addEvaluate(MallEvaluate mallEvaluate,String orderId) {
+    @PostMapping("mallEvaluate")
+    public ResponseEntity<Void> addEvaluate(MallEvaluate mallEvaluate, String orderId) {
         //添加评论
         this.mallEvaluateService.addMallEvaluate(mallEvaluate);
         //修改订单状态（已评论）
@@ -44,31 +44,15 @@ public class MallEvaluateController {
         return ResponseEntity.ok(null);
     }
 
-
-/****************************************************************************/
-    @ApiOperation(value = "新增")
-    @PostMapping("mallEvaluate")
-    public ResponseEntity<Void> addMallEvaluate(MallEvaluate mallEvaluate) {
-        this.mallEvaluateService.addMallEvaluate(mallEvaluate);
-        return ResponseEntity.ok(null);
+    @ApiOperation(value = "获取当前商家的评论")
+    @GetMapping("MallEvaluateShop")
+    public ResponseEntity<List<MallEvaluate>> getAllMallEvaluateByShop(@RequestParam Integer shopId) {
+        return ResponseEntity.ok(this.mallEvaluateService.getAllMallEvaluateByShop(shopId));
     }
 
-    @ApiOperation(value = "修改")
-    @PutMapping("mallEvaluate")
-    public ResponseEntity<Void> updateMallEvaluate(MallEvaluate mallEvaluate) {
-        this.mallEvaluateService.updateMallEvaluate(mallEvaluate);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "获取单个")
-    @GetMapping("mallEvaluate/{id}")
-    public ResponseEntity<MallEvaluate> getMallEvaluate(@PathVariable Integer id) {
-        return ResponseEntity.ok(this.mallEvaluateService.getMallEvaluate(id));
-    }
-
-    @ApiOperation(value = "获取所有")
-    @GetMapping("MallEvaluate")
-    public  ResponseEntity<List<MallEvaluate>> getAllMallEvaluate() {
-       return ResponseEntity.ok(this.mallEvaluateService.getAllMallEvaluate());
+    @ApiOperation(value = "获取用户的评论")
+    @GetMapping("MallEvaluateUser")
+    public ResponseEntity<List<MallEvaluate>> getAllMallEvaluateByUser(@RequestParam Integer userId) {
+        return ResponseEntity.ok(this.mallEvaluateService.getAllMallEvaluateByUser(userId));
     }
 }

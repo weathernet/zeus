@@ -1,0 +1,65 @@
+<div class="layui-form" lay-filter="integralRecord-form" id="integralRecord-form" style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户主键</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="recordUserId" value="{{ d.params.recordUserId || '' }}" lay-verify="required" placeholder="请输入用户主键" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="recordType" value="{{ d.params.recordType || '' }}" lay-verify="required" placeholder="请输入状态" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">名称用户</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="recordUserName" value="{{ d.params.recordUserName || '' }}" lay-verify="required" placeholder="请输入名称用户" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">积分的增减</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="recordIntegral" value="{{ d.params.recordIntegral || '' }}" lay-verify="required" placeholder="请输入积分的增减" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <script type="text/html" template>
+        <input type="hidden" name="recordId" value="{{ d.params.recordId|| '' }}">
+    </script>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <input type="button" lay-submit lay-filter="integralRecord-form-submit" value="确认" class="layui-btn">
+        </div>
+    </div>
+</div>
+<script>
+    layui.use([ 'admin', 'form', 'upload' ], function() {
+        var $ = layui.$, form = layui.form, upload = layui.upload;
+
+        form.render();//使select可以显示option
+        //-------------文件上传开始----------
+        upload.render({
+            elem : '#integralRecord-upload-integralRecord',
+            url : '/integral/record/upload',
+            done : function(res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                console.log(res.data.src);
+                document.getElementById("img_url").value = res.data.src;//
+            }
+        });
+        //-------------文件上传结束----------
+    })
+</script>

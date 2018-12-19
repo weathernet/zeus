@@ -27,36 +27,31 @@ public class MallGoodsController {
     }
 
 
-    @ApiOperation(value = "新增")
+    @ApiOperation(value = "商家端新增商品")
     @PostMapping("mallGoods")
     public ResponseEntity<Void> addMallGoods(@RequestBody MallGoods mallGoods) {
         this.mallGoodsService.addMallGoods(mallGoods);
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "删除")
+    @ApiOperation(value = "商家端删除商品")
     @DeleteMapping("mallGoods/{id}")
     public ResponseEntity<Void> deleteMallGoods(@PathVariable Integer id) {
         this.mallGoodsService.deleteMallGoods(id);
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "修改")
+    @ApiOperation(value = "商家端修改商品的信息")
     @PutMapping("mallGoods")
     public ResponseEntity<Void> updateMallGoods(MallGoods mallGoods) {
         this.mallGoodsService.updateMallGoods(mallGoods);
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "获取单个")
+    @ApiOperation(value = "获取货物的具体信息")
     @GetMapping("mallGoods/{id}")
     public ResponseEntity<MallGoods> getMallGoods(@PathVariable Integer id) {
         return ResponseEntity.ok(this.mallGoodsService.getMallGoods(id));
     }
 
-    @ApiOperation(value = "获取所有")
-    @GetMapping("MallGoods")
-    public  ResponseEntity<List<MallGoods>> getAllMallGoods() {
-       return ResponseEntity.ok(this.mallGoodsService.getAllMallGoods());
-    }
 }

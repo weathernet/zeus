@@ -45,15 +45,4 @@ public class RepairOrderService{
         }
         return RepairOrder;
     }
-
-    //字段搜索
-     public List<RepairOrder> searchRepairOrder(String keywords) {
-        Example example = new Example(RepairOrder.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
-        List<RepairOrder> list = this.repairOrdermapper.selectByExample(example);
-        if(CollectionUtils.isEmpty(list)){
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
 }
