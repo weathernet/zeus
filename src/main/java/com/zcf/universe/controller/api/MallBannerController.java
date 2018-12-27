@@ -24,13 +24,6 @@ public class MallBannerController {
     @Autowired
     private MallBannerService mallBannerService;
 
-
-    @ApiOperation(value = "获取单个")
-    @GetMapping("mallBanner/{id}")
-    public ResponseEntity<MallBanner> getMallBanner(@PathVariable Integer id) {
-        return ResponseEntity.ok(this.mallBannerService.getMallBanner(id));
-    }
-
     @ApiOperation(value = "获取所有")
     @GetMapping("MallBanner")
     public  ResponseEntity<List<MallBanner>> getAllMallBanner() {

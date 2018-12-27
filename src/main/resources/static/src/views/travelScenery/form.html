@@ -19,9 +19,11 @@
         <label class="layui-form-label">景点图片</label>
         <div class="layui-input-inline">
             <script type="text/html" template>
-                <input type="text" name="sceneryImage" value="{{ d.params.sceneryImage || '' }}" lay-verify="required" placeholder="请输入景点图片" autocomplete="off" class="layui-input">
+                <input type="text" name="sceneryImage" value="{{ d.params.sceneryImage|| '' }}" lay-verify="required"
+                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
             </script>
         </div>
+        <button style="float: left;" type="button" class="layui-btn" id="travelScenery-upload-travelScenery">上传图片</button>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">风景分组</label>
@@ -63,17 +65,6 @@
             </script>
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">图片</label>
-        <div class="layui-input-inline">
-            <script type="text/html" template>
-                <input type="text" name="image" value="{{ d.params.image || '' }}" lay-verify="required"
-                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
-            </script>
-        </div>
-        <button style="float: left;" type="button" class="layui-btn" id="travelScenery-upload-travelScenery">上传图片</button>
-    </div>
-
     <script type="text/html" template>
         <input type="hidden" name="sceneryId" value="{{ d.params.sceneryId|| '' }}">
     </script>

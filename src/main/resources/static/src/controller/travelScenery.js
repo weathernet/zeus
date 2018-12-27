@@ -49,7 +49,7 @@ layui.define(['table', 'form'], function (exports) {
              {field: 'sceneryId',  title: '编号'}
             , {field: 'sceneryTitle', title: ' 景点标题',edit: 'text', sort: true}
             , {field: 'scenerySbuTitle', title: ' 副标题',edit: 'text', sort: true}
-            , {field: 'sceneryImage', title: ' 景点图片',edit: 'text', sort: true}
+            , {field: 'sceneryImage', title: ' 景点图片',templet:'#Img'}
             , {field: 'sceneryGroup', title: ' 风景分组',edit: 'text', sort: true}
             , {field: 'sceneryPrice', title: ' 景点价格',edit: 'text', sort: true}
             , {field: 'sceneryCity', title: ' 城市',edit: 'text', sort: true}
@@ -59,6 +59,7 @@ layui.define(['table', 'form'], function (exports) {
             , {field: 'updateTime', title: '修改日期',templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
             , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-travelScenery-toolbar'}//设置表格工具条的名称
         ]]
+
         , page: true//开启分页
         , limit: 20
         , limits: [20, 25, 30, 35, 40]

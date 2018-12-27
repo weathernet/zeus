@@ -17,7 +17,7 @@ import java.util.List;
 * @date 2018/12/18
 */
 @RestController
-@Api(value = "IntegralRecord控制器", tags = {"IntegralRecord接口"})
+@Api(value = "积分记录控制器", tags = {"积分记录接口"})
 public class IntegralRecordController {
 
     @Autowired

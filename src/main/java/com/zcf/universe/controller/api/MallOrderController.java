@@ -18,7 +18,7 @@ import java.util.List;
  * Created by YuanQJ on 2018/11/18.
  */
 @RestController
-@Api(value = "订单管理控制器", tags = {"订单管理接口"})
+@Api(value = "商城订单管理控制器", tags = {"商城订单管理接口"})
 public class MallOrderController {
 
     @Autowired
@@ -29,6 +29,8 @@ public class MallOrderController {
     @PostMapping("mallorder")
     public ResponseEntity<Void> addOrder(MallOrder mallOrder) {
         mallOrder.setOrderId(IDUtils.genItemId());
+        mallOrder.setOrderCompany("");
+        mallOrder.setOrderExpressNumber("");
         mallOrder.setCreateTime(new Date());
         mallOrder.setUpdateTime(new Date());
         mallOrder.setOrderStatus(0);
@@ -44,28 +46,11 @@ public class MallOrderController {
         return this.mallOrderService.updateOrder(orderid, userid, money, paytype);
     }
 
-    //订单发货
-    @ApiOperation(value = "订单发货")
-    @PutMapping("send_mallorder")
-    public ResponseEntity<Void> updateOrderSendGoods(String orderid, String userid, String expressnumber) {
-        return this.mallOrderService.updateOrderSendGoods(orderid, userid, expressnumber);
-    }
-
     //订单收货
     @ApiOperation(value = "订单收货")
     @PutMapping("get_mallorder")
     public ResponseEntity<Void> updateOrderGetGoods(String orderid, String userid) {
         return this.mallOrderService.updateOrderGetGoods(orderid, userid);
-    }
-
-
-    /*************************************************************************/
-
-    @ApiOperation(value = "新增")
-    @PostMapping("mallOrder")
-    public ResponseEntity<Void> addMallOrder(MallOrder mallOrder) {
-        this.mallOrderService.addMallOrder(mallOrder);
-        return ResponseEntity.ok(null);
     }
 
     @ApiOperation(value = "获取订单的信息")
@@ -74,13 +59,13 @@ public class MallOrderController {
         return ResponseEntity.ok(this.mallOrderService.getMallOrder(id));
     }
 
-    @ApiOperation(value = "根据状态查询用户的订单状态")
+    @ApiOperation(value = "查询用户商城的订单")
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "userId", value = "用户的Id", required = true, dataType = "Integer"),
-            @ApiImplicitParam(name = "status", value = "状态", required = true, dataType = "Integer"),
     })
     @GetMapping("mallOrderUser")
-    public ResponseEntity<List<MallOrder>> getMallOrderUser(@RequestParam Integer userId, @RequestParam Integer status) {
-        return ResponseEntity.ok(this.mallOrderService.getMallOrderUser(userId, status));
+    public ResponseEntity<List<MallOrder>> getMallOrderUser(@RequestParam Integer userId) {
+        return ResponseEntity.ok(this.mallOrderService.getMallOrderUser(userId));
     }
+
 }

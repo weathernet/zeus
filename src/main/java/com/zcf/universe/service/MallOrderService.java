@@ -28,7 +28,6 @@ public class MallOrderService {
     @Autowired
     private UserInfoMapper userInfomapper;
 
-
     //订单付款
     public ResponseEntity<Void> updateOrder(String orderid, Integer userid, String money, String paytype) {
         MallOrder mallOrder = new MallOrder();
@@ -57,15 +56,15 @@ public class MallOrderService {
     }
 
     //订单发货
-    public ResponseEntity<Void> updateOrderSendGoods(String orderid, String userid, String expressnumber) {
+    public void updateOrderSendGoods(Long orderId, String userId, String orderCompany, String orderExpressNumber) {
         MallOrder mallOrder = new MallOrder();
         mallOrder.setOrderStatus(2);
-        mallOrder.setOrderUserId(Integer.parseInt(userid));
-        mallOrder.setOrderExpressNumber(expressnumber);
+        mallOrder.setOrderUserId(Integer.parseInt(userId));
+        mallOrder.setOrderExpressNumber(orderExpressNumber);
+        mallOrder.setOrderCompany(orderCompany);
         mallOrder.setUpdateTime(new Date());
-        mallOrder.setOrderId(Long.parseLong(orderid));
+        mallOrder.setOrderId(orderId);
         mallOrdermapper.updateByPrimaryKeySelective(mallOrder);
-        return ResponseEntity.ok(null);
     }
 
     //订单收货
@@ -90,15 +89,6 @@ public class MallOrderService {
     }
 
 
-    //查询所有
-    public List<MallOrder> getAllMallOrder() {
-        List<MallOrder> list = this.mallOrdermapper.selectAll();
-        if (CollectionUtils.isEmpty(list)) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return list;
-    }
-
     //查询单个
     public MallOrder getMallOrder(Integer id) {
         MallOrder MallOrder = this.mallOrdermapper.selectByPrimaryKey(id);
@@ -108,11 +98,10 @@ public class MallOrderService {
         return MallOrder;
     }
 
-    public List<MallOrder> getMallOrderUser(Integer userId, Integer status) {
+    public List<MallOrder> getMallOrderUser(Integer userId) {
         Example example = new Example(MallOrder.class);
         example.createCriteria()
-                .andEqualTo("orderUserId", userId)
-                .andEqualTo("orderStatus", status);
+                .andEqualTo("orderUserId", userId);
         return this.mallOrdermapper.selectByExample(example);
     }
 
@@ -120,7 +109,13 @@ public class MallOrderService {
         this.mallOrdermapper.updateByPrimaryKeySelective(mallOrder);
     }
 
-    public Object searchOrder(String orderstate) {
-        return null;
+    public List<MallOrder> mallOrderTrader(Integer TraderId, Integer status) {
+        Example example = new Example(MallOrder.class);
+        if (status == null) {
+            example.createCriteria().andEqualTo("orderTraderId", TraderId);
+        } else {
+            example.createCriteria().andEqualTo("orderTraderId", TraderId).andEqualTo("orderStatus", status);
+        }
+        return this.mallOrdermapper.selectByExample(example);
     }
 }

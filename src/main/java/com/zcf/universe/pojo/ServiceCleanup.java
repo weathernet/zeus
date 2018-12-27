@@ -14,20 +14,19 @@ import java.util.Date;
  */
 @Data
 @Table(name = "service_cleanup")
-@ApiModel(value = "ServiceCleanup模型", description = "ServiceCleanup信息")
+@ApiModel(value = "清洁模型", description = "清洁信息")
 public class ServiceCleanup {
-
     @Id
     @ApiModelProperty(value = "主键", required = true)
     private Integer cleanupId;
-
-    @ApiModelProperty(value = "保洁详情")
-    private String cleanupContent;
-
+    @ApiModelProperty(value = "保洁范围")
+    private String cleanupRange;
+    @ApiModelProperty(value = "保洁价格")
+    private String cleanupPrice;
+    @ApiModelProperty(value = "保洁介绍")
+    private String cleanupIntroduction;
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
-
     @ApiModelProperty(value = "更新时间")
     private Date updateTime;
-
 }

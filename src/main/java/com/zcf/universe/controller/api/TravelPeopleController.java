@@ -12,53 +12,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
-* Created by YuanQJ on 2018/11/19.
-*/
+ * Created by YuanQJ on 2018/11/19.
+ */
 @RestController
-@Api(value = "订票人管理控制器", tags = {"订票人管理接口"})
+@Api(value = "景点订票人管理控制器", tags = {"景点订票人管理接口"})
 public class TravelPeopleController {
 
     @Autowired
     private TravelPeopleService travelPeopleService;
 
-
-    @ApiOperation(value = "获取所有")
+    @ApiOperation(value = "获取用户所有的订票人")
     @PostMapping("people")
-    public  ResponseEntity<List<TravelPeople>> getAllTravelPeople(String userid) {
+    public ResponseEntity<List<TravelPeople>> getAllTravelPeople(String userid) {
         return ResponseEntity.ok(this.travelPeopleService.searchTravelPeople(userid));
     }
 
-
-    @ApiOperation(value = "新增")
+    @ApiOperation(value = "新增订票的用户")
     @PostMapping("travelPeople")
     public ResponseEntity<Void> addTravelPeople(TravelPeople travelPeople) {
         this.travelPeopleService.addTravelPeople(travelPeople);
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "删除")
+    @ApiOperation(value = "删除订票的用户")
     @DeleteMapping("travelPeople/{id}")
     public ResponseEntity<Void> deleteTravelPeople(@PathVariable Integer id) {
         this.travelPeopleService.deleteTravelPeople(id);
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "修改")
+    @ApiOperation(value = "修改订票人的信息")
     @PutMapping("travelPeople")
     public ResponseEntity<Void> updateTravelPeople(TravelPeople travelPeople) {
         this.travelPeopleService.updateTravelPeople(travelPeople);
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "获取单个")
-    @GetMapping("travelPeople/{id}")
-    public ResponseEntity<TravelPeople> getTravelPeople(@PathVariable Integer id) {
-        return ResponseEntity.ok(this.travelPeopleService.getTravelPeople(id));
-    }
-
-    @ApiOperation(value = "获取所有")
-    @GetMapping("TravelPeople")
-    public  ResponseEntity<List<TravelPeople>> getAllTravelPeople() {
-       return ResponseEntity.ok(this.travelPeopleService.getAllTravelPeople());
-    }
 }

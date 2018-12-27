@@ -53,15 +53,6 @@ public class TravelPeopleService {
         return list;
     }
 
-    //查询单个
-    public TravelPeople getTravelPeople(Integer id) {
-        TravelPeople TravelPeople = this.travelPeoplemapper.selectByPrimaryKey(id);
-        if (TravelPeople == null) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return TravelPeople;
-    }
-
     //字段搜索
     public List<TravelPeople> searchTravelPeople(String keywords) {
         Example example = new Example(TravelPeople.class);

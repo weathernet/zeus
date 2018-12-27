@@ -28,13 +28,6 @@ public class ServiceEvaluationController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @ApiOperation(value = "删除")
-    @DeleteMapping("serviceEvaluation/{id}")
-    public ResponseEntity<Void> deleteServiceEvaluation(@PathVariable Integer id) {
-        this.serviceEvaluationService.deleteServiceEvaluation(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
-
     @ApiOperation(value = "修改")
     @PutMapping("serviceEvaluation")
     public ResponseEntity<Void> updateServiceEvaluation(ServiceEvaluation serviceEvaluation) {
@@ -48,9 +41,9 @@ public class ServiceEvaluationController {
         return ResponseEntity.ok(this.serviceEvaluationService.getServiceEvaluation(id));
     }
 
-    @ApiOperation(value = "获取所有")
-    @GetMapping("ServiceEvaluation")
-    public  ResponseEntity<List<ServiceEvaluation>> getAllServiceEvaluation() {
-       return ResponseEntity.ok(this.serviceEvaluationService.getAllServiceEvaluation());
+    @ApiOperation(value = "获取所有当前用户服务的评论")
+    @GetMapping("ServiceEvaluationByUser")
+    public  ResponseEntity<List<ServiceEvaluation>> getAllServiceEvaluationByUser(@RequestParam Integer userId) {
+       return ResponseEntity.ok(this.serviceEvaluationService.getAllServiceEvaluationByUser(userId));
     }
 }

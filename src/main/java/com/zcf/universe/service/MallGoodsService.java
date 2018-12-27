@@ -44,7 +44,7 @@ public class MallGoodsService {
         }
     }
 
-    //查询单个
+    //查询一个商品的详情
     public MallGoods getMallGoods(Integer id) {
         MallGoods MallGoods = this.mallGoodsmapper.selectByPrimaryKey(id);
         if (MallGoods == null) {
@@ -64,4 +64,10 @@ public class MallGoodsService {
         return list;
     }
 
+    //商家所有的商品
+    public List<MallGoods> mallAllGoods(Integer traderId) {
+        Example example = new Example(MallGoods.class);
+        example.createCriteria().andEqualTo("goodsTraderId", traderId);
+        return this.mallGoodsmapper.selectByExample(example);
+    }
 }

@@ -66,10 +66,11 @@ public class UserAddressService {
         //查询出当前用户所有的地址
         Example example = new Example(UserAddress.class);
         example.createCriteria().andEqualTo("addressUserId", userId).andEqualTo("addressDefault", 1);
-        UserAddress UserAddress = this.userAddressmapper.selectOneByExample(example);
-        if (UserAddress == null) {
+        final List<UserAddress> userAddresses = this.userAddressmapper.selectByExample(example);
+        if (userAddresses.size() == 0) {
             throw new CommonException(ExceptionEnum.THE_DEFAULT_ADDRESS_DOES_NOT_EXIST);
         }
+        final UserAddress UserAddress = userAddresses.get(0);
         return UserAddress;
     }
 

@@ -12,21 +12,14 @@
         <label class="layui-form-label">照片</label>
         <div class="layui-input-inline">
             <script type="text/html" template>
-                <input type="text" name="recommendImage" value="{{ d.params.recommendImage || '' }}"
-                       lay-verify="required" placeholder="请输入照片" autocomplete="off" class="layui-input">
+                <input type="text" name="recommendImage" value="{{ d.params.recommendImage|| '' }}" lay-verify="required"
+                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
             </script>
         </div>
+        <button style="float: left;" type="button" class="layui-btn" id="homeRecommend-upload-homeRecommend">上传图片</button>
     </div>
-    <!-- <div class="layui-form-item">
-         <label class="layui-form-label">推荐简介</label>
-         <div class="layui-input-inline">
-             <script type="text/html" template>
-                 <input type="text" name="recommendIntroduction" value="{{ d.params.recommendIntroduction || '' }}" lay-verify="required" placeholder="请输入推荐简介" autocomplete="off" class="layui-input">
-             </script>
-         </div>
-     </div>-->
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">普通文本域</label>
+        <label class="layui-form-label">推荐简介</label>
         <div class="layui-input-block">
             <script type="text/html" template>
                 <textarea placeholder="请输入内容" name="recommendIntroduction" class="layui-textarea">{{ d.params.recommendIntroduction || '' }}</textarea>

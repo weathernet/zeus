@@ -14,7 +14,7 @@ import java.util.List;
 * Created by YuanQJ on 2018/11/18.
 */
 @RestController
-@Api(value = "商品控制器", tags = {"商品接口"})
+@Api(value = "商城商品控制器", tags = {"商城商品接口"})
 public class MallGoodsController {
 
     @Autowired
@@ -27,26 +27,6 @@ public class MallGoodsController {
     }
 
 
-    @ApiOperation(value = "商家端新增商品")
-    @PostMapping("mallGoods")
-    public ResponseEntity<Void> addMallGoods(@RequestBody MallGoods mallGoods) {
-        this.mallGoodsService.addMallGoods(mallGoods);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "商家端删除商品")
-    @DeleteMapping("mallGoods/{id}")
-    public ResponseEntity<Void> deleteMallGoods(@PathVariable Integer id) {
-        this.mallGoodsService.deleteMallGoods(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "商家端修改商品的信息")
-    @PutMapping("mallGoods")
-    public ResponseEntity<Void> updateMallGoods(MallGoods mallGoods) {
-        this.mallGoodsService.updateMallGoods(mallGoods);
-        return ResponseEntity.ok(null);
-    }
 
     @ApiOperation(value = "获取货物的具体信息")
     @GetMapping("mallGoods/{id}")

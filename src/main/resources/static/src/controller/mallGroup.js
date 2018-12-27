@@ -48,7 +48,7 @@ layui.define(['table', 'form'], function (exports) {
         , cols: [[
              {field: 'groupId',  title: '编号'}
             , {field: 'groupName', title: ' 名称',edit: 'text', sort: true}
-            , {field: 'groupImage', title: ' 图片',edit: 'text', sort: true}
+            , {field: 'groupImage', title: ' 图片', templet:'#Img',sort: true}
             , {field: 'createTime', title: '创建日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
             , {field: 'updateTime', title: '修改日期',templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
             , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-mallGroup-toolbar'}//设置表格工具条的名称

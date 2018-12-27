@@ -28,13 +28,4 @@ public class MallBannerService {
         return list;
     }
 
-    //查询单个
-    public MallBanner getMallBanner(Integer id) {
-        MallBanner MallBanner = this.mallBannermapper.selectByPrimaryKey(id);
-        if (MallBanner == null) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
-        }
-        return MallBanner;
-    }
-
 }

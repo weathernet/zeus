@@ -44,10 +44,10 @@ public class TravelScenery{
     private Integer sceneryNumber;
 
     @ApiModelProperty(value = "景点评分")
-    private String sceneryPoint;//景点评分
+    private String sceneryPoint;
 
     @ApiModelProperty(value = "景点备注")
-    private String sceneryRemark;//景点备注
+    private String sceneryRemark;
 
     @ApiModelProperty(value = "创建时间")
     private Date createTime;

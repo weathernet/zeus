@@ -35,7 +35,7 @@ public class TravelOrder{
     private String orderTitle;
 
     @ApiModelProperty(value = "使用日期")
-    private Date orderServiceDate;
+    private String orderServiceDate;
 
     @ApiModelProperty(value = "订单状态")
     private String orderState;//订单状态 0代付款 1待使用 2已使用 3已过期

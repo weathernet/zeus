@@ -71,29 +71,10 @@ public class TravelOrderController {
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "删除")
-    @DeleteMapping("travelOrder/{id}")
-    public ResponseEntity<Void> deleteTravelOrder(@PathVariable Integer id) {
-        this.travelOrderService.deleteTravelOrder(id);
-        return ResponseEntity.ok(null);
-    }
-
-    @ApiOperation(value = "修改")
-    @PutMapping("travelOrder")
-    public ResponseEntity<Void> updateTravelOrder(TravelOrder travelOrder) {
-        this.travelOrderService.updateTravelOrder(travelOrder);
-        return ResponseEntity.ok(null);
-    }
-
     @ApiOperation(value = "获取单个")
     @GetMapping("travelOrder/{id}")
     public ResponseEntity<TravelOrder> getTravelOrder(@PathVariable Integer id) {
         return ResponseEntity.ok(this.travelOrderService.getTravelOrder(id));
     }
 
-    @ApiOperation(value = "获取所有")
-    @GetMapping("TravelOrder")
-    public  ResponseEntity<List<TravelOrder>> getAllTravelOrder() {
-       return ResponseEntity.ok(this.travelOrderService.getAllTravelOrder());
-    }
 }

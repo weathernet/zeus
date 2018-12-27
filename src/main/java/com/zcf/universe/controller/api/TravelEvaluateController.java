@@ -21,26 +21,25 @@ public class TravelEvaluateController {
     @Autowired
     private TravelEvaluateService travelEvaluateService;
 
-    //查询景点评论
-    @ApiOperation(value = "搜索该景点的评论")
+    //获取该景点的评论
+    @ApiOperation(value = "获取该景点的评论")
     @PostMapping("travelEvaluateById")
-    public ResponseEntity<List<TravelEvaluate>> getEvaluate(Integer evaluateSceneryId) {
-        return ResponseEntity.ok(this.travelEvaluateService.searchTravelEvaluate(evaluateSceneryId));
+    public ResponseEntity<List<TravelEvaluate>> travelEvaluateById(Integer evaluateSceneryId) {
+        return ResponseEntity.ok(this.travelEvaluateService.travelEvaluateById(evaluateSceneryId));
     }
 
+    //用户的所有景点评论
+    @ApiOperation(value = "用户的所有景点评论")
+    @PostMapping("travelEvaluateByUser")
+    public ResponseEntity<List<TravelEvaluate>> travelEvaluateByUser(Integer userId) {
+        return ResponseEntity.ok(this.travelEvaluateService.travelEvaluateByUser(userId));
+    }
 
     @ApiOperation(value = "评论景点")
     @PostMapping("travelEvaluate")
     public ResponseEntity<Void> addTravelEvaluate(TravelEvaluate travelEvaluate) {
         this.travelEvaluateService.addTravelEvaluate(travelEvaluate);
         return ResponseEntity.ok(null);
-    }
-
-
-    @ApiOperation(value = "获取单个")
-    @GetMapping("travelEvaluate/{id}")
-    public ResponseEntity<TravelEvaluate> getTravelEvaluate(@PathVariable Integer id) {
-        return ResponseEntity.ok(this.travelEvaluateService.getTravelEvaluate(id));
     }
 
 }

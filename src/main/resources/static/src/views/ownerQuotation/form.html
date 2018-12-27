@@ -1,0 +1,145 @@
+<div class="layui-form" lay-filter="ownerQuotation-form" id="ownerQuotation-form" style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">一月</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="january" value="{{ d.params.january || '' }}" lay-verify="required" placeholder="请输入一月" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">二月</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="february" value="{{ d.params.february || '' }}" lay-verify="required" placeholder="请输入二月" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">三月</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="march" value="{{ d.params.march || '' }}" lay-verify="required" placeholder="请输入三月" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">四月</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="april" value="{{ d.params.april || '' }}" lay-verify="required" placeholder="请输入四月" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">五月</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="may" value="{{ d.params.may || '' }}" lay-verify="required" placeholder="请输入五月" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">六月</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="june" value="{{ d.params.june || '' }}" lay-verify="required" placeholder="请输入六月" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">七月</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="july" value="{{ d.params.july || '' }}" lay-verify="required" placeholder="请输入七月" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">八月</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="august" value="{{ d.params.august || '' }}" lay-verify="required" placeholder="请输入八月" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">九月</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="september" value="{{ d.params.september || '' }}" lay-verify="required" placeholder="请输入九月" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">十月</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="october" value="{{ d.params.october || '' }}" lay-verify="required" placeholder="请输入十月" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">十一月</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="november" value="{{ d.params.november || '' }}" lay-verify="required" placeholder="请输入十一月" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">十二月</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="december" value="{{ d.params.december || '' }}" lay-verify="required" placeholder="请输入十二月" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">城市名</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="city" value="{{ d.params.city || '' }}" lay-verify="required" placeholder="请输入城市名" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">戶室</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="type" value="{{ d.params.type || '' }}" lay-verify="required" placeholder="请输入戶室" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <script type="text/html" template>
+        <input type="hidden" name="id" value="{{ d.params.id|| '' }}">
+    </script>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <input type="button" lay-submit lay-filter="ownerQuotation-form-submit" value="确认" class="layui-btn">
+        </div>
+    </div>
+</div>
+<script>
+    layui.use([ 'admin', 'form', 'upload' ], function() {
+        var $ = layui.$, form = layui.form, upload = layui.upload;
+
+        form.render();//使select可以显示option
+        //-------------文件上传开始----------
+        upload.render({
+            elem : '#ownerQuotation-upload-ownerQuotation',
+            url : '/owner/quotation/upload',
+            done : function(res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                console.log(res.data.src);
+                document.getElementById("img_url").value = res.data.src;//
+            }
+        });
+        //-------------文件上传结束----------
+    })
+</script>

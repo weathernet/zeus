@@ -48,7 +48,7 @@ layui.define(['table', 'form'], function (exports) {
         , cols: [[
              {field: 'recommendId',  title: '编号'}
             , {field: 'recommendTitle', title: ' 推荐标题',edit: 'text'}
-            , {field: 'recommendImage', title: ' 照片',edit: 'text'}
+            , {field: 'recommendImage', title: ' 照片',templet: '#Img'}
             , {field: 'recommendIntroduction', title: ' 推荐简介'}
             , {field: 'recommendType', title: ' 推荐类型:'}
             , {field: 'recommendUrl', title: ' 跳转页面',edit: 'text', sort: true}

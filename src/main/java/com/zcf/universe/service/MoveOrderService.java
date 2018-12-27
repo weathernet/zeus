@@ -24,7 +24,7 @@ public class MoveOrderService {
     public void addMoveOrder(MoveOrder moveOrder) {
         int count = this.moveOrdermapper.insertSelective(moveOrder);
         if (count != 1) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+            throw new CommonException(ExceptionEnum.SAVE_FAILURE);
         }
     }
 
@@ -32,9 +32,18 @@ public class MoveOrderService {
     public MoveOrder getMoveOrder(Integer id) {
         MoveOrder MoveOrder = this.moveOrdermapper.selectByPrimaryKey(id);
         if (MoveOrder == null) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+            throw new CommonException(ExceptionEnum.DATA_DOES_NOT_EXIST);
         }
         return MoveOrder;
     }
 
+    public List<MoveOrder> getMoveOrderByUser(Integer userId) {
+        Example example = new Example(MoveOrder.class);
+        example.createCriteria().andEqualTo("orderUserId", userId);
+        final List<MoveOrder> moveOrders = this.moveOrdermapper.selectByExample(example);
+        if (moveOrders.size() == 0) {
+            throw new CommonException(ExceptionEnum.DATA_DOES_NOT_EXIST);
+        }
+        return moveOrders;
+    }
 }

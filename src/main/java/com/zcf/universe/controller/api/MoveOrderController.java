@@ -20,17 +20,22 @@ public class MoveOrderController {
     @Autowired
     private MoveOrderService moveOrderService;
 
-    @ApiOperation(value = "新增")
+    @ApiOperation(value = "增加搬家的订单")
     @PostMapping("moveOrder")
     public ResponseEntity<Void> addMoveOrder(MoveOrder moveOrder) {
         this.moveOrderService.addMoveOrder(moveOrder);
         return ResponseEntity.ok(null);
     }
 
-    @ApiOperation(value = "获取单个")
+    @ApiOperation(value = "获取搬家订单的详细信息")
     @GetMapping("moveOrder/{id}")
     public ResponseEntity<MoveOrder> getMoveOrder(@PathVariable Integer id) {
         return ResponseEntity.ok(this.moveOrderService.getMoveOrder(id));
     }
 
+    @ApiOperation(value = "获取用户所有的搬家订单")
+    @GetMapping("moveOrder")
+    public ResponseEntity<List<MoveOrder>> getMoveOrderByUser(@RequestParam Integer userId) {
+        return ResponseEntity.ok(this.moveOrderService.getMoveOrderByUser(userId));
+    }
 }
