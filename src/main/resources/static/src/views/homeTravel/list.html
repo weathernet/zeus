@@ -1,19 +1,19 @@
-<title>repairCost列表</title>
+<title>homeTravel列表</title>
 <div class="layui-card layadmin-header">
     <div class="layui-breadcrumb" lay-filter="breadcrumb">
         <a lay-href="">主页</a>
         <a>
-            <cite>repairCost管理</cite>
+            <cite>homeTravel管理</cite>
         </a>
         <a>
-            <cite>repairCost管理</cite>
+            <cite>homeTravel管理</cite>
         </a>
     </div>
 </div>
 <div class="layui-fluid">
     <div class="layui-card">
         <div class="layui-card-body">
-            <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="lay-admin-repairCost-form">
+            <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="lay-admin-homeTravel-form">
                 <div class="layui-form-item">
                     <div class="layui-inline">
                         <label class="layui-form-label">关键字</label>
@@ -22,20 +22,20 @@
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-repairCost-back-search">
+                        <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-homeTravel-back-search">
                             <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                         </button>
                     </div>
                 </div>
             </div>
             <div style="padding-bottom: 10px;">
-                <button class="layui-btn repairCost-form" data-type="add">新增</button>
+                <button class="layui-btn homeTravel-form" data-type="add">新增</button>
             </div>
-            <table id="LAY-repairCost-list" lay-filter="LAY-repairCost-list"></table>
+            <table id="LAY-homeTravel-list" lay-filter="LAY-homeTravel-list"></table>
             <script type="text/html" id="Img">
-                <img style="display: inline-block; width: 50%; height: 100%;" src={ d.avatar }} onclick="previewImg(this)">
+                <img style="display: inline-block; width: 50%; height: 100%;" src={{ d.avatar }} onclick="previewImg(this)">
             </script>
-            <script type="text/html" id="table-repairCost-toolbar">
+            <script type="text/html" id="table-homeTravel-toolbar">
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"> <i class="layui-icon  layui-icon-del"></i>删除</a>
             </script>
@@ -65,6 +65,6 @@
     }
     //----------图片弹出结束-------------
     //============使用外部引入的JS===========
-    layui.use('repairCost', layui.factory('repairCost')).use('repairCost')
+    layui.use('homeTravel', layui.factory('homeTravel')).use('homeTravel')
 </script>
 

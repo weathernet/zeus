@@ -50,6 +50,6 @@ public class MallOrder {
     private String goodsPrice;
     @ApiModelProperty(value = "商品的数量")
     private Integer goodsNumber;
-
-
+    @ApiModelProperty(value = "类型0.商城1.积分")
+    private Integer orderType;
 }

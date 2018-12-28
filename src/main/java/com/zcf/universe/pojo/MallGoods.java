@@ -29,8 +29,8 @@ public class MallGoods{
     private String goodsDetailsImages;
     @ApiModelProperty(value = "单价")
     private String goodsPrice;
-    @ApiModelProperty(value = "商品分类0:家政1.办公2.生活3.商家服务4.出行")
-    private String goodsSort;
+    @ApiModelProperty(value = "商品分类")
+    private String goodsGroup;
     @ApiModelProperty(value = "状态:0.待审核1.已通过2.未通过")
     private String goodsStatus;
     @ApiModelProperty(value = "创建时间")

@@ -19,6 +19,10 @@ public class ServiceCleanup {
     @Id
     @ApiModelProperty(value = "主键", required = true)
     private Integer cleanupId;
+    @ApiModelProperty(value = "标题")
+    private String title;
+    @ApiModelProperty(value = "图标")
+    private String icon;
     @ApiModelProperty(value = "保洁范围")
     private String cleanupRange;
     @ApiModelProperty(value = "保洁价格")

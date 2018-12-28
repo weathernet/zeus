@@ -1,19 +1,19 @@
-<title>repairDetails列表</title>
+<title>houseProperty列表</title>
 <div class="layui-card layadmin-header">
     <div class="layui-breadcrumb" lay-filter="breadcrumb">
         <a lay-href="">主页</a>
         <a>
-            <cite>repairDetails管理</cite>
+            <cite>houseProperty管理</cite>
         </a>
         <a>
-            <cite>repairDetails管理</cite>
+            <cite>houseProperty管理</cite>
         </a>
     </div>
 </div>
 <div class="layui-fluid">
     <div class="layui-card">
         <div class="layui-card-body">
-            <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="lay-admin-repairDetails-form">
+            <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="lay-admin-houseProperty-form">
                 <div class="layui-form-item">
                     <div class="layui-inline">
                         <label class="layui-form-label">关键字</label>
@@ -22,20 +22,20 @@
                         </div>
                     </div>
                     <div class="layui-inline">
-                        <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-repairDetails-back-search">
+                        <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-houseProperty-back-search">
                             <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                         </button>
                     </div>
                 </div>
             </div>
             <div style="padding-bottom: 10px;">
-                <button class="layui-btn repairDetails-form" data-type="add">新增</button>
+                <button class="layui-btn houseProperty-form" data-type="add">新增</button>
             </div>
-            <table id="LAY-repairDetails-list" lay-filter="LAY-repairDetails-list"></table>
+            <table id="LAY-houseProperty-list" lay-filter="LAY-houseProperty-list"></table>
             <script type="text/html" id="Img">
-                <img style="display: inline-block; width: 50%; height: 100%;" src={{ d.detailsImage }} onclick="previewImg(this)">
+                <img style="display: inline-block; width: 50%; height: 100%;" src={{ d.avatar }} onclick="previewImg(this)">
             </script>
-            <script type="text/html" id="table-repairDetails-toolbar">
+            <script type="text/html" id="table-houseProperty-toolbar">
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"> <i class="layui-icon  layui-icon-del"></i>删除</a>
             </script>
@@ -65,7 +65,6 @@
     }
     //----------图片弹出结束-------------
     //============使用外部引入的JS===========
-    layui.use('repairDetails', layui.factory('repairDetails')).use('repairDetails')
-
+    layui.use('houseProperty', layui.factory('houseProperty')).use('houseProperty')
 </script>
 

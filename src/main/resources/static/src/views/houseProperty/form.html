@@ -1,0 +1,171 @@
+<div class="layui-form" lay-filter="houseProperty-form" id="houseProperty-form" style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">城市</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="city" value="{{ d.params.city || '' }}" lay-verify="required" placeholder="请输入城市" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">价格</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="sunPrice" value="{{ d.params.sunPrice || '' }}" lay-verify="required" placeholder="请输入价格" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+     <div class="layui-form-item">
+         <label class="layui-form-label">图片</label>
+         <div class="layui-input-inline">
+             <script type="text/html" template>
+                 <input type="text" name="image" value="{{ d.params.image|| '' }}" lay-verify="required"
+                        placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
+             </script>
+         </div>
+         <button style="float: left;" type="button" class="layui-btn" id="houseProperty-upload-houseProperty">上传图片</button>
+     </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否可已注册</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="register" value="{{ d.params.register || '' }}" lay-verify="required" placeholder="请输入是否可已注册" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">单价</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="price" value="{{ d.params.price || '' }}" lay-verify="required" placeholder="请输入单价" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">看房日期</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="lookTime" value="{{ d.params.lookTime || '' }}" lay-verify="required" placeholder="请输入看房日期" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">租期</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="leaseTerm" value="{{ d.params.leaseTerm || '' }}" lay-verify="required" placeholder="请输入租期" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">面积</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="area" value="{{ d.params.area || '' }}" lay-verify="required" placeholder="请输入面积" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">房产优势</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="advantage" value="{{ d.params.advantage || '' }}" lay-verify="required" placeholder="请输入房产优势" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">地址</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="address" value="{{ d.params.address || '' }}" lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">装修情况</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="renovation" value="{{ d.params.renovation || '' }}" lay-verify="required" placeholder="请输入装修情况" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="status" value="{{ d.params.status || '' }}" lay-verify="required" placeholder="请输入状态" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">物业费</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="property" value="{{ d.params.property || '' }}" lay-verify="required" placeholder="请输入物业费" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">简介</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="introduction" value="{{ d.params.introduction || '' }}" lay-verify="required" placeholder="请输入简介" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收费标准</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="standard" value="{{ d.params.standard || '' }}" lay-verify="required" placeholder="请输入收费标准" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">管家主键</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="butlerId" value="{{ d.params.butlerId || '' }}" lay-verify="required" placeholder="请输入管家主键" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">类型1.写字楼2.商业3厂房4.房产</label>
+        <div class="layui-input-inline">
+            <script type="text/html" template>
+                <input type="text" name="type" value="{{ d.params.type || '' }}" lay-verify="required" placeholder="请输入类型1.写字楼2.商业3厂房4.房产" autocomplete="off" class="layui-input">
+            </script>
+        </div>
+    </div>
+    <script type="text/html" template>
+        <input type="hidden" name="id" value="{{ d.params.id|| '' }}">
+    </script>
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <input type="button" lay-submit lay-filter="houseProperty-form-submit" value="确认" class="layui-btn">
+        </div>
+    </div>
+</div>
+<script>
+    layui.use([ 'admin', 'form', 'upload' ], function() {
+        var $ = layui.$, form = layui.form, upload = layui.upload;
+
+        form.render();//使select可以显示option
+        //-------------文件上传开始----------
+        upload.render({
+            elem : '#houseProperty-upload-houseProperty',
+            url : '/house/property/upload',
+            done : function(res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                console.log(res.data.src);
+                document.getElementById("img_url").value = res.data.src;//
+            }
+        });
+        //-------------文件上传结束----------
+    })
+</script>

@@ -118,4 +118,20 @@ public class MallOrderService {
         }
         return this.mallOrdermapper.selectByExample(example);
     }
+
+    public void addIntegralMall(MallOrder mallOrder) {
+        int orderSunPrice = Integer.parseInt(mallOrder.getOrderSunPrice());
+        //获取用户的积分
+        Integer orderUserId = mallOrder.getOrderUserId();
+        UserInfo userInfo = this.userInfomapper.selectByPrimaryKey(orderUserId);
+        int userIntegral = userInfo.getUserIntegral();
+        //1.积分足够的话减去用户积分
+        if (userIntegral < orderSunPrice) {
+            throw new CommonException(ExceptionEnum.INTEGRAL_DEFICIENCY);
+        }
+        userInfo.setUserIntegral(userIntegral - orderSunPrice);
+        //2.更新用户积分
+        this.userInfomapper.updateByPrimaryKeySelective(userInfo);
+        this.mallOrdermapper.insert(mallOrder);
+    }
 }

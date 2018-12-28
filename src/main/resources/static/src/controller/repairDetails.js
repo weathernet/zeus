@@ -114,38 +114,6 @@ layui.define(['table', 'form'], function (exports) {
                     layer.close(index);
                 })
             });
-        } else if (obj.event === 'more') {
-            var id = data.repairSubmenuId;
-            admin.popup({
-                title: '查看图片'
-                , area: ['1200px', '600px']
-                , resize: false
-                , success: function (layero, index) {
-                    var html = "";
-                    html += '<div class="layui-fluid">'
-                    html += '<div class="layui-card">'
-                    html += '<div class="layui-card-body">	'
-                    html += '<table id="LAY-repairCostById-list" lay-filter="LAY-repairCostById-list"></table>'
-                    html += '</div>'
-                    html += '</div>'
-                    html += '</div>'
-                    $("#LAY-system-view-popup").html(html);
-                    table.render({
-                        elem: '#LAY-repairCostById-list'
-                        , url: '/repair/cost/queryById/' + id
-                        , cols: [[
-                            {field: 'costTitle', title: '标题'}
-                            , {field: 'costSubTitle', title: '副标题'}
-                            , {field: 'costPrice', title: '价格'}
-                        ]]
-                        , page: true
-                        , limit: 20
-                        , limits: [20, 25, 30, 35, 40]
-                        , text: '对不起，加载出现异常！'
-                    });
-                }
-
-            });
         }
     });
     //++++++++++监听工具条操作开始++++++++++

@@ -2,7 +2,9 @@ package com.zcf.universe.controller.api;
 
 
 import com.zcf.universe.pojo.IntegralMall;
+import com.zcf.universe.pojo.MallOrder;
 import com.zcf.universe.service.IntegralMallService;
+import com.zcf.universe.service.MallOrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ public class IntegralMallController {
 
     @Autowired
     private IntegralMallService integralMallService;
+    @Autowired
+    private MallOrderService mallOrderService;
 
     @ApiOperation(value = "获取商品的详情")
     @GetMapping("integralMall/{id}")
@@ -35,6 +39,11 @@ public class IntegralMallController {
         return ResponseEntity.ok(this.integralMallService.getAllIntegralMall());
     }
 
-    
+    @ApiOperation(value = "使用积分兑换商品")
+    @PostMapping("IntegralMall")
+    public ResponseEntity addIntegralMall(MallOrder mallOrder) {
+        this.mallOrderService.addIntegralMall(mallOrder);
+        return ResponseEntity.ok().build();
+    }
 
 }

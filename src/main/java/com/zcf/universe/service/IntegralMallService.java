@@ -4,6 +4,7 @@ import com.zcf.universe.common.exception.CommonException;
 import com.zcf.universe.common.exception.ExceptionEnum;
 import com.zcf.universe.mapper.IntegralMallMapper;
 import com.zcf.universe.pojo.IntegralMall;
+import com.zcf.universe.pojo.MallOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -38,4 +39,6 @@ public class IntegralMallService {
         }
         return IntegralMall;
     }
+
+
 }

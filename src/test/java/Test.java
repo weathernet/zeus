@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,11 +20,10 @@ public class Test {
 //        System.out.println(TableName.toString());
 //    }
     public static void main(String[] args) {
-        String a = "10000 元/月 ";
-        String[] s = a.split(" 元");
-
-            System.out.println(s[0]);
-
+        List features = Arrays.asList("Lambdas", "Default Method", "Stream API",
+                "Date and Time API");
+        //features.forEach(n -> System.out.println(n));
+        features.forEach(System.out::println);
 
     }
 }
