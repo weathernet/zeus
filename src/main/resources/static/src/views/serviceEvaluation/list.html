@@ -28,12 +28,21 @@
                     </div>
                 </div>
             </div>
-            <div style="padding-bottom: 10px;">
+        <!--    <div style="padding-bottom: 10px;">
                 <button class="layui-btn serviceEvaluation-form" data-type="add">新增</button>
-            </div>
+            </div>-->
             <table id="LAY-serviceEvaluation-list" lay-filter="LAY-serviceEvaluation-list"></table>
             <script type="text/html" id="Img">
-                <img style="display: inline-block; width: 50%; height: 100%;" src={ d.avatar }} onclick="previewImg(this)">
+                <img style="display: inline-block; width: 50%; height: 100%;" src={ d.evaluateImage }} onclick="previewImg(this)">
+            </script>
+            <script type="text/html" id="Type">
+                {{#  if(d.evaluateType == 0){     }}
+                <button class="layui-btn layui-btn-warm layui-btn-xs">维修服务</button>
+                {{#  }else if(d.evaluateType ==1){   }}
+                <button class="layui-btn  layui-btn-normal layui-btn-xs">搬家服务</button>
+                {{#  }else if(d.evaluateType==2){   }}
+                <button class="layui-btn layui-btn-danger layui-btn-xs">保洁服务</button>
+                {{#       }                    }}
             </script>
             <script type="text/html" id="table-serviceEvaluation-toolbar">
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>

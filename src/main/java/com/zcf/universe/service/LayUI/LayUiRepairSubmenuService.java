@@ -32,7 +32,7 @@ public class LayUiRepairSubmenuService{
 
     //更新
     public boolean update(RepairSubmenu repairSubmenu) {
-        return this.LayUiRepairSubmenuMapper.updateByPrimaryKeySelective(repairSubmenu) == 1;
+         return this.LayUiRepairSubmenuMapper.updateByPrimaryKeySelective(repairSubmenu) == 1;
     }
 
     //查询

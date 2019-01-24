@@ -1,113 +1,153 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <title>积分兑换</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="css/jifenduihuan.css" type="text/css" rel="stylesheet">
-    <style>
-    	.content-one>div {
-    		/*display: flex;
-    		justify-content: space-between;
-    		align-items: center;*/
-    	}
-    </style>
-</head>
-<body>
-    <div id="title">
-        <img src="images/jifenduihuan/nav-back.png" class="m1">
-        <span>积分兑换</span>
-    </div>
-    <header>
-        <div class="H">
-            <p class="H-content1">积分值</p>
-            <p class="H-content2">2150</p>
-        </div>
-    </header>
-    <main>
-        <div class="content-one">
-            <img src="images/jifenduihuan/img_1415.png">
-            <p class="content-one1">MOREFUN香氛挂件</p>
-            <p class="content-one2">199积分</p>
-            <div>
-                <img src="images/jifenduihuan/-.png" style="margin: 0 2px 15px 10px" onclick="btn2(1)">
-                <input type="text" value="1" id="1">
-                <img src="images/jifenduihuan/jiahao.png" style="margin: 0 0px 15px 0px" class="jia" onclick="btn1(1)">
-                <span class="s1" onclick="btn()">立即兑换</span>
-            </div>
-        </div>
-        <script>
-//             //点击兑换
-//              function btn() {
-//                  var a=confirm("确认兑换吗？");
-//                  if (a==true){
-//                      alert("兑换成功！")
-//                  }else {
-//                      alert("兑换失败！")
-//                  }
-//              }
-//              //点击数字增加
-//             function btn1(id) {
-//                  var ids ="#"+id;
-//                 var a =$(ids);
-//                 var b =a.val();
-//                 a.val(++b);
-//             }
-//             //点击数字减少
-//             function btn2(id) {
-//                 var ids ="#"+id;
-//                 var a =$(ids);
-//                 var b =a.val();
-//                 if (a.val()>0){
-//                     a.val(--b);
-//                 }
-//             }
 
+	<head>
+		<meta charset="UTF-8">
+		<title>积分兑换</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link href="css/jifenduihuan.css" type="text/css" rel="stylesheet">
+		<link rel="stylesheet" href="layer/mobile/need/layer.css" />
+		<style>
+			.content-one {
+				border: 1px solid #ccc;
+				box-sizing: border-box;
+				margin-left: -1px;
+				margin-top: -1px;
+			}
+			.score-img {
+				height: 100px;
+			}
+			main {
+				margin-left: 2px;
+			}
+			.H-content2 {
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="title">
+			<img src="images/jifenduihuan/nav-back.png" class="m1">
+			<span>积分兑换</span>
+		</div>
+		<header>
+			<div class="H">
+				<p class="H-content1">积分值</p>
+				<p class="H-content2">2150</p>
+			</div>
+		</header>
+		<main>
+			<div class="content-one">
+				<img src="images/jifenduihuan/img_1415.png">
+				<p class="content-one1">MOREFUN香氛挂件</p>
+				<p class="content-one2">199积分</p>
+				<div>
+					<img src="images/jifenduihuan/-.png" id="inc" onclick="reduceNum()" style="margin: 0 2px 15px 10px">
+					<input type="text" value="1" id="num">
+					<img src="images/jifenduihuan/jiahao.png" class="red" onclick="increaseNum()" style="margin: 0 0px 15px 0px" class="jia">
+					<span class="s1">立即兑换</span>
+				</div>
+			</div>
+		</main>
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+		<script src="js/baseUrl.js"></script>
+		<script src="layer/layer.js"></script>
+		 <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
         </script>
-        <div class="content-one content-two">
-            <img src="images/jifenduihuan/img_1415.png">
-            <p class="content-one1">MOREFUN香氛挂件</p>
-            <p class="content-one2">199积分</p>
-            <div>
-                <img src="images/jifenduihuan/-.png" style="margin: 0 2px 15px 10px" onclick="btn2(2)">
-                <input type="text" value="1" id="2">
-                <img src="images/jifenduihuan/jiahao.png" style="margin: 0 0px 15px 0px" onclick="btn1(2)">
-                <span class="s1" onclick="btn()">立即兑换</span>
-            </div>
-        </div>
-        <div class="d1">
-            <div class="content-one">
-                <img src="images/jifenduihuan/img_1415.png">
-                <p class="content-one1">MOREFUN香氛挂件</p>
-                <p class="content-one2">199积分</p>
-                <div>
-                    <img src="images/jifenduihuan/-.png" style="margin: 0 2px 15px 10px" onclick="btn2(3)">
-                    <input type="text" value="1" id="3">
-                    <img src="images/jifenduihuan/jiahao.png" style="margin: 0 0px 15px 0px" onclick="btn1(3)">
-                    <span class="s1" onclick="btn()">立即兑换</span>
-                </div>
-            </div>
-            <div class="content-one content-two">
-                <img src="images/jifenduihuan/img_1415.png">
-                <p class="content-one1">MOREFUN香氛挂件</p>
-                <p class="content-one2">199积分</p>
-                <div>
-                    <img src="images/jifenduihuan/-.png" style="margin: 0 2px 15px 10px" onclick="btn2(4)">
-                    <input type="text" value="1" class="num" id="4">
-                    <img src="images/jifenduihuan/jiahao.png" style="margin: 0 0px 15px 0px" onclick="btn1(4)">
-                    <span class="s1" onclick="btn()">立即兑换</span>
-                </div>
-            </div>
-        </div>
-    </main>
-    <script
-  src="https://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-  crossorigin="anonymous"></script>
-  <script>
-  	$(".m1").on("click",function(){
-  		window.history.back();
-  	})
-  </script>
-</body>
+		<script>
+			$(".m1").on("click", function() {
+				window.history.back();
+			})
+			// 获取当前积分
+			getAllScore()
+			function getAllScore () {
+				$.ajax({
+					type: 'GET',
+					url: baseUrl + '/user/' + localStorage.getItem("userId"),
+					data: {},
+					success: function (data) {
+						console.log(data,'积分信息');
+						$(".H-content2").text(data.userIntegral);
+					}
+				})
+			}
+			// 获取所有积分商品
+			getAllScoreGoods()
+			function getAllScoreGoods() {
+				$.ajax({
+					type: 'GET',
+					url: baseUrl + '/IntegralMall',
+					data: {},
+					success: function(data) {
+						console.log(data);
+						var str = '';
+						data.forEach((val, index) => {
+							str += `<div class="content-one">
+										<img class="score-img" src="${val.integralImage}">
+										<p class="content-one1">${val.integralTitle}</p>
+										<p class="content-one2">${val.integralPrice}积分</p>
+										<div>
+											<img onclick="reduceNum(this)"  src="images/jifenduihuan/-.png" style="margin: 0 2px 15px 10px">
+											<input type="text" value="1" id="num" data-price="${val.integralPrice}">
+											<img  onclick="increaseNum(this)" src="images/jifenduihuan/jiahao.png" style="margin: 0 0px 15px 0px" class="jia">
+											<span data-integralId="${val.integralId}" onclick="exchangeClick(this)" class="s1">立即兑换</span>
+										</div>
+									</div>`;
+						})
+						$("main").html(str);
+					}
+				})
+			}
+			// 兑换所需积分
+			var totalPrice;
+			var n;
+			var p;
+			function countScore (self) {
+				n = $(self).parents(".content-one").find("input").val();
+				p = $(self).parents(".content-one").find("input").attr("data-price");
+				totalPrice = parseFloat(n) * parseFloat(p);
+				console.log(totalPrice);
+			}
+			// 数量增加
+			function increaseNum (self) {
+				var num = $(self).prev().val();
+				num ++;
+				$(self).prev().val(num)
+				countScore(self);
+			}
+			// 数量减少
+			function reduceNum (self) {
+				var num = $(self).next().val();
+				if(num <= 1) {
+					return;
+				}
+				num --;
+				$(self).next().val(num);
+				countScore();
+			}
+			// 获取当前积分
+			function getTotalScore () {
+				$.ajax({
+//					type: 
+				})
+			}
+			// 立即兑换
+			function exchangeClick (self) {
+				var integralId = $(self).attr("data-integralId");
+				var num = $(self).parents(".content-one").find("input").val();
+				var price = $(self).parents(".content-one").find("input").attr("data-price");
+				var totalPrice = parseFloat(num) * parseFloat(price);
+				window.location.href = `queren_duihuan.html?integralId=${integralId}&num=${num}&price=${totalPrice}`;
+			}
+			
+		</script>
+	</body>
+
 </html>

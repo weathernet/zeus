@@ -40,13 +40,36 @@ $(".m1").on("click",function(){
 $(".d1").on("click",function(){
 	window.history.back();
 })
+// 发布整租 合租切换
+$(".fabu .info-title span").on("click",function() {
+	$(this).addClass("active").siblings().removeClass("active");
+})
+// 商家售卖商品 状态切换
+$(".my-goodsTitle span").on("click",function () {
+	$(this).addClass("active").siblings().removeClass("active");
+})
+// 商家售卖商品 列表切换
+$(".my-goodsTitle span").on("click",function () {
+	var index = $(this).index();
+	$(".goods-list ul").hide();
+	$(".goods-list ul").eq(index).show();
+})
 
-
-
-
-
-
-
-
+// 充值中心页面
+$(".recharge").on("click",function() {
+	window.location.href = "recharge.html"
+})
+// 我的管家页面
+$(".my-steward").on("click",function() {
+	window.location.href = "my_steward.html"
+})
+// 商城页面
+$(".qg_shangcheng").on("click",function() {
+	window.location.href = "jiazhengweixiu.html#1"
+})
+// 旅游
+$(".qg_shanglv").on("click",function() {
+	window.location.href = "jiazhengweixiu.html#2"
+})
 
 

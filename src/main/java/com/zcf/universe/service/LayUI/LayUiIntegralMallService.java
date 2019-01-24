@@ -12,9 +12,9 @@ import tk.mybatis.mapper.entity.Example;
 import java.util.List;
 
 /**
- * @author YuanQJ
- * @date 2018/12/18
- */
+* @author 袁齐吉
+* @date 2018/12/29
+*/
 @Service
 public class LayUiIntegralMallService {
 
@@ -44,7 +44,7 @@ public class LayUiIntegralMallService {
     }
 
     //搜索
-    public LayUiResult search(Integer page, Integer limit, String keywords) {
+     public LayUiResult search(Integer page, Integer limit,String keywords) {
         Example example = new Example(IntegralMall.class);
         example.createCriteria().andLike("integralId", "%" + keywords + "%");
         PageHelper.startPage(page, limit);

@@ -1,24 +1,19 @@
-package ${basePackage}.controller;
+package ${basePackage}.controller.console;
 
-import ${basePackage}.common.utils.LayUiResult;
+import ${basePackage}.common.layui.LayUiResult;
 import ${basePackage}.common.utils.FileUploadUtils;
 import ${basePackage}.pojo.${modelNameUpperCamel};
-import ${basePackage}.service.LayUI.LayUi${modelNameUpperCamel}Service;
+import ${basePackage}.service.layui.LayUi${modelNameUpperCamel}Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.util.ResourceUtils;
-import java.io.FileNotFoundException;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.Map;
 /**
-* Created by ${author} on ${date}.
+* @author ${author}
+* @date ${date}
 */
 @RestController
 @RequestMapping("${baseRequestMapping}")
@@ -54,9 +49,7 @@ public class LayUi${modelNameUpperCamel}Controller {
     }
 
     @RequestMapping("upload")
-    public Map UploadBrand(@RequestParam("file") MultipartFile file) throws FileNotFoundException{
-        //String pathVal = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/";
-        String pathVal = ResourceUtils.getURL("classpath:").getPath() + "static/";
-        return FileUploadUtils.uploadLayUiImg(file, pathVal,"img/");
+    public Map UploadBrand(@RequestParam("file") MultipartFile file){
+        return FileUploadUtils.uploadLayUiImg(file,"img/");
     }
 }

@@ -1,28 +1,451 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>房产出售</title>
-    <link href="css/mui.min.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>租房列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="referrer" content="no-referrer"/>
+    <link href="css/zufangliebiao.css" type="text/css" rel="stylesheet">
+    <link href="css/mui.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/mui.picker.css" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/swiper-3.4.2.min.css" />
+    <link rel="stylesheet" href="css/mui.poppicker.css" />
+    <style>
+    	.d1,.d2 {
+    		display: flex;
+    		justify-content: space-between;
+    		align-items: center;
+    	}
+    	.d1 {
+    		margin: 0;
+    	}
+    	.d2 {
+    		padding: 0;
+    		margin: 0;
+    	}
+    	.d2 input {
+    		margin: 0;
+    		border: none;
+    		background: #f8f8f8;
+    		font-size: 14px !important;
+    	}
+    	.d1 span img {
+    		margin-right: 16px;
+    	}
+    	.d6 {
+    		width: 32px;
+    		padding: 0 4px;
+    		height: 16px;
+    		line-height: 16px;
+    	}
+    	.liebiao:after {
+    		content: "";
+    		display: block;
+    		clear: both;
+    	}
+    	.liebiao {
+    		margin-top: 40px;
+    		position: relative;
+    		z-index: 999;
+    		background: #fff;
+    	}
+    	.mui-pull-top-pocket {
+    		top: 90px;
+    	}
+    	.mui-scroll {
+    		top: 60px;
+    	}
+    	.mui-pull-bottom-pocket, .mui-pull-top-pocket {
+    		z-index: -1;
+    	}
+    	.liebiao1 {
+    		background: #fff;
+    	}
+    	.p1 {
+    		height: 28px;
+    		margin: 0;
+    		background: #fff;
+    	}
+    	.p5 span {
+    		margin-left: 0;
+    		
+    	}
+    	.p5 {
+    		display: flex;
+    		justify-content: space-between;
+    	}
+    	.didian-icon {
+    		width: 20px;
+    		height: 20px;
+    	}
+    </style>
 </head>
-<body>
-	<heder class="mui-bar mui-bar-nav">
-		<a class="mui-action-back mui-pull-left"><img src="images/shenghuo/nav_back.png" alt="" /></a>
-		<h3 class="mui-title"><img src="images/shouye/icon_sousuo.png" alt="" /><input type="text" placeholder="输入小区/商圈/地铁站等" /></h3>
-		<img src="images/" alt="" />
-	</heder>
-    <script src="js/mui.min.js"></script>
-    <script src="js/mui.picker.js"></script>
-    <script src="js/swiper-3.4.2.min.js"></script>
-	<script type="text/javascript" charset="utf-8">
-      	mui.init();
-    </script>
-    <script src="js/style.js"></script>
-   
+<body style="background: #fff;">
+
+    <div class="mui-bar mui-bar-nav" style="box-shadow: none">
+    	<div class="d1 flex_b">
+        <img src="images/zufangxiangqing/nav-back.png" class="m1" style="margin-top:0">
+        <div  class="d2">
+            <img src="images/suosou/icon_sousuo.png" style="vertical-align: middle">
+            <input type="text" placeholder="输入小区/商圈/地铁站等" style="padding:0;vertical-align: middle;outline: none;color:#000">
+        </div>
+        <span class="s1"><img class="didian-icon" src="images/zufangliebiao/icon_didian.png"></span>
+    </div>
+    <p class="p1" style="border-color: transparent"></p>
+    <div class="liebiao1" >
+        <table cellspacing="0" class="T" >
+            <tr>
+                <!--<td class="near">
+                    <span>整租</span>
+                    <img src="images/zufangliebiao/btn_cbb.png">
+                </td>-->
+                <td class="money">
+                    <span>租金</span>
+                    <img src="images/zufangliebiao/btn_cbb.png">
+                </td>
+                <td class="sort">
+                    <span>排序</span>
+                    <img src="images/zufangliebiao/btn_cbb.png">
+                </td>
+                <td class="more">
+                    <!--<span>更多</span>
+                    <span><img src="images/zufangliebiao/btn_cbb.png"></span>-->
+                </td>
+            </tr>
+        </table>
+    </div>
+    </div>
+    <div id="refreshContainer" class="mui-scroll-wrapper" >
+	  <div class="mui-scroll">
+	    
+	    <ul class="liebiao" >
+	      
+	    </ul>
+	  </div>
+	</div>
+	<!--数据列表-->
+	    <!--<ul class="mui-table-view mui-table-view-chevron liebiao" >
+	      
+	    </ul>-->
+    <!--<ul class="liebiao"  id="refreshContainer">-->
+    	
+        <!--<li>
+            <div class="d4">
+                <img src="images/zufangliebiao/img_zflb.png">
+                <div class="d6">自营</div>
+            </div>
+            <div class="d5">
+                <p class="p3">西直门 凯旋大厦 830平米 精装修</p>
+                <p class="p4">凯旋大厦 | 132m<sup>2</sup> | 精装修  <span>27.8万元/m<sup>2</sup></span></p>
+                <p class="p5">
+                    <img src="images/zufangliebiao/icon_dingwei1.png">
+                    <span>距昌平线昌平站直线494米</span>
+                </p>
+                <p class="p6">
+                    <span>离地铁站近</span>
+                    <span>离地铁站近</span>
+                </p>
+            </div>
+        </li>-->
+        
+    <!--</ul>-->
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  <script src="js/baseUrl.js"></script>
+  <script src="js/mui.min.js"></script>
+  <script src="js/mui.picker.js"></script>
+  <script src="js/mui.poppicker.js"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
+  <script>
+  	var content = window.location.search;
+  	var my_key = "";
+  	if(content.split("=")[1]) {
+  		my_key = decodeURIComponent(content.split("=")[1]) 
+  	}
+  	console.log(my_key);
+  	// 筛选
+  	$(".near").on("click",function(){
+  		var picker = new mui.PopPicker();
+		picker.setData([{
+		    value: "first",
+		    text: "整租"
+		}, {
+		    value: "second",
+		    text: "合租"
+		}])
+		//picker.pickers[0].setSelectedIndex(4, 2000);
+		picker.pickers[0].setSelectedValue('fourth', 2000);
+		picker.show(function(SelectedItem) {
+			console.log(SelectedItem);
+			$(".near span").text(SelectedItem[0].text)
+		})
+  	})
+  	var max_money;    //  根据金额筛选
+  	var min_money;
+  	$(".money").on("click",function(){
+  		var picker = new mui.PopPicker();
+		picker.setData([{
+		    value: "first",
+		    text: "1500元以下"
+		}, {
+		    value: "second",
+		    text: "1500-2000元"
+		}, {
+		    value: "three",
+		    text: "2000-2500元"
+		}, {
+		    value: "four",
+		    text: "3000-3500元"
+		}, {
+		    value: "five",
+		    text: "3500元以上"
+		}])
+		//picker.pickers[0].setSelectedIndex(4, 2000);
+		picker.pickers[0].setSelectedValue('fourth', 2000);
+		picker.show(function(SelectedItem) {
+			console.log(SelectedItem);
+			var x = SelectedItem[0].text;
+			if(SelectedItem[0].value == "first"){
+				max_money = 1500;
+				min_money = "";
+			}
+			if(SelectedItem[0].value == "second"){
+				max_money = 2000;
+				min_money = 1500;
+			}
+			if(SelectedItem[0].value == "three"){
+				max_money = 2500;
+				min_money = 2000;
+			}
+			if(SelectedItem[0].value == "four"){
+				max_money = 3500;
+				min_money = 3000;
+			}
+			if(SelectedItem[0].value == "five"){
+				max_money = "";
+				min_money = 3500;
+			}
+			console.log(max_money,min_money)
+			$(".money span").text(x)
+			$(".liebiao").empty();
+			$.ajax({
+		  		type: "GET",
+		  		url: baseUrl + "/searchHousesByType",
+		  		data: {
+		  			city: '北京',
+		  			type: my_key,
+		  			max: max_money,
+		  			min: min_money
+		  		},
+		  		success: function(data) {
+		  			console.log(data);
+		  			data.forEach(function(val,index){
+//		  				var img;
+//		  				if(val.housingImage.split(" ")[0]){
+//		  					img = val.housingImage.split(" ")[0];
+//		  				}else {
+//		  					img = val.housingImage;
+//		  				}
+		  				
+		  				var str = `<li data-id = "${val.id}">
+						            <div class="d4">
+						                <img src="${val.image}">
+						                <div class="d6">自营</div>
+						            </div>
+						            <div class="d5">
+						                <p class="p3">${val.title}</p>
+						                <p class="p4">${val.introduction}</p>
+						                <p class="p5">
+						                    <span> ${val.price}</span>
+						                    <span>${val.status}</span>
+						                </p>
+						                
+						            </div>
+						        </li>`;
+					    $(".liebiao").append(str);
+		  			})
+		  		},
+		  		error:function(xhr){
+					console.log(xhr.responseText);
+					var obj = eval("(" + xhr.responseText + ")");
+					mui.toast(obj.message);
+				}
+		  	})
+		})
+  	})
+  	// 排序
+  	var istrue  = true;
+  	var s;
+  	$(".sort").on("click",function(){
+  		var picker = new mui.PopPicker();
+		picker.setData([{
+		    value: "first",
+		    text: "价格从低到高"
+		}, {
+		    value: "second",
+		    text: "价格从高到低"
+		}, {
+		    value: "three",
+		    text: "面积从小到大"
+		}, {
+		    value: "four",
+		    text: "面积从小到大"
+		}])
+		
+		//picker.pickers[0].setSelectedIndex(4, 2000);
+		picker.pickers[0].setSelectedValue('fourth', 2000);
+		$(".liebiao").empty();
+		picker.show(function(SelectedItem) {
+			if(SelectedItem[0].value == "first"){
+		    istrue = false;
+		    s = 'price'
+		}
+		if(SelectedItem[0].value == "second"){
+		    istrue = true;
+		    s = 'price'
+		}
+		if(SelectedItem[0].value == "three"){
+		    istrue = true;
+		    s='area'
+		}
+		if(SelectedItem[0].value == "four"){
+		    istrue = false;
+		    s='area'
+		}
+			console.log(SelectedItem);
+			var x = SelectedItem[0].text;
+			$(".sort span").text(x);
+			$.ajax({
+		  		type: "GET",
+		  		url: baseUrl + "/searchHousesByType",
+		  		data: {
+		  			city: '北京',
+		  			type: my_key,
+		  			group:  s,
+		  			desc : istrue
+		  		},
+		  		success: function(data) {
+		  			console.log(data);
+		  			
+		  			data.forEach(function(val,index){
+//		  				var img;
+//		  				if(val.housingImage.split(" ")[0]){
+//		  					img = val.housingImage.split(" ")[0];
+//		  				}else {
+//		  					img = val.housingImage;
+//		  				}
+		  				
+		  				var str = `<li data-id = "${val.id}">
+						            <div class="d4">
+						                <img src="${val.image}">
+						                <div class="d6">自营</div>
+						            </div>
+						            <div class="d5">
+						                <p class="p3">${val.title}</p>
+						                <p class="p4">${val.introduction}</p>
+						                <p class="p5">
+						                    <span> ${val.price}</span>
+						                    <span>${val.status}</span>
+						                </p>
+						                
+						            </div>
+						        </li>`;
+					    $(".liebiao").append(str);
+		  			})
+		  		},
+		  		error:function(xhr){
+					console.log(xhr.responseText);
+					var obj = eval("(" + xhr.responseText + ")");
+					mui.toast(obj.message);
+				}
+		  	})
+		})
+  	})
+    //下拉刷新
+    var isAuto = true;
+    if(!$(".liebiao li")){
+  		isAuto = false;
+  	}
+	mui.init({
+	  pullRefresh : {
+	    container:"#refreshContainer",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+	    down : {
+	      style:'circle',//必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
+	      color:'#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
+	      height:'50px',//可选,默认50px.下拉刷新控件的高度,
+	      range:'100px', //可选 默认100px,控件可下拉拖拽的范围
+	      offset:'0px', //可选 默认0px,下拉刷新控件的起始位置
+	      auto: isAuto,//可选,默认false.首次加载自动上拉刷新一次
+	      callback :function(){
+	      	
+	      } //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+	    }
+	  }
+	});
+	
+	// 后退
+  	$(".m1").on("click",function(){
+  		window.history.back()
+  	})
+  	// 搜索房源列表
+  	var housingId;
+  	var roomArr = []; //  筛选条数
+  	
+  	
+  	//  获取房源列表
+	getFangyuan();
+  	function getFangyuan() {
+  		$.ajax({
+	  		type: "GET",
+	  		url: baseUrl + "/HousePropertyType",
+	  		data: {
+	  			city: '北京',
+	  			type: my_key
+	  		},
+	  		success: function(data) {
+	  			console.log(data);
+	  			
+	  			data.forEach(function(val,index){
+
+	  				
+	  				var str = `<li data-id = "${val.id}">
+						            <div class="d4">
+						                <img src="${val.image}">
+						                <div class="d6">自营</div>
+						            </div>
+						            <div class="d5">
+						                <p class="p3">${val.title}</p>
+						                <p class="p4">${val.introduction}</p>
+						                <p class="p5">
+						                    <span> ${val.price}</span>
+						                    <span>${val.status}</span>
+						                </p>
+						                
+						            </div>
+						        </li>`;
+				    $(".liebiao").append(str);
+	  			})
+	  		},
+	  		error:function(xhr){
+				console.log(xhr.responseText);
+				var obj = eval("(" + xhr.responseText + ")");
+				mui.toast(obj.message);
+			}
+	  	})
+  	}
+  	
+  	$(".liebiao").on("tap","li",function(){
+  		housingId = $(this).attr("data-id");
+  		window.location.href = `zufangxiangqing.html?data-housingId=${housingId}`;
+  	})
+  </script>
 </body>
 </html>

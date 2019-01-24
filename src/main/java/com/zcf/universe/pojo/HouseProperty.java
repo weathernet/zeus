@@ -15,15 +15,17 @@ import java.util.Date;
  */
 @Data
 @Table(name = "house_property")
-@ApiModel(value = "HouseProperty模型", description = "HouseProperty信息")
+@ApiModel(value = "房产出售模型", description = "房产出售信息")
 public class HouseProperty {
     @Id
     @ApiModelProperty(value = "主键", required = true)
     private Integer id;
     @ApiModelProperty(value = "城市")
     private String city;
+    @ApiModelProperty(value = "标题")
+    private String title;
     @ApiModelProperty(value = "价格")
-    private String sunPrice;
+    private Integer sunPrice;
     @ApiModelProperty(value = "图片")
     private String image;
     @ApiModelProperty(value = "是否可已注册")
@@ -35,7 +37,7 @@ public class HouseProperty {
     @ApiModelProperty(value = "租期")
     private String leaseTerm;
     @ApiModelProperty(value = "面积")
-    private String area;
+    private Integer area;
     @ApiModelProperty(value = "房产优势")
     private String advantage;
     @ApiModelProperty(value = "地址")

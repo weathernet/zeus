@@ -6,8 +6,30 @@
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/zaixianweituo.css" />
+		<link rel="stylesheet" href="layer/mobile/need/layer.css" />
 	</head>
-
+    <style>
+    	.d3>span{
+    		width: 30%!important;
+    		text-align: center;
+    	}
+    	.d3>div{
+    		width: 60%!important;
+    		padding:0px 10px!important;
+    	}
+    	.d3 input{
+    		margin: 0px!important;
+    		width: 100%!important;
+    	}
+    	.tijiao {
+    		position: fixed;
+    		left: 0;
+    		right: 0;
+    		bottom: 0;
+    		width: 100%;
+    		
+    	}
+    </style>
 	<body>
 		<div class="one">
 			<div class="d1">
@@ -21,7 +43,7 @@
 			<div class="d3">
 				<span style="width: 60px;">城市</span>
 				<div>
-					<input type="text" placeholder="北京" />
+					<input class="city" type="text" placeholder="北京" />
 				</div>
 			</div>
 		</div>
@@ -29,7 +51,7 @@
 			<div class="d3">
 				<span>小区名称</span>
 				<div>
-					<input type="text" placeholder="小区名称" />
+					<input class="house" type="text" placeholder="小区名称" />
 				</div>
 			</div>
 		</div>
@@ -37,7 +59,7 @@
 			<div class="d3">
 				<span>联系电话</span>
 				<div>
-					<input type="text" placeholder="请输入手机号" />
+					<input class="phone" type="text" placeholder="请输入手机号" />
 				</div>
 			</div>
 		</div>
@@ -45,7 +67,7 @@
 			<div class="d3">
 				<span>如何称呼</span>
 				<div>
-					<input type="text" placeholder="请输入姓名" />
+					<input class="name" type="text" placeholder="请输入姓名" />
 				</div>
 			</div>
 		</div>
@@ -53,12 +75,12 @@
 			<div class="d3">
 				<span>其他信息</span>
 				<div>
-					<input type="text" placeholder="选填" />
+					<input class="info" type="text" placeholder="选填" />
 				</div>
 			</div>
 		</div>
-		<div class="three">
-			<div class="d4">
+		<div class="tijiao">
+			<div class="d4" onclick="send()">
 				<span class="ss">提交</span>
 			</div>
 		</div>
@@ -67,9 +89,53 @@
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
+  <script src="js/baseUrl.js"></script>
+  <script src="layer/layer.js"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
   	$(".d1").on("click",function(){
   		window.history.back();
   	})
+  	// 在线委托
+  	function send() {
+  		var city = $(".send").val();
+  		var house = $(".house").val();
+  		var phone = $(".phone").val();
+  		var name = $(".name").val();
+  		var info = $(".info").val();
+  		if(phone == "" || phone.trim() == "") {
+  			layer.msg("请输入联系电话")
+  		}else if(name == "" || name.trim() == ""){
+  			layer.msg("请输入您的姓名")
+  		}else {
+  			$.ajax({
+  				type: 'POST',
+  				url: baseUrl + '/ownerEntrust',
+  				data: {
+  					cityName: city,
+  					information: info,
+  					name: name,
+  					phone: phone,
+  					region: house,
+  					userId: localStorage.getItem("userId")
+  				},
+  				success: function (data) {
+  					console.log(data);
+  					layer.msg("提交成功");
+  					setTimeout(function() {
+  						window.history.back();
+  					},2000)
+  				}
+  				
+  			})
+  		}
+  	}
   </script>
 </html>

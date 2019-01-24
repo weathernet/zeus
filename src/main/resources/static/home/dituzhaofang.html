@@ -4,6 +4,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="Access-Control-Allow-Origin"  content="*">
+		<meta name="referrer" content="no-referrer" />
 		<title>地图找房</title>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/mui.picker.css" />
@@ -35,25 +37,66 @@
 				background: orange;
 				border: none;
 			}
+			.flag {
+				width: 1.4rem;
+				height: .8rem;
+				text-align: center;
+				
+				/*background: green;*/
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				margin-left: -.7rem;
+				margin-top: -.4rem;
+				/*z-index: 99999*/
+			}
+			.flag img {
+				width: .6rem;
+				height: .6rem;
+			}
+			.flag p {
+				font-size: .24rem;
+				background: #fff;
+				color: #000;
+				line-height: .4rem;
+				border-radius: .2rem;
+				position: relative;
+				z-index: -99999
+				
+			}
+			#popover {
+				position: fixed;
+				top: 0;
+				left: 0;
+				/*width: 200px;*/
+				background: red;
+			}
 		</style>
 	</head>
 
 	<body ng-app='apiview' ng-controller="PublicController">
 		<div id="allmap"></div>
 		<div id="r-result"></div>
-		
+		<!-- 弹出层房源信息 -->
 		<div id="popover" class="mui-popover">
 		  <ul class="mui-table-view">
-		    <li class="mui-table-view-cell">
-		    	<a href="#">
-		    	    
-		        </a>
-		    </li>
-		    
+		    <!--<li class="mui-table-view-cell">
+		    	<img src="images/mine/icon_shoucang.png" alt="" />
+		    	<div class="room-right">
+		    		<p>title</p>
+		    		<p><span>size</span><span>price</span></p>
+		    		<p>distance</p>
+		    	</div>
+		    </li>-->
+		   
 		  </ul>
 		</div>
 		<!--<a href="#popover" id="openPopover" class="mui-btn mui-btn-primary mui-btn-block">查看房源信息</a>-->
-        <input id="size" type="range"  max="1500" min="500"/>
+        <div class="flag">
+        	<p id="serach">点击找房</p>
+        	<img src="images/ditu.png" alt="" />
+        </div>
+        <!--<input id="size" type="range"  max="1500" min="500"/>-->
         
 		<footer>
 			<ul class="clearfix">
@@ -95,254 +138,212 @@
 		<script src="js/mui.picker.js"></script>
 		<script src="js/swiper-3.4.2.min.js"></script>
 		<script src="js/baseUrl.js"></script>
+		 <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 		</script>
 		<script src="js/style.js"></script>
 		<script>
-			var size = 1000;     // 圆圈面积
+			var size = 700;     // 圆圈面积
 			var longitude = 116.404; // 经度
 			var latitude = 39.915; // 维度
 			$("#size").on("input",function(){
 				size = $(this).val();
 				console.log(size);
 				var map = new BMap.Map("allmap"); // 创建Map实例
-			
-		   
-			var geoc = new BMap.Geocoder();
-			var mPoint = new BMap.Point(longitude, latitude);
-			console.log(mPoint)
-			map.enableScrollWheelZoom();
-			map.centerAndZoom(mPoint, 15);
-			var circle = new BMap.Circle(mPoint, size, {
-				fillColor: "blue",
-				strokeWeight: 1,
-				fillOpacity: 0.3,
-				strokeOpacity: 0.3,
-//				enableEditing: true
-			});
-			map.addOverlay(circle);
-			map.addEventListener("click", function(e) {
-				//通过点击百度地图，可以获取到对应的point, 由point的lng、lat属性就可以获取对应的经度纬度     
-				
-				var pt = e.point;
-				geoc.getLocation(pt, function(rs) {
-					//addressComponents对象可以获取到详细的地址信息
-					var addComp = rs.addressComponents;
-					var site = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
-					//将对应的HTML元素设置值
-					console.log(site);
-					console.log(pt.lng);
-					console.log(pt.lat);
-					longitude = pt.lng;
-					latitude = pt.lat;
-			
-
-					map.clearOverlays();
-					circle = new BMap.Circle(rs.point, size, {
-						fillColor: "blue",
-						strokeWeight: 1,
-						fillOpacity: 0.3,
-						strokeOpacity: 0.3,
-//						enableEditing: true
-					});
-					map.addOverlay(circle);
-
-					if(mPoint != null) {
-						console.log("***********")
-//						circle.addEventListener("lineupdate", function(e) {
-							console.log(e)
-							var mi = parseInt(circle.getRadius())
-							$.ajax({
-								type: "GET", //请求方式 post
-								dataType: 'json', //数据类型 json
-								url: baseUrl + "/mapLookingForRoom", // 请求地址
-								data: {
-									longitude: longitude,
-									latitude: latitude,
-									range: mi
-								},
-								success: function(data) {
-									console.log(data, "$$$$$$$$$$") //-----------------------------------------------
-									var marker = new BMap.Marker(mPoint);
-									var mapPoints = []; //创建数组
-									for(var j = 0; j < data.length; j++) {
-										//添加信息 进 数组
-										mapPoints.push({
-											x: data[j].housingLatitude,
-											y: data[j].housingLongitude,
-											title: data[j].housingPrice,
-											con: data[j].housingId,
-											branch: data[j].housingPrice
-										})
-									}
-									console.log(mapPoints, "￥￥￥￥￥￥￥￥￥") //---------------------------------------
-									var i = 0;
-									map.addOverlay(marker);
-									map.enableScrollWheelZoom(true);
-
-									// 函数 创建多个标注
-									function markerFun(points, label, infoWindows, con) {
-										var markers = new BMap.Marker(points);
-										map.addOverlay(markers);
-										markers.setLabel(label);
-										markers.addEventListener("click", function(event) {
-											console.log(infoWindows);
-											console.log(con);
-
-											map.openInfoWindow(infoWindows, points); //参数：窗口、点  根据点击的点出现对应的窗口
-										});
-									}
-
-									for(; i < mapPoints.length; i++) {
-										var points = new BMap.Point(mapPoints[i].y, mapPoints[i].x); //创建坐标点
-
-										var opts = {
-											width: 200,
-											height: 100,
-											title: mapPoints[i].title
-										};
-										var label = new BMap.Label(mapPoints[i].branch, {
-											offset: new BMap.Size(25, 5)
-										});
-										var infoWindows = new BMap.InfoWindow(mapPoints[i].title, opts);
-
-										markerFun(points, label, infoWindows, mapPoints[i].con);
-									}
-								},
-								error: function(data, textStatus) {
-									console.log(textStatus)
-									console.log(data)
-								}
-							});
-//						});
-					}
+				var geoc = new BMap.Geocoder();
+				var mPoint = new BMap.Point(longitude, latitude);
+				console.log(mPoint)
+				map.enableScrollWheelZoom();
+				map.centerAndZoom(mPoint, 15);
+				var circle = new BMap.Circle(mPoint, size, {
+					fillColor: "blue",
+					strokeWeight: 1,
+					fillOpacity: 0.3,
+					strokeOpacity: 0.3,
 				});
+		
 			});
-				
-			});
-//			drawCircle(size);
-//		function drawCircle() {
+
 			var map = new BMap.Map("allmap"); // 创建Map实例
-			
-		   
-			var geoc = new BMap.Geocoder();
+		    var nowCity = localStorage.getItem("city"); 
+		    map.centerAndZoom(nowCity,15);           //  根据当前城市设置中心点******************************************************************
+
 			var mPoint = new BMap.Point(longitude, latitude);
-			console.log(mPoint)
 			map.enableScrollWheelZoom();
 			map.centerAndZoom(mPoint, 15);
+			
 			var circle = new BMap.Circle(mPoint, size, {
 				fillColor: "blue",
 				strokeWeight: 1,
 				fillOpacity: 0.3,
 				strokeOpacity: 0.3,
-//				enableEditing: true
+
 			});
-			map.addOverlay(circle);
 
-			map.addEventListener("click", function(e) {
-				//通过点击百度地图，可以获取到对应的point, 由point的lng、lat属性就可以获取对应的经度纬度     
-				
-				var pt = e.point;
-				geoc.getLocation(pt, function(rs) {
-					//addressComponents对象可以获取到详细的地址信息
-					var addComp = rs.addressComponents;
-					var site = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
-					//将对应的HTML元素设置值
-					console.log(site);
-					console.log(pt.lng);
-					console.log(pt.lat);
-					longitude = pt.lng;
-					latitude = pt.lat;
-			
-
-					map.clearOverlays();
-					circle = new BMap.Circle(rs.point, size, {
+            $("#serach").on("click",function () {
+				//alert("当前地图中心点：" + map.getCenter().lng + "," + map.getCenter().lat);  // 地图中心点坐标------------------------------------
+			    longitude = map.getCenter().lng;
+				latitude = map.getCenter().lat;
+				map.clearOverlays();
+					circle = new BMap.Circle({lng: longitude, lat: latitude}, size, {
 						fillColor: "blue",
 						strokeWeight: 1,
 						fillOpacity: 0.3,
 						strokeOpacity: 0.3,
-//						enableEditing: true
 					});
 					map.addOverlay(circle);
 
 					if(mPoint != null) {
-						console.log("***********")
-//						circle.addEventListener("lineupdate", function(e) {
-							console.log(e)
-							var mi = parseInt(circle.getRadius())
-							$.ajax({
-								type: "GET", //请求方式 post
-								dataType: 'json', //数据类型 json
-								url: baseUrl + "/mapLookingForRoom", // 请求地址
-								data: {
-									longitude: longitude,
-									latitude: latitude,
-									range: mi
-								},
-								success: function(data) {
-									console.log(data, "$$$$$$$$$$") //-----------------------------------------------
-									var marker = new BMap.Marker(mPoint);
-									var mapPoints = []; //创建数组
-									for(var j = 0; j < data.length; j++) {
-										//添加信息 进 数组
-										mapPoints.push({
-											x: data[j].housingLatitude,
-											y: data[j].housingLongitude,
-											title: data[j].housingPrice,
-											con: data[j].housingId,
-											branch: data[j].housingPrice
-										})
+
+						var mi = parseInt(circle.getRadius())
+						$.ajax({
+							type: "GET", //请求方式 post
+							dataType: 'json', //数据类型 json
+							url: baseUrl + "/mapLookingForRoom", // 请求地址
+							data: {
+								longitude: longitude,
+								latitude: latitude,
+								range: mi
+							},
+							success: function(data) {
+								console.log(data, '房源') //-----------------------------------------------
+								
+								var str = '';
+								data.forEach((val, index) => {
+									if(val.housingImage) {
+										var img = val.housingImage.split(" ")[0];
 									}
-									console.log(mapPoints, "￥￥￥￥￥￥￥￥￥") //---------------------------------------
-									var i = 0;
-									map.addOverlay(marker);
-									map.enableScrollWheelZoom(true);
-
-									// 函数 创建多个标注
-									function markerFun(points, label, infoWindows, con) {
-										var markers = new BMap.Marker(points);
-										map.addOverlay(markers);
-										markers.setLabel(label);
-										markers.addEventListener("click", function(event) {
-											console.log(infoWindows);
-											console.log(con);
-
-											map.openInfoWindow(infoWindows, points); //参数：窗口、点  根据点击的点出现对应的窗口
-										});
-									}
-
-									for(; i < mapPoints.length; i++) {
-										var points = new BMap.Point(mapPoints[i].y, mapPoints[i].x); //创建坐标点
-
-										var opts = {
-											width: 200,
-											height: 100,
-											title: mapPoints[i].title
-										};
-										var label = new BMap.Label(mapPoints[i].branch, {
-											offset: new BMap.Size(25, 5)
-										});
-										var infoWindows = new BMap.InfoWindow(mapPoints[i].title, opts);
-
-										markerFun(points, label, infoWindows, mapPoints[i].con);
-									}
-								},
-								error: function(data, textStatus) {
-									console.log(textStatus)
-									console.log(data)
+									
+									str += `<li onclick="roomDetail(this)" data-housingId="${val.housingId}" class="mui-table-view-cell room-item">
+									
+										    	<img src="${img}" class="room-img" alt="" />
+										    	<div class="room-right">
+										    		<p class="room-title">${val.housingCommunity}</p>
+										    		<p class="room-desc"><span>面积:${val.housingArea}</span><span>价格:${val.housingPrice}</span></p>
+										    		<p class="room-distance">${val.housingTraffic}</p>
+										    	</div>
+										    </li>`;
+								})
+								$(".mui-table-view").html(str);
+								
+								var marker = new BMap.Marker(mPoint);
+								var mapPoints = []; //创建数组
+								for(var j = 0; j < data.length; j++) {
+									//添加信息 进 数组
+									mapPoints.push({
+										x: data[j].housingLatitude,
+										y: data[j].housingLongitude,
+										title: data[j].housingPrice,
+										con: data[j].housingId,
+										branch: data[j].housingPrice
+									})
 								}
-							});
-//						});
-					}
-				});
-			});
-//			}
-			
+								//console.log(mapPoints, "￥￥￥￥￥￥￥￥￥") //---------------------------------------
+								var i = 0;
+								map.addOverlay(marker);
+								map.enableScrollWheelZoom(true);
 
+								// 函数 创建多个标注
+								function markerFun(points, label, infoWindows, con) {
+									var markers = new BMap.Marker(points);
+									map.addOverlay(markers);
+									markers.setLabel(label);
+									markers.addEventListener("click", function(event) {
+										console.log(infoWindows);
+										console.log(con);
+
+										map.openInfoWindow(infoWindows, points); //参数：窗口、点  根据点击的点出现对应的窗口
+									});
+								}
+
+								for(; i < mapPoints.length; i++) {
+									var points = new BMap.Point(mapPoints[i].y, mapPoints[i].x); //创建坐标点
+
+									var opts = {
+										width: 200,
+										height: 100,
+										title: mapPoints[i].title
+									};
+									var label = new BMap.Label(mapPoints[i].branch, {
+										offset: new BMap.Size(25, 5)
+									});
+									var infoWindows = new BMap.InfoWindow(mapPoints[i].title, opts);
+
+									markerFun(points, label, infoWindows, mapPoints[i].con);
+								}
+							},
+							error: function(data, textStatus) {
+								mui.toast("此区域暂无房源")
+							}
+						});
+
+					}
+            })
+            
+            map.addEventListener("click", showPanel);
+            function showPanel (e) {
+            	console.log(e)
+            	if($("#popover li").length > 0) {
+            		mui('#popover').popover('toggle');
+            	}
+            	
+            }
+            
+            
+            
+            // 查看房子详情
+            function roomDetail (self) {
+            	var housingId = $(self).attr("data-housingId");
+            	window.location.href = `zufangxiangqing.html?housingId=${housingId}`;
+            }
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
 //			map.addEventListener("click", function(e) {
-				//通过点击百度地图，可以获取到对应的point, 由point的lng、lat属性就可以获取对应的经度纬度     
-				
+//				//通过点击百度地图，可以获取到对应的point, 由point的lng、lat属性就可以获取对应的经度纬度     
+//				console.log(e)
 //				var pt = e.point;
 //				geoc.getLocation(pt, function(rs) {
 //					//addressComponents对象可以获取到详细的地址信息
@@ -350,8 +351,8 @@
 //					var site = addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber;
 //					//将对应的HTML元素设置值
 //					console.log(site);
-//					console.log(pt.lng);
-//					console.log(pt.lat);
+////					console.log(pt.lng);
+////					console.log(pt.lat);
 //					longitude = pt.lng;
 //					latitude = pt.lat;
 //			
@@ -364,78 +365,151 @@
 //						strokeOpacity: 0.3,
 ////						enableEditing: true
 //					});
-					map.addOverlay(circle);
-
-					if(mPoint != null) {
-						console.log("***********")
-//						circle.addEventListener("lineupdate", function(e) {
-							var mi = parseInt(circle.getRadius())
-							$.ajax({
-								type: "GET", //请求方式 post
-								dataType: 'json', //数据类型 json
-								url: baseUrl + "/mapLookingForRoom", // 请求地址
-								data: {
-									longitude: longitude,
-									latitude: latitude,
-									range: mi
-								},
-								success: function(data) {
-									console.log(data, "$$$$$$$$$$") //-----------------------------------------------
-									var marker = new BMap.Marker(mPoint);
-									var mapPoints = []; //创建数组
-									for(var j = 0; j < data.length; j++) {
-										//添加信息 进 数组
-										mapPoints.push({
-											x: data[j].housingLatitude,
-											y: data[j].housingLongitude,
-											title: data[j].housingPrice,
-											con: data[j].housingId,
-											branch: data[j].housingPrice
-										})
-									}
-									console.log(mapPoints, "￥￥￥￥￥￥￥￥￥") //---------------------------------------
-									var i = 0;
-									map.addOverlay(marker);
-									map.enableScrollWheelZoom(true);
-
-									// 函数 创建多个标注
-									function markerFun(points, label, infoWindows, con) {
-										var markers = new BMap.Marker(points);
-										map.addOverlay(markers);
-										markers.setLabel(label);
-										markers.addEventListener("click", function(event) {
-											console.log(infoWindows);
-											console.log(con);
-
-											map.openInfoWindow(infoWindows, points); //参数：窗口、点  根据点击的点出现对应的窗口
-										});
-									}
-
-									for(; i < mapPoints.length; i++) {
-										var points = new BMap.Point(mapPoints[i].y, mapPoints[i].x); //创建坐标点
-
-										var opts = {
-											width: 200,
-											height: 100,
-											title: mapPoints[i].title
-										};
-										var label = new BMap.Label(mapPoints[i].branch, {
-											offset: new BMap.Size(25, 5)
-										});
-										var infoWindows = new BMap.InfoWindow(mapPoints[i].title, opts);
-
-										markerFun(points, label, infoWindows, mapPoints[i].con);
-									}
-								},
-								error: function(data, textStatus) {
-									console.log(textStatus)
-									console.log(data)
-								}
-							});
+//					map.addOverlay(circle);
+//
+//					if(mPoint != null) {
+//
+//						var mi = parseInt(circle.getRadius())
+//						$.ajax({
+//							type: "GET", //请求方式 post
+//							dataType: 'json', //数据类型 json
+//							url: baseUrl + "/mapLookingForRoom", // 请求地址
+//							data: {
+//								longitude: longitude,
+//								latitude: latitude,
+//								range: mi
+//							},
+//							success: function(data) {
+//								console.log(data, '房源') //-----------------------------------------------
+//								var marker = new BMap.Marker(mPoint);
+//								var mapPoints = []; //创建数组
+//								for(var j = 0; j < data.length; j++) {
+//									//添加信息 进 数组
+//									mapPoints.push({
+//										x: data[j].housingLatitude,
+//										y: data[j].housingLongitude,
+//										title: data[j].housingPrice,
+//										con: data[j].housingId,
+//										branch: data[j].housingPrice
+//									})
+//								}
+//								//console.log(mapPoints, "￥￥￥￥￥￥￥￥￥") //---------------------------------------
+//								var i = 0;
+//								map.addOverlay(marker);
+//								map.enableScrollWheelZoom(true);
+//
+//								// 函数 创建多个标注
+//								function markerFun(points, label, infoWindows, con) {
+//									var markers = new BMap.Marker(points);
+//									map.addOverlay(markers);
+//									markers.setLabel(label);
+//									markers.addEventListener("click", function(event) {
+//										console.log(infoWindows);
+//										console.log(con);
+//
+//										map.openInfoWindow(infoWindows, points); //参数：窗口、点  根据点击的点出现对应的窗口
+//									});
+//								}
+//
+//								for(; i < mapPoints.length; i++) {
+//									var points = new BMap.Point(mapPoints[i].y, mapPoints[i].x); //创建坐标点
+//
+//									var opts = {
+//										width: 200,
+//										height: 100,
+//										title: mapPoints[i].title
+//									};
+//									var label = new BMap.Label(mapPoints[i].branch, {
+//										offset: new BMap.Size(25, 5)
+//									});
+//									var infoWindows = new BMap.InfoWindow(mapPoints[i].title, opts);
+//
+//									markerFun(points, label, infoWindows, mapPoints[i].con);
+//								}
+//							},
+//							error: function(data, textStatus) {
+//								console.log("暂无房源")
+//							}
 //						});
-					}
+//
+//					}
 //				});
 //			});
+//			}
+			
+
+
+//					map.addOverlay(circle);
+//
+//					if(mPoint != null) {
+//
+//
+//							var mi = parseInt(circle.getRadius())
+//							$.ajax({
+//								type: "GET", //请求方式 post
+//								dataType: 'json', //数据类型 json
+//								url: baseUrl + "/mapLookingForRoom", // 请求地址
+//								data: {
+//									longitude: longitude,
+//									latitude: latitude,
+//									range: mi
+//								},
+//								success: function(data) {
+//									console.log(data, "$$$$$$$$$$") //-----------------------------------------------
+//									var marker = new BMap.Marker(mPoint);
+//									var mapPoints = []; //创建数组
+//									for(var j = 0; j < data.length; j++) {
+//										//添加信息 进 数组
+//										mapPoints.push({
+//											x: data[j].housingLatitude,
+//											y: data[j].housingLongitude,
+//											title: data[j].housingPrice,
+//											con: data[j].housingId,
+//											branch: data[j].housingPrice
+//										})
+//									}
+//									console.log(mapPoints, "￥￥￥￥￥￥￥￥￥") //---------------------------------------
+//									var i = 0;
+//									map.addOverlay(marker);
+//									map.enableScrollWheelZoom(true);
+//
+//									// 函数 创建多个标注
+//									function markerFun(points, label, infoWindows, con) {
+//										var markers = new BMap.Marker(points);
+//										map.addOverlay(markers);
+//										markers.setLabel(label);
+//										markers.addEventListener("click", function(event) {
+//											console.log(infoWindows);
+//											console.log(con);
+//
+//											map.openInfoWindow(infoWindows, points); //参数：窗口、点  根据点击的点出现对应的窗口
+//										});
+//									}
+//
+//									for(; i < mapPoints.length; i++) {
+//										var points = new BMap.Point(mapPoints[i].y, mapPoints[i].x); //创建坐标点
+//
+//										var opts = {
+//											width: 200,
+//											height: 100,
+//											title: mapPoints[i].title
+//										};
+//										var label = new BMap.Label(mapPoints[i].branch, {
+//											offset: new BMap.Size(25, 5)
+//										});
+//										var infoWindows = new BMap.InfoWindow(mapPoints[i].title, opts);
+//
+//										markerFun(points, label, infoWindows, mapPoints[i].con);
+//									}
+//								},
+//								error: function(data, textStatus) {
+//
+//								}
+//							});
+//
+//					}
+
+
 		</script>
 	</body>
 

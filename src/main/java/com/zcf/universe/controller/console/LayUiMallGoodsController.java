@@ -54,9 +54,7 @@ public class LayUiMallGoodsController {
     }
 
     @RequestMapping("upload")
-    public Map UploadBrand(@RequestParam("file") MultipartFile file) throws FileNotFoundException{
-        //String pathVal = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/";
-        String pathVal = ResourceUtils.getURL("classpath:").getPath() + "static/";
-        return FileUploadUtils.uploadLayUiImg(file, pathVal,"img/");
+    public Map UploadBrand(@RequestParam("file") MultipartFile file)  {
+        return FileUploadUtils.uploadLayUiImg(file, "","mall_goods/");
     }
 }

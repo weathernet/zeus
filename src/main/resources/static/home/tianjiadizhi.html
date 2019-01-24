@@ -6,8 +6,20 @@
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/tianjiadizhi.css" />
+		<link rel="stylesheet" href="layer/mobile/need/layer.css" />
 	</head>
-
+<style>
+	input{
+		border: none;
+		outline: none;
+		width: 70%;
+		height: 80%;
+		padding-left: 10px;
+	}
+	.submit {
+		padding-right: 10px;
+	}
+</style>
 	<body>
 		<div class="one">
 			<div class="d1">
@@ -16,28 +28,75 @@
 			<div class="d2">
 				添加地址
 			</div>
+			<span class="submit">确认</span>
 		</div>
 		<div class="two">
-			<div class="d3">收货人</div>
-			<div class="d3">手机号码</div>
+			<div class="d3">收货人
+			<input  class="people"/>
+			</div>
+			<div class="d3">手机号码
+			<input  class="phone"  type="number"/>
+			</div>
 			<div class="d4">
-				<span>地区</span>
+				<span>地区
+				<input class="adress" />
+				</span>
 				<span class="tt">
-					<img src="img/btn_enter@2x.png"/>
+					<!--<img src="img/btn_enter@2x.png"/>-->
 				</span>
 			</div>
-			<div class="d5">详细地址</div>
+			<div class="d5">详细地址
+			<input  class="xAdress"/>
+			</div>
 		</div>
 		<script
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/baseUrl.js"></script>
+  <script type="text/javascript" src="js/getTime.js"></script>
+  <script src="layer/layer.js"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
   	$(".d1").on("click",function(){
   		window.history.back()
   	})
   	$(".d2").on("click",function(){
   		window.location.href = "tianjiadizhi.html"
+  	})
+  	$(".submit").click(function(){
+  		if($(".phone").val()==''||$(".people").val()==''||$(".adress").val()==''||$(".xAdress").val()==''){
+  			layer.msg("请完善收货地址信息")
+  		}else{
+  			var time= new Date()
+  			$.ajax({
+  				type: "POST",
+  				url: baseUrl + "/userAddress",
+  				data:{
+  					addressDefault: 0,
+  					addressName:$(".people").val(),
+  					addressPhone:$(".phone").val(),
+  					addressReceiving:$(".adress").val() + $(".xAdress").val(),
+  					addressUserId:localStorage.getItem('userId'),
+  				},
+  				success:function(data){
+  					layer.msg("添加成功");
+  					setTimeout(function () {
+  						window.history.go(-1);
+  					}, 2000)
+  				},
+  				error:function(){
+  					
+  				}
+  			});
+  		}
   	})
   </script>
 	</body>

@@ -17,19 +17,15 @@ public class HomeBanner {
     @Column(name = "banner_id")
     @ApiModelProperty(value = "主键", required = true)
     private Integer bannerId;
-
     @ApiModelProperty(value = "轮播的图片")
     @Column(name = "banner_picture")
     private String bannerPicture;
-
     @ApiModelProperty(value = "跳转的地址")
     @Column(name = "banner_url")
     private String bannerUrl;
-
     @ApiModelProperty(value = "创建时间")
     @Column(name = "create_time")
     private Date createTime;
-
     @ApiModelProperty(value = "更新时间")
     @Column(name = "update_time")
     private Date updateTime;

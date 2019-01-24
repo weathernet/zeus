@@ -33,7 +33,7 @@
             </div>
             <table id="LAY-${modelNameLowerCamel}-list" lay-filter="LAY-${modelNameLowerCamel}-list"></table>
             <script type="text/html" id="Img">
-                <img style="display: inline-block; width: 50%; height: 100%;" src={ d.avatar }} onclick="previewImg(this)">
+                <img style="display: inline-block; width: 50%; height: 100%;" src={{ d.avatar }} onclick="previewImg(this)">
             </script>
             <script type="text/html" id="table-${modelNameLowerCamel}-toolbar">
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>

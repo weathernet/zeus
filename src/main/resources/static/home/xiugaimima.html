@@ -44,6 +44,14 @@
   crossorigin="anonymous"></script>
   <script src="js/mui.min.js"></script>
   <script src="js/baseUrl.js"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
   	$(".m1").on("click",function(){
   		window.history.back();

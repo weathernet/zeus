@@ -46,8 +46,7 @@ layui.define(['table', 'form'], function (exports) {
         , url: '/house/move/query'
         ,toolbar: true
         , cols: [[
-             {field: 'additionalTitle',  title: '标题'}
-            , {field: 'moveName', title: '大标题'}
+             {field: 'moveName', title: '大标题'}
             , {field: 'moveImage', title: '图片',templet: '#Img'}
             , {field: 'moveTitle1', title: '标题1'}
             , {field: 'moveSubTitle1', title: '小标题1'}
@@ -55,8 +54,6 @@ layui.define(['table', 'form'], function (exports) {
             , {field: 'moveSubTitle2', title: '小标题2'}
             , {field: 'moveTitle3', title: '标题3'}
             , {field: 'moveSubTitle3', title: '小标题3'}
-
-
             , {field: 'createTime', title: '创建日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
             , {field: 'updateTime', title: '修改日期',templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
             , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-houseMove-toolbar'}//设置表格工具条的名称
@@ -99,7 +96,8 @@ layui.define(['table', 'form'], function (exports) {
             });
         } else if (obj.event === 'del') {//匹配工具栏的del字段
             layer.confirm('确定删除词条信息？', function (index) {
-                var id = data.id;//根据数据库的字段更改data.id中id的命名
+                var id = data.moveId;//根据数据库的字段更改data.id中id的命名
+                console.log(id)
                 $.post("/house/move/delete", {id: id}, function (data) {
                     obj.del();
                     layer.close(index);

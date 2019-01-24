@@ -44,12 +44,13 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-${modelNameLowerCamel}-list'
         , url: '${baseRequestMapping}/query'
+        ,toolbar: true
         , cols: [[
              {field: '${modeListDetails[0].name}',  title: '编号'}
     <#list modeListDetails as iteam>
         <#if iteam.type !="datetime">
             <#if iteam_index != 0>
-            , {field: '${iteam.name}', title: ' ${iteam.remark}'}
+            , {field: '${iteam.name}', title: ' ${iteam.remark}',edit: 'text', sort: true}
             </#if>
         </#if>
     </#list>
@@ -64,15 +65,31 @@ layui.define(['table', 'form'], function (exports) {
     });
     //**********表格显示开始***********
 
+     //<<<<<<<<<<<<<<<监听单元格编辑开始<<<<<<<<<<<<<<<
+    table.on('edit(LAY-${modelNameLowerCamel}-list)', function(obj){
+        var data = obj.data //得到所在行所有键值
+            $.ajax({
+                type: "POST", //请求方式 post
+                dataType: 'json', //数据类型 json
+                contentType: "application/json; charset=utf-8",
+                url: "${baseRequestMapping}/update", // 请求地址
+                data: JSON.stringify(data), //请求附带参数
+                success: function () {
+                    layui.table.reload('LAY-userInfo-list'); //重载表格
+                }
+            });
+    });
+    //<<<<<<<<<<<<<<<监听单元格编辑结束<<<<<<<<<<<<<<<
+
     //++++++++++监听工具条操作开始++++++++++
     table.on('tool(LAY-${modelNameLowerCamel}-list)', function (obj) {//表格的名称
         var data = obj.data;
         if (obj.event === 'edit') {//匹配工具栏的edit字段
             admin.popup({
-                title: '修改词条信息'
-                , area: ['550px', '550px']
+                title: '修改词条信息'//标题
+                , area: ['550px', '550px']//设置弹出框大小
                 , success: function (layero, index) {
-                    view(this.id).render('${modelNameLowerCamel}/form', data).done(function () {//跳转的路径
+                    view(this.id).render('${modelNameLowerCamel}/form', data).done(function () {//表单的路由
                         form.render(null, '${modelNameLowerCamel}-form');//读取表单的信息
                         //监听提交
                         form.on('submit(${modelNameLowerCamel}-form-submit)', function (data) {//form 表单提交的按钮
@@ -84,7 +101,7 @@ layui.define(['table', 'form'], function (exports) {
                                 contentType: "application/json; charset=utf-8",
                                 url: "${baseRequestMapping}/update", // 请求地址
                                 data: JSON.stringify(field), //请求附带参数
-                                success: function () {
+                                success: function () {//成功回调
                                     layui.table.reload('LAY-${modelNameLowerCamel}-list'); //重载表格
                                     layer.close(index); //执行关闭
                                 }
@@ -98,7 +115,7 @@ layui.define(['table', 'form'], function (exports) {
                 var id = data.${modeListDetails[0].name};//根据数据库的字段更改data.id中id的命名
                 $.post("${baseRequestMapping}/delete", {id: id}, function (data) {
                     obj.del();
-                    layer.close(index);
+                    layer.close(index);//执行关闭
                 })
             });
         }
@@ -109,7 +126,7 @@ layui.define(['table', 'form'], function (exports) {
     var active = {
         add: function () {
             admin.popup({
-                title: '添加词条'
+                title: '添加词条'//标题
                 , area: ['550px', '550px']//设置弹出框大小
                 , success: function (layero, index) {
                     view(this.id).render('${modelNameLowerCamel}/form').done(function () {

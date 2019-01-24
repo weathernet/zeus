@@ -15,7 +15,7 @@
 				我的订单
 			</div>
 		</div>
-		<div class="two">
+		<div class="two renting">
 			<div class="d3">
 				<span class="s1">
 					<img src="img/icon_zufang.png"/>
@@ -30,7 +30,7 @@
 				</span>
 			</div>
 		</div>
-		<div class="two">
+		<div class="two serve">
 			<div class="d3">
 				<span class="s1">
 					<img src="img/icon_shfw.png"/>
@@ -45,7 +45,7 @@
 				</span>
 			</div>
 		</div>
-		<div class="two">
+		<div class="two store ">
 			<div class="d3">
 				<span class="s1">
 					<img src="img/icon_sc.png"/>
@@ -60,7 +60,7 @@
 				</span>
 			</div>
 		</div>
-		<div class="two">
+		<div class="two chuxing">
 			<div class="d3">
 				<span class="s1">
 					<img src="img/icon_chuxing.png"/>
@@ -80,9 +80,34 @@
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
   	$(".d1").on("click",function(){
   		window.history.back();
   	})
+  	// 租房
+  	$(".renting").on("click",function () {
+  		window.location.href = `dingdan_detail.html?type=1`;
+  	})
+  	// 生活服务页面
+  	$(".serve").on("click",function () {
+  		window.location.href = `dingdan_detail.html?type=2`;
+  	})
+  	// 商城
+  	$(".store").on("click",function () {
+  		window.location.href = `dingdan_detail.html?type=3`;
+  	})
+  	// 出行订单页面
+  	$(".chuxing").on("click",function () {
+  		window.location.href = `dingdan_detail.html?type=4`;
+  	})
+  	
   </script>
 </html>

@@ -47,14 +47,9 @@ layui.define(['table', 'form'], function (exports) {
         ,toolbar: true
         , cols: [[
              {field: 'id',  title: '编号'}
-            , {field: 'advantage', title: ' 品家推荐照片',edit: 'text', sort: true}
-            , {field: 'createTime', title: '创建日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
-            , {field: 'updateTime', title: '修改日期',templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
+            , {field: 'advantage', title: ' 品家推荐照片',templet:'#Img'}
             , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-ownerAdvantage-toolbar'}//设置表格工具条的名称
         ]]
-        , page: true//开启分页
-        , limit: 20
-        , limits: [20, 25, 30, 35, 40]
         , text: '对不起，加载出现异常！'
     });
     //**********表格显示开始***********

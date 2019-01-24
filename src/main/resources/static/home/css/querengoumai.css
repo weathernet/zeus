@@ -20,6 +20,7 @@ html,body{
 	margin: 0 auto;
 	font-size: 18px;
 	color: #000000;
+	
 }
 .two{
 	display: flex;
@@ -41,7 +42,7 @@ html,body{
 }
 .d3{
 	display: flex;
-	justify-content:space-between;
+	/*justify-content:space-between;*/
 }
 .three{
 	height: 5px;

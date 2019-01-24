@@ -5,6 +5,25 @@
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/banjiafuwu.css"/>
+		<style>
+			.two span {
+				border-bottom: 1px solid transparent;
+			}
+			.two span.active {
+				border-color: orange;
+				color: orange;
+			}
+			.d2 {
+				text-indent: -20px;
+			}
+			input {
+				border: none;
+				outline: none;
+			}
+			.five-1 {
+				width: 70%;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="one">
@@ -15,62 +34,64 @@
 				搬家服务
 			</div>
 		</div>
-		<div class="two">
-			<span class="s1">面包小搬</span>
+		<!--<div class="two">
+			<span class="s2 active">面包小搬</span>
 			<span class="s2">金杯中搬</span>
 			<span class="s2">货箱大搬</span>
 			<span class="s2">货箱大搬</span>
-		</div>
-		<div class="three">
-			<div class="three-1">
-				<div class="d3">
-					<img src="img/img_xiaoqiche@2x.png"/>
-				</div>
-				<div class="d4">
-					<span class="s3">
-						全程搬运
-					</span>
-					<span class="s3">
-						免费收纳箱
-					</span>
-					<span class="s3">
-						车内尺寸
-					</span>
-				</div>
-				<div class="d5">
-					<span class="s4">
-						1位搬家师傅
-					</span>
-					<span class="s4">
-						1个可用
-					</span>
-					<span class="s4">
-						1.2*1.2*11m
-					</span>
+		</div>-->
+		<div class="moveHouse-wrap">
+			<div class="three">
+				<div class="three-1">
+					<div class="d3">
+						<img src="img/img_xiaoqiche@2x.png"/>
+					</div>
+					<div class="d4">
+						<span class="s3">
+							全程搬运
+						</span>
+						<span class="s3">
+							免费收纳箱
+						</span>
+						<span class="s3">
+							车内尺寸
+						</span>
+					</div>
+					<div class="d5">
+						<span class="s4">
+							1位搬家师傅
+						</span>
+						<span class="s4">
+							1个可用
+						</span>
+						<span class="s4">
+							1.2*1.2*11m
+						</span>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="four">
-			<div class="four-1">
-				<ul>
-					<li class="dian1"><span>您要搬出哪里</span></li>
-				</ul>
-				<div class="dd"></div>
-				<ul>
-					<li class="dian2"><span>您要搬出哪里</span></li>
-				</ul>
-			</div>
-		</div>
-		<div class="five">
-			<div class="five-1">
-				<div class="d6">
-					<span>预计</span>
-					<span class="s5">999</span>
-					<span>元</span>
+			<div class="four">
+				<div class="four-1">
+					<ul>
+						<li class="dian1"><span>您要搬出哪里</span></li>
+					</ul>
+					<div class="dd"></div>
+					<ul>
+						<li class="dian2"><span>您要搬出哪里</span></li>
+					</ul>
 				</div>
-				<div class="d7">
-					<span>服务详情</span>
-					<span><img src="img/btn_enter3@2x.png"/></span>
+			</div>
+			<div class="five">
+				<div class="five-1">
+					<div class="d6">
+						<span>预计</span>
+						<span class="s5">999</span>
+						<span>元</span>
+					</div>
+					<div class="d7">
+						<span>服务详情</span>
+						<span><img src="img/btn_enter3@2x.png"/></span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -82,9 +103,103 @@
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
+  <script src="js/baseUrl.js"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
   	$(".d1").on("click",function(){
   		window.history.back();
   	})
+  	$(".two .s2").on("click",function() {
+  		$(this).addClass("active").siblings().removeClass("active");
+  	})
+  	// 获取搬家类型id
+  	var type = window.location.search.split("?")[1].split("=")[1];
+  	console.log(type);
+  	
+  	// 根据id 获取搬家服务的信息
+  	getMoveHouseInfo();
+  	var carImg;
+  	function getMoveHouseInfo () {
+  		$.ajax({
+  			type: 'GET',
+  			url: baseUrl + '/houseMove/' + type,
+  			data: {},
+  			success: function (data) {
+  				console.log(data);
+  				$(".d2").text(data.moveName);
+  				var str = '';
+  			    img = data.moveImage;
+  			    if(data.moveImage == null || data.moveImage == "") {
+  			    	img = 'img/img_xiaoqiche@2x.png'
+  			    }
+  				str = `<div class="three">
+							<div class="three-1">
+								<div class="d3">
+									<img src="${img}"/>
+								</div>
+								<div class="d4">
+									<span class="s3">
+										${data.moveTitle1}
+									</span>
+									<span class="s3">
+										${data.moveTitle2}
+									</span>
+									<span class="s3">
+										${data.moveTitle3}
+									</span>
+								</div>
+								<div class="d5">
+									<span class="s4">
+										${data.moveSubTitle1}
+									</span>
+									<span class="s4">
+										${data.moveSubTitle2}
+									</span>
+									<span class="s4">
+										${data.moveSubTitle3}
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="four">
+							<div class="four-1">
+								<ul>
+									<li class="dian1"><input  type="text" name="" placeholder="您要搬出哪里" /></li>
+								</ul>
+								<div class="dd"></div>
+								<ul>
+									<li class="dian2"><input type="text" name="" placeholder="您要搬去哪里" /></li>
+								</ul>
+							</div>
+						</div>
+						<div class="five"><div class="five-1">
+								<div class="d6">
+									<span>预计</span>
+									<span class="s5">${data.movePrice}</span>
+									<span>元</span>
+								</div>
+								<div data-moveId="${data.moveId}" onclick="getServeDetail(this)" class="d7">
+									<span>服务详情</span>
+									<span><img src="img/btn_enter3@2x.png"/></span>
+								</div>
+							</div>
+						</div>`;
+				$(".moveHouse-wrap").html(str);		
+  			}
+  			
+  		})
+  	}
+  	// 搬家详情页面
+  	function getServeDetail (self) {
+  		var moveId = $(self).attr("data-moveId")
+  		window.location.href = `moveHouseDetail.html?moveId=${moveId}`;
+  	}
   </script>
 </html>

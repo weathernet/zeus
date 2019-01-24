@@ -30,7 +30,7 @@ public class MallGoods{
     @ApiModelProperty(value = "单价")
     private String goodsPrice;
     @ApiModelProperty(value = "商品分类")
-    private String goodsGroup;
+    private Integer goodsGroups;
     @ApiModelProperty(value = "状态:0.待审核1.已通过2.未通过")
     private String goodsStatus;
     @ApiModelProperty(value = "创建时间")

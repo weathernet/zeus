@@ -1,472 +1,781 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
-    	<meta name="referrer" content="no-referrer"/>
-    <title>首页</title>
-    <link href="css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/mui.picker.css" />
-    <link rel="stylesheet" href="css/mui.poppicker.css" />
-    <link rel="stylesheet" href="css/mui.dtpicker.css" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/swiper-3.4.2.min.css" />
-</head>
-<body>
-	<header class="mui-bar mui-bar-nav header">
-		<span id="site" onclick="showPick()">徐州<img src="images/shouye/btn_cbb.png" alt="" /></span>
-		<span id="gongyu">公寓<img src="images/shouye/btn_cbb.png" alt="" /></span>
-		<img class="search" src="images/shouye/icon_sousuo.png" alt="" />
-		<input class="header_input" type="text" placeholder="您想住哪儿" />
-		<a href="xiaoxizhongxin.html"><img src="images/shouye/btn_xiaoxi.png" alt="" /></a>
-	</header>
-	<!--header结束-->
-	<div class="mui-content">
-		<div class="banner">
-			<!--<img src="images/shouye/banner_shouye.png" alt="" />-->
-			<div class="swiper-container2">
-			  <div class="swiper-wrapper banner_wrap">
-			    <div class="swiper-slide"><img src="images/shouye/banner_shouye.png" alt="" /></div>
-			  </div>
-			</div>
-		</div>
-		<div class="content_search">
-			<div class="content_search_in">
-				<ul class="search_method">
-					<li class="active">短租</li>
-					<li>长租</li>
-					<li>写字楼</li>
-				</ul>
-				<div class="my_site">
-					<img src="images/shouye/icon_dingwei.png" alt="" />
-					<input type="text" placeholder="江苏省徐州市铜山区..." />
-					<div>
-						<img src="images/shouye/icon_weizhi.png" alt="" />
-						<p>我的位置</p>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="Access-Control-Allow-Origin"  content="*">
+			<meta name="referrer" content="no-referrer" />
+			<title>首页</title>
+			<link href="css/mui.min.css" rel="stylesheet" />
+			<link rel="stylesheet" href="css/mui.picker.css" />
+			<link rel="stylesheet" href="css/mui.poppicker.css" />
+			<link rel="stylesheet" href="css/mui.dtpicker.css" />
+			<link rel="stylesheet" href="css/reset.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/swiper-3.4.2.min.css" />
+			<style>
+				#site {
+					max-width: 1.5rem;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+				.dImg,.xImg,.sImg,.hImg,.gImg,.cImg {
+					height: 2.5rem;
+					width: 100%;
+				}
+				#suggestId {
+					padding: 0;
+					width: 100%;
+					font-size: .28rem;
+				}
+				#searchResultPanel {
+					position: relative;
+					/*top: 1rem;*/
+					z-index: 99999;
+				}
+				.want-text {
+					font-size: .28rem;
+					padding-left: 0;
+				}
+				.banner {
+					
+				}
+				.header_input {
+					flex: 1;
+					margin-right: .2rem !important;
+				}
+				.header img.search {
+					margin: 0;
+					position: relative;
+					left: .4rem;
+				}
+			</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav header">
+			<span id="site" onclick="showPick()">徐州</span>
+			<!--<span id="gongyu">公寓<img src="images/shouye/btn_cbb.png" alt="" /></span>-->
+			<img class="search" src="images/shouye/icon_sousuo.png" alt="" />
+			<input class="header_input" type="text" placeholder="您想住哪儿" />
+			<a href="xiaoxizhongxin.html"><img src="images/shouye/btn_xiaoxi.png" alt="" /></a>
+		</header>
+		<!--header结束-->
+		<div class="mui-content">
+			<div class="banner">
+				<!--<img src="images/shouye/banner_shouye.png" alt="" />-->
+				<div class="swiper-container2">
+					<div class="swiper-wrapper banner_wrap">
+						<div class="swiper-slide"><img src="images/shouye/banner_shouye.png" alt="" /></div>
 					</div>
 				</div>
-				<div class="my_time">
-					<img src="images/shouye/icon_riqi.png" alt="" />
-					<div class="zhu">
-						<p>入住</p>
-					    <input type="text" readonly  class="start_time" style="text-align: center"/>
-					</div>
-					<i>/</i>
-					<div class="tui">
-						<p>退房</p>
-						<input type="text" readonly  class="end_time" style="text-align: center"/>
-					</div>
-					<p>共<i class="days" style="font-size: .26rem;">0</i>晚</p>
-					<img src="images/shouye/btn_enter.png" alt="" style="width:.2rem;" />
-				</div>
-				<div class="my_want">
-					<img src="images/shouye/icon_sousuo.png" alt="" style="width: .35rem;"/>
-					<input type="text" placeholder="您想住哪儿" />
-				</div>
-				<button class="search_btn">查&nbsp;&nbsp;询</button>
 			</div>
-		</div>
-		<div class="class">
-			<ul class="clearfix">
-				<li>
-					<a href="zufangliebiao.html">
-						<img src="images/shouye/icon_xiezilou.png" alt="" />
-					    <p>写字楼</p>
-					</a>
-				</li>
-				<li>
-					<a href="zufangliebiao.html">
-						<img src="images/shouye/icon_shangye.png" alt="" />
-					    <p>商业</p>
-					</a>
-				</li>
-				<li>
-					<a href="zufangliebiao.html">
-						<img src="images/shouye/icon_changfang.png" alt="" />
-						<p>厂房</p>
-					</a>
-				</li>
-				<li>
-					<a href="zufangliebiao.html">
-						<img src="images/shouye/icon_fangchanchushou.png" alt="" />
-						<p>房产出售</p>
-					</a>
-				</li>
-				<li>
-					<a href="jiazhengweixiu.html">
-						<img src="images/shouye/icon_shenghuoguangcheng.png" alt="" />
-					    <p>生活广场</p>
-					</a>
-				</li>
-				<li>
-					<a href="jifenduihuan.html">
-						<img src="images/shouye/icon_pinjiachuxing.png" alt="" />
-					    <p>积分天地</p>
-					</a>
-				</li>
-				<li>
-					<a href="pinjiachuxing.html">
-						<img src="images/shouye/icon_jifentiandi.png" alt="" />
-					    <p>品家出行</p>
-					</a>
-				</li>
-				<li>
-					<a href="pinjiaVIP.html">
-						<img src="images/shouye/icon_pinjiaVIP.png" alt="" />
-					    <p>品家VIP</p>
-					</a>
-				</li>
-			</ul>
-		</div>
-		<div class="qinggou clearfix">
-			<div class="qg_left">
-				<h3>限时抢购</h3>
-				<p>限时购</p>
-				<p><span>00</span> ：<span>00</span> : <span>00</span></p>
-				<p class="feiji">
-					<img src="images/shenghuo/img_xsqg.png" alt="" />
-					<img src="images/shenghuo/img_199.png" alt="" />
-				</p>
-			</div>
-			<div class="qg_right">
-				<div class="qg_top clearfix">
-					<h3 class="fl">企业商旅</h3>
-					<img class="fr" src="images/shouye/img2.png" alt="" />
+			<div class="content_search">
+				<div class="content_search_in">
+					<ul class="search_method">
+						<li class="active duanzu_">短租</li>
+						<li class="changzu">长租</li>
+						<li class="xiezilou">写字楼</li>
+					</ul>
+					<div class="my_site">
+						<img src="images/shouye/icon_dingwei.png" alt="" />
+						<div id="l-map" style="display: none"></div>
+						<div id="r-result"><input type="text"  id="suggestId" placeholder="输入你所在位置" /></div>
+						<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+						<div id="my-site">
+							<img src="images/shouye/icon_weizhi.png" alt="" />
+							<p>我的位置</p>
+						</div>
+					</div>
+					<div class="my_time">
+						<img src="images/shouye/icon_riqi.png" alt="" />
+						<div class="zhu">
+							<p>入住</p>
+							<input type="text" readonly class="start_time" style="text-align: center" />
+						</div>
+						<i>/</i>
+						<div class="tui">
+							<p>退房</p>
+							<input type="text" readonly class="end_time" style="text-align: center" />
+						</div>
+						<p>共<i class="days" style="font-size: .26rem;">0</i>晚</p>
+						<img src="images/shouye/btn_enter.png" alt="" style="width:.2rem;" />
+					</div>
+					<div class="my_want">
+						<img src="images/shouye/icon_sousuo.png" alt="" style="width: .35rem;" />
+						<input class="want-text" type="text" placeholder="您想住哪儿" />
+					</div>
+					<button class="search_btn">查&nbsp;&nbsp;询</button>
 				</div>
-				<div class="qg_bottom clearfix">
-					<div class="q_left fl clearfix">
-						<a href="mianxijiekuan.html" style="color: #000">
-							<h3 class="fl">免息借款</h3>
-						    <img class="fr" src="images/shouye/img3.png" alt="" />
+			</div>
+			<div class="class">
+				<ul class="clearfix">
+					<li data-type="1" class="office">
+						<a >
+							<img src="images/shouye/icon_xiezilou.png" alt="" />
+							<p>写字楼</p>
 						</a>
+					</li>
+					<li data-type="2"  class="business">
+						<a >
+							<img src="images/shouye/icon_shangye.png" alt="" />
+							<p>商业</p>
+						</a>
+					</li>
+					<li data-type="3" class="plant">
+						<a >
+							<img src="images/shouye/icon_changfang.png" alt="" />
+							<p>厂房</p>
+						</a>
+					</li>
+					<li data-type="4" class="house">
+						<a >
+							<img src="images/shouye/icon_fangchanchushou.png" alt="" />
+							<p>房产出售</p>
+						</a>
+					</li>
+					<li>
+						<a href="jiazhengweixiu.html">
+							<img src="images/shouye/icon_shenghuoguangcheng.png" alt="" />
+							<p>生活广场</p>
+						</a>
+					</li>
+					<li>
+						<a href="jifenduihuan.html">
+							<img src="images/shouye/icon_pinjiachuxing.png" alt="" />
+							<p>积分天地</p>
+						</a>
+					</li>
+					<li>
+						<a href="pinjiachuxing.html">
+							<img src="images/shouye/icon_jifentiandi.png" alt="" />
+							<p>品家出行</p>
+						</a>
+					</li>
+					<li>
+						<a href="pinjiaVIP.html">
+							<img src="images/shouye/icon_pinjiaVIP.png" alt="" />
+							<p>品家VIP</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="qinggou clearfix">
+				<div class="qg_left qg_shangcheng">
+					<h3>限时抢购</h3>
+					<p>限时购</p>
+					<p><span>00</span> ：<span>00</span> : <span>00</span></p>
+					<p class="feiji">
+						<img src="images/shenghuo/img_xsqg.png" alt="" />
+						<img src="images/shenghuo/img_199.png" alt="" />
+					</p>
+				</div>
+				<div class="qg_right">
+					<div class="qg_top qg_shanglv clearfix">
+						<h3 class="fl">企业商旅</h3>
+						<img class="fr" src="images/shouye/img2.png" alt="" />
 					</div>
-					<div class="q_right fl">
-						<a href="c"></a><h3>充值有礼</h3>
-						<img src="images/shouye/img4.png" alt="" />
+					<div class="qg_bottom clearfix">
+						<div class="q_left fl clearfix">
+							<a href="mianxijiekuan.html" style="color: #000">
+								<h3 class="fl">免息借款</h3>
+								<img class="fr" src="images/shouye/img3.png" alt="" />
+							</a>
+						</div>
+						<div class="q_right recharge fl">
+							<a href="c"></a>
+							<h3>充值有礼</h3>
+							<img src="images/shouye/img4.png" alt="" />
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="duanzu">
-			<div class="duanzu_tit">
-				<div class="tit_left">
-					<h3>品 家-短 租 推 荐</h3>
-				    <p>再短的旅途都不能亏待自己</p>
+			<div class="duanzu">
+				<div class="duanzu_tit">
+					<div class="tit_left">
+						<h3>品 家-短 租 推 荐</h3>
+						<p class="dTitle">再短的旅途都不能亏待自己</p>
+					</div>
+					<a class="dMore">查看更多</a>
+					<img src="images/shouye/btn_enter.png" alt="" />
 				</div>
-				<a href="zufangliebiao.html">查看更多</a>
-				<img src="images/shouye/btn_enter.png" alt="" />
-			</div>
-			<div class="swiper-container">
-				<div class="swiper-wrapper">
-				    <div class="swiper-slide"><img src="images/shouye/img5.png" alt="" /></a></div>
-				    <div class="swiper-slide"><img src="images/shouye/img6.png" alt="" /></a></div>
+				<div>
+					<img class="dImg" />
 				</div>
 			</div>
-		</div>
-		<div class="duanzu">
-			<div class="duanzu_tit">
-				<div class="tit_left">
-					<h3>品 家-长租 推 荐</h3>
-				    <p>为各类人群打造独享的都是房屋整租品牌</p>
+			<div class="duanzu">
+				<div class="duanzu_tit">
+					<div class="tit_left">
+						<h3>品 家-长租 推 荐</h3>
+						<p class="cTitle">为各类人群打造独享的都是房屋整租品牌</p>
+					</div>
+					<a class="cMore">查看更多</a>
+					<img src="images/shouye/btn_enter.png" alt="" />
 				</div>
-				<a href="zufangliebiao.html">查看更多</a>
-				<img src="images/shouye/btn_enter.png" alt="" />
-			</div>
-			<div class="swiper-container">
-				<div class="swiper-wrapper">
-				    <div class="swiper-slide"><img src="images/shouye/img7.png" alt="" /></a></div>
-				    <div class="swiper-slide"><img src="images/shouye/img8.png" alt="" /></a></div>
+				<div>
+					<img class="cImg" />
 				</div>
 			</div>
-		</div>
-		<div class="duanzu">
-			<div class="duanzu_tit">
-				<div class="tit_left">
-					<h3>品 家-写 字 楼 推 荐</h3>
-				    <p>五星办公环境，让企业更胜一筹</p>
+			<div class="duanzu">
+				<div class="duanzu_tit">
+					<div class="tit_left">
+						<h3>品 家-写 字 楼 推 荐</h3>
+						<p class="xTitle">五星办公环境，让企业更胜一筹</p>
+					</div>
+					<a class="xMore">查看更多</a>
+					<img src="images/shouye/btn_enter.png" alt="" />
 				</div>
-				<a href="zufangliebiao.html">查看更多</a>
-				<img src="images/shouye/btn_enter.png" alt="" />
-			</div>
-			<div class="swiper-container">
-				<div class="swiper-wrapper">
-				    <div class="swiper-slide"><img src="images/shouye/img9.png" alt="" /></a></div>
-				    <div class="swiper-slide"><img src="images/shouye/img10.png" alt="" /></a></div>
+				<div>
+					<img class="xImg" />
 				</div>
 			</div>
-		</div>
-		<div class="duanzu">
-			<div class="duanzu_tit">
-				<div class="tit_left">
-					<h3>品 家-商 家 推 荐</h3>
-				    <p>做生意很简单，一个好的创意，一个这样的商铺</p>
+			<div class="duanzu">
+				<div class="duanzu_tit">
+					<div class="tit_left">
+						<h3>品 家-商 家 推 荐</h3>
+						<p class="sTitle">做生意很简单，一个好的创意，一个这样的商铺</p>
+					</div>
+					<a class="sMore">查看更多</a>
+					<img src="images/shouye/btn_enter.png" alt="" />
 				</div>
-				<a href="zufangliebiao.html">查看更多</a>
-				<img src="images/shouye/btn_enter.png" alt="" />
-			</div>
-			<div class="swiper-container">
-				<div class="swiper-wrapper">
-				    <div class="swiper-slide"><img src="images/shouye/img11.png" alt="" /></a></div>
-				    <div class="swiper-slide"><img src="images/shouye/img12.png" alt="" /></a></div>
+				<div>
+					<img class="sImg" />
 				</div>
 			</div>
-		</div>
-		<div class="duanzu duanzu_last">
-			<div class="duanzu_tit">
-				<div class="tit_left">
-					<h3>品 家 活 动</h3>
-				    <p>品家生活区</p>
+			<div class="duanzu duanzu_last">
+				<div class="duanzu_tit">
+					<div class="tit_left">
+						<h3>品 家 活 动</h3>
+						<p class="hTitle">品家生活区</p>
+					</div>
+					<a class="hMore">查看更多</a>
+					<img src="images/shouye/btn_enter.png" alt="" />
 				</div>
-				<a href="javascript:;">查看更多</a>
-				<img src="images/shouye/btn_enter.png" alt="" />
-			</div>
-			<div class="swiper-container">
-				<div class="swiper-wrapper">
-				    <div class="swiper-slide">
-				    	<img src="images/shouye/img13.png" alt="" />
-				    	<h3>你愿意加入我们，在雨天为陌生人打伞吗？</h3>
-				    	<p>没带伞请和我打招呼</p>
-				    	<p>08/08 14:00~08/ 18:00</p>
-				   </a></div>
-				    <div class="swiper-slide"><img src="images/shouye/img14.png" alt="" /></a>
-				    	<h3>你愿意加入我们，在雨天为陌生人打伞吗？</h3>
-				    	<p>没带伞请和我打招呼</p>
-				    	<p>08/08 14:00~08/ 18:00</p>
-				    </div>
+				<div>
+					<img class="hImg" />
 				</div>
 			</div>
-		</div>
-		<div class="duanzu duanzu_last">
-			<div class="duanzu_tit">
-				<div class="tit_left">
-					<h3>品 家故事</h3>
-				    <p>讲述我们自己的故事</p>
+			<div class="duanzu duanzu_last">
+				<div class="duanzu_tit">
+					<div class="tit_left">
+						<h3>品 家故事</h3>
+						<p class="gTitle">讲述我们自己的故事</p>
+					</div>
+					<a class="gMore">查看更多</a>
+					<img src="images/shouye/btn_enter.png" alt="" />
 				</div>
-				<a href="javascript:;">查看更多</a>
-				<img src="images/shouye/btn_enter.png" alt="" />
 			</div>
-		</div>
-		<div class="duanzu duanzu_last" style="margin-bottom:1.25rem;">
-			<div class="duanzu_tit">
-				<!--<div class="tit_left">
+			<div class="duanzu duanzu_last" style="margin-bottom:1.25rem;">
+				<div class="duanzu_tit">
+					<!--<div class="tit_left">
 					<h3>品 家-商 家 推 荐</h3>
 				    <p>做生意很简单，一个好的创意，一个这样的商铺</p>
 				</div>
 				<a href="javascript:;">查看更多</a>
 				<img src="images/shouye/btn_enter.png" alt="" />-->
-			</div>
-			<div class="swiper-container">
-				<div class="swiper-wrapper">
-				    <div class="swiper-slide">
-				    	<!--<img src="images/shouye/img13.png" alt="" />-->
-				    	<h3 class="ellipsis">你愿意加入我们，在雨天为陌生人打伞吗？</h3>
-				    	<p>没带伞请和我打招呼没带伞请和我打招呼没带伞请和我打招呼...</p>
-				    	<p class="user_head"><img src="images/shouye/img_avatar.png" alt="" /><span>fsdfsd</span></p>
-				   </a></div>
-				    <div class="swiper-slide"><img src="images/shouye/img15.png" alt="" /></a>
-				    	<!--<h3>你愿意加入我们，在雨天为陌生人打伞吗？</h3>
-				    	<p>没带伞请和我打招呼</p>
-				    	<p>08/08 14:00~08/ 18:00</p>-->
-				    </div>
+				</div>
+				<div>
+					<img class="hImg" />
 				</div>
 			</div>
 		</div>
-	</div>
-	<!--conent结束-->
-	<footer>
-		<ul class="clearfix">
-			<li class="active">
-				<a href="index.html">
-					<img src="images/footer/tab_sy_pre.png" alt="" />
-				    <p>首页</p>
-				</a>
-			</li>
-			<li>
-				<a href="dituzhaofang.html">
-					<img src="images/footer/tab_dtzf.png" alt="" />
-				    <p>地图找房</p>
-				</a>
-			</li>
-			<li>
-				<a href="jiazhengweixiu.html">
-					<img src="images/footer/tab_shgc.png" alt="" />
-				    <p>生活广场</p>
-				</a>
-			</li>
-			<li>
-				<a href="pinjiajihua.html">
-					<img src="images/footer/tab_pjjh.png" alt="" />
-				    <p>品家计划</p>
-				</a>
-			</li>
-			<li>
-				<a href="mine.html">
-					<img src="images/footer/tab_wode.png" alt="" />
-				    <p>我的</p>
-				</a>
-			</li>
-		</ul>
-	</footer>
-	<!--footer结束-->
-	<script
-  src="https://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-  crossorigin="anonymous"></script>
-    <script src="js/mui.min.js"></script>
-    <script src="js/mui.picker.js"></script>
-    <script src="js/mui.poppicker.js"></script>
-    <script src="js/mui.dtpicker.js"></script>
-    <script src="js/city.data-3.js"></script>
-    <script src="js/swiper-3.4.2.min.js"></script>
-	<script src="js/baseUrl.js"></script>
-    
-	<script type="text/javascript" charset="utf-8">
-      	mui.plusReady(function(){
-			
-		})
-      	mui.init();
-      	// 入驻时间
-      	var start_d;  // 入驻时间
-      	var days;     // 天数
-      	$(".start_time").on("click",function(){
-      		var dtPicker = new mui.DtPicker({
-      			type: "date"
-      		});
-		    dtPicker.show(function (selectItems) { 
-		        console.log(selectItems.y);//{text: "2016",value: 2016} 
-		        console.log(selectItems.m);//{text: "05",value: "05"} 
-		        console.log(selectItems.d);
-		        start_d = selectItems.y.value+"-"+selectItems.m.value+"-"+selectItems.d.value;
-		        $(".start_time").val(selectItems.y.value+"-"+selectItems.m.value+"-"+selectItems.d.value);
-		         // 计算天数
-		        days = parseInt((new Date(end_d).getTime() - new Date(start_d).getTime())/(1000*60*60*24));
-		        $(".days").text(days);
-		    })
-      	})
-      	// 退房时间
-      	var end_d  //  退房时间
-      	$(".end_time").on("click",function(){
-      		var dtPicker = new mui.DtPicker({
-      			type: "date"
-      		});
-		    dtPicker.show(function (selectItems) { 
-		        console.log(selectItems.y);//{text: "2016",value: 2016} 
-		        console.log(selectItems.m);//{text: "05",value: "05"} 
-		        console.log(selectItems.d);
-		        end_d = selectItems.y.value+"-"+selectItems.m.value+"-"+selectItems.d.value;
-		        $(".end_time").val(selectItems.y.value+"-"+selectItems.m.value+"-"+selectItems.d.value);
-		        // 计算天数
-		        days = parseInt((new Date(end_d).getTime() - new Date(start_d).getTime())/(1000*60*60*24));
-		        $(".days").text(days);
-		    })
-		    
-		    
-      	})
-      	// 轮播图
-      	var str;
-      	$.ajax({
-      		type: "GET",
-      		url: baseUrl + "/homeBanner",
-      		data: {},
-      		success: function(data) {
-      			console.log(data);
-      			data.forEach(function(val,idex) {
-      				str = `<div class="swiper-slide"><img src="${val.bannerPicture}" alt="" /></div>`;
-      				$(".banner_wrap").append(str);
-      			})
-      		},
-      		error:function(xhr){
-				console.log(xhr.responseText);
-				if(xhr.responseText) {
-					var obj = eval("(" + xhr.responseText + ")");
-					mui.toast(obj.message);
-				}	
-			}
-      	})
-      	
-      	
-      	//选择省市区 
-      	var province_id;
-      	var city_id;
-      	var area_id;
-		function showPick(){
-			var picker = new mui.PopPicker({
-				//三级联动
-			    layer: 3
-			});
-			picker.setData(cityData3);
-			var adressStr = '';
-			//设置默认选择地址
-			picker.pickers[0].setSelectedIndex(9);
-			picker.pickers[1].setSelectedIndex(2);
-			picker.pickers[2].setSelectedIndex(7);
-			picker.show(function(SelectedItem) {
-			  //将选择的省、市、区显示到屏幕上
-			    for (var i = 0; i < SelectedItem.length; i++) {
-			       adressStr = SelectedItem[1].text;
-			    }
-			    $("#site").html(adressStr+`<img src='images/shouye/btn_cbb.png' alt="" />`);
-			    localStorage.setItem("city",adressStr);
-			    province_id = SelectedItem[0].value.substring(0,2);
-			    city_id = SelectedItem[1].value.substring(2,4);
-			    area_id = SelectedItem[2].value.substring(4,6);
-			});
+		<!--conent结束-->
+		<footer>
+			<ul class="clearfix">
+				<li class="active">
+					<a href="index.html">
+						<img src="images/footer/tab_sy_pre.png" alt="" />
+						<p>首页</p>
+					</a>
+				</li>
+				<li>
+					<a href="dituzhaofang.html">
+						<img src="images/footer/tab_dtzf.png" alt="" />
+						<p>地图找房</p>
+					</a>
+				</li>
+				<li>
+					<a href="jiazhengweixiu.html">
+						<img src="images/footer/tab_shgc.png" alt="" />
+						<p>生活广场</p>
+					</a>
+				</li>
+				<li>
+					<a href="pinjiajihua.html">
+						<img src="images/footer/tab_pjjh.png" alt="" />
+						<p>品家计划</p>
+					</a>
+				</li>
+				<li>
+					<a href="mine.html">
+						<img src="images/footer/tab_wode.png" alt="" />
+						<p>我的</p>
+					</a>
+				</li>
+			</ul>
+		</footer>
+		<div id="allmap" style="display: none"></div>
+		<!--footer结束-->
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.picker.js"></script>
+		<script src="js/mui.poppicker.js"></script>
+		<script src="js/mui.dtpicker.js"></script>
+		<script src="js/city.data-3.js"></script>
+		<script src="js/swiper-3.4.2.min.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=0hYmhoEKDWpAN3Oo6y1PS1Nu5ScVWWl6"></script>
+		<script src="js/baseUrl.js"></script>
+         <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
 		}
-		// 选择 公寓
-		var arr = [];
-		var obj = {};
-		$("#gongyu").on("click",function(){
+        </script>
+		<script type="text/javascript" charset="utf-8">
+		    // 
+		    $(".changzu").on("click", function () {
+		    	$(this).addClass("active");
+		    	$(".duanzu_").removeClass("active");
+		    })
+		     $(".duanzu_").on("click", function () {
+		    	$(this).addClass("active");
+		    	$(".changzu").removeClass("active");
+		    })
+		    // 写字楼
+		    $(".xiezilou").on("click",function () {
+		    	window.location.href = `fangchan_chushou.html?type=1`;
+		    })
+		    $(".office").on("click", function() {
+		    	window.location.href = `fangchan_chushou.html?type=1`;
+		    })
+		    // 商业
+		    $(".business").on("click", function() {
+		    	window.location.href = `fangchan_chushou.html?type=2`;
+		    })
+		    // 厂房
+		    $(".plant").on("click", function() {
+		    	window.location.href = `fangchan_chushou.html?type=3`;
+		    })
+		    // 房产出售
+		    $(".house").on("click", function() {
+		    	window.location.href = `fangchan_chushou.html?type=4`;
+		    })
+			mui.plusReady(function() {
+
+			})
+			// 百度地图API功能
+			var map1 = new BMap.Map("allmap");
+			var myGeo = new BMap.Geocoder();
+			var point = new BMap.Point(116.331398,39.897445);
+			map1.centerAndZoom(point,12);
+			// 获取城市名
+		    var cityName;
+			function myFun(result){
+				console.log(result,'地图')
+				cityName = result.name;
+				map1.setCenter(cityName);
+				if(localStorage.getItem('city') == null) {
+					// 获取当前城市
+				    mui.toast("当前定位城市:"+cityName);
+				}
+				localStorage.setItem("city", cityName);
+				$("#site").text(cityName)
+				
+				
+			}
+			var myCity = new BMap.LocalCity();
+			myCity.get(myFun);
+			// 获取经纬度
+			var coordinate;
+			var lng;
+			var lat;
+			var coordinateObj;
+			var geolocation = new BMap.Geolocation();
+			geolocation.getCurrentPosition(function(r){
+				if(this.getStatus() == BMAP_STATUS_SUCCESS){
+					var mk = new BMap.Marker(r.point);
+					map.addOverlay(mk);
+					map.panTo(r.point);
+					coordinate = r.point.lng+','+r.point.lat;
+					console.log(coordinate)
+					localStorage.setItem('coordinate', coordinate)
+					lng = r.point.lng;
+					lat = r.point.lat;
+					coordinateObj = r.point;
+//					alert('您的位置：'+r.point.lng+','+r.point.lat);
+				}
+				else {
+					alert('failed'+this.getStatus());
+				}        
+			},{enableHighAccuracy: true})
+			// 地址逆解析，根据经纬度解析具体街道
+			
+			$("#my-site").on("click", function(){        
+				var pt = coordinateObj;
+				myGeo.getLocation(pt, function(rs){
+					console.log(rs)
+					var addComp = rs.addressComponents;
+					var address = addComp.province + "" + addComp.city + "" + addComp.district + "" + addComp.street + "" + addComp.streetNumber
+					//alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+				    $("#suggestId").val(address)
+				});
+			});
+			// 输入提示
+			function G(id) {
+				return document.getElementById(id);
+			}
+			var map = new BMap.Map("l-map");
+			map.centerAndZoom(cityName,12);              // 初始化地图,设置城市和地图级别。
+			var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+				{"input" : "suggestId"
+				,"location" : map
+			});
+			ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+			    var str = "";
+				var _value = e.fromitem.value;
+				var value = "";
+				if (e.fromitem.index > -1) {
+					value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+				}    
+				str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+				
+				value = "";
+				if (e.toitem.index > -1) {
+					_value = e.toitem.value;
+					value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+				}    
+				str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+				G("searchResultPanel").innerHTML = str;
+			});
+		
+			var myValue;
+			ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+			var _value = e.item.value;
+				myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+				G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+				
+				setPlace();
+			});
+		
+			function setPlace(){
+				map.clearOverlays();    //清除地图上所有覆盖物
+				function myFun(){
+					var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+					map.centerAndZoom(pp, 18);
+					map.addOverlay(new BMap.Marker(pp));    //添加标注
+				}
+				var local = new BMap.LocalSearch(map, { //智能搜索
+				  onSearchComplete: myFun
+				});
+				local.search(myValue);
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			mui.init();
+			// 入驻时间
+			var start_d; // 入驻时间
+			var days; // 天数
+			$(".start_time").on("click", function() {
+				var dtPicker = new mui.DtPicker({
+					type: "date"
+				});
+				dtPicker.show(function(selectItems) {
+					console.log(selectItems.y); //{text: "2016",value: 2016} 
+					console.log(selectItems.m); //{text: "05",value: "05"} 
+					console.log(selectItems.d);
+					start_d = selectItems.y.value + "-" + selectItems.m.value + "-" + selectItems.d.value;
+					$(".start_time").val(selectItems.y.value + "-" + selectItems.m.value + "-" + selectItems.d.value);
+					// 计算天数
+					days = parseInt((new Date(end_d).getTime() - new Date(start_d).getTime()) / (1000 * 60 * 60 * 24));
+					$(".days").text(days);
+				})
+			})
+			// 退房时间
+			var end_d //  退房时间
+			$(".end_time").on("click", function() {
+				var dtPicker = new mui.DtPicker({
+					type: "date"
+				});
+				dtPicker.show(function(selectItems) {
+					console.log(selectItems.y); //{text: "2016",value: 2016} 
+					console.log(selectItems.m); //{text: "05",value: "05"} 
+					console.log(selectItems.d);
+					end_d = selectItems.y.value + "-" + selectItems.m.value + "-" + selectItems.d.value;
+					$(".end_time").val(selectItems.y.value + "-" + selectItems.m.value + "-" + selectItems.d.value);
+					// 计算天数
+					days = parseInt((new Date(end_d).getTime() - new Date(start_d).getTime()) / (1000 * 60 * 60 * 24));
+					$(".days").text(days);
+				})
+
+			})
+			// 轮播图
+			var str;
 			$.ajax({
 				type: "GET",
-				url: baseUrl + "/homeGroup",
+				url: baseUrl + "/homeBanner",
 				data: {},
 				success: function(data) {
-					console.log(data);
-					var picker1 = new mui.PopPicker();
-					data.forEach(function(val,index){
-						arr.push({value: val.groupsId,text: val.groupsName});
-					});
-					picker1.setData(arr)
-					console.log(obj)
+					console.log(data,"banner");
+					if(data) {
+						data.forEach(function(val, idex) {
+							str = `<div class="swiper-slide"><img src="${val.bannerPicture}" alt="" /></div>`;
+							$(".banner_wrap").append(str);
+						})
+					}
 					
-					//picker1.pickers[0].setSelectedIndex(4, 2000);
-					picker1.pickers[0].setSelectedValue('fourth', 2000);
-					picker1.show(function(SelectedItem) {
-						console.log(SelectedItem[0].text);
-						$("#gongyu").html(SelectedItem[0].text +`<img src="images/shouye/btn_cbb.png" alt="" />`);
-					})
 				},
-				error:function(xhr){
+				error: function(xhr) {
 					console.log(xhr.responseText);
 					if(xhr.responseText) {
 						var obj = eval("(" + xhr.responseText + ")");
 						mui.toast(obj.message);
-					}	
+					}
 				}
 			})
+
+			//选择省市区 
+			var province_id;
+			var city_id;
+			var area_id;
+
+			function showPick() {
+//				var picker = new mui.PopPicker({
+//					//三级联动
+//					layer: 3
+//				});
+//				picker.setData(cityData3);
+//				var adressStr = '';
+//				//设置默认选择地址
+//				picker.pickers[0].setSelectedIndex(9);
+//				picker.pickers[1].setSelectedIndex(2);
+//				picker.pickers[2].setSelectedIndex(7);
+//				picker.show(function(SelectedItem) {
+//					//将选择的省、市、区显示到屏幕上
+//					for(var i = 0; i < SelectedItem.length; i++) {
+//						adressStr = SelectedItem[1].text;
+//					}
+//					$("#site").html(adressStr + `<img src='images/shouye/btn_cbb.png' alt="" />`);
+//					localStorage.setItem("city", adressStr);
+//					province_id = SelectedItem[0].value.substring(0, 2);
+//					city_id = SelectedItem[1].value.substring(2, 4);
+//					area_id = SelectedItem[2].value.substring(4, 6);
+//				});
+			}
+			// 选择 公寓
+			var arr = [];
+			var obj = {};
+			$("#gongyu").on("click", function() {
+				$.ajax({
+					type: "GET",
+					url: baseUrl + "/homeGroup",
+					data: {},
+					success: function(data) {
+						console.log(data);
+						var picker1 = new mui.PopPicker();
+						data.forEach(function(val, index) {
+							arr.push({
+								value: val.groupsId,
+								text: val.groupsName
+							});
+						});
+						picker1.setData(arr)
+						console.log(obj)
+
+						//picker1.pickers[0].setSelectedIndex(4, 2000);
+						picker1.pickers[0].setSelectedValue('fourth', 2000);
+						picker1.show(function(SelectedItem) {
+							console.log(SelectedItem[0].text);
+							$("#gongyu").html(SelectedItem[0].text + `<img src="images/shouye/btn_cbb.png" alt="" />`);
+						})
+					},
+					error: function(xhr) {
+						console.log(xhr.responseText);
+						if(xhr.responseText) {
+							var obj = eval("(" + xhr.responseText + ")");
+							mui.toast(obj.message);
+						}
+					}
+				})
+
+			})
+			// 搜索界面
+			$(".header_input").on("click", function() {
+				window.location.href = "sousuo.html";
+			})
+			// 查询按钮
+			$(".want-text").on("focus", function() {
+				$(this).css('background', '#fff')
+			})
+			$(".search_btn").on("click", function() {
+				var keyword = $(".want-text").val();
+				
+				if(keyword == "" || keyword.trim() == "") {
+					$(".want-text").css('backgroundColor', 'red');
+					mui.toast("请输入你想住的地点")
+				}else {
+					window.location.href = `zufangliebiao.html?content=${keyword}`;
+				}
+				
+			})
 			
-		})
-		// 搜索界面
-		$(".header_input").on("click",function(){
-			window.location.href = "sousuo.html";
-		})
-		// 查询按钮
-		$(".search_btn").on("click",function(){
-			window.location.href = "sousuo.html"
-		})
-    </script>
-    <script src="js/style.js"></script>
-    <script>
-    	var mySwiper = new Swiper('.swiper-container', {
-			slidesPerView : 1.7,
-			spaceBetween : "2%",
-		})
-    	//banner
-    	var mySwiper = new Swiper('.swiper-container2', {
-    		
-		})
-    </script>
-</body>
+			//推荐图文
+			getImageText (0);
+			getImageText (1);
+			getImageText (2);
+			getImageText (3);
+			getImageText (4);
+			getImageText (5);
+			function getImageText (i) {
+				$.ajax({
+					type: "get",
+					url: baseUrl + "/homeRecommendStatus",
+					dataType: 'json',
+					data: {
+						type: i
+					},
+					success: function(data) {
+						console.log(i)
+						console.log(data,"图文");
+						
+						if(i == 0) {
+							$('.dTitle').html(data[0].recommendTitle)
+							$(".dImg").attr("src", data[0].recommendImage)
+						}
+						if(i == 1) {
+							$('.cTitle').html(data[0].recommendTitle)
+							$(".cImg").attr("src", data[0].recommendImage)
+						}
+						if(i == 2) {
+							$('.xTitle').html(data[0].recommendTitle)
+							$(".xImg").attr("src", data[0].recommendImage)
+						}
+						if(i == 3) {
+							$('.sTitle').html(data[0].recommendTitle)
+							$(".sImg").attr("src", data[0].recommendImage)
+						}
+						if(i == 4) {
+							$('.hTitle').html(data[0].recommendTitle)
+							$(".hImg").attr("src", data[0].recommendImage)
+						}
+						if(i == 5) {
+							$('.gTitle').html(data[0].recommendTitle)
+							$(".gImg").attr("src", data[0].recommendImage)
+						}
+					},
+					error: function() {
+
+					}
+				});
+			}
+//			for(i = 0; i < 6; i++) {
+//				$.ajax({
+//					type: "get",
+//					url: baseUrl + "/homeRecommendStatus",
+//					dataType: 'json',
+//					data: {
+//						type: i
+//					},
+//					success: function(data) {
+//						console.log(i)
+////						console.log(data);
+//						if(i == 0) {
+//							$('.dTitle').html(data[0].recommendTitle)
+//							$(".dImg").attr("src", data[0].recommendImage)
+//						}
+//						if(i == 1) {
+//							$('.cTitle').html(data[0].recommendTitle)
+//							$(".dImg").attr("src", data[0].recommendImage)
+//						}
+//						if(i == 2) {
+//							$('.xTitle').html(data[0].recommendTitle)
+//							$(".xImg").attr("src", data[0].recommendImage)
+//						}
+//						if(i == 3) {
+//							$('.sTitle').html(data[0].recommendTitle)
+//							$(".sImg").attr("src", data[0].recommendImage)
+//						}
+//						if(i == 4) {
+//							$('.hTitle').html(data[0].recommendTitle)
+//							$(".hImg").attr("src", data[0].recommendImage)
+//						}
+//						if(i == 5) {
+//							$('.gTitle').html(data[0].recommendTitle)
+//							$(".gImg").attr("src", data[0].recommendImage)
+//						}
+//					},
+//					error: function() {
+//                   
+//					}
+//				});
+//			}
+			$(".dMore,.cMore,.xMore,.sMore,.hMore,.gMore").click(function() {
+				if($(this).attr("class") == 'dMore') {
+					localStorage.setItem("recommend", 1)
+				}
+				if($(this).attr("class") == 'cMore') {
+					localStorage.setItem("recommend", 2)
+				}
+				if($(this).attr("class") == 'xMore') {
+					localStorage.setItem("recommend", 3)
+				}
+				if($(this).attr("class") == 'sMore') {
+					localStorage.setItem("recommend", 4)
+				}
+				if($(this).attr("class") == 'hMore') {
+					localStorage.setItem("recommend", 5)
+				}
+				if($(this).attr("class") == 'gMore') {
+					localStorage.setItem("recommend", 6)
+				}
+				window.location.href = 'recommendList.html'
+			})
+			
+			
+//			mui.plusReady(function() {
+//              plus.geolocation.getCurrentPosition(translatePoint, function(e) {
+//                  mui.toast("异常:" + e.message);
+//              });
+//          });
+//
+//          function translatePoint(position) {
+//              var currentLon = position.coords.longitude;
+//              var currentLat = position.coords.latitude;
+//              var city = position.address.city;
+//              console.log("我当前所在的城市是："+city);
+//　　　　　　　　　　
+//          }
+		</script>
+		<script src="js/style.js"></script>
+		<script>
+			var mySwiper = new Swiper('.swiper-container', {
+				slidesPerView: 1.7,
+				spaceBetween: "2%",
+			})
+			//banner
+			var mySwiper = new Swiper('.swiper-container2', {
+                observer:true,
+                observeParents:true,
+			})
+			
+		</script>
+	</body>
+
 </html>

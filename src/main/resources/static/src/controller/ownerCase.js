@@ -50,7 +50,7 @@ layui.define(['table', 'form'], function (exports) {
             , {field: 'caseTitle', title: ' 标题',edit: 'text', sort: true}
             , {field: 'caseSubTitle', title: ' 副标题',edit: 'text', sort: true}
             , {field: 'caseImage', title: ' 图片',edit: 'text', sort: true}
-            , {field: 'caseContent', title: ' 内容',edit: 'text', sort: true}
+            , {field: 'caseContent', title: ' 内容', sort: true}
             , {field: 'createTime', title: '创建日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
             , {field: 'updateTime', title: '修改日期',templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
             , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-ownerCase-toolbar'}//设置表格工具条的名称

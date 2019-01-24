@@ -1,11 +1,13 @@
 <div class="layui-form" lay-filter="ownerAdvantage-form" id="ownerAdvantage-form" style="padding: 20px 30px 0 0;">
     <div class="layui-form-item">
-        <label class="layui-form-label">品家推荐照片</label>
+        <label class="layui-form-label">品家优势图片</label>
         <div class="layui-input-inline">
             <script type="text/html" template>
-                <input type="text" name="advantage" value="{{ d.params.advantage || '' }}" lay-verify="required" placeholder="请输入品家推荐照片" autocomplete="off" class="layui-input">
+                <input type="text" name="advantage" value="{{ d.params.advantage || '' }}" lay-verify="required"
+                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
             </script>
         </div>
+        <button style="float: left;" type="button" class="layui-btn" id="ownerAdvantage-upload-ownerAdvantage">上传轮播图</button>
     </div>
     <script type="text/html" template>
         <input type="hidden" name="id" value="{{ d.params.id|| '' }}">

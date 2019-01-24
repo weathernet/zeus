@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="css/fangjiagujia.css"/>
+		<link rel="stylesheet" type="text/css" href="css/fangjiagujia.css" />
+		<link rel="stylesheet" href="layer/mobile/need/layer.css" />
+<!--		<link rel="stylesheet" href="css/mui.min.css" /> -->
 	</head>
+
 	<body>
 		<div class="one">
 			<div class="d1">
@@ -29,7 +33,7 @@
 			</div>
 			<div class="d6">
 				<div class="d7">
-					<input type="text" placeholder="北京" />
+					<input type="text" placeholder="北京" class="city" />
 					<span>
 						<img src="img/btn_enter2.png"/>
 					</span>
@@ -42,7 +46,7 @@
 			</div>
 			<div class="d6">
 				<div class="d7">
-					<input type="text" placeholder="请选择小区名称" />
+					<input type="text" placeholder="请选择小区名称" class="vill" />
 					<span>
 						<img src="img/btn_enter2.png"/>
 					</span>
@@ -55,9 +59,9 @@
 			</div>
 			<div class="d6">
 				<div class="d7">
-					<input type="text" placeholder="请选择楼栋号" />
+					<input type="text" placeholder="请选择楼栋号" class="bNumber" />
 					<span>
-						<img src="img/btn_enter2.png"/>
+						<img src="img/btn_enter2.png" />
 					</span>
 				</div>
 			</div>
@@ -68,7 +72,7 @@
 			</div>
 			<div class="d6">
 				<div class="d7">
-					<input type="text" placeholder="请选择居室数量" />
+					<input type="text" placeholder="请选择居室数量" class="jNumber" />
 					<span>
 						<img src="img/btn_enter2.png"/>
 					</span>
@@ -81,7 +85,7 @@
 			</div>
 			<div class="d6">
 				<div class="d7">
-					<input type="text" placeholder="请输入房屋建筑总面积" />
+					<input type="text" placeholder="请输入房屋建筑总面积" class="area" />
 					<span>
 						<img src="img/btn_enter2.png"/>
 					</span>
@@ -94,7 +98,7 @@
 			</div>
 			<div class="d6">
 				<div class="d7">
-					<input type="text" placeholder="请选择房屋朝向" />
+					<input type="text" placeholder="请选择房屋朝向" class="aspect" />
 					<span>
 						<img src="img/btn_enter2.png"/>
 					</span>
@@ -107,20 +111,20 @@
 			</div>
 			<div class="d6">
 				<div class="d7">
-					<input type="text" placeholder="请选择装修程度" />
+					<input type="text" placeholder="请选择装修程度" class="degree" />
 					<span>
 						<img src="img/btn_enter2.png"/>
 					</span>
 				</div>
 			</div>
 		</div>
-		<div class="three">
+		<div class="three" style="margin-bottom: 40px;">
 			<div class="d5">
 				可出租时长
 			</div>
 			<div class="d6">
 				<div class="d7">
-					<input type="text" placeholder="请选择可出租时长" />
+					<input type="text" placeholder="请选择可出租时长" class="time" />
 					<span>
 						<img src="img/btn_enter2.png"/>
 					</span>
@@ -129,17 +133,56 @@
 		</div>
 		<div class="four">
 			<div class="d8">
-				<span>提交</span>
+				<span class="submit">提交</span>
 			</div>
 		</div>
 	</body>
-	<script
-  src="https://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-  crossorigin="anonymous"></script>
-  <script>
-  	$(".d1").on("click",function(){
-  		window.history.back();
-  	})
-  </script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<!--	<script type="text/javascript" src="js/mui.min.js"></script>-->
+	<script type="text/javascript" src="js/baseUrl.js"></script>
+	<script src="layer/layer.js"></script>
+	 <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
+	<script>
+		$(".d1").on("click", function() {
+			window.history.back();
+		})
+		$(".d8").click(function() {
+			if($(".time").val() == '' || $(".degree").val() == '' 
+			|| $(".area").val() == '' || $(".jNumber").val() == '' || $(".bNumber").val() == '' || $(".vill").val() == '' || $(".city").val() == '') {
+				layer.msg("请完善估价信息")
+			}else{
+				$.ajax({
+					type:"get",
+					url:baseUrl+"/houseAppraisal",
+					async:true,
+					dataType:'json',
+					data:{
+						buildingNumber:$(".bNumber").val(),
+						city:$(".city").val(),
+						coveredArea:$(".area").val(),
+						decorateADegree:$(".degree").val(),
+						numberOfLivingRooms:$(".jNumber").val(),
+						orientation:$(".aspect").val(),
+						theLeaseTime:$(".time").val(),
+						villageName:$(".vill").val()
+					},
+					success:function(data){
+						layer.msg("估价成功")
+					},
+					error:function(xhr){
+						var data = xhr.responseText;
+						console.log(data);
+					}
+				});
+			}
+		})
+	</script>
+
 </html>

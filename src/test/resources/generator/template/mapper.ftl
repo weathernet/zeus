@@ -1,19 +1,9 @@
-package ${basePackage}.service.impl;
+package ${basePackage}.mapper;
 
-import ${basePackage}.dao.${modelNameUpperCamel}Mapper;
-import ${basePackage}.model.${modelNameUpperCamel};
-import ${basePackage}.service.${modelNameUpperCamel}Service;
-import ${basePackage}.core.AbstractService;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-
-
+import com.zcf.world.pojo.${modelNameUpperCamel};
+import tk.mybatis.mapper.common.Mapper;
 /**
- * Created by ${author} on ${date}.
- */
-@Service
-
-public class ${modelNameUpperCamel}Service{
-
-}
+* @author ${author}
+* @date ${date}
+*/
+public interface ${modelNameUpperCamel}Mapper extends Mapper<${modelNameUpperCamel}> { }

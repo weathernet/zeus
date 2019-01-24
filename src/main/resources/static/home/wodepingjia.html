@@ -5,6 +5,15 @@
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/wodepingjia.css"/>
+		<style>
+			.head-icon {
+				width: 40px;
+				height: 40px;
+			}
+			.d6 {
+				background: none;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="one">
@@ -15,89 +24,237 @@
 				我的评价
 			</div>
 		</div>
-		<div class="two">
-			<div class="d3">
-				<span class="s1">
-					<img src="img/img_txyhpj.png"/>
-				</span>
-				<div class="s2">
-					琉璃碎梦
+		<div class="commont-wrap">
+			<!--<div class="two">
+				<div class="d3">
+					<span class="s1">
+						<img class="head-icon" src="images/mine/head-icon.png"/>
+					</span>
+					<div class="s2">
+						琉璃碎梦
+					</div>
 				</div>
-			</div>
-			<div class="d4">
-				<span>2018-11-11</span>
-			</div>
-			<div class="d5">
-				<span>好</span>
-			</div>
-			<div class="d6">
-				<div class="d6-1">
-					<img src="img/img_pj1.png"/>
+				<div class="d4">
+					<span>2018-11-11</span>
 				</div>
-				<div class="d6-2">
-					<div class="jg">徐州DG专柜一日游</div>
-					<div class="jg2">￥1200</div>
+				<div class="d5">
+					<span>好</span>
 				</div>
-			</div>
+				<div class="d6">
+					<div class="d6-1">
+						<img src="img/img_pj1.png"/>
+					</div>
+					<div class="d6-2">
+						<div class="jg">徐州DG专柜一日游</div>
+						<div class="jg2">￥1200</div>
+					</div>
+				</div>
+			</div>-->
 		</div>
-		<div class="two">
-			<div class="d3">
-				<span class="s1">
-					<img src="img/img_txyhpj.png"/>
-				</span>
-				<div class="s2">
-					琉璃碎梦
-				</div>
-			</div>
-			<div class="d4">
-				<span>2018-11-11</span>
-			</div>
-			<div class="d5">
-				<span>好</span>
-			</div>
-			<div class="d6">
-				<div class="d6-1">
-					<img src="img/img_pj1.png"/>
-				</div>
-				<div class="d6-2">
-					<div class="jg">徐州DG专柜一日游</div>
-					<div class="jg2">￥1200</div>
-				</div>
-			</div>
-		</div>
-		<div class="two">
-			<div class="d3">
-				<span class="s1">
-					<img src="img/img_txyhpj.png"/>
-				</span>
-				<div class="s2">
-					琉璃碎梦
-				</div>
-			</div>
-			<div class="d4">
-				<span>2018-11-11</span>
-			</div>
-			<div class="d5">
-				<span>好</span>
-			</div>
-			<div class="d6">
-				<div class="d6-1">
-					<img src="img/img_pj1.png"/>
-				</div>
-				<div class="d6-2">
-					<div class="jg">徐州DG专柜一日游</div>
-					<div class="jg2">￥1200</div>
-				</div>
-			</div>
-		</div>
+		
+		
 	</body>
 	<script
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
+  <script src="js/baseUrl.js"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
   	$(".d1").on("click",function(){
   		window.history.back();
   	})
+  	// 获取评价的type   1租房    2生活服务  3商城     4出行
+  	var my_type = window.location.search.split('?')[1].split("=")[1];
+  	console.log(my_type);
+  	if(my_type == 1) {
+  		getRentingComment()
+  	}
+  	if(my_type == 2) {
+  		getServeComment()
+  	}
+  	if(my_type == 3) {
+  		getShopComment()
+  	}
+  	if(my_type == 4) {
+  		getTripComment()
+  	}
+  	// 获取租房评价
+  	function getRentingComment () {
+  		$.ajax({
+  			type: 'GET',
+  			url: baseUrl + '/HouseEvaluation',
+  			data: {
+  				userId: localStorage.getItem("userId")
+  			},
+  			success: function (data) {
+  				console.log(data);
+  				var str = '';
+  				data.forEach((val, index) => {
+  					var my_time = getTime(val.createTime);
+  					str += `<div class="two">
+								<div class="d3">
+									<span class="s1">
+										<img class="head-icon" src="images/mine/head-icon.png"/>
+									</span>
+									<div class="s2">
+										${val.userName}
+									</div>
+								</div>
+								<div class="d4">
+									<span>${my_time}</span>
+								</div>
+								<div class="d5">
+									<span>${val.content}</span>
+								</div>
+								
+							</div>`;
+  				})
+  				$('.commont-wrap').html(str);
+  			}
+  		})
+  	}
+  	// 获取生活服务评价
+  	function getServeComment () {
+  		$.ajax({
+  			type: 'GET',
+  			url: baseUrl + '/ServiceEvaluationByUser',
+  			data: {
+  				userId: localStorage.getItem("userId")
+  			},
+  			success: function (data) {
+  				
+  				console.log(data);
+  				
+  				var str = '';
+  				data.forEach((val, index) => {
+  					var my_time = getTime(val.createTime);
+  					str += `<div class="two">
+								<div class="d3">
+									<span class="s1">
+										<img class="head-icon" src="images/mine/head-icon.png"/>
+									</span>
+									<div class="s2">
+										${val.evaluateUserNickName}
+									</div>
+								</div>
+								<div class="d4">
+									<span>${my_time}</span>
+								</div>
+								<div class="d5">
+									<span>${val.evaluateContent}</span>
+								</div>
+								<div class="d6">
+									<div class="d6-1">
+										<img src="${val.evaluateImage}"/>
+									</div>
+									
+								</div>
+							</div>`;
+  				})
+  				$(".commont-wrap").html(str);
+  			}
+  		})
+  	}
+  	// 获取商城评价
+  	function getShopComment () {
+  		$.ajax({
+  			type: 'GET',
+  			url: baseUrl + '/MallEvaluateShop',
+  			data: {
+  				shopId: localStorage.getItem("traderId")
+  			},
+  			success: function (data) {
+  				console.log(data);
+  				var str = '';
+  				data.forEach((val, index) => {
+  					var my_time = getTime(val.createTime);
+  					str += `<div class="two">
+									<div class="d3">
+										<span class="s1">
+											<img class="head-icon" src="images/mine/head-icon.png"/>
+										</span>
+										<div class="s2">
+											${val.evaluateUserNickName}
+										</div>
+									</div>
+									<div class="d4">
+										<span>${my_time}</span>
+									</div>
+									<div class="d5">
+										<span>${val.evaluateContent}</span>
+									</div>
+									<div class="d6">
+										<div class="d6-1">
+											<img src="${val.evaluateImage}"/>
+										</div>
+										
+									</div>
+								</div>`;
+  				})
+  				$(".commont-wrap").html(str);
+  			}
+  		})
+  	}
+  	// 获取出行评价
+  	function getTripComment() {
+        $.ajax({
+  			type: 'POST',
+  			url: baseUrl + '/travelEvaluateByUser',
+  			data: {
+  				userId: localStorage.getItem("userId")
+  			},
+  			success: function (data) {
+  				
+  				console.log(data);
+  				
+  				var str = '';
+  				data.forEach((val, index) => {
+  					var my_time = getTime(val.createTime);
+  					str += `<div class="two">
+								<div class="d3">
+									<span class="s1">
+										<img class="head-icon" src="images/mine/head-icon.png"/>
+									</span>
+									<div class="s2">
+										${val.evaluateUserNickName}
+									</div>
+								</div>
+								<div class="d4">
+									<span>${my_time}</span>
+								</div>
+								<div class="d5">
+									<span>${val.evaluateContent}</span>
+								</div>
+								<div class="d6">
+									<div class="d6-1">
+										<img src="${val.evaluateImage}"/>
+									</div>
+									
+								</div>
+							</div>`;
+  				})
+  				$(".commont-wrap").html(str);
+  			}
+  		})
+  	}
+
+  	function getTime(t) {
+  		var date = new Date(t);
+  		Y = date.getFullYear() + '-';
+  		M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+  		D = date.getDate() + ' ';
+  		h = date.getHours() + ':';
+  		m = date.getMinutes() + ':';
+  		s = date.getSeconds();
+  		return(Y + M + D + h + m + s);
+  	}
   </script>
 </html>

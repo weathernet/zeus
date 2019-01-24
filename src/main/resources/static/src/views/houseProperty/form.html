@@ -15,16 +15,17 @@
             </script>
         </div>
     </div>
-     <div class="layui-form-item">
-         <label class="layui-form-label">图片</label>
-         <div class="layui-input-inline">
-             <script type="text/html" template>
-                 <input type="text" name="image" value="{{ d.params.image|| '' }}" lay-verify="required"
-                        placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
-             </script>
-         </div>
-         <button style="float: left;" type="button" class="layui-btn" id="houseProperty-upload-houseProperty">上传图片</button>
-     </div>
+    <div class="layui-upload">
+        <button type="button" class="layui-btn" id="houseProperty-upload-houseProperty">多图片上传</button>
+        <blockquote class="layui-elem-quote layui-quote-nm">
+            预览图：
+            <div class="layui-upload-list" id="demo2"></div>
+        </blockquote>
+        <script type="text/html" template>
+            <input type="hidden" name="image" value="{{ d.params.image|| '' }}" lay-verify="required"
+                   placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
+        </script>
+    </div>
     <div class="layui-form-item">
         <label class="layui-form-label">是否可已注册</label>
         <div class="layui-input-inline">
@@ -152,20 +153,25 @@
         var $ = layui.$, form = layui.form, upload = layui.upload;
 
         form.render();//使select可以显示option
-        //-------------文件上传开始----------
+        var fileId = "";
         upload.render({
             elem : '#houseProperty-upload-houseProperty',
             url : '/house/property/upload',
-            done : function(res) {
-                //如果上传失败
-                if (res.code > 0) {
-                    return layer.msg('上传失败');
-                }
-                //上传成功
-                console.log(res.data.src);
-                document.getElementById("img_url").value = res.data.src;//
+            multiple: true,
+            before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo2').append('<img src="' + result + '" alt="' + file.name + '" style="width:100px;height: 100px;margin: 2px">')
+                });
+            },
+            done: function (res) {
+                var url = res.data.src;
+                fileId += url + ",";
+            },
+            allDone: function () {
+                fileId = fileId.substr(0, fileId.length - 1);
+                document.getElementById("img_url").value = fileId;
             }
         });
-        //-------------文件上传结束----------
     })
 </script>

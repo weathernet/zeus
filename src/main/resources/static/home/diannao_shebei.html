@@ -12,12 +12,14 @@
 			.diannao {
 				padding: 0 .25rem;
 			}
+			
 			.diannao_tit {
 				border-bottom: .02rem solid #eee;
 				border-top: .02rem solid #eee;
 				line-height: .6rem;
 				font-size: .3rem;
 			}
+			
 			.diannao_tit span {
 				margin-right: 0.5rem;
 			}
@@ -25,6 +27,7 @@
 			.diannao_list img {
 				width: 2rem;
 			}
+			
 			.diannao_list div p {
 				font-size: .24rem;
 			}
@@ -32,64 +35,195 @@
 			.diannao_list li {
 				width: 100%;
 			}
+			
 			.diannao_des p:nth-of-type(1) {
 				color: #000;
 				font-size: .28rem;
 			}
+			
 			.diannao_des p:nth-of-type(2) {
 				font-size: .24rem;
 			}
+			
 			.diannao_des p:nth-of-type(3) {
 				color: orange;
 			}
+			.item {
+				display: flex;
+				align-items: center;
+			}
+			.item img {
+				width: 2rem;
+				height: 2rem;
+				padding: .1rem;
+			}
+			.sort-icon1 {
+				display: inline-block;
+				width: 0;
+				height: 0;
+				border-top: 5px solid black;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				position: relative;
+				top: 3px;
+				left: 3px;
+			}
+			.sort-icon2 {
+				display: inline-block;
+				width: 0;
+				height: 0;
+				border-bottom: 5px solid black;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				position: relative;
+				top: -5px;
+				left: -7px;
+			}
 		</style>
 	</head>
-   
+
 	<body style="background: #fff;">
 		<header class="mui-bar mui-bar-nav ">
 			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left quit" style="color: #000"></a>
-			<h3 class="mui-title">电脑设备</h3>
+			<h3 class="mui-title title">电脑设备</h3>
 		</header>
 		<div class="mui-content diannao" style="background: #fff;">
 			<div class="diannao_tit">
 				<span>默认</span>
-			    <span>价格</span>
+				<span>价格<i class="sort-icon1" onclick="goodsSort('t_sort')"></i><i class="sort-icon2" onclick="goodsSort('f_sort')"></i></span>
 			</div>
+			<div class="mention_message">暂无内容,快去添加吧...</div>
 			<ul class="diannao_list">
-				<li class="flex_b">
+				<!--<li class="flex_b">
 					<img src="images/shouye/img_qrgm@2x.png" alt="" />
 					<div class="diannao_des">
 						<p>Apple iMac一体机（薄款一体机租赁)</p>
 						<p>高端外观超薄一体机</p>
 						<p>340.00元/台/月</p>
 					</div>
-				</li>
-				<li class="flex_b">
+				</li>-->
+				<!--<li class="flex_b">
 					<img src="images/shouye/img_qrgm@2x.png" alt="" />
 					<div class="diannao_des">
 						<p>Apple iMac一体机（薄款一体机租赁)</p>
 						<p>高端外观超薄一体机</p>
 						<p>340.00元/台/月</p>
 					</div>
-				</li>
+				</li>-->
 			</ul>
 		</div>
-			
-		<script
-  src="https://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-  crossorigin="anonymous"></script>
+
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 		<script src="js/mui.min.js"></script>
 		<script src="js/style.js"></script>
 		<script src="js/baseUrl.js"></script>
-
+         <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
 		<script type="text/javascript">
 			mui.init()
 		</script>
 		<script>
-			$(".diannao_list li").on("click",function(){
+			
+			// 获取groupId
+			var groupId = window.location.search.split("?")[1].split("&")[0].split("=")[1];
+			var title = decodeURIComponent(window.location.search.split("?")[1].split("&")[1].split("=")[1]);
+			console.log(groupId,title);
+			$(".title").text(title);
+			
+			$(".diannao_list li").on("click", function() {
 				window.location.href = "shangpinxiangqing.html";
 			})
+			// 价格排序
+		    function goodsSort (sort) {
+		    	console.log(sort);
+		    	if(sort == "t_sort") {
+		    		sort = true;
+		    		$(".sort-icon1").css("borderTopColor","red")
+		    		$(".sort-icon2").css("borderBottomColor","black")
+		    	}
+		    	if(sort == "f_sort") {
+		    		sort = false;
+		    		$(".sort-icon2").css("borderBottomColor","red")
+		    		$(".sort-icon1").css("borderTopColor","black")
+		    	}
+		    	$.ajax({
+		    		type: 'GET',
+		    		url: baseUrl + '/MallGoodsSort',
+		    		data: {
+		    			groupid: groupId,
+		    			sort: sort
+		    		},
+		    		success: function (data) {
+		    			console.log(data);
+						var str = '';
+						data.forEach(function(val,index) {
+							str += `<li class="item" data-goodsId="${val.goodsId}">
+										<img src="${val.goodsImage}" alt="" />
+										<div class="diannao_des">
+											<p>${val.goodsTitle}</p>
+											<p>${val.goodsPrice}元</p>
+										</div>
+									</li>`;
+						})		
+						$(".diannao_list").html(str);	
+		    		}
+		    	})
+		    }
+			// 没有内容显示没有更多内容了
+			function getListLength () {
+				if($(".diannao_list li").length <=0) {
+					$(".mention_message").show();
+				}
+			}
+			// 根据groupId 获取此分类下的所有商品
+			getAllShop();
+			function getAllShop () {
+				$.ajax({
+					type: "get",
+					url: baseUrl + "/MallGoods/" + groupId,
+					async: true,
+					dataType: 'json',
+					data: {
+	                    
+					},
+					success: function(data) {
+						console.log(data);
+						var str = '';
+						var goodImg;
+						data.forEach(function(val,index) {
+							if(val.goodsImage.indexOf(",")) {
+								goodImg = val.goodsImage.split(",")[0];
+							}else {
+								goodImg = val.goodsImage
+							}
+							str += `<li class="item" data-goodsId="${val.goodsId}">
+										<img src="${goodImg}" alt="" />
+										<div class="diannao_des">
+											<p>${val.goodsTitle}</p>
+											<p>${val.goodsPrice}元</p>
+										</div>
+									</li>`;
+						})		
+						$(".diannao_list").html(str);
+						
+					},
+					error: function() {
+	
+					}
+				});
+			}
+			
+			//点击查看商品详情
+				$(".diannao_list").on("click","li",function() {
+					var goodsId =$(this).attr("data-goodsId");
+					window.location.href = `shangpinxiangqing.html?goodsId=${goodsId}&title=${title}`
+				})
 		</script>
 	</body>
 

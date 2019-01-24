@@ -1,124 +1,102 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>品家计划</title>
-    <link href="css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/mui.picker.css" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/swiper-3.4.2.min.css" />
-</head>
-<body style="background: #fff;">
-	<div class="jihua" style="margin-bottom:1.2rem;">
-		<ul class="jihua_title clearfix">
-			<li class="active">
-				<p>业主委托</p>
-				<i></i>
-			</li>
-			<li>
-				<p>民宿房东</p>
-				<i></i>
-			</li>
-			<li>
-				<p>整栋合作</p>
-				<i></i>
-			</li>
-		</ul>
-		<div class="jihua_audio">
-			<img src="images/jihua/banner_pinjiajihua.png" alt="" />
-			<img src="images/jihua/icon_zanting.png" alt="" />
-		</div>
-		<div class="jihua_btn flex">
-			<button>电 话 咨 询</button>
-			<button><a href="zaixianweituo.html" style="display:inline-block;color: #fff;width:100%;height:100%;line-height: .7rem;">在 线 委 托</a></button>
-		</div>
-		<div class="jihua_four">
-			<p>做省心房东之需要四步</p>
-			<img src="images/jihua/img_weituozixun.png" alt="" />
-		</div>
-		<div class="jihua_biao">
-			<h3>惠州市租金详情</h3>
-			<ul class="ul1 clearfix">
-				<li class="active">
-					<p>全部</p>
-					<i></i>
-				</li>
-				<li>
-					<p>一室</p>
-					<i></i>
-				</li>
-				<li>
-					<p>二室</p>
-					<i></i>
-				</li>
-				<li>
-					<p>三室</p>
-					<i></i>
-				</li>
-			</ul>
-			<ul class="ul2">
-				<li>
-					<span>9852</span>
-					<span></span>
-				</li>
-				<li>
-					<span>8941</span>
-					<span></span>
-				</li>
-				<li>
-					<span>7465</span>
-					<span></span>
-				</li>
-				<li>
-					<span>6354</span>
-					<span></span>
-				</li>
-				<li>
-					<span>5255</span>
-					<span></span>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>品家计划</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/mui.picker.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/swiper-3.4.2.min.css" />
+		<script src="js/echarts.js"></script>
+	</head>
+	<style>
+		video {
+			width: 100%;
+			height: 200px;
+		}
+		.news-img  {
+			height: 3rem;
+			width: 100%;
+		}
+		.press {
+			border-bottom: .02rem solid #eee;
+			margin-bottom: .1rem;
+		}
+		.jihua_audio {
+			overflow: hidden;
+			height: 0;
+			padding-bottom: 200px;
+			background: #fff;
+		}
+		.youshi img {
+			height: 3rem;
+			width: 100%;
+			margin-bottom: .1rem;
+		}
+		#main {
+			width: 320px;
+			height: 300px;
+		}
+		@media screen and (min-width :370px) {
+			#main {
+				width: 350px;
+				height: 350px;
+			}
+		}
+		@media screen and (min-width :400px) {
+			#main {
+				width: 380px;
+				height: 350px;
+			}
+		}
+	</style>
+
+	<body style="background: #fff;">
+		<div class="jihua" style="margin-bottom:1.2rem;">
+			<ul class="jihua_title clearfix">
+				<li class="active" style="width: 100%;">
+					<div style="text-align: center;width: 100%;">业主委托</div>
 				</li>
 			</ul>
-			<ul class="ul3 clearfix">
-				<li>
-					<span></span>
-					<p>4月</p>
-				</li>
-				<li>
-					<span></span>
-					<p>5月</p>
-				</li>
-				<li>
-					<span></span>
-					<p>6月</p>
-				</li>
-				<li>
-					<span></span>
-					<p>7月</p>
-				</li>
-				<li>
-					<span></span>
-					<p>8月</p>
-				</li>
-			</ul>
-		</div>
-		<div class="gujia">
-			<h3>房屋估价</h3>
-			<img src="images/jihua/bg_tianjiafangwu.png" alt="" />
-			<p>查看我的房租租金有多少?</p>
-			<a href="fangjiagujia.html"><button>添加房屋</button></a>
-		</div>
-		<div class="youshi">
-			<h3>品家优势</h3>
-			<img src="images/jihua/img_pinjiayoushi1.png" alt="" />
-			<img src="images/jihua/img_pinjiayoushi2.png" alt="" />
-			<img src="images/jihua/img_pinjiayoushi3.png" alt="" />
-		</div>
-		<div class="anli">
-			<h3>业主案例</h3>
-			<ul class="mui-table-view">
-			    <li class="mui-table-view-cell mui-media">
+			<div class="jihua_audio">
+				<!--<img src="images/jihua/banner_pinjiajihua.png" alt="" />
+				<img src="images/jihua/icon_zanting.png" alt="" />-->
+				<!--	<video class="video" preload="auto"  controlslist="nodownload"   src="http://onehk-1251146759.cosgz.myqcloud.com/1047_025.mp4"></video>-->
+				<!--<video preload controls autoplay src="http://onehk-1251146759.cosgz.myqcloud.com/1047_025.mp4" >
+					your browser does not support the video tag
+				</video>-->
+			</div>
+			<div class="jihua_btn flex">
+				<button><a style="color: #fff" href="tel:110">电话咨 询</a></button>
+				<button><a href="zaixianweituo.html" style="display:inline-block;color: #fff;width:100%;height:100%;line-height: .7rem;">在 线 委 托</a></button>
+			</div>
+			<div class="jihua_four">
+				<p>做省心房东之需要四步</p>
+				<img src="images/jihua/img_weituozixun.png" alt="" />
+			</div>
+			<div class="jihua_biao">
+				<h3 class="city">徐州市租金详情</h3>
+				<div id="main" ></div><!-- --------------------------折线图 -------------------->
+			</div>
+			<div class="gujia">
+				<h3>房屋估价</h3>
+				<img src="images/jihua/bg_tianjiafangwu.png" alt="" />
+				<p>查看我的房租租金有多少?</p>
+				<a href="fangjiagujia.html"><button>添加房屋</button></a>
+			</div>
+			<div class="youshi">
+				<h3>品家优势</h3>
+				<!--<img src="images/jihua/img_pinjiayoushi1.png" alt="" />
+				<img src="images/jihua/img_pinjiayoushi2.png" alt="" />
+				<img src="images/jihua/img_pinjiayoushi3.png" alt="" />-->
+			</div>
+			<div class="anli">
+				<h3>业主案例</h3>
+				<ul class="mui-table-view information">
+					<!--<li class="mui-table-view-cell mui-media">
 			        <a href="javascript:;">
 			            <img class="mui-media-object mui-pull-left" src="images/jihua/img_yezhuanli1.png">
 			            <div class="mui-media-body">
@@ -144,76 +122,268 @@
 			                <p class='mui-ellipsis'>业主|装修对比</p>
 			            </div>
 			        </a>
-			    </li>
-			</ul>
-		</div>
-		<div class="pinjia_news">
-			<p class="flex_b"><span>品家新闻</span><img src="images/jihua/btn_enter.png" alt="" /></p>
-			<img src="images/jihua/img_pinjiaxinwen.png" alt="" />
-			<ul class="mui-table-view">
-			    <li class="mui-table-view-cell">首个品家消费高阶层项目启动
-			        <!--<span class="mui-badge mui-badge-primary">11</span>-->
-			    </li>
-			    <li class="mui-table-view-cell flex_b">首个品家消费高阶层项目启动<img src="images/jihua/btn_zaixianweituo.png" alt="" />
-			       
-			    </li>
-			    <!--<li class="mui-table-view-cell">Item 3 
-			        <span class="mui-badge">33</span>
 			    </li>-->
-			</ul>
+				</ul>
+			</div>
+			<div class="pinjia_news">
+				<p class="flex_b"><span>品家新闻</span><!--<img src="images/jihua/btn_enter.png" alt="" />--></p>
+				<!--<div class="press">
+					<img src="images/jihua/img_pinjiaxinwen.png" alt="" />
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">首个品家消费高阶层项目启动
+							
+						</li>
+						<li class="mui-table-view-cell flex_b">首个品家消费高阶层项目启动<img src="images/jihua/btn_zaixianweituo.png" alt="" />
+
+						</li>
+					</ul>
+				</div>-->
+			</div>
 		</div>
-	</div>
-	<footer>
-		<ul class="clearfix">
-			<li>
-				<a href="index.html">
-					<img src="images/footer/tab_sy.png" alt="" />
-				    <p>首页</p>
-				</a>
-			</li>
-			<li>
-				<a href="dituzhaofang.html">
-					<img src="images/footer/tab_dtzf.png" alt="" />
-				    <p>地图找房</p>
-				</a>
-			</li>
-			<li>
-				<a href="jiazhengweixiu.html">
-					<img src="images/footer/tab_shgc.png" alt="" />
-				    <p>生活广场</p>
-				</a>
-			</li>
-			<li  class="active">
-				<a href="pinjiajihua.html">
-					<img src="images/footer/tab_pjjh_pre.png" alt="" />
-				    <p>品家计划</p>
-				</a>
-			</li>
-			<li>
-				<a href="mine.html">
-					<img src="images/footer/tab_wode.png" alt="" />
-				    <p>我的</p>
-				</a>
-			</li>
-		</ul>
-	</footer>
-	<!--footer结束-->
-    <script src="js/mui.min.js"></script>
-    <script src="js/mui.picker.js"></script>
-    <script src="js/swiper-3.4.2.min.js"></script>
-	<script type="text/javascript" charset="utf-8">
-      	mui.init();
-    </script>
-    <script src="js/style.js"></script>
-    <script>
-    	var mySwiper = new Swiper('.swiper-container', {
-			slidesPerView : 1.5,
-			spaceBetween : "2%"
-		})
-    	var mySwiper2 = new Swiper('.swiper-container2', {
-			slidesPerView : 2.5,
-			spaceBetween : "2%"
-		})
-    </script>
-</body>
+		<footer>
+			<ul class="clearfix">
+				<li>
+					<a href="index.html">
+						<img src="images/footer/tab_sy.png" alt="" />
+						<p>首页</p>
+					</a>
+				</li>
+				<li>
+					<a href="dituzhaofang.html">
+						<img src="images/footer/tab_dtzf.png" alt="" />
+						<p>地图找房</p>
+					</a>
+				</li>
+				<li>
+					<a href="jiazhengweixiu.html">
+						<img src="images/footer/tab_shgc.png" alt="" />
+						<p>生活广场</p>
+					</a>
+				</li>
+				<li class="active">
+					<a href="pinjiajihua.html">
+						<img src="images/footer/tab_pjjh_pre.png" alt="" />
+						<p>品家计划</p>
+					</a>
+				</li>
+				<li>
+					<a href="mine.html">
+						<img src="images/footer/tab_wode.png" alt="" />
+						<p>我的</p>
+					</a>
+				</li>
+			</ul>
+		</footer>
+		<!--footer结束-->
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.picker.js"></script>
+		<script src="js/swiper-3.4.2.min.js"></script>
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="js/baseUrl.js"></script>
+		<script src="js/jquery-flot.js"></script>
+		<script src="js/echarts.js"></script>
+		 <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<script src="js/style.js"></script>
+		<script>
+		    var myChart = echarts.init(document.getElementById('main'));
+		    window.onresize = myChart.resize; 
+			// 显示标题，图例和空的坐标轴
+			myChart.setOption({
+			    title: {
+	//		        text: '订单总数/收入'
+			    },
+			    tooltip: {},
+			    legend: {
+	//		        data:['销量']
+			    },
+			    xAxis: {
+			        data: []
+			    },
+			    yAxis: {
+			    	axisLabel: {
+			    		formatter: function (value, index) {
+			    			return value/10000 + '万'
+			    		}
+			    	}
+			    },
+			    series: [{
+			        name: '',
+			        type: 'line',
+			        data: []
+			    }],
+			    legend: {  //图例组件
+				    right:68,  //图例组件离右边的距离
+				    orient : 'vertical',  //布局  纵向布局
+				    width:40,      //图行例组件的宽度,默认自适应
+				    x : 'right',   //图例显示在右边
+				    itemWidth:10,  //图例标记的图形宽度
+				    itemHeight:10, //图例标记的图形高度
+				}
+			});
+			
+			
+			
+			
+    	    // 折线图
+    	    getRentingDetail();
+			function getRentingDetail () {
+				var city = localStorage.getItem("city");
+				city = city.replace("市", "");
+				$(".city").text(city+'租房详情');
+				myEcharts(city, 0)
+			}
+			var x = []; // X轴数据
+			var y = []; // Y轴数据
+			function myEcharts(city, type) {
+				$.ajax({
+					type: 'GET',
+					url: baseUrl + '/OwnerQuotation',
+					data: {
+						city: city,
+						type: type
+					},
+					success: function (data) {
+						console.log(data,'折线图');
+						var val = data[0];
+						y = [val.january, val.february, val.march, val.april, val.may, val.june, val.july, val.august, val.september, val.october, val.november, val.december]
+						
+						console.log(y);
+						// 填入数据
+					    myChart.setOption({
+					        xAxis: {
+					            data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月' ,'八月' ,'九月' ,'十月' ,'十一月' ,'十二月' ,]
+					        },
+					        series: [{
+					            // 根据名字对应到相应的系列
+					            name: '',
+					            data: y
+					        }]
+					    });
+					}
+				})
+			}
+			// 案例页面
+			function caseDetail (a) {
+				var caseId = $(a).attr("data-caseId");
+				window.location.href = `caseDetail.html?caseId=${caseId}`;
+			}
+			// 新闻页面
+			function getNewsDetail (a) {
+				var newsId = $(a).attr("data-newsId");
+				window.location.href = `newsDetail.html?newsId=${newsId}`;
+			}
+			// 获取视频
+			getVideo();
+			function getVideo () {
+				$.ajax({
+					type: 'GET',
+					url: baseUrl + '/OwnerVideo',
+					data: {},
+					success: function (data) {
+						var data = data[0];
+						console.log(data,'video');
+						var str = '';
+						str = `<video preload controls autoplay poster="${data.videoImage}" src="${data.videoContent}" >
+									your browser does not support the video tag
+								</video>`;
+						$(".jihua_audio").html(str);		
+					}
+				})
+			}
+			//查看所有案例
+			$.ajax({
+				type: 'get',
+				data: {
+
+				},
+				url: baseUrl + '/OwnerCase',
+				dataType: 'json',
+				success: function(data) {
+					console.log(data,'案例')
+					var caseList = ''
+					for(var i = 0; i < 3; i++) {
+						caseList += '<li data-caseId="'+data[i].caseId+'" onclick="caseDetail(this)" class="mui-table-view-cell mui-media">' +
+							'<a href="javascript:;">' +
+							'<img class="mui-media-object mui-pull-left" src="' + data[i].caseImage + '">' +
+							'<div class="mui-media-body">' +
+							data[i].caseTitle +
+							'<p class="mui-ellipsis">' + data[i].caseSubTitle + '</p>' +
+							'</div>' +
+							'</a>' +
+							'</li>'
+					}
+					$(".information").append(caseList)
+				},
+				error: function() {
+
+				}
+			})
+			//查看品家优势
+			$.ajax({
+				type: 'get',
+				url: baseUrl + '/OwnerAdvantage',
+				data: {
+
+				},
+				dataType: 'json',
+				success: function(data) {
+					console.log(data,'优势');
+					var str = '';
+					data.forEach((val, index) => {
+						str += `<img  src="${val.advantage}" alt="" />`;
+					})
+					$(".youshi").append(str);
+					
+				},
+				error: function() {
+
+				}
+			})
+			//查看新闻
+			$.ajax({
+				type: 'get',
+				url: baseUrl + '/OwnerNews',
+				dataType: 'json',
+				data: {
+
+				},
+				success: function(data) {
+					console.log(data,'新闻')
+					var pressList = ''
+					for(var i = 0; i < 3; i++) {
+						pressList += '<div onclick="getNewsDetail(this)" data-newsId="'+data[i].newsId+'" class="press">' +
+							'<img class="news-img" src="' + data[i].newsImage + '" alt="" />' +
+							'<ul class="mui-table-view">' +
+							'<li class="mui-table-view-cell">' + data[i].newsTitle +
+							'</li>' +
+							'</ul>' +
+							'</div>'
+					}
+					$(".pinjia_news").append(pressList)
+				},
+				error: function() {
+
+				}
+			})
+			var mySwiper = new Swiper('.swiper-container', {
+				slidesPerView: 1.5,
+				spaceBetween: "2%"
+			})
+			var mySwiper2 = new Swiper('.swiper-container2', {
+				slidesPerView: 2.5,
+				spaceBetween: "2%"
+			})
+		</script>
+	</body>
+
 </html>

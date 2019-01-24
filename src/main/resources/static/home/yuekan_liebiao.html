@@ -5,7 +5,10 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="Access-Control-Allow-Origin"  content="*">
+			<meta name="referrer" content="no-referrer" />
 		<link href="css/mui.min.css" rel="stylesheet" />
+		
 		<style>
 			.arrange-container {
 		width: 100%;
@@ -221,6 +224,14 @@
 		</div>
 	</div>
 		<script src="js/mui.min.js"></script>
+		 <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
 		<script type="text/javascript">
 			mui.init()
 		</script>

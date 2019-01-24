@@ -6,6 +6,7 @@
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/lijiyuyue.css" />
+		<link rel="stylesheet" href="layer/mobile/need/layer.css" />
 	</head>
 
 	<body>
@@ -24,7 +25,7 @@
 						<img src="img/icon_xm.png" />
 					</div>
 					<div class="bd">
-						<input type="text" placeholder="联系人姓名" />
+						<input type="text" class="name" placeholder="联系人姓名" />
 					</div>
 				</div>
 				<div class="d3-1">
@@ -32,14 +33,14 @@
 						<img src="img/icon_sjhlxr.png" />
 					</div>
 					<div class="bd">
-						<input type="text" placeholder="输入手机号" />
+						<input type="text" class="phone" placeholder="输入手机号" />
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="three">
-			<div class="d4">
-				<span>
+			<div class="d4" onclick="appointment()">
+				<span >
 					立即预约
 				</span>
 			</div>
@@ -49,10 +50,46 @@
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
+  <script src='js/baseUrl.js'></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
+  <script src="layer/layer.js"></script>
   <script>
   	$(".d1").on("click",function(){
   		window.history.back();
   	})
+  	// 立即预约
+  	function appointment () {
+  		var name = $(".name").val();
+  		var phone = $(".phone").val();
+  		if(name == "" || name.trim() == "") {
+  			layer.msg("请输入姓名")
+  		}else if (phone == "" || phone.trim() == "") {
+  			layer.msg("请输入手机号")
+  		}else {
+  			$.ajax({
+  				type: 'POST',
+  				url: baseUrl + '/repairOrder',
+  				data: {
+  					orderLinkmanName: name,
+  					orderLinkmanPhone: phone
+  				},
+  				success: function (data) {
+  					console.log(data);
+  					layer.msg("预约成功");
+  					setTimeout(function () {
+  						window.history.back();
+  					}, 2000)
+  				}
+  			})
+  		}
+  	}
   	</script>
 	</body>
 

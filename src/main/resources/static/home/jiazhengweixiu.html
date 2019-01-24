@@ -1,513 +1,919 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>品家出行</title>
-    <link href="css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/mui.picker.css" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/swiper-3.4.2.min.css" />
-</head>
-<body style="background: #fff;">
-	<header>
-		<i></i><img src="images/shenghuo/banner.png" alt="" />
-	</header>
-	<div class="content" style="margin-bottom:1.2rem;">
-		<div class="qinggou clearfix">
-			<div class="qg_left">
-				<h3>限时抢购</h3>
-				<p>限时购</p>
-				<p><span>00</span> ：<span>00</span> : <span>00</span></p>
-				<p class="feiji">
-					<img src="images/shenghuo/img_xsqg.png" alt="" />
-					<img src="images/shenghuo/img_199.png" alt="" />
-				</p>
-			</div>
-			<div class="qg_right">
-				<div class="qg_top clearfix">
-					<h3 class="fl">企业商旅</h3>
-					<img class="fr" src="images/shouye/img2.png" alt="" />
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>品家出行</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/mui.picker.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/swiper-3.4.2.min.css" />
+		<link rel="stylesheet" href="css/mui.poppicker.css" />
+	</head>
+    <style>
+    	.fuTitle{
+    		padding: 2px 5px;
+    		border: 1px solid #2999f3;
+    		color: #2999f3;
+    	}
+    	.chuxing_chose span img {
+    		width: .15rem;
+    	}
+    	.chuxing_chose span {
+    		display: flex;
+    		align-items: center;
+    	}
+    	.swiper-slide {
+    		width: 100% !important;
+    	}
+    	.back-icon {
+    		z-index: 99
+    	}
+    	.jiazheng_list h3 {
+				margin-bottom: 0;
+		}
+		.move-house li {
+			display: flex;
+			align-items: center;
+			padding: .1rem;
+		}
+		.move-house li>div {
+			flex: 1;
+			padding-right: .1rem;
+		}
+		.move-house li img {
+			width: 2rem;
+			height: 1.7rem;
+			margin-right: .1rem;
+		}
+		.jiazheng_class {
+			margin: .25rem 0 .25rem;
+		}
+		.banjia {
+			margin-top: .4rem;
+		}
+		.b_ {
+			font-weight: normal;
+		}
+		.clean-icon {
+			height: .8rem;
+		}
+		
+		.jz_left img {
+			margin: 0 .1rem;
+		}
+		.list-img {
+			border-radius: 50%;
+		}
+    </style>
+	<body style="background: #fff;">
+		<header>
+			<i class="back-icon"></i>
+			<div class="swiper-container10">
+				<div class="swiper-wrapper banner_wrap">
+					<div class="swiper-slide"><img src="images/shouye/banner_shouye.png" alt="" /></div>
 				</div>
-				<div class="qg_bottom clearfix">
-					<div class="q_left fl clearfix">
-						<a href="mianxijiekuan.html" style="color: #000">
-							<h3 class="fl">免息借款</h3>
-						    <img class="fr" src="images/shouye/img3.png" alt="" />
-						</a>
-					</div>
-					<div class="q_right fl">
-						<a href="" style="color: #000">
-							<img src="images/shouye/img4.png" alt="" />
-							<h3>充值有礼</h3>
-						</a>
-						
-					</div>
-				</div>
 			</div>
-		</div>
-		<div class="tab">
-			<ul class="clearfix">
-				<li  class="active">家政维修</li>
-				<li>品家商城</li>
-				<li>品家出行</li>
-			</ul>
-		</div>
-		<div class="jiazheng_list gc_item" style="margin-bottom:1.2rem;">
-			<div class="jiazheng">
-				<h3>保洁服务</h3>
-				<div class="jiazheng_tit flex">
-					<div class="jiazheng_left clearfix">
-						<div class="jz_left fl">
-							
-							<a href="richang_baojie.html" style="color: #000">
-								<h3 class="flex">日常保洁<img src="images/shenghuo/nav_back.png" alt="" /></h3>
-						    	<p>日常保洁服务</p>
+		</header>
+		<div class="content" style="margin-bottom:1.2rem;">
+			<div class="qinggou clearfix">
+				<div class="qg_left qg_shangcheng">
+					<h3>限时抢购</h3>
+					<p>限时购</p>
+					<p><span>00</span> ：<span>00</span> : <span>00</span></p>
+					<p class="feiji">
+						<img src="images/shenghuo/img_xsqg.png" alt="" />
+						<img src="images/shenghuo/img_199.png" alt="" />
+					</p>
+				</div>
+				<div class="qg_right">
+					<div class="qg_top qg_shanglv clearfix">
+						<h3 class="fl">企业商旅</h3>
+						<img class="fr" src="images/shouye/img2.png" alt="" />
+					</div>
+					<div class="qg_bottom clearfix">
+						<div class="q_left fl clearfix">
+							<a href="mianxijiekuan.html" style="color: #000">
+								<h3 class="fl">免息借款</h3>
+								<img class="fr" src="images/shouye/img3.png" alt="" />
 							</a>
 						</div>
-						<img class="fl" src="images/shenghuo/icon_rcbj.png" alt="" />
-					</div>
-					<div class="jiazheng_left jiazheng_right clearfix">
-						<div class="jz_left fl">
-							<a href="richang_baojie.html" style="color: #000">
-								<h3 class="flex">深度保洁<img src="images/shenghuo/nav_back.png" alt="" /></h3>
-						    	<p>专业深度保洁服务</p>
-						    </a>
+						<div class="q_right recharge fl">
+							<a  style="color: #000">
+								<img src="images/shouye/img4.png" alt="" />
+								<h3>充值有礼</h3>
+							</a>
 						</div>
-						<img class="fl" src="images/shenghuo/img_shengdubaojie.png" alt="" />
 					</div>
 				</div>
-				<div class="jiazheng_class">
-					<ul class="clearfix">
-						<li>
-							<img src="images/shenghuo/icon_jdqj.png" alt="" />
-							<p>家电清洗</p>
-						</li>
-						<li>
-							<img src="images/shenghuo/icon_cbl.png" alt="" />
-							<p>擦玻璃</p>
-						</li>
-						<li>
-							<img src="images/shenghuo/icon_khbj.png" alt="" />
-							<p>开荒保洁</p>
-						</li>
-						<li>
-							<img src="images/shenghuo/icon_zycm.png" alt="" />
-							<p>专业除螨</p>
-						</li>
-						<li>
-							<img src="images/shenghuo/icon_xsbj.png" alt="" />
-							<p>消杀保洁</p>
-						</li>
-						<li>
-							<img src="images/shenghuo/icon_msbj.png" alt="" />
-							<p>民宿保洁</p>
-						</li>
-						<li>
-							<img src="images/shenghuo/icon_qybj.png" alt="" />
-							<p>企业保洁</p>
-						</li>
-						<li>
-							<img src="images/shenghuo/icon_gd.png" alt="" />
-							<p>更多</p>
-						</li>
-					</ul>
-				</div>
 			</div>
-			<div class="jiazheng">
-				<h3>维修服务</h3>
-				<div class="jiazheng_class">
-					<ul class="clearfix">
-						<li>
-							<img src="images/shenghuo/icon_slgj.png" alt="" />
-							<p>水路管件</p>
-						</li>
-						<li>
-							<img src="images/shenghuo/icon_djdl.png" alt="" />
-							<p>灯具电路</p>
-						</li>
-						<li>
-							<img src="images/shenghuo/icon_kshs.png" alt="" />
-							<p>开锁换锁</p>
-						</li>
-						<li>
-							<img src="images/shenghuo/icon_jiadianqingxi.png" alt="" />
-							<p>家电清洗</p>
-						</li>
-						<li>
-							<img src="images/shenghuo/icon_mcwx.png" alt="" />
-							<p>门窗维修</p>
-						</li>
-						<li>
-							<img src="images/shenghuo/icon_qdmwx.png" alt="" />
-							<p>墙地面维修</p>
-						</li>
-						<li>
-							<img src="images/shenghuo/icon_azcc.png" alt="" />
-							<p>安装拆除</p>
-						</li>
-						<li>
-							<img src="images/shenghuo/icon_gd.png" alt="" />
-							<p>更多</p>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="banjia">
-				<h3>搬家服务</h3>
-				<ul>
-					<li class="flex_b">
-						<img src="images/shenghuo/img_pjxb.png" alt="" />
-						<div>
-							<p class="flex_b"><span>品家小搬</span><span><i>99</i>元起</span></p>
-							<p>全程搬运，适合简约生活，行李较少的搬家</p>
-						</div>
-					</li>
-					<li class="flex_b">
-						<img src="images/shenghuo/img_pjzb.png" alt="" />
-						<div>
-							<p class="flex_b"><span>品家中搬</span><span><i>199</i>元起</span></p>
-							<p>全程搬运，适合简约生活，行李较少的搬家</p>
-						</div>
-					</li>
-					<li class="flex_b">
-						<img src="images/shenghuo/img_jzbj.png" alt="" />
-						<div>
-							<p class="flex_b"><span>品家大搬</span><span><i>349</i>元起</span></p>
-							<p>全程搬运，适合简约生活，行李较少的搬家</p>
-						</div>
-					</li>
-					<li class="flex_b">
-						<img src="images/shenghuo/img_pjdb.png" alt="" />
-						<div>
-							<p class="flex_b"><span>精致搬家</span><span><i>2499</i>元起</span></p>
-							<p>全程搬运，适合简约生活，行李较少的搬家</p>
-						</div>
-					</li>
-					<li class="flex_b">
-						<img src="images/shenghuo/img_jzbj2.png" alt="" />
-						<div>
-							<p class="flex_b"><span>精致搬家</span><span><i></i></span></p>
-							<p>全程搬运，适合简约生活，行李较少的搬家</p>
-						</div>
-					</li>
+			<div class="tab">
+				<ul class="clearfix">
+					<li class="active">家政维修</li>
+					<li>品家商城</li>
+					<li>品家出行</li>
 				</ul>
 			</div>
-			<div class="koubei"  style="margin-bottom:1.25rem;">
-				<h3>口碑精选</h3>
-				<div class="swiper-container">
-				    <div class="swiper-wrapper">
-					    <div class="swiper-slide">
-					    	<p><img src="images/shenghuo/img_touxiang.png" alt="" /><span>Joy</span></p>
-					    	<p>张师傅特别认真负责，反复操作，直至彻底疏通，态度特别好，还给我讲解原因</p>
-					    	<p class="flex_b">
-					    		<img src="images/shenghuo/img_1.png" alt="" />
-					    		<img src="images/shenghuo/img_2.png" alt="" />
-					    		<img src="images/shenghuo/img_3.png" alt="" />
-					    	</p>
-					    </div>
-					    <div class="swiper-slide">
-					    	<p><img src="images/shenghuo/img_touxiang.png" alt="" /><span>Joy</span></p>
-					    	<p>张师傅特别认真负责，反复操作，直至彻底疏通，态度特别好，还给我讲解原因</p>
-					    	<p class="flex_b">
-					    		<img src="images/shenghuo/img_1.png" alt="" />
-					    		<img src="images/shenghuo/img_2.png" alt="" />
-					    		<img src="images/shenghuo/img_3.png" alt="" />
-					    	</p>
-					    </div>
-				    </div>
+			<div class="jiazheng_list gc_item" style="margin-bottom:1.2rem;">
+				<div class="jiazheng">
+					<h3>保洁服务</h3>
+					<div class="jiazheng_tit flex">
+						<!--<div class="jiazheng_left clearfix">
+							<div class="jz_left fl">
+								<a href="richang_baojie.html" style="color: #000">
+									<h3 class="flex b_">日常保洁<img src="images/shenghuo/nav_back.png" alt="" /></h3>
+									<p>日常保洁服务</p>
+								</a>
+							</div>
+							<img class="fl" src="images/shenghuo/icon_rcbj.png" alt="" />
+						</div>
+						<div class="jiazheng_left jiazheng_right clearfix">
+							<div class="jz_left fl">
+								<a href="richang_baojie.html" style="color: #000">
+									<h3 class="flex b_">深度保洁<img src="images/shenghuo/nav_back.png" alt="" /></h3>
+									<p>专业深度保洁服务</p>
+								</a>
+							</div>
+							<img class="fl" src="images/shenghuo/img_shengdubaojie.png" alt="" />
+						</div>-->
+					</div>
+					<div class="jiazheng_class">
+						<ul class="clearfix clean-wrap">
+							<li>
+								<img src="images/shenghuo/icon_jdqj.png" alt="" />
+								<p>家电清洗</p>
+							</li>
+							<li>
+								<img src="images/shenghuo/icon_cbl.png" alt="" />
+								<p>擦玻璃</p>
+							</li>
+							<li>
+								<img src="images/shenghuo/icon_khbj.png" alt="" />
+								<p>开荒保洁</p>
+							</li>
+							<li>
+								<img src="images/shenghuo/icon_zycm.png" alt="" />
+								<p>专业除螨</p>
+							</li>
+							<li>
+								<img src="images/shenghuo/icon_xsbj.png" alt="" />
+								<p>消杀保洁</p>
+							</li>
+							<li>
+								<img src="images/shenghuo/icon_msbj.png" alt="" />
+								<p>民宿保洁</p>
+							</li>
+							<li>
+								<img src="images/shenghuo/icon_qybj.png" alt="" />
+								<p>企业保洁</p>
+							</li>
+							
+						</ul>
+					</div>
 				</div>
+				<div class="jiazheng">
+					<h3>维修服务</h3>
+					<div class="jiazheng_class">
+						<ul class="maintain clearfix">
+							<li>
+								<img src="images/shenghuo/icon_slgj.png" alt="" />
+								<p>水路管件</p>
+							</li>
+							<li>
+								<img src="images/shenghuo/icon_djdl.png" alt="" />
+								<p>灯具电路</p>
+							</li>
+							<li>
+								<img src="images/shenghuo/icon_kshs.png" alt="" />
+								<p>开锁换锁</p>
+							</li>
+							<li>
+								<img src="images/shenghuo/icon_jiadianqingxi.png" alt="" />
+								<p>家电清洗</p>
+							</li>
+							<li>
+								<img src="images/shenghuo/icon_mcwx.png" alt="" />
+								<p>门窗维修</p>
+							</li>
+							<li>
+								<img src="images/shenghuo/icon_qdmwx.png" alt="" />
+								<p>墙地面维修</p>
+							</li>
+							<li>
+								<img src="images/shenghuo/icon_azcc.png" alt="" />
+								<p>安装拆除</p>
+							</li>
+							<li>
+								<img src="images/shenghuo/icon_gd.png" alt="" />
+								<p>更多</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="banjia">
+					<h3>搬家服务</h3>
+					<ul class="move-house">
+						<li class="flex_b">
+							<img src="images/shenghuo/img_pjxb.png" alt="" />
+							<div>
+								<p class="flex_b"><span>品家小搬</span><span><i>99</i>元起</span></p>
+								<p>全程搬运，适合简约生活，行李较少的搬家</p>
+							</div>
+						</li>
+						<li class="flex_b">
+							<img src="images/shenghuo/img_pjzb.png" alt="" />
+							<div>
+								<p class="flex_b"><span>品家中搬</span><span><i>199</i>元起</span></p>
+								<p>全程搬运，适合简约生活，行李较少的搬家</p>
+							</div>
+						</li>
+						<li class="flex_b">
+							<img src="images/shenghuo/img_jzbj.png" alt="" />
+							<div>
+								<p class="flex_b"><span>品家大搬</span><span><i>349</i>元起</span></p>
+								<p>全程搬运，适合简约生活，行李较少的搬家</p>
+							</div>
+						</li>
+						<li class="flex_b">
+							<img src="images/shenghuo/img_pjdb.png" alt="" />
+							<div>
+								<p class="flex_b"><span>精致搬家</span><span><i>2499</i>元起</span></p>
+								<p>全程搬运，适合简约生活，行李较少的搬家</p>
+							</div>
+						</li>
+						<li class="flex_b">
+							<img src="images/shenghuo/img_jzbj2.png" alt="" />
+							<div>
+								<p class="flex_b"><span>精致搬家</span><span><i></i></span></p>
+								<p>全程搬运，适合简约生活，行李较少的搬家</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--<div class="koubei" style="margin-bottom:1.25rem;">
+					<h3>口碑精选</h3>
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<p><img src="images/shenghuo/img_touxiang.png" alt="" /><span>Joy</span></p>
+								<p>张师傅特别认真负责，反复操作，直至彻底疏通，态度特别好，还给我讲解原因</p>
+								<p class="flex_b">
+									<img src="images/shenghuo/img_1.png" alt="" />
+									<img src="images/shenghuo/img_2.png" alt="" />
+									<img src="images/shenghuo/img_3.png" alt="" />
+								</p>
+							</div>
+							<div class="swiper-slide">
+								<p><img src="images/shenghuo/img_touxiang.png" alt="" /><span>Joy</span></p>
+								<p>张师傅特别认真负责，反复操作，直至彻底疏通，态度特别好，还给我讲解原因</p>
+								<p class="flex_b">
+									<img src="images/shenghuo/img_1.png" alt="" />
+									<img src="images/shenghuo/img_2.png" alt="" />
+									<img src="images/shenghuo/img_3.png" alt="" />
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>-->
+			</div>
+			<div class="shangcheng_list gc_item" style="margin-bottom:1.2rem;background: #eee;">
+				<ul class="changcheng_class clearfix" style="background: #fff;">
+					<!--<li>
+						<img src="images/shenghuo/icon_qbfl.png" alt="" />
+						<p>全部分类</p>
+					</li>
+					<li>
+						<a href="gongsizhuce.html">
+							<img src="images/shenghuo/icon_gszc.png" alt="" />
+							<p>公司注册</p>
+						</a>
+					</li>
+					<li>
+						<img src="images/shenghuo/icon_qyzx.png" alt="" />
+						<p>企业装修</p>
+					</li>
+					<li>
+						<a href="banjiafuwu.html">
+							<img src="images/shenghuo/icon_bjfw.png" alt="" />
+							<p>搬家服务</p>
+						</a>
+					</li>
+					<li>
+						<img src="images/shenghuo/icon_lzzb.png" alt="" />
+						<p>绿植租摆</p>
+					</li>
+					<li>
+						<a href="richang_baojie.html">
+							<img src="images/shenghuo/icon_baojiefuwu.png" alt="" />
+							<p>保洁服务</p>
+						</a>
+					</li>
+					<li>
+						<img src="images/shenghuo/icon_dljz.png" alt="" />
+						<p>代理记账</p>
+					</li>
+					<li>
+						<img src="images/shenghuo/icon_fyxz.png" alt="" />
+						<p>房源选址</p>
+					</li>-->
+				</ul>
+				<h3 class="re">热门服务</h3>
+				<ul class="shop_list flex_b">
+					<!--<li>
+						<span>绿植租摆</span>
+						<img src="" alt="" />
+					</li>
+					<li>
+						<a href="diannao_shebei.html" style="color: #fff">
+							<span>电脑租赁</span>
+							<img src="images/pinjiashangcheng/img_qrgm@2x.png" alt="" />
+						</a>
+					</li>
+					<li>
+						<span>注册地址</span>
+						<img src="" alt="" />
+					</li>-->
+				</ul>
+			</div>
+			<div class="chuxing gc_item" style="margin-bottom:1.2rem;">
+				<!--<p class="chuxing_input flex">
+	    		<img src="images/shenghuo/icon_search.png" alt="" /><input type="text" placeholder="景点、门票" />
+	    	</p>-->
+				<ul class="chuxing_class clearfix">
+					<li scenicId="1">
+						<img src="images/shenghuo/icon_qlws.png" alt="" />
+						<p>清凉玩水</p>
+					</li>
+					<li  scenicId="2">
+						<img src="images/shenghuo/icon_wq.png" alt="" />
+						<p>温泉</p>
+					</li>
+					<li  scenicId="3">
+						<img src="images/shenghuo/icon_zrfg.png" alt="" />
+						<p>自然风光</p>
+					</li>
+					<li  scenicId="4">
+						<img src="images/shenghuo/icon_gyylc.png" alt="" />
+						<p>公园游乐场</p>
+					</li>
+					<li  scenicId="5">
+						<img src="images/shenghuo/icon_msgj.png" alt="" />
+						<p>名胜古迹</p>
+					</li>
+					<li class="s_chuxing"  scenicId="6">
+						<img src="images/shenghuo/icon_dzwy.png" alt="" />
+						<p>动植物园</p>
+					</li>
+					<li class="s_chuxing"  scenicId="7">
+						<img src="images/shenghuo/icon_zlhg.png" alt="" />
+						<p>展馆展览</p>
+					</li>
+					<li class="s_chuxing"  scenicId="8">
+						<img src="images/shenghuo/icon_ggjq.png" alt="" />
+						<p>观光街区</p>
+					</li>
+					<li class="s_chuxing"  scenicId="9">
+						<img src="images/shenghuo/icon_djc.png" alt="" />
+						<p>度假村</p>
+					</li>
+					<li class="s_chuxing"  scenicId="10">
+						<img src="images/shenghuo/icon_ycyy.png" alt="" />
+						<p>演出演艺</p>
+					</li>
+				</ul>
+
+				<div class="chuxing_chose">
+					<p class="flex">
+						<span>出行</span>
+						<span>全城</span>
+						<span class="chuxing_paixu">价格<img src="images/shenghuo/btn_cbb.png" alt="" />
+						</span>
+						<span class="chuxing_shaixuan">评分<img src="images/shenghuo/btn_cbb.png" alt="" /></span>
+					</p>
+				</div>
+				<div class="mention_message">暂无更多景点</div>
+				<ul class="mui-table-view">
+					<!--<li class="mui-table-view-cell mui-media">
+						<a>
+							<img class="mui-media-object mui-pull-left" src="images/shenghuo/img_xia_1.png">
+							<div class="mui-media-body">
+								亚维农生态园(3A)
+								<p class="chuxing_star flex">
+									<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
+									<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
+									<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
+									<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
+									<img src="images/shenghuo/icon_wuxing.png" alt="" />
+									<span>15人评价</span>
+								</p>
+								<p class="chuxing_money flex_b"><span>21.5km|惠阳区</span><span><i>￥</i><i>40</i>起</span></p>
+								<p class="flex_b"><span class="fuTitle">踏青赏花</span><span>参考价格</span></p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media">
+						<a>
+							<img class="mui-media-object mui-pull-left" src="images/shenghuo/img_xia_2.png">
+							<div class="mui-media-body">
+								亚维农生态园(3A)
+								<p class="chuxing_star flex">
+									<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
+									<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
+									<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
+									<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
+									<img src="images/shenghuo/icon_wuxing.png" alt="" />
+									<span>15人评价</span>
+								</p>
+								<p class="chuxing_money flex_b"><span>21.5km|惠阳区</span><span><i>￥</i><i>40</i>起</span></p>
+								<p class="flex_b"><img src="images/shenghuo/icon_biaoqian.png" alt="" /><span>参考价格</span></p>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media">
+						<a>
+							<img class="mui-media-object mui-pull-left" src="images/shenghuo/img_xia_3.png">
+							<div class="mui-media-body">
+								亚维农生态园(3A)
+								<p class="chuxing_star flex">
+									<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
+									<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
+									<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
+									<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
+									<img src="images/shenghuo/icon_wuxing.png" alt="" />
+									<span>15人评价</span>
+								</p>
+								<p class="chuxing_money flex_b"><span>21.5km|惠阳区</span><span><i>￥</i><i>40</i>起</span></p>
+								<p class="flex_b"><img src="images/shenghuo/icon_biaoqian.png" alt="" /><span>参考价格</span></p>
+							</div>
+						</a>
+					</li>-->
+				</ul>
 			</div>
 		</div>
-	    <div class="shangcheng_list gc_item" style="margin-bottom:1.2rem;background: #eee;">
-	    	<ul class="changcheng_class clearfix" style="background: #fff;">
-	    		<li>
-	    			<img src="images/shenghuo/icon_qbfl.png" alt="" />
-	    			<p>全部分类</p>
-	    		</li>
-	    		<li>
-	    			<a href="gongsizhuce.html">
-	    				<img src="images/shenghuo/icon_gszc.png" alt="" />
-	    				<p>公司注册</p>
-	    			</a>
-	    		</li>
-	    		<li>
-	    			<img src="images/shenghuo/icon_qyzx.png" alt="" />
-	    			<p>企业装修</p>
-	    		</li>
-	    		<li>
-	    			<a href="banjiafuwu.html">
-	    				<img src="images/shenghuo/icon_bjfw.png" alt="" />
-	    			    <p>搬家服务</p>
-	    			</a>
-	    		</li>
-	    		<li>
-	    			<img src="images/shenghuo/icon_lzzb.png" alt="" />
-	    			<p>绿植租摆</p>
-	    		</li>
-	    		<li>
-	    			<a href="richang_baojie.html">
-	    				<img src="images/shenghuo/icon_baojiefuwu.png" alt="" />
-	    			    <p>保洁服务</p>
-	    			</a>
-	    		</li>
-	    		<li>
-	    			<img src="images/shenghuo/icon_dljz.png" alt="" />
-	    			<p>代理记账</p>
-	    		</li>
-	    		<li>
-	    			<img src="images/shenghuo/icon_fyxz.png" alt="" />
-	    			<p>房源选址</p>
-	    		</li>
-	    	</ul>
-	    	<h3 class="re">热门服务</h3>
-	    	<ul class="shop_list flex_b">
-                <li>
-                	<span>绿植租摆</span>
-                	<img src="" alt="" />
-                </li>
-                <li>
-                	<a href="diannao_shebei.html" style="color: #fff">
-                		<span>电脑租赁</span>
-                	    <img src="images/pinjiashangcheng/img_qrgm@2x.png" alt="" />
-                	</a>
-                </li>
-                <li>
-                	<span>注册地址</span>
-                	<img src="" alt="" />
-                </li>
-	    	</ul>
-	    </div>
-	    <div class="chuxing gc_item" style="margin-bottom:1.2rem;">
-	    	<p class="chuxing_input flex">
-	    		<img src="images/shenghuo/icon_search.png" alt="" /><input type="text" placeholder="景点、门票" />
-	    	</p>
-    		<ul class="chuxing_class clearfix">
-	    		<li>
-	    			<img src="images/shenghuo/icon_qlws.png" alt="" />
-	    			<p>清凉玩水</p>
-	    		</li>
-	    		<li>
-	    			<img src="images/shenghuo/icon_wq.png" alt="" />
-	    			<p>温泉</p>
-	    		</li>
-	    		<li>
-	    			<img src="images/shenghuo/icon_zrfg.png" alt="" />
-	    			<p>自然风光</p>
-	    		</li>
-	    		<li>
-	    			<img src="images/shenghuo/icon_gyylc.png" alt="" />
-	    			<p>公园游乐场</p>
-	    		</li>
-	    		<li>
-	    			<img src="images/shenghuo/icon_msgj.png" alt="" />
-	    			<p>名胜古迹</p>
-	    		</li>
-	    		<li class="s_chuxing">
-	    			<img src="images/shenghuo/icon_dzwy.png" alt="" />
-	    			<p>动植物园</p>
-	    		</li>
-	    		<li class="s_chuxing">
-	    			<img src="images/shenghuo/icon_zlhg.png" alt="" />
-	    			<p>展馆展览</p>
-	    		</li>
-	    		<li class="s_chuxing">
-	    			<img src="images/shenghuo/icon_ggjq.png" alt="" />
-	    			<p>观光街区</p>
-	    		</li>
-	    		<li class="s_chuxing">
-	    			<img src="images/shenghuo/icon_djc.png" alt="" />
-	    			<p>度假村</p>
-	    		</li>
-	    		<li class="s_chuxing">
-	    			<img src="images/shenghuo/icon_ycyy.png" alt="" />
-	    			<p>演出演艺</p>
-	    		</li>
-	    	</ul>
-	    	<p class="fj clearfix">
-	    		<img src="images/shenghuo/img_1.png" alt="" />
-	    		<img src="images/shenghuo/img_2.png" alt="" />
-	    	</p>
-	    	<div class="tuijian">
-	    		<p class="flex_b">
-	    			<span>人气推荐</span>
-	    			<span><a href="jingdianliebiao.html">更多景点</a></span><img src="images/shenghuo/nav_back_gdjd.png" alt="" />
-	    		</p>
-	    	    <div class="swiper-container2">
-				    <div class="swiper-wrapper">
-					    <div class="swiper-slide">
-					    	<img src="images/shenghuo/img_3.png" alt="" />
-					    	<img src="images/shenghuo/icon_top_1.png" alt="" />
-					    	<p>双月湾</p>
-					    	<p><span>4.5分</span>| 595人评价</p>
-					    </div>
-					    <div class="swiper-slide">
-					    	<img src="images/shenghuo/img_4.png" alt="" />
-					    	<img src="images/shenghuo/icon_top_2.png" alt="" />
-					    	<p>双月湾</p>
-					    	<p><span>4.5分</span>| 595人评价</p>
-					    </div>
-					    <div class="swiper-slide">
-					    	<img src="images/shenghuo/img_5.png" alt="" />
-					    	<img src="images/shenghuo/icon_top_3.png" alt="" />
-					    	<p>双月湾</p>
-					    	<p><span>4.5分</span>| 595人评价</p>
-					    </div>
-				    </div>
-				</div>
-	    	</div>
-	    	<div class="chuxing_chose">
-	    		<p class="flex">
-	    			<span>出行<img src="images/shenghuo/btn_cbb.png" alt="" /></span>
-	    			<span>全城<img src="images/shenghuo/btn_cbb.png" alt="" /></span>
-	    			<span>智能排序<img src="images/shenghuo/btn_cbb.png" alt="" /></span>
-	    			<span>筛选<img src="images/shenghuo/btn_cbb.png" alt="" /></span>
-	    		</p>
-	    	</div>
-	    	<ul class="mui-table-view">
-			    <li class="mui-table-view-cell mui-media">
-			        <a href="jingdianliebiao.html">
-			            <img class="mui-media-object mui-pull-left" src="images/shenghuo/img_xia_1.png">
-			            <div class="mui-media-body">
-			                                                亚维农生态园(3A)
-			                <p class="chuxing_star flex">
-			                	<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
-			                	<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
-			                	<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
-			                	<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
-			                	<img src="images/shenghuo/icon_wuxing.png" alt="" />
-			                	<span>15人评价</span>
-			                </p>
-			                <p class="chuxing_money flex_b"><span>21.5km|惠阳区</span><span><i>￥</i><i>40</i>起</span></p>
-			                <p class="flex_b"><img src="images/shenghuo/icon_biaoqian.png" alt="" /><span>参考价格</span></p>
-			                <!--<p class='mui-ellipsis'>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>-->
-			            </div>
-			        </a>
-			    </li>
-			    <li class="mui-table-view-cell mui-media">
-			        <a href="jingdianliebiao.html">
-			            <img class="mui-media-object mui-pull-left" src="images/shenghuo/img_xia_2.png">
-			            <div class="mui-media-body">
-			                                                亚维农生态园(3A)
-			                <p class="chuxing_star flex">
-			                	<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
-			                	<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
-			                	<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
-			                	<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
-			                	<img src="images/shenghuo/icon_wuxing.png" alt="" />
-			                	<span>15人评价</span>
-			                </p>
-			                <p class="chuxing_money flex_b"><span>21.5km|惠阳区</span><span><i>￥</i><i>40</i>起</span></p>
-			                <p class="flex_b"><img src="images/shenghuo/icon_biaoqian.png" alt="" /><span>参考价格</span></p>
-			                <!--<p class='mui-ellipsis'>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>-->
-			            </div>
-			        </a>
-			    </li>
-			    <li class="mui-table-view-cell mui-media">
-			        <a href="jingdianliebiao.html">
-			            <img class="mui-media-object mui-pull-left" src="images/shenghuo/img_xia_3.png">
-			            <div class="mui-media-body">
-			                                                亚维农生态园(3A)
-			                <p class="chuxing_star flex">
-			                	<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
-			                	<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
-			                	<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
-			                	<img src="images/shenghuo/icon_wuxing_pre.png" alt="" />
-			                	<img src="images/shenghuo/icon_wuxing.png" alt="" />
-			                	<span>15人评价</span>
-			                </p>
-			                <p class="chuxing_money flex_b"><span>21.5km|惠阳区</span><span><i>￥</i><i>40</i>起</span></p>
-			                <p class="flex_b"><img src="images/shenghuo/icon_biaoqian.png" alt="" /><span>参考价格</span></p>
-			                <!--<p class='mui-ellipsis'>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>-->
-			            </div>
-			        </a>
-			    </li>
+		<footer>
+			<ul class="clearfix">
+				<li>
+					<a href="index.html">
+						<img src="images/footer/tab_sy.png" alt="" />
+						<p>首页</p>
+					</a>
+				</li>
+				<li>
+					<a href="dituzhaofang.html">
+						<img src="images/footer/tab_dtzf.png" alt="" />
+						<p>地图找房</p>
+					</a>
+				</li>
+				<li class="active">
+					<a href="jiazhengweixiu.html">
+						<img src="images/footer/tab_shgc_pre.png" alt="" />
+						<p>生活广场</p>
+					</a>
+				</li>
+				<li>
+					<a href="pinjiajihua.html">
+						<img src="images/footer/tab_pjjh.png" alt="" />
+						<p>品家计划</p>
+					</a>
+				</li>
+				<li>
+					<a href="mine.html">
+						<img src="images/footer/tab_wode.png" alt="" />
+						<p>我的</p>
+					</a>
+				</li>
 			</ul>
-	    </div>
-	</div>
-	<footer>
-		<ul class="clearfix">
-			<li>
-				<a href="index.html">
-					<img src="images/footer/tab_sy.png" alt="" />
-				    <p>首页</p>
-				</a>
-			</li>
-			<li>
-				<a href="dituzhaofang.html">
-					<img src="images/footer/tab_dtzf.png" alt="" />
-				    <p>地图找房</p>
-				</a>
-			</li>
-			<li  class="active">
-				<a href="jiazhengweixiu.html">
-					<img src="images/footer/tab_shgc_pre.png" alt="" />
-				    <p>生活广场</p>
-				</a>
-			</li>
-			<li>
-				<a href="pinjiajihua.html">
-					<img src="images/footer/tab_pjjh.png" alt="" />
-				    <p>品家计划</p>
-				</a>
-			</li>
-			<li>
-				<a href="mine.html">
-					<img src="images/footer/tab_wode.png" alt="" />
-				    <p>我的</p>
-				</a>
-			</li>
-		</ul>
-	</footer>
-	<!--footer结束-->
-	<script
-  src="https://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-  crossorigin="anonymous"></script>
-    <script src="js/mui.min.js"></script>
-    <script src="js/mui.picker.js"></script>
-    <script src="js/swiper-3.4.2.min.js"></script>
-	<script type="text/javascript" charset="utf-8">
-      	mui.init();
-    </script>
-    <script src="js/style.js"></script>
-    <script>
-    	// 轮播
-    	var mySwiper = new Swiper('.swiper-container', {
-			slidesPerView : 1.5,
-			spaceBetween : "2%"
-		})
-    	var mySwiper2 = new Swiper('.swiper-container2', {
-			slidesPerView : 2.5,
-			spaceBetween : "2%"
-		})
-    	var n = localStorage.getItem("index");
-    	console.log(n);
-    	tab();
-    	function tab() {
-    		$(".tab li").eq(n).addClass("active").siblings().removeClass("active");
-    		$(".gc_item").hide();
-    		$(".gc_item").eq(n).show();
-    		localStorage.setItem("index",n);
-//  		window.location.hash = n;
-    	}
-    	// 显示隐藏
-    	$(".tab li").on("click",function(){
-    		var index = $(this).index();
-    		$(this).addClass("active").siblings().removeClass("active");
-    		$(".gc_item").hide();
-    		$(".gc_item").eq(index).show();
-    		localStorage.setItem("index",index);
-    		window.location.hash = index;
-    	})
-    	
-//  	window.onhashchange = function(){
-//  		alert(1)
-//  	}
-    	$(".banjia ul li").on("click",function(){
-    		window.location.href = "banjiafuwu.html"
-    	})
-    </script>
-</body>
+		</footer>
+		<!--footer结束-->
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/mui.picker.js"></script>
+		<script src="js/mui.poppicker.js"></script>
+		<script src="js/swiper-3.4.2.min.js"></script>
+		 <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<script src="js/style.js"></script>
+		<script type="text/javascript" src="js/baseUrl.js"></script>
+		<script>
+			//商城列表
+			shopList ();  // 商城分类
+//			getHotServer(); // 商城热门服务
+			getMaintainList(); // 维修主列表
+			function openMaintainPage (a) {
+				var repairid = $(a).attr('data-repairid');
+				var title = $(a).find("p").text();
+				window.location.href = `weixiu_shebei.html?repairid=${repairid}&title=${title}`;
+			}
+			function getMaintainList () {
+				$.ajax({
+					type: 'GET',
+					url: baseUrl + '/RepairMenu',
+					data: {},
+					success: function (data) {
+						console.log(data,'维修列表');
+						var str = '';
+						var imgArr = ['images/shenghuo/icon_slgj.png',
+						               'images/shenghuo/icon_djdl.png',
+						               'images/shenghuo/icon_kshs.png',
+						               'images/shenghuo/icon_jiadianqingxi.png',
+						               'images/shenghuo/icon_mcwx.png',
+						               'images/shenghuo/icon_qdmwx.png',
+						               'images/shenghuo/icon_azcc.png'
+						             ]
+						data.forEach(function (val, index) {
+							var img = val.repairImage;
+							if(val.repairImage == null || val.repairImage == "") {
+								img = imgArr[index]
+							}
+							str += `<li onclick="openMaintainPage(this)" data-repairId="${val.repairId}">
+										<img class="list-img" src="${img}" alt="" />
+										<p>${val.repairName}</p>
+									</li>`;
+						})
+						$(".maintain").html(str);
+					}
+					
+				})
+			}
+			function shopList () {
+				$.ajax({
+					type:"get",
+					url:baseUrl+"/MallGroup",
+					async:true,
+					dataType:'json',
+					success:function(data){
+						console.log(data,"商城列表");
+						var shopList='';
+						var str = '';
+						for(var i=0;i<data.length;i++){
+//							if(data[i].groupHot == 0) {
+								shopList+='<li onclick="openPage(this)" data-groupId="'+data[i].groupId+'">'+
+									''+
+										'<img src="'+data[i].groupImage+'" alt="" />'+
+										'<p  class="shopName">'+data[i].groupName+'</p>'+
+									''+
+								'</li>'
+//							}
+							if(data[i].groupHot == 1) {
+								str += `<li onclick="openPage(this)" data-groupId="${data[i].groupId}">
+										<a style="color: #fff">
+											<span class="shopName">${data[i].groupName}</span>
+											<img src="${data[i].groupImage}" alt="" />
+										</a>
+									</li>`;
+							}
+						}
+						$(".shop_list").append(str);
+						$(".changcheng_class").append(shopList)
+					},
+					error:function(){
+						
+					}
+				});
+			}
+//			function getHotServer () {
+//				$.ajax({
+//					type: 'GET',
+//					url: baseUrl + "/MallHotGroup",
+//					data: {},
+//					success: function (data) {
+//						console.log(data,"商城热门");
+//						var str = "";
+//						data.forEach(function(val,index) {
+//							str += `<li onclick="openPage(this)" data-groupId="${val.groupId}">
+//										<a style="color: #fff">
+//											<span class="shopName">${val.groupName}</span>
+//											<img src="${val.groupImage}" alt="" />
+//										</a>
+//									</li>`;
+//						})
+//						$(".shop_list").append(str);
+//					}
+//				})
+//			}
+			function openPage (a) {   // 根据点击内容进行跳转
+				var groupId = $(a).attr("data-groupId");
+				var title = $(a).find(".shopName").text();
+				window.location.href = `diannao_shebei.html?groupId=${groupId}&title=${title}`;
+
+			}
+			//点击查看分类列表
+			$(".changcheng_class").on("click",'li',function(){
+				localStorage.setItem('groupId',$(this).attr('groupId'))
+			});
+			// 景点图片
+			var imgArr = ["images/shenghuo/icon_qlws.png", 
+							"images/shenghuo/icon_wq.png", 
+							"images/shenghuo/icon_zrfg.png", 
+							"images/shenghuo/icon_gyylc.png",
+			                "images/shenghuo/icon_msgj.png", 
+			                "images/shenghuo/icon_dzwy.png",
+			                "images/shenghuo/icon_zlhg.png",
+			                "images/shenghuo/icon_ggjq.png",
+			                "images/shenghuo/icon_djc.png",
+			                "images/shenghuo/icon_ycyy.png"
+			             ];
+//			$.ajax({
+//				type: "get",
+//				url: baseUrl + "/TravelGroup",
+//				async: true,
+//				dataType: 'json',
+//				data: {
+//
+//				},
+//				success: function(data) {
+//					console.log(data)
+//					var listNav = ''
+//					for(var i = 0; i < data.length; i++) {
+//						listNav += '<li scenicId="' + data[i].groupId + '">' +
+//							'<img src="' + imgArr[i] + '" alt="" />' +
+//							'<p>' + data[i].groupName + '</p>' +
+//							'</li>'
+//					}
+//					$(".chuxing_class").html(listNav)
+//				},
+//				error: function() {
+//
+//				}
+//			});
+			//点击查看景点列表
+			var sceneryImg ;
+			var sceneryGroup = "";
+			var scenerySort = "";
+			getAllScenery();
+			function getAllScenery() {
+				$.ajax({
+				type: "get",
+				url: baseUrl + "/TravelScenery",
+				async: true,
+				dataType: 'json',
+				data: {
+                    city: '北京',
+                    
+				},
+				success: function(data) {
+					console.log(data,'景点列表')
+					var listBottom=''
+					for(var i = 0; i < data.length; i++) {
+						sceneryImg = data[i].sceneryImage;
+						if(data[i].sceneryImage == null || data[i].sceneryImage == "") {
+							sceneryImg = "images/shenghuo/img_xia_1.png";
+						}
+						
+						
+					listBottom+='<li class="mui-table-view-cell mui-media" scenicId="'+data[i].sceneryId+'">'+
+						'<a>'+
+							'<img class="mui-media-object mui-pull-left" src="'+sceneryImg+'">'+
+							'<div class="mui-media-body">'+
+								data[i].sceneryTitle+
+								'<p class="chuxing_star flex" style="display:block">'+
+									'<span>'+data[i].sceneryPoint+'分'+'</span>'+
+								'</p>'+
+								'<p class="chuxing_money flex_b">'+'<span>'+''+data[i].sceneryCity+'</span>'+'<span>'+'<i>'+'￥'+'</i>'+'<i>'+data[i].sceneryPrice+'</i>'+'起'+'</span>'+'</p>'+
+								'<p class="flex_b">'+'<span class="fuTitle">'+data[i].scenerySbuTitle+'</span>'+'<span>'+'参考价格'+'</span>'+'</p>'+
+							'</div>'+
+						'</a>'+
+					'</li>'
+					}
+					$(".mui-table-view").html(listBottom);
+					
+				},
+				error: function() {
+                    $(".mention_message").show()
+				}
+			});
+			}
+			// 旅行排序接口
+//			travelSort (sceneryGroup, scenerySort);
+			function travelSort (sceneryGroup, scenerySort) {
+				$.ajax({
+					type: 'GET',
+					url: baseUrl + '/TravelSceneryGroup',
+					data: {
+						city: '北京',
+						group: sceneryGroup,
+						sort: scenerySort
+					},
+					success: function (data) {
+						console.log(data,'景点列表')
+						var listBottom=''
+						for(var i = 0; i < data.length; i++) {
+							sceneryImg = data[i].sceneryImage;
+							if(data[i].sceneryImage == null || data[i].sceneryImage == "") {
+								sceneryImg = "images/shenghuo/img_xia_1.png";
+							}
+							
+							
+						listBottom+='<li class="mui-table-view-cell mui-media" scenicId="'+data[i].sceneryId+'">'+
+							'<a>'+
+								'<img class="mui-media-object mui-pull-left" src="'+sceneryImg+'">'+
+								'<div class="mui-media-body">'+
+									data[i].sceneryTitle+
+									'<p class="chuxing_star flex" style="display:block">'+
+										'<span>'+data[i].sceneryPoint+'分'+'</span>'+
+									'</p>'+
+									'<p class="chuxing_money flex_b">'+'<span>'+''+data[i].sceneryCity+'</span>'+'<span>'+'<i>'+'￥'+'</i>'+'<i>'+data[i].sceneryPrice+'</i>'+'起'+'</span>'+'</p>'+
+									'<p class="flex_b">'+'<span class="fuTitle">'+data[i].scenerySbuTitle+'</span>'+'<span>'+'参考价格'+'</span>'+'</p>'+
+								'</div>'+
+							'</a>'+
+						'</li>'
+						}
+						$(".mui-table-view").html(listBottom);
+					}
+				})
+			}
+			//点击查看景点详情
+			$(".mui-table-view").on("click",'li',function(){
+				localStorage.setItem('scenicId',$(this).attr("scenicId"))
+				var scenicId = $(this).attr("scenicId");
+				window.location.href="particulars.html?scenicId=" + scenicId;
+			})
+			//点击查看景点列表
+			$(".chuxing_class").on("click", 'li', function() {
+				localStorage.setItem("scenicList", $(this).attr("scenicId"))
+				var scenicId = $(this).attr("scenicId");
+				window.location.href = 'scenic.html?scenicId=' + scenicId;
+			})
+			// 轮播
+			var mySwiper = new Swiper('.swiper-container', {
+				slidesPerView: 1.5,
+				spaceBetween: "2%"
+			})
+			
+			var n = localStorage.getItem("index");
+//			var n2 = window.location.href.split("#")[1];
+//			console.log(n2);
+			console.log(n);
+			tab(n);
+//          tab(n2)
+			function tab(n) {
+				$(".tab li").eq(n).addClass("active").siblings().removeClass("active");
+				$(".gc_item").hide();
+				$(".gc_item").eq(n).show();
+				
+//				localStorage.setItem("index", n);
+				//  		window.location.hash = n;
+			}
+			// 显示隐藏
+			$(".tab li").on("click", function() {
+				var index = $(this).index();
+				$(this).addClass("active").siblings().removeClass("active");
+				$(".gc_item").hide();
+				$(".gc_item").eq(index).show();
+				localStorage.setItem("index", index);
+				window.location.hash = index;
+			})
+
+			//  	window.onhashchange = function(){
+			//  		alert(1)
+			//  	}
+			$(".banjia ul li").on("click", function() {
+				window.location.href = "banjiafuwu.html"
+			})
+			// 轮播图
+			var str;
+			$.ajax({
+				type: "GET",
+				url: baseUrl + "/homeBanner",
+				data: {},
+				success: function(data) {
+					console.log(data,"banner");
+					if(data) {
+						data.forEach(function(val, idex) {
+							str = `<div class="swiper-slide"><img src="${val.bannerPicture}" alt="" /></div>`;
+							$(".banner_wrap").append(str);
+						})
+					}
+					var mySwiper2 = new Swiper('.swiper-container10', {
+						
+					})
+				},
+				error: function(xhr) {
+					console.log(xhr.responseText);
+					if(xhr.responseText) {
+						var obj = eval("(" + xhr.responseText + ")");
+						mui.toast(obj.message);
+					}
+				}
+			})
+			// 出行排序 
+			$(".chuxing_paixu").on("click",paixu);
+			$(".chuxing_shaixuan").on("click",shaixuan);
+			function paixu () {
+				var picker = new mui.PopPicker();
+				 picker.setData([{value:'true',text:'价格从高到低'},{value:'false',text:'价格从低到高'}]);
+				 picker.show(function (selectItems) {
+				    console.log(selectItems[0].value);
+				    sceneryGroup = 'scenery_price';
+				    scenerySort = selectItems[0].value;
+				    travelSort (sceneryGroup, scenerySort);
+				  })
+			}
+			function shaixuan () {
+				var picker = new mui.PopPicker();
+				 picker.setData([{value:'true',text:'评分从高到低'},{value:'false',text:'评分从低到高'}]);
+				 picker.show(function (selectItems) {
+				    console.log(selectItems[0].value); 
+				    sceneryGroup = 'scenery_point',
+				    scenerySort = selectItems[0].value;
+				    travelSort (sceneryGroup, scenerySort)
+				  })
+			}
+			// 获取搬家列表
+			getMoveHouseList();
+			function getMoveHouseList () {
+				$.ajax({
+					type: 'GET',
+					url: baseUrl + '/HouseMove',
+					data: {},
+					success: function (data) {
+						console.log(data,'搬家');
+						var str = '';
+						var moveHouseImgs = ['images/shenghuo/img_pjxb.png',
+						                      'images/shenghuo/img_pjzb.png',
+						                      'images/shenghuo/img_jzbj.png',
+						                      'images/shenghuo/img_pjdb.png',
+						                      'images/shenghuo/img_jzbj2.png'
+						                    ];
+						data.forEach((val, index) => {
+							var img = val.moveImage;
+							if(val.moveImage == null || val.moveImage == "") {
+								img = moveHouseImgs[index]
+							}
+							str += `<li onclick="moveHouseDetail(this)" class="" data-moveId="${val.moveId}">
+										<img src="${img}" alt="" />
+										<div>
+											<p class="flex_b"><span>${val.moveName}</span><span><i>${val.movePrice}</i>元起</span></p>
+											<p>${val.moveTitle1}</p>
+										</div>
+									</li>`;
+						})
+						$(".move-house").html(str)
+					}
+				})
+			}
+			// 点击搬家详情
+			function moveHouseDetail (self) {
+				var moveId = $(self).attr("data-moveId");
+				window.location.href = `banjiafuwu.html?moveId=${moveId}`;
+			}
+			// 获取所有保洁列表
+			getAllCleanList()
+			function getAllCleanList () {
+				$.ajax({
+					type: 'GET',
+					url: baseUrl + '/ServiceCleanup',
+					data: {},
+					success: function (data) {
+						console.log(data,'保洁列表');
+						var str = `<div class="jiazheng_left clearfix">
+										<div class="jz_left fl">
+											<a style="color: #000">
+												<h3 class="flex b_">${data[0].title}<img src="images/shenghuo/nav_back.png" alt="" /></h3>
+												<p>${data[0].title}</p>
+											</a>
+										</div>
+										<img data-title="${data[0].title}" onclick="getCleanList(this)" data-cleanupId="${data[0].cleanupId}" class="fl  clean-icon" src="${data[0].icon}" alt="" />
+									</div>
+									<div class="jiazheng_left jiazheng_right clearfix">
+										<div class="jz_left fl">
+											<a style="color: #000">
+												<h3 class="flex b_">${data[1].title}<img src="images/shenghuo/nav_back.png" alt="" /></h3>
+												<p>${data[1].title}</p>
+											</a>
+										</div>
+										<img data-title="${data[1].title}" onclick="getCleanList(this)" data-cleanupId="${data[1].cleanupId}" class="fl clean-icon" src="${data[1].icon}" alt="" />
+									</div>`;
+						$(".jiazheng_tit").html(str);
+						var str2 = '';
+						for(var i=2; i<data.length; i++) {
+							str2 += `<li>
+										<img data-title="${data[i].title}" onclick="getCleanList(this)" data-cleanupId="${data[i].cleanupId}" class="list-img" src="${data[i].icon}" alt="" />
+										<p>${data[i].title}</p>
+									</li>`;
+						}
+						$(".clean-wrap").html(str2);
+					}
+				})
+			}
+			// 查看保洁详情
+			function getCleanList (self) {
+				var cleanupId = $(self).attr("data-cleanupId");
+				var title = $(self).attr("data-title")
+				window.location.href = `richang_baojie2.html?cleanupId=${cleanupId}&title=${title}`;
+			}
+		</script>
+	</body>
+
 </html>

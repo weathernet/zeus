@@ -16,8 +16,8 @@ import java.io.FileNotFoundException;
 import java.util.Map;
 
 /**
-* Created by YuanQJ on 2018/11/07.
-*/
+ * Created by YuanQJ on 2018/11/07.
+ */
 @RestController
 @RequestMapping("/home/banner")
 public class LayUiHomeBannerController {
@@ -42,19 +42,17 @@ public class LayUiHomeBannerController {
 
     @RequestMapping("query")
     public LayUiResult queryHomeBanner(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "20") Integer limit) {
-        return this.LayUihomeBannerservice.query(page,limit);
+        return this.LayUihomeBannerservice.query(page, limit);
     }
 
     @RequestMapping("search")
     public LayUiResult search(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "20") Integer limit,
-        @RequestParam String keywords) {
-        return this.LayUihomeBannerservice.search(page,limit,keywords);
+                              @RequestParam String keywords) {
+        return this.LayUihomeBannerservice.search(page, limit, keywords);
     }
 
     @RequestMapping("upload")
-    public Map UploadBrand(@RequestParam("file") MultipartFile file) throws FileNotFoundException{
-        //String pathVal = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/";
-        String pathVal = ResourceUtils.getURL("classpath:").getPath() + "static/";
-        return FileUploadUtils.uploadLayUiImg(file, pathVal,"img/");
+    public Map UploadBrand(@RequestParam("file") MultipartFile file) {
+        return FileUploadUtils.uploadLayUiImg(file, "", "banner/");
     }
 }

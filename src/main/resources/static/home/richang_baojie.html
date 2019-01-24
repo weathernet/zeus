@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>约看列表</title>
+		<title>维修列表</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/reset.css" />
@@ -96,6 +96,15 @@
 			.baojie_ping {
 				display: none;
 			}
+			.head-img {
+				width: 1rem;
+				height: 1rem;
+				border-radius: 50%;
+			}
+			.detail-img {
+				width: 100%;
+				height: 3rem;
+			}
 		</style>
 	</head>
    
@@ -112,31 +121,26 @@
 					<li>服务范围</li>
 					<li>用户评价</li>
 				</ul>
+				<img class="detail-img" src="image/baojie/banner.png" alt="" />
 				<div class="baojie_des b">
-					<img src="image/baojie/banner.png" alt="" />
 				    <div class="para">
-				    	<h3>深度保洁</h3>
-				        <p>更多的信息透露，这位38岁就白发苍苍的基层干部，确实可能是因为“工作苦白了头”。比如，他2007年考上公务员后就在基层工作，负责扶贫、移民搬迁等一系列工作，所在乡镇又是当地“任务最重的一个”，条件艰苦。当然，“苦”也是有成绩的，公开资料显示，其服务的湾碧乡，2014年至2017年间，共有993户3941人贫困人口实现稳定脱贫。2017年，碧拉乍、纳那两个贫困行政村如期脱贫出列。</p>
+				    	<h3 class="title">深度保洁</h3>
+				        <p>公司旗下平台为50万用户提供家具、灯具、卫浴、墙纸、地板、门窗、家电、浴霸、净水器、晾衣架、窗帘等十多种家居建材的配送、安装和维修服务，日订单已达1000单，构建触达全国3000+城市及区县的合作网络。在修达达平台，超过30万的专业家居师傅获得灵活赚取收入的机会</p>
 				    </div>
 				</div>
 				<div class="baojie_fei b">
 				    <h3>服务价格</h3>
-				    <p>
-				    	<span>一居</span>
-				    	<span><i>550</i>元</span>
-				    </p>
-				    <p>
-				    	<span>二居一卫</span>
-				    	<span><i>800</i>元</span>
-				    </p>
-				    <p>
-				    	<span>二居二位</span>
-				    	<span><i>900</i>元</span>
-				    </p>
-				    <p>
-				    	<span>三居一卫</span>
-				    	<span><i>1000</i>元</span>
-				    </p>
+				    <div class="charge-wrap">
+				    	<p>
+					    	<span>一居</span>
+					    	<span><i>550</i>元</span>
+					    </p>
+					    <p>
+					    	<span>二居一卫</span>
+					    	<span><i>800</i>元</span>
+					    </p>
+					  
+				    </div>
 			    </div>
 			    <div class="baojie_shuo b">
 			    	<h3>服务说明</h3>
@@ -145,32 +149,7 @@
 			    </div>
 			    <div class="baojie_ping b">
 			    	<h3>用户评价</h3>
-			    	<ul>
-			    		<li>
-			    			<div class="ping_title">
-			    				<img src="image/baojie/img_anatar.png" alt="" />
-			    				<div>
-			    					<p>琉璃碎梦</p>
-			    					<p>
-			    						<img src="image/baojie/xing.png" alt="" />
-			    						<img src="image/baojie/xing.png" alt="" />
-			    						<img src="image/baojie/xing.png" alt="" />
-			    						<img src="image/baojie/xing.png" alt="" />
-			    						<img src="image/baojie/xingwu.png" alt="" />
-			    					</p>
-			    				</div>
-			    			</div>	
-			    			<div class="ping_content">
-			    				<p>
-			    					好评好评好评好评好评好评好评好评好评好评好评好评好评好评好评好评好评好评好评好评好评好评好评好评
-			    				</p>
-			    				<p>
-			    					<img src="image/baojie/tu1.png" alt="" />
-			    					<img src="image/baojie/tu2.png" alt="" />
-			    					<img src="image/baojie/tu3.png" alt="" />
-			    				</p>
-			    			</div>
-			    		</li>
+			    	<ul class="comment">
 			    		<li>
 			    			<div class="ping_title">
 			    				<img src="image/baojie/img_anatar.png" alt="" />
@@ -208,6 +187,14 @@
 		<script src="js/mui.min.js"></script>
 		<script src="js/style.js"></script>
 		<script src="js/baseUrl.js"></script>
+		 <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
         <script>
         	$(".baojie_class li").on("click",function(){
         		var index = $(this).index();
@@ -215,7 +202,88 @@
         		$(".b").hide();
         		$(".b").eq(index).show();
         	})
-        </script>
+        	// 获取 repairSubId
+			var repairSubId = window.location.search.split("?")[1].split("&")[0].split("=")[1];
+			var title =decodeURIComponent(window.location.search.split("?")[1].split("&")[1].split("=")[1]);
+			$(".mui-title").text(title);
+			$(".title").text(title);
+			console.log(repairSubId,title); 
+			// 获取维修详情
+			getRepairDetail()
+			function getRepairDetail () {
+				$.ajax({
+					type: 'GET',
+					url: baseUrl + '/repairDetails/' + repairSubId,
+					data: {},
+					success: function (data) {
+						console.log(data,'维修详情');
+						$(".detail-img").attr("src", data.detailsImage);
+						$(".baojie_des").html(data.detailsIntroduction);
+						$(".baojie_fei").html(data.detailsPrice);
+						$(".baojie_shuo").html(data.detailsRange)
+					}
+				})
+			}
+			// 获取服务费用
+//			getChargeInfo();
+//			function getChargeInfo () {
+//				$.ajax({
+//					type: 'GET',
+//					url: baseUrl + '/RepairCost',
+//					data: {
+//						id: repairSubId
+//					},
+//					success: function (data) {
+//						console.log(data,'费用');
+//						var str = '';
+//						data.forEach(function (val, index) {
+//							str += ` <p>
+//								    	<span>${val.costTitle}</span>
+//								    	<span><i>${val.costPrice}</i>元</span>
+//								    </p>`;
+//						})	
+//						$(".charge-wrap").html(str);
+//					}
+//				})
+//			}
+            // 获取用户评价
+            getAllComment()
+            function getAllComment () {
+            	$.ajax({
+            		type: 'GET',
+            		url: baseUrl + '/ServiceEvaluationByUser',
+            		data: {
+            			userId: localStorage.getItem("userId")
+            		},
+            		success: function (data) {
+            			console.log(data,'评论');
+            			var str = '';
+            			data.forEach(function (val, index) {
+            				str += `<li>
+						    			<div class="ping_title">
+						    				<img class="head-img" src="${val.evaluateImage}" alt="" />
+						    				<div>
+						    					<p>${val.evaluateUserNickName}</p>
+						    					
+						    				</div>
+						    			</div>	
+						    			<div class="ping_content">
+						    				<p>
+						    					${val.evaluateContent}
+						    				</p>
+						    				
+						    			</div>
+						    		</li>`;
+            			})
+            			$(".comment").html(str);
+            		}
+            	})
+            }
+            // 立即预约
+            $(".yuyue").on("click", function () {
+            	window.location.href = `lijiyuyue.html`;
+            })
+       </script>
 		
 	</body>
 

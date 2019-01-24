@@ -14,7 +14,7 @@
     <div class="border"></div>
     <div class="fangdong">
         <div class="fangzi">
-            <a href="pinjia_fangdong.html">
+            <a href="fabu.html">
             	<img src="image/qiehuanshenfen/fangzi.png">
                 <p>房东</p>
             </a>
@@ -23,16 +23,30 @@
     <div class="border"></div>
     <div class="shangjia">
         <div class="fangzi">
-            <a href="pinjia_fangdong.html">
+            <a href="shangjia_denglu.html">
             	<img src="image/qiehuanshenfen/shangjia.png" style="width: 18%">
                 <p>商家</p>
             </a>
         </div>
     </div>
+    <style>
+    	a{
+    		color: black;
+    		text-decoration: none;
+    	}
+    </style>
     <script
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
   	$(".m1").on("click",function(){
   		window.history.back();

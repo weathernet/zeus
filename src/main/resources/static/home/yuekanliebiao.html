@@ -5,6 +5,8 @@
 		<meta charset="UTF-8">
 		<title>约看列表</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="Access-Control-Allow-Origin"  content="*">
+		<meta name="referrer" content="no-referrer" />
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="css/reset.css" />
 		<link rel="stylesheet" href="css/style.css" />
@@ -206,7 +208,14 @@
 		<script src="js/mui.min.js"></script>
 		<script src="js/style.js"></script>
 		<script src="js/baseUrl.js"></script>
-
+         <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
 		<script type="text/javascript">
 			mui.init()
 			// 取消约看

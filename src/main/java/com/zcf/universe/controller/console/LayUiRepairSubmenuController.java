@@ -53,6 +53,6 @@ public class LayUiRepairSubmenuController {
 
     @RequestMapping("upload")
     public Map UploadBrand(@RequestParam("file") MultipartFile file){
-        return FileUploadUtils.uploadLayUiImg(file, "","repair/");
+        return FileUploadUtils.uploadLayUiImg(file, "","sub_repair/");
     }
 }

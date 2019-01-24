@@ -44,9 +44,9 @@ layui.define(['table', 'form'], function (exports) {
     table.render({
         elem: '#LAY-repairOrder-list'
         , url: '/repair/order/query'
-        ,toolbar: true
+        , toolbar: true
         , cols: [[
-             {field: 'orderPrice',  title: '价格'}
+            {field: 'orderPrice', title: '价格'}
             , {field: 'orderProject', title: '维修的项目'}
             , {field: 'orderMessage', title: '故障信息'}
             , {field: 'orderTime', title: '预约时间'}
@@ -54,8 +54,8 @@ layui.define(['table', 'form'], function (exports) {
             , {field: 'orderLinkmanName', title: '联系人姓名'}
             , {field: 'orderLinkmanPhone', title: '联系人电话'}
             , {field: 'additionalContext', title: '佣金比例设置'}
-            , {field: 'createTime', title: '创建日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
-            , {field: 'updateTime', title: '修改日期',templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
+            , {field: 'createTime', title: '创建日期', templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
+            , {field: 'updateTime', title: '修改日期', templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}
             , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-repairOrder-toolbar'}//设置表格工具条的名称
         ]]
         , page: true//开启分页
@@ -96,7 +96,7 @@ layui.define(['table', 'form'], function (exports) {
             });
         } else if (obj.event === 'del') {//匹配工具栏的del字段
             layer.confirm('确定删除词条信息？', function (index) {
-                var id = data.id;//根据数据库的字段更改data.id中id的命名
+                var id = data.orderId;//根据数据库的字段更改data.id中id的命名
                 $.post("/repair/order/delete", {id: id}, function (data) {
                     obj.del();
                     layer.close(index);
@@ -135,7 +135,8 @@ layui.define(['table', 'form'], function (exports) {
             });
         }
     }
-    $('.layui-btn.repairOrder-form').on('click', function() {var type = $(this).data('type');
+    $('.layui-btn.repairOrder-form').on('click', function () {
+        var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
     //**********新增结束**********
@@ -143,7 +144,7 @@ layui.define(['table', 'form'], function (exports) {
     //==========搜索开始==========
     form.render(null, 'lay-admin-repairOrder-form');
     form.on('submit(LAY-repairOrder-back-search)',
-        function(data) {
+        function (data) {
             var field = data.field;
             console.log(field)
             //执行重载

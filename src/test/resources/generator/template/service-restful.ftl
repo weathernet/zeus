@@ -6,12 +6,13 @@ import tk.mybatis.mapper.entity.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
-import com.zcf.universe.common.exception.CommonException;
-import com.zcf.universe.common.exception.ExceptionEnum;
+import com.zcf.world.common.exception.CommonException;
+import com.zcf.world.common.exception.ExceptionEnum;
 import java.util.List;
 /**
- * Created by ${author} on ${date}.
- */
+* @author ${author}
+* @date ${date}
+*/
 @Service
 public class ${modelNameUpperCamel}Service{
 
@@ -20,25 +21,25 @@ public class ${modelNameUpperCamel}Service{
 
     //新增
     public void add${modelNameUpperCamel}(${modelNameUpperCamel} ${modelNameLowerCamel}) {
-        boolean flag = this.${modelNameLowerCamel}mapper.insert(${modelNameLowerCamel}) == 1;
-        if(flag){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+        int count = this.${modelNameLowerCamel}mapper.insertSelective(${modelNameLowerCamel});
+        if(count != 1){
+             throw new CommonException(ExceptionEnum.SAVE_FAILURE);
         }
     }
 
     //删除
-    public void delete${modelNameUpperCamel}(Integer id) {
-        boolean flag = this.${modelNameLowerCamel}mapper.deleteByPrimaryKey(id) == 1;
-        if(flag){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+    public void delete${modelNameUpperCamel}ById(Integer id) {
+        int count = this.${modelNameLowerCamel}mapper.deleteByPrimaryKey(id);
+        if(count != 1){
+             throw new CommonException(ExceptionEnum.DELETE_FAILURE);
         }
     }
 
     //更新
     public void update${modelNameUpperCamel}(${modelNameUpperCamel} ${modelNameLowerCamel}) {
-        boolean flag =this.${modelNameLowerCamel}mapper.updateByPrimaryKeySelective(${modelNameLowerCamel}) == 1;
-        if(flag){
-             throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+        int count = this.${modelNameLowerCamel}mapper.updateByPrimaryKeySelective(${modelNameLowerCamel});
+         if(count != 1){
+             throw new CommonException(ExceptionEnum.UPDATE_FAILURE);
         }
     }
 
@@ -46,7 +47,7 @@ public class ${modelNameUpperCamel}Service{
     public List<${modelNameUpperCamel}> getAll${modelNameUpperCamel}() {
         List<${modelNameUpperCamel}> list = this.${modelNameLowerCamel}mapper.selectAll();
        if(CollectionUtils.isEmpty(list)){
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+            throw new CommonException(ExceptionEnum.DATA_DOES_NOT_EXIST);
         }
         return list;
     }
@@ -55,7 +56,7 @@ public class ${modelNameUpperCamel}Service{
     public ${modelNameUpperCamel} get${modelNameUpperCamel}(Integer id){
         ${modelNameUpperCamel} ${modelNameUpperCamel} = this.${modelNameLowerCamel}mapper.selectByPrimaryKey(id);
         if (${modelNameUpperCamel} == null) {
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+            throw new CommonException(ExceptionEnum.DATA_DOES_NOT_EXIST);
         }
         return ${modelNameUpperCamel};
     }
@@ -66,7 +67,7 @@ public class ${modelNameUpperCamel}Service{
         example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
         List<${modelNameUpperCamel}> list = this.${modelNameLowerCamel}mapper.selectByExample(example);
         if(CollectionUtils.isEmpty(list)){
-            throw new CommonException(ExceptionEnum.HOUSE_LISTING_BE_REPEAT);
+            throw new CommonException(ExceptionEnum.DATA_DOES_NOT_EXIST);
         }
         return list;
     }

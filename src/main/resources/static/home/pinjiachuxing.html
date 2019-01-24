@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>品家出行</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Access-Control-Allow-Origin"  content="*">
+			<meta name="referrer" content="no-referrer" />
     <link href="css/pinjiachuxing.css" type="text/css" rel="stylesheet">
 </head>
 <body>
@@ -11,7 +13,10 @@
         <img src="images/suosou/nav-back.png" class="m1">
         品家出行
     </div>
-    <p class="p1"></p>
+    <div class="content">
+    	
+    </div>
+    <!--<p class="p1"></p>
     <p class="p2">行程详情</p>
     <p class="p3">第一天 | 青岛</p>
     <p class="p4">
@@ -26,8 +31,8 @@
         <img src="images/pinjiachuxing/icon_jianzhu@2x.png" style="margin: 0px 9px 5px 16px">
         <img src="images/pinjiachuxing/1@2x.png" style="margin: 0px 10px 0px 0px">
         <span style="font-size: 14px;display: inline-block;">栈桥</span>
-    </div>
-    <div class="d2">
+    </div>-->
+    <!--<div class="d2">
         <div class="d3">
             <p>
                 <span>游玩指南：</span>栈桥是一条从陆地延伸到海中的长廊，一直以来被视为青岛的象征。
@@ -66,12 +71,36 @@
                 <span>开放时间：</span>10:00-16:00
             </p>
         </div>
-        <img src="images/pinjiachuxing/img_jiaotang@2x.png" style="vertical-align: middle">
+        <img src="images/pinjiachuxing/img_jiaotang@2x.png" style="vertical-align: middle">-->
     </div>
     <script
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
   <script src="js/style.js"></script>
+  <script src="js/baseUrl.js"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
+  <script>
+  	// 出行信息
+  	getTravelInfo()
+  	function getTravelInfo () {
+  		$.ajax({
+  			type: 'GET',
+  			url: baseUrl + '/homeTravel/' + localStorage.getItem("userId"),
+  			data: {},
+  			success: function (data) {
+  				console.log(data);
+  				$(".content").html(data.travelContent)
+  			}
+  		})
+  	}
+  </script>
 </body>
 </html>

@@ -14,17 +14,17 @@ import java.util.*;
 public class FileUploadUtils {
 
 
-
-    //private static final String RETURN_IMAGE_URL = "http://101.132.125.248:9230/";//nginx 图片服务器的端口
-    //private static final String IMAGE_URL = "C:/images/";//nginx 图片服务器的存储路径
-    private static final String IMAGE_URL = "G:/images/";
-    private static final String RETURN_IMAGE_URL = "http://192.168.31.8:8088/";
+    //    private static final String RETURN_IMAGE_URL = "http://47.97.163.4:9230/";//nginx 图片服务器的端口
+//    private static final String IMAGE_URL = "C:/images/";//nginx 图片服务器的存储路径
+    private static final String IMAGE_URL = "G:/zeus/";//
+    private static final String RETURN_IMAGE_URL = "http://192.168.31.8:8089/zeus/";
+    //private static final String RETURN_IMAGE_URL = "http://wqsd.free.idcfengye.com/";
 
     public static Map wangEditorImagesUpload(MultipartFile[] file, String pathVal, String customPath) {
         List<String> url = new ArrayList<>();
-        String ImgURL =filesUpload(file, pathVal, customPath);
+        String ImgURL = filesUpload(file, pathVal, customPath);
         String[] split = ImgURL.split(",");
-        for (int i = 0; i <split.length; i++) {
+        for (int i = 0; i < split.length; i++) {
             url.add(split[i]);
         }
         Map map = new HashMap();
@@ -76,7 +76,7 @@ public class FileUploadUtils {
                         String ExtensionName = filename.substring(filename.lastIndexOf(".") + 1);// 获取文件的扩展名如:mp4
                         String Millisecond = String.valueOf(System.currentTimeMillis());// 获取当前时间的毫秒数
                         String NewFileName = Millisecond + "." + ExtensionName;// 该文件在系统中的名字
-                        String FileName = RETURN_IMAGE_URL+saveFilePath + NewFileName;// 文件存储的路径
+                        String FileName = RETURN_IMAGE_URL + saveFilePath + NewFileName;// 文件存储的路径
                         String path = IMAGE_URL + saveFilePath + NewFileName; // 文件储存绝对路径
                         File newFile = new File(path);
                         if (i == file.length - 1) {
@@ -117,7 +117,7 @@ public class FileUploadUtils {
             String Millisecond = String.valueOf(System.currentTimeMillis());// 获取当前时间的毫秒数
             String Milliseconds = Millisecond + Random();
             String NewFileName = Milliseconds + "." + ExtensionName;// 该文件在系统中的名字
-            String FileName = RETURN_IMAGE_URL+saveFilePath + NewFileName;// 文件存储的路径
+            String FileName = RETURN_IMAGE_URL + saveFilePath + NewFileName;// 文件存储的路径
             String path = IMAGE_URL + saveFilePath + NewFileName; // 文件储存绝对路径
             System.out.println(path);
             File newFile = new File(path);//创建文件路径

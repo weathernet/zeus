@@ -5,6 +5,27 @@
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/mianbaoxiaoban.css"/>
+		<link rel="stylesheet" href="layer/mobile/need/layer.css" />
+		<style>
+			.two {
+				padding: 5px 0;
+			}
+			.time {
+				
+			}
+			.d5 {
+				flex: 1
+			}
+			input {
+				border: none;
+				outline: none;
+				padding-left: 10px;
+			}
+			.three img, .four img , .six img  {
+				position: relative;
+				top: 2px;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="one">
@@ -25,7 +46,7 @@
 				<img src="img/icon_xm.png"/>
 			</div>
 			<div class="d5">
-				请输入您的姓名(必填)
+				<input type="text" class="name" placeholder="请输入您的姓名(必填)" />
 			</div>
 		</div>
 		<div class="four">
@@ -33,7 +54,7 @@
 				<img src="img/icon_lxfs.png"/>
 			</div>
 			<div class="d5">
-				请输入您的联系方式(必填)
+				<input type="text" class="phone" placeholder="请输入您的联系方式(必填)" />
 			</div>
 		</div>
 		<div class="five"></div>
@@ -42,7 +63,7 @@
 				<img src="img/icon_rq.png"/>
 			</div>
 			<div class="d5">
-				请选择您的搬家日期(必填)
+				<input type="date" class="time" placeholder="请选择你的搬家日期" />
 			</div>
 		</div>
 		<div class="five"></div>
@@ -51,7 +72,7 @@
 				<img src="img/icon_banchu.png"/>
 			</div>
 			<div class="d5">
-				请输入您的联系方式(必填)
+				<input type="text" class="leave" placeholder="请输入您要搬出的地址(必填)" />
 			</div>
 		</div>
 		<div class="four">
@@ -59,12 +80,12 @@
 				<img src="img/icon_banru.png"/>
 			</div>
 			<div class="d5">
-				请输入您的联系方式(必填)
+				<input type="text" class="moveIn" placeholder="请输入您要搬入的地址(必填)" />
 			</div>
 		</div>
 		<div class="seven">
 			<div class="d6">
-				<img src="img/btn_ljyy.png"/>
+				<img onclick="appointmentClick(this)" class="appointment-btn" src="img/btn_ljyy.png"/>
 			</div>
 		</div>
 		
@@ -72,10 +93,58 @@
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
+  <script src="layer/layer.js"></script>
+  <script src="js/baseUrl.js"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
   	$(".m1").on("click",function(){
   		window.history.back();
   	})
+  	// 立即预约
+  	function appointmentClick () {
+  		var name = $(".name").val();
+  		var phone = $(".phone").val();
+  		var my_time = $(".time").val();
+  		var leave = $(".leave").val();
+  		var moveIn = $(".moveIn").val();
+  		if(name == "" || name.trim() == "") {
+  			layer.msg("请输入你的姓名");
+  		}else if(phone == "" || phone.trim() == "") {
+  			layer.msg("请输入你的联系方式")
+  		}else if(my_time == "" || my_time.trim() == "") {
+  			layer.msg("请选择你要服务的日期")
+  		}else if(leave == "" || leave.trim() == "") {
+  			layer.msg("请输入您要搬出的地址")
+  		}else if(moveIn == "" || moveIn.trim() == "") {
+  			layer.msg("请输入搬入的地址")
+  		}else {
+  			$.ajax({
+  				type: 'POST',
+  				url: baseUrl + '/moveOrder',
+  				data: {
+  					orderLinkmanPhone: phone,
+  					orderMoveInto: moveIn,
+  					orderMoveOut: leave,
+  					orderMoveTime: my_time,
+  					orderUserId: localStorage.getItem("userId")
+  				},
+  				success: function (data) {
+  					console.log(data);
+  					layer.msg("预约成功");
+  					setTimeout(function() {
+  						window.history.back();
+  					}, 2000)
+  				}
+  			})
+  		}
+  	}
   </script>
 	</body>
 </html>

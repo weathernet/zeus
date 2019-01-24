@@ -50,8 +50,8 @@ layui.define(['table', 'form'], function (exports) {
             , {title: '操作', width: 160, align: 'center', fixed: 'right', toolbar: '#table-repairSubmenu-toolbar'}//设置表格工具条的名称
         ]]
         , page: true//开启分页
-        , limit: 20
-        , limits: [20, 25, 30, 35, 40]
+        , limit: 30
+        , limits: [30, 35, 40]
         , text: '对不起，加载出现异常！'
     });
     //**********表格显示开始***********
@@ -60,12 +60,12 @@ layui.define(['table', 'form'], function (exports) {
     table.on('tool(LAY-repairSubmenu-list)', function (obj) {//表格的名称
         var data = obj.data;
         if (obj.event === 'edit') {//匹配工具栏的edit字段
+            aid = data.repairMenuId;
             admin.popup({
                 title: '修改词条信息'
                 , area: ['550px', '550px']
                 , success: function (layero, index) {
                     view(this.id).render('repairSubmenu/form', data).done(function () {//跳转的路径
-                        aid = data.repairMenuId;
                         form.render(null, 'repairSubmenu-form');//读取表单的信息
                         //监听提交
                         form.on('submit(repairSubmenu-form-submit)', function (data) {//form 表单提交的按钮
@@ -88,7 +88,7 @@ layui.define(['table', 'form'], function (exports) {
             });
         } else if (obj.event === 'del') {//匹配工具栏的del字段
             layer.confirm('确定删除词条信息？', function (index) {
-                var id = data.id;//根据数据库的字段更改data.id中id的命名
+                var id = data.repairSubId;//根据数据库的字段更改data.id中id的命名
                 $.post("/repair/submenu/delete", {id: id}, function (data) {
                     obj.del();
                     layer.close(index);

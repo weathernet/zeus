@@ -9,7 +9,8 @@ import java.util.Random;
 import java.util.HashMap;
 import java.util.Map;
 /**
-* Created by ${author} on ${date}.
+* @author ${author}
+* @date ${date}
 */
 public class FileUploadUtils {
 

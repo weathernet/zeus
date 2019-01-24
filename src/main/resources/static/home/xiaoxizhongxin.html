@@ -5,6 +5,17 @@
     <title>消息中心</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="css/xiaoxizhongxin.css" type="text/css" rel="stylesheet">
+    <style>
+        .p2 {
+        	border: none;
+        } 
+        .d1 {
+        	height: auto;
+        } 
+        .d2 {
+        	width: 40%;
+        } 	
+    </style>
 </head>
 <body>
 
@@ -12,49 +23,80 @@
         <img src="images/suosou/nav-back.png" class="m1">
         <span>消息中心</span>
     </div>
-    <div class="d1">
-        <div class="d2">
-            下午 2:00
-        </div>
-        <div class="d3">
-            <p class="p2">
-                今天（10日）零时许，虎牙直播平台在官方微博上公布了对此事的处理结果：虎牙
-                平台决定即日起封禁主播莉哥直播间，冻结主播莉哥直播账号，下架全部相关影像
-                作品，对其进行整改教育。
-            </p>
-            <p class="p3">
-                <a href="xiaoxixiangqing.html" style="color:#8a8a8a">
-                	查看详情
-                    <span class="s1">&gt;</span>
-                </a>
-            </p>
-        </div>
-        <div class="d2 shijian">
-            11月11日 晚上8点
-        </div>
-        <div class="d3 d4">
-            <p class="p2">
-                今天（10日）零时许，虎牙直播平台在官方微博上公布了对此事的处理结果：虎牙
-                平台决定即日起封禁主播莉哥直播间，冻结主播莉哥直播账号，下架全部相关影像
-                作品，对其进行整改教育。
-            </p>
-            <p class="p3">
-	           <a href="xiaoxixiangqing.html" style="color:#8a8a8a">
-	           	             查看详情
-	                <span class="s1">&gt;</span>
-	           </a> 
-            </p>
-        </div>
+    <div class="message-wrap">
+    	<div class="d1">
+	        <div class="d2">
+	            下午 2:00
+	        </div>
+	        <div class="d3">
+	            <p class="p2">0000 </p>
+	            <p class="p3">
+	                
+	            </p>
+	        </div>
+	    </div>
+	    
     </div>
+    
     
     <script
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
+  <script src="js/baseUrl.js"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
   	$(".m1").on("click",function(){
   		window.history.back();
   	})
+  	// 获取所有消息
+  	getAllMessage()
+  	function getAllMessage () {
+  		$.ajax({
+  			type: 'GET',
+  			url: baseUrl + '/UserMessage',
+  			data: {
+  				userId: localStorage.getItem("userId")
+  			},
+  			success: function (data) {
+  				console.log(data);
+  				var str = '';
+  				data.forEach((val, index) => {
+  					var my_time = getTime(val.createTime);
+  					str += `<div class="d1" data-id="${val.id}">
+						        <div class="d2">
+						            ${my_time}
+						        </div>
+						        <div class="d3">
+						            <p class="p2">${val.message} </p>
+						        </div>
+						    </div>`;
+  				})
+  				$(".message-wrap").html(str);
+  			}
+  		})
+  	}
+  	
+  	// 格式化时间戳
+  	function getTime(t) {
+	     var date = new Date(t);
+	     Y = date.getFullYear() + '-';
+	     M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-'; 
+	     D = date.getDate() + ' ';
+	     h = date.getHours() + ':'; 
+	     m = date.getMinutes() + ':'; 
+	     s = date.getSeconds(); 
+	
+	     return (Y+M+D+h+m+s); 
+	
+	 }
   </script>
 </body>
 </html>

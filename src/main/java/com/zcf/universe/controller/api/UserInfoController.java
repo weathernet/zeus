@@ -97,13 +97,13 @@ public class UserInfoController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @PostMapping("userPortrait/{id}")
+/*    @PostMapping("userPortrait/{id}")
     @ApiOperation(value = "上传用户头像", notes = "图片不为空")
     @ApiImplicitParam(name = "id", value = "用户的主键", required = true, dataType = "int")
     public ResponseEntity<Void> upload(@PathVariable("id") Integer id, @RequestParam("file") MultipartFile file) {
         this.userInfoservice.uploadUserHeadPortrait(id, file);
         return ResponseEntity.ok().build();
-    }
+    }*/
 
     @PostMapping("Authentication/{id}")
     @ApiOperation(value = "实名认证")

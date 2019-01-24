@@ -2,6 +2,18 @@
       <#list modeListDetails as iteam>
           <#if iteam.type !="datetime">
               <#if iteam_index != 0>
+                  <#if iteam.name?contains("image")>
+     <div class="layui-form-item">
+         <label class="layui-form-label">图片</label>
+         <div class="layui-input-inline">
+             <script type="text/html" template>
+                 <input type="text" name="${iteam.name}" value="{{ d.params.${iteam.name}|| '' }}" lay-verify="required"
+                        placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
+             </script>
+         </div>
+         <button style="float: left;" type="button" class="layui-btn" id="${modelNameLowerCamel}-upload-${modelNameLowerCamel}">上传图片</button>
+     </div>
+                <#else>
     <div class="layui-form-item">
         <label class="layui-form-label">${iteam.remark}</label>
         <div class="layui-input-inline">
@@ -10,20 +22,10 @@
             </script>
         </div>
     </div>
+                  </#if>
               </#if>
           </#if>
       </#list>
-    <div class="layui-form-item">
-        <label class="layui-form-label">图片</label>
-        <div class="layui-input-inline">
-            <script type="text/html" template>
-                <input type="text" name="image" value="{{ d.params.image || '' }}" lay-verify="required"
-                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
-            </script>
-        </div>
-        <button style="float: left;" type="button" class="layui-btn" id="${modelNameLowerCamel}-upload-${modelNameLowerCamel}">上传图片</button>
-    </div>
-
     <script type="text/html" template>
         <input type="hidden" name="${modeListDetails[0].name}" value="{{ d.params.${modeListDetails[0].name}|| '' }}">
     </script>

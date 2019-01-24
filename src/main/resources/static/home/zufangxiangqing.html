@@ -13,6 +13,48 @@
     		width: 20px;
     		height: 20px;
     	}
+    	.p4 {
+    		display: flex;
+    		align-items: center;
+    	}
+    	.p1,.p2 {
+    		font-size: 16px;
+    	}
+    	.p2 {
+    		font-weight: bold;
+    	}
+    	.p5 {
+    		font-size: 16px;
+    	}
+    	.yuding_btn,.yuyue {
+    		padding: 5px 15px !important;
+    	}
+    	.yuyue {
+    		position:relative;
+    		top: 5px;
+    	}
+    	.footer {
+    		display: flex;
+    		align-items: center;
+    	}
+    	.guanjia-name {
+    		font-size: 14px;
+    		flex: 1;
+    	}
+    	.guanjia-wrap {
+    		display: flex;
+    	}
+    	#contact {
+    		font-size: 12px;
+    		position: inherit;
+    		height: 21px;
+    	}
+    	.t1 td:nth-of-type(odd) {
+    		width: 45%;
+    	}
+    	.guanjia img {
+    		height: 200px;
+    	}
     </style>
 </head>
 <body style="background: #fff;">
@@ -25,7 +67,7 @@
     <main>
     	<div class="a1"></div>
     	<div class="a2"></div>
-    	<div class="a3">
+    	<!--<div class="a3">
     		<table class="t2" cellspacing="0">
 			            <tr>
 			                <td>
@@ -108,7 +150,7 @@
 			                </p>
 			            </div>
 			        </div>
-    	</div>
+    	</div>-->
         <!--<div class="main-1">
             <p class="p1">芭蕾愉悦北区<span></span>2室一厅</p>
             <p class="p2">￥4990/月</p>
@@ -313,6 +355,14 @@
   <script src="js/baseUrl.js"></script>
   <script src="js/mui.min.js"></script>
   <script src="js/swiper-3.4.2.min.js"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
   	
   	$(".m1").on("click",function(){
@@ -332,10 +382,10 @@
 	})
 	$.ajax({
 		type: "GET",
-		url: baseUrl + "/housingButler/" + 1,                // 管家id---------------------
+		url: baseUrl + "/housingButler/" + 1,    // 管家id---------------------
 		data: {},
 		success: function(data) {
-			console.log(data);
+			console.log(data,'管家');
 			tel = data.butlerPhone;
 			
 		},
@@ -461,28 +511,30 @@
   		url: baseUrl + "/houseListing/" + housingId,
   		data: {},
   		success: function(data) {
-  			console.log(data);
-  			var imgArr = data.housingImage.split(" ");
-  			collectionHousingImage = imgArr[0];
+  			console.log(data,'房源信息');
+  			if(data.housingImage) {
+  				var imgArr = data.housingImage.split(" ");
+  				collectionHousingImage = imgArr[0];
+  				imgArr.forEach(function(val,index){
+					str = `<div class="swiper-slide"><img style="max-width:100%;height: 225px;" src="${val}" alt="" /></div>`;
+					$(".img_wrap").append(str);
+				})
+  			}
+  			
+  			
   			collectionHousingPrice = data.housingTitle.split(" ")[2];
   			collectionHousingTitle = data.housingTitle;
   			size = data.housingArea;
   			floor = data.housingFloor;
-			imgArr.forEach(function(val,index){
-				str = `<div class="swiper-slide"><img style="max-width:100%" src="${val}" alt="" /></div>`;
-				$(".img_wrap").append(str);
-			})
+			
   			var mySwiper = new Swiper('.swiper-container', {
 				autoplay: 5000,
 				loop: true
 			});
 			str2 = `<div class="main-1">
 			            <p class="p1">${data.housingTitle}</p>
-			            <p class="p2">${data.housingFloor}</p>
-			            <p class="p3">
-			                <span>首次出租</span>
-			                <span>首次出租</span>
-			            </p>
+			            <p class="p2">￥ ${data.housingPrice}</p>
+			            
 			            <p class="p4">
 			                <img src="images/zufangxiangqing/icon_zfxqdingwei.png">
 			                <span>${data.housingTraffic}</span>
@@ -502,76 +554,9 @@
 			                <td>楼层</td>
 			                <td>${data.housingFloor}</td>
 			            </tr>
-			            <tr>
-			                <td>电梯</td>
-			                <td>${data.housingElevator}</td>
-			                <td>年代</td>
-			                <td></td>
-			            </tr>
-			            <tr>
-			                <td>供暖</td>
-			                <td></td>
-			                <td>绿化</td>
-			                <td></td>
-			            </tr>
-			        </table>
-			        <p class="p5">租约信息</p>
-			        <table cellspacing="0" class="t1">
-			            <tr>
-			                <td>可入住日期</td>
-			                <td>随时入住</td>
-			            </tr>
-			            <tr>
-			                <td>签约时长</td>
-			                <td>可签约至2019-10-10</td>
-			            </tr>
-			            <tr>
-			                <td>注意事项</td>
-			                <td>选房新标准，教你怎么选好房</td>
-			            </tr>
-			        </table>
-			        <p class="p5">空气检测结果</p>
-			        <table cellspacing="0" class="t1">
-			            <tr>
-			                <td>检测日期</td>
-			                <td>2018-10-09</td>
-			            </tr>
-			            <tr>
-			                <td>注意事项</td>
-			                <td>房屋空气质量检测结果</td>
-			            </tr>
-			        </table>
-			        <p class="p5">房源简介</p>
-			        <p class="p6">
-			            ${data.housingIntroduction}
-			        </p>
-			        <table class="t2" cellspacing="0">
-			            <tr>
-			                <td>
-			                    <img src="images/zufangxiangqing/icon_luyouqi.png">
-			                </td>
-			                <td>
-			                    <img src="images/zufangxiangqing/icon_zhinengsuo.png">
-			                </td>
-			                <td>
-			                    <img src="images/zufangxiangqing/icon_ongtiao.png">
-			                </td>
-			                <td>
-			                    <img src="images/zufangxiangqing/icon_dianshi.png">
-			                </td>
-			                <td rowspan="2">
-			                    <p class="p7">全部</p>
-			                </td>
-			            </tr>
-			            <tr>
-			                <td>路由器</td>
-			                <td>智能锁</td>
-			                <td>空调</td>
-			                <td>电视</td>
-			            </tr>
-			        </table>
-			        
-			        `;
+			           
+			           
+			        </table>`;
 			$(".a1").append(str2);     
 			
 			// 获取管家信息
@@ -580,7 +565,7 @@
 				url: baseUrl + "/housingButler/" + 1,                // 管家id---------------------
 				data: {},
 				success: function(data) {
-					console.log(data);
+					console.log(data,'管家信息');
 					tel = data.butlerPhone;
 					var str3 = `<p class="p5">管家及服务</p>
 						        <div class="main-2">
@@ -588,8 +573,10 @@
 						                <img src="${data.butlerImage}">
 						            </div>
 						            <div class="guanjia-xinxi">
-						                <span>${data.butlerName}</span>
-						                <span id="contact">联系TA</span>
+						                <p class="guanjia-wrap">
+						                    <span class="guanjia-name">${data.butlerName}</span>
+						                    <span id="contact">联系TA</span>
+						                </p>
 						                <p>${data.butlerIntroduction}</p>
 						            </div>
 						        </div>`;

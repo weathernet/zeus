@@ -5,6 +5,11 @@
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="css/shouhuodizhi.css"/>
+		<style>
+			.two {
+				border-bottom: .02rem solid #eee;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="one">
@@ -18,21 +23,82 @@
 				添加地址
 			</div>
 		</div>
-		<div class="two">
-			<div class="d4">
-				<span class="s1">先生</span>
-				<span class="s2">150xxxx1120</span>
-			</div>
-			<div class="d5">
-				<span class="s3">江苏省 徐州市 铜山区 xx公寓</span>
-			</div>
+		<div class="mainList">
+			<!--<div class="two">-->
+				<!--<div class="d4">
+					<span class="s1">先生</span>
+					<span class="s2">150xxxx1120</span>
+				</div>
+				<div class="d5">
+					<span class="s3">江苏省 徐州市 铜山区 xx公寓</span>
+				</div>-->
+			<!--</div>-->
 		</div>
-		
 	<script
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/baseUrl.js"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
+  	var str = window.location.search.split("?")[1];
+	var arr = str.split("&");
+	var obj = {};
+	arr.forEach(function (val, index) {
+		var my_key = val.split("=")[0];
+		var value = val.split("=")[1];
+		if (!obj[my_key]) {
+	        obj[my_key] = value
+		}
+	})
+	console.log(obj);
+  	// 获取所有收货地址
+  	getAllAdress();
+  	function getAllAdress () {
+  	    $.ajax({
+  	    	type: 'GET',
+  	    	url: baseUrl + '/getUserAddress/' + localStorage.getItem("userId"),
+  	    	data: {},
+  	    	success: function (data) {
+  	    		console.log(data);
+  	    		var str = '';
+  	    		data.forEach(function (val, index) {
+  	    			str += `<div class="two" data-addressId="${val.addressId}">
+  	    			    <div class="d4">
+							<span class="s1">${val.addressName}</span>
+							<span class="s2">${val.addressPhone}</span>
+						</div>
+						<div class="d5">
+							<span class="s3">${val.addressReceiving}</span>
+						</div>
+						</div>`;
+  	    		})
+  	    		$(".mainList").append(str);
+  	    	}
+  	    })
+  	}
+  	
+  	//点击选择收获地址
+  	$(".mainList").on("click",'.two',function(){
+  		var addressId=$(this).attr("data-addressId");
+  		var name = $(this).find(".s1").text();
+  		var phone = $(this).find(".s2").text();
+  		var my_area = $(this).find(".s3").text();
+  		localStorage.setItem("addressName", name);
+  		localStorage.setItem("addressPhone", phone);
+  		localStorage.setItem("addressArea", my_area);
+  		window.history.back();
+		//window.location.href=`querengoumai.html?num=${obj.num}&goodsId=${obj.goodsId}&totalPrice=${obj.totalPrice}&goodsTraderId=${obj.goodsTraderId}`
+        
+  	})
+
   	$(".d1").on("click",function(){
   		window.history.back()
   	})

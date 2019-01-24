@@ -129,6 +129,14 @@
     <script src="js/mui.min.js"></script>
     <script src="js/mui.picker.js"></script>
     <script src="js/swiper-3.4.2.min.js"></script>
+     <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
 	<script type="text/javascript" charset="utf-8">
       	mui.init();
     </script>

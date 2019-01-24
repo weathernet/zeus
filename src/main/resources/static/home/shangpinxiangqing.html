@@ -10,49 +10,58 @@
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/swiper-3.4.2.min.css" />
 		<style>
-			.banner .swiper-slide  {
+			.banner .swiper-slide {
 				text-align: center;
 			}
+			
 			.computer_title p:nth-of-type(1) {
 				font-size: .3rem;
 				color: #000;
 			}
+			
 			.computer_title p:nth-of-type(2) {
 				line-height: 1rem;
 			}
+			
 			.computer_title p:nth-of-type(2) span:nth-of-type(1) {
 				font-size: .3rem;
 				color: orange;
 			}
+			
 			.computer_title p:nth-of-type(2) span:nth-of-type(2) {
 				font-size: .26rem;
 			}
+			
 			.line {
 				height: .2rem;
 				background: #eee;
 				margin-left: -2.5rem;
 				margin-right: -2.5rem;
 			}
+			
 			.computer_des {
 				padding-top: 1.5rem;
 				text-align: center;
 			}
+			
 			.computer_des h3 {
 				font-size: .5rem;
 				text-align: center;
 			}
+			
 			.computer_des p {
 				padding-top: .5rem;
 				line-height: .3rem;
 			}
+			
 			.computer_pay {
 				position: fixed;
 				width: 100%;
 				left: 0;
 				bottom: 0;
 				background: #fff;
-				
 			}
+			
 			.computer_pay input {
 				width: .5rem;
 				padding: 0;
@@ -60,6 +69,7 @@
 				text-align: center;
 				border: none;
 			}
+			
 			.computer_pay p:nth-of-type(2) {
 				width: 2rem;
 				height: .6rem;
@@ -68,6 +78,7 @@
 				text-align: center;
 				line-height: .6rem;
 			}
+			
 			.computer_pay p i {
 				display: inline-block;
 				width: .8rem;
@@ -77,63 +88,167 @@
 				background: #eee;
 				font-size: .4rem;
 			}
+			.good-img {
+				height: 4rem;
+				width: 100%;
+			}
+			.computer_pay {
+				padding: .1rem .2rem;
+			}
 		</style>
 	</head>
-   
+
 	<body style="background: #fff;">
 		<header class="mui-bar mui-bar-nav ">
 			<a class="mui-action-back mui-icon mui-icon-back mui-pull-left quit" style="color: #000"></a>
 			<h3 class="mui-title">商品详情</h3>
 		</header>
 		<div class="mui-content" style="background: #fff;padding:0 .25rem;">
-			<div class="banner">
+			<!--<div class="banner">
 				<div class="swiper-container">
-				  <div class="swiper-wrapper">
-				    <div class="swiper-slide"><img src="images/shouye/img_qrgm@2x.png" alt="" /></div>
-				    <div class="swiper-slide"><img src="images/shouye/img_qrgm@2x.png" alt="" /></div>
-				    <div class="swiper-slide"><img src="images/shouye/img_qrgm@2x.png" alt="" /></div>
-				  </div>
+					<div class="swiper-wrapper">
+						<div class="swiper-slide"><img src="images/shouye/img_qrgm@2x.png" alt="" /></div>
+					</div>
 				</div>
 			</div>
 			<div class="computer_title">
-				<p>Apple iMac一体机（薄款）一体机租赁</p>
+				<p class="title">Apple iMac一体机（薄款）一体机租赁</p>
 				<p class="flex_b">
-					<span>￥9000.00</span><span>2000已购买</span>
+					<span class="price">￥9000.00</span><span>2000已购买</span>
 				</p>
 			</div>
 			<div class="line"></div>
 			<div class="computer_des">
 				<h3>精湛工艺 极速体验</h3>
 				<p>自始至终，iMac背后的自始至终，iMac背后的自始至终，iMac背后的自始至终，iMac背后的自始至终，iMac背后的自始至终，iMac背后的自始至终，iMac背后的自始至终，iMac背后的自始至终，iMac背后的自始至终，iMac背后的自始至终，iMac背后的自始至终，iMac背后的自始至终，iMac背后的自始至终，iMac背后的自始至终，iMac背后的</p>
-			    <img src="images/shouye/img_qrgm@2x.png" alt="" />
+				<img src="images/shouye/img_qrgm@2x.png" alt="" class="imged" />
 			</div>
 			<div class="computer_pay flex_b">
 				<p>
-					<i>-</i>
-					<input type="text" value="1"/>
-					<i>+</i>
+					<i class="jian" onclick="addShop()">-</i>
+					<input type="text" value="1" class="point" />
+					<i class="jia" onclick="reduceShop()">+</i>
 				</p>
-				<p><a href="querengoumai.html" style="color: #fff">点击购买</a></p>
-			</div>
+				<p>
+					<a style="color: #fff" class="submit">点击购买</a>
+				</p>
+			</div>-->
 		</div>
-			
-		<script
-  src="https://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-  crossorigin="anonymous"></script>
+
+		<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 		<script src="js/mui.min.js"></script>
 		<script src="js/style.js"></script>
 		<script src="js/swiper-3.4.2.min.js"></script>
 		<script src="js/baseUrl.js"></script>
-
+         <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
 		<script type="text/javascript">
 			mui.init()
 			var mySwiper = new Swiper('.swiper-container', {
-				autoplay: 5000,//可选选项，自动滑动
+				autoplay: 5000, //可选选项，自动滑动
 			})
 		</script>
-		
+
 		<script>
+			// 获取 goodsId
+			var goodsId = window.location.search.split("?")[1].split("&")[0].split("=")[1];
+			var title =decodeURIComponent(window.location.search.split("?")[1].split("&")[1].split("=")[1]);
+			$(".mui-title").text(title+'详情')
+			console.log(goodsId,title);
+			// 根据  goodsId 获取此商品详情
+			var goodsTraderId;  // 订单号
+			getGoodsInfo();
+			function getGoodsInfo () {
+				$.ajax({
+					type: "GET",
+					url: baseUrl + "/mallGoods/" + goodsId,
+					async: true,
+					dataType:'json',
+					data:{},
+					success:function(data){
+						console.log(data);
+						goodsTraderId = data.goodsTraderId;
+						var imgsArr = data.goodsDetailsImages.split(",");
+						var imgStr = '';
+						imgsArr.forEach((val, index) => {
+							imgStr += `<li><img src="${val}" alt="" /></li>`;
+						})
+						var str = "";
+						str += `<div class="banner">
+										<div class="swiper-container">
+											<div class="swiper-wrapper">
+												<div class="swiper-slide"><img class="good-img" src="${data.goodsImage}" alt="" /></div>
+											</div>
+										</div>
+									</div>
+									<div class="computer_title">
+										<p class="title">${data.goodsTitle}</p>
+										<p class="flex_b">
+											<span class="price">￥${data.goodsPrice}</span><span></span>
+										</p>
+									</div>
+									<div class="line"></div>
+									<div class="computer_des">
+										<h3>${data.goodsTitle}</h3>
+										<p>${data.goodsTitle}</p>
+										<ul>
+										    ${imgStr}
+										</ul>
+									</div>
+									<div class="computer_pay flex_b">
+										<p>
+											<i class="jian"  onclick="reduceShop()">-</i>
+											<input type="text" value="1" class="point" />
+											<i class="jia" onclick="addShop()">+</i>
+										</p>
+										<p data-goodsTraderId=${data.goodsTraderId}  onclick="buyShop(this)">
+											<a style="color: #fff" class="submit">点击购买</a>
+										</p>
+									</div>`;
+						$(".mui-content").html(str);
+//						$(".swiper-slide img").attr("src",data.goodsImage)
+//						$(".title").html(data.goodsTitle)
+//						$(".price").html('￥'+data.goodsPrice)
+//						$(".imged").attr("src",data.goodsImage)
+					},
+					error:function(){
+						
+					}
+				});
+			}
+			// 加商品数量
+			function addShop () {
+				var num = $(".point").val();
+				console.log(num);
+				num ++;
+				$(".point").val(num);
+			}
+			// 减商品数量
+			function reduceShop () {
+				var num = $(".point").val();
+				if(num <= 1) {
+					return;
+				}
+				num --;
+				$(".point").val(num);
+			}
+            // 计算商品总价
+            function totalPrice () {
+            	
+            }
+            function buyShop (self) {
+            	var num = $(".point").val();
+            	var price = parseFloat($(".price").text().substring(1));
+            	var totalPrice = num * price;
+            	var goodstraderid= $(self).attr("data-goodstraderid")
+            	window.location.href=`querengoumai.html?title=${title}&num=${num}&goodsId=${goodsId}&totalPrice=${totalPrice}&goodsTraderId=${goodsTraderId}&goodstraderid=${goodstraderid}`
+            }
 			
 		</script>
 	</body>

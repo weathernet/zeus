@@ -20,19 +20,6 @@ public class MallGroupController {
     @Autowired
     private MallGroupService mallGroupService;
 
-
-    @ApiOperation(value = "根据服务获取所有分类")
-    @PostMapping("MallGroup")
-    public  ResponseEntity<List<MallGroup>> getAllMallGroupById(Integer byid) {
-        return ResponseEntity.ok(this.mallGroupService.searchMallGroupById(byid));
-    }
-
-    @ApiOperation(value = "获取所有热门分类")
-    @GetMapping("MallHotGroup")
-    public  ResponseEntity<List<MallGroup>> getAllMallGroupByHot() {
-        return ResponseEntity.ok(this.mallGroupService.searchMallGroupByHot());
-    }
-
     @ApiOperation(value = "获取所有分组")
     @GetMapping("MallGroup")
     public  ResponseEntity<List<MallGroup>> getAllMallGroup() {

@@ -5,6 +5,16 @@ img {
 input {
 	margin: 0 !important;
 }
+html {
+	overflow-x: hidden !important;
+}
+.mention_message {
+	text-align: center;
+	font-size: .24rem;
+	color: #757575;
+	margin-top: .2rem;
+	display: none;
+}
 .ellipsis {
 	overflow: hidden;
 	text-overflow:ellipsis;
@@ -38,6 +48,9 @@ input {
 .header a img {
 	width: .3rem;
 }
+.mui-content {
+	padding-bottom: 1rem !important;
+}
 .header span {
 	display: flex;
 	align-items: center;
@@ -58,7 +71,8 @@ input {
 	padding-left: .6rem !important;
 	height: .5rem;
 	line-height: .5rem;
-	width: 45%;
+	width: 40%;
+	/*flex: 1;*/
 	padding: 0;
 	margin: 0;
 	background: #eee;
@@ -97,7 +111,12 @@ input {
 	background: #fff;
 	width: 96%;
 	margin-left: 2%;
-	z-index: 999;
+	/*z-index: 1;*/
+}
+.search_method {
+	position: relative;
+	z-index: 2;
+	background: #fff;
 }
 .content_search_in .my_site {
 	display: flex;
@@ -254,6 +273,7 @@ h3 {
 .duanzu {
 	background: #fff;
 	padding-top: .3rem;
+	padding-right: .1rem;
 }
 .duanzu_tit {
 	display: flex;
@@ -647,13 +667,13 @@ header i {
 .jiazheng_class {
 	margin-top: .4rem;
 }
-.jiazheng_class ul li:last-child img {
+/*.jiazheng_class ul li:last-child img {
 	height: auto;
 	margin-top: .4rem;
 }
 .jiazheng_class ul li:last-child p {
 	margin-top: .3rem;
-}
+}*/
 .banjia {
 	margin-top: 1rem;
 }
@@ -748,13 +768,13 @@ header i {
 .shangcheng_list .changcheng_class li {
 	width: 25%;
 	float: left;
-	margin-top: .2rem;
+	margin-bottom: .2rem;
 	color: #000;
 }
 .shangcheng_list .changcheng_class li img {
 	width: 1rem;
 	color: #000;
-	margin-bottom: .2rem;
+	/*margin-bottom: .2rem;*/
 }
 .chuxing_input img {
 	margin-right: -1.6rem;
@@ -776,7 +796,7 @@ header i {
 }
 .chuxing_class {
 	text-align: center;
-	margin-top: .6rem;
+	/*margin-top: .6rem;*/
 }
 .chuxing_class li {
 	width: 20%;
@@ -788,8 +808,8 @@ header i {
 	font-size: .24rem;
 }
 .chuxing_class li img {
-	width: 1rem;
-	height: 1rem;
+	width: .86rem;
+	height: .86rem;
 	margin-bottom: .1rem;
 }
 .chuxing_class .s_chuxing img {
@@ -929,11 +949,11 @@ header i {
 .jihua_title li.active i {
 	background: #ff9d02;
 }
-.jihua_audio {
+/*.jihua_audio {
 	position: relative;
 	margin-left: -.25rem;
 	margin-right: -.25rem;
-}
+}*/
 .jihua_audio img:nth-of-type(2) {
 	position: absolute;
 	width: .8rem;
@@ -1362,4 +1382,252 @@ header i {
 }
 .getCode input {
 	text-indent: .55rem;
+}
+/* 发布 */
+.mui-bar .mui-icon {
+	/*font-size: .8rem !important;*/
+	color: #000;
+}
+.fabu .desc-title {
+	padding-left: .25rem;
+	font-size: .28rem;
+	border: none;
+	border-bottom: .02rem solid #eee;
+}
+.fabu .desc-cont input {
+	border: none;
+	font-size: .24rem;
+	height: .4rem;
+}
+.fabu .upPhoto {
+	padding: .1rem .2rem;
+	width: 1rem;
+	background: #eee;
+	margin-left: .25rem;
+	margin-top: .8rem;
+	text-align: center;
+	margin-bottom: .2rem;
+}
+.fabu .desc-info {
+	border-top: .1rem solid #eee;
+	padding: .1rem .25rem;
+}
+.info-title span {
+	padding: .07rem .2rem;
+	background: #eee;
+	color: #000;
+	margin-right: .4rem;
+	font-size: .28rem;
+}
+.info-title span.active {
+	background: orange;
+	color: #fff;
+}
+.fabu form input {
+	font-size: .28rem;
+}
+.fabu form {
+	margin-top: .2rem;
+}
+.fabu form label {
+	font-size: .28rem;
+}
+.mui-input-group:before,.mui-input-group:after {
+	display: none;
+}
+.fabu-btn {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: .72rem;
+	line-height: .72rem;
+	text-align: center;
+	background: orange;
+	color: #fff;
+	border-radius: 0;
+}
+/* 商家-商城 */
+.shangjia_goods .my-goods {
+	display: flex;
+	justify-content: space-between;
+}
+.my-goodsWrap {
+	padding: 0 .25rem;
+}
+.shangjia_goods .my-goods {
+	padding: 0 .25rem;
+	line-height: .7rem;
+	border-bottom: .1rem solid #eee;
+}
+.shangjia_goods .my-goods span:nth-of-type(1) {
+	color: #000;
+}
+.my-goodsTitle {
+	padding: .2rem .5rem;
+	display: flex;
+	justify-content: space-between;
+	font-size: .3rem;
+	border-bottom: .02rem solid #eee;
+}
+.my-goodsTitle span {
+	border-bottom: .04rem solid transparent;
+}
+.my-goodsTitle span.active {
+	border-bottom-color: orange;
+}
+.goods-list li {
+	padding: .15rem;
+	display: flex;
+	/*justify-content: space-between;*/
+	align-items: center;
+}
+.goods-list li img {
+	width: 1.5rem;
+	height: 1.5rem;
+	margin-right: .1rem;
+}
+.goods-item-info p:nth-of-type(1) {
+	color: #000;	
+}
+.goods-item-info p:nth-of-type(2) {
+	margin-top: .25rem;
+	display: flex;
+	justify-content: space-between;
+}
+.goods-item-info p:nth-of-type(2) span:nth-of-type(1) {
+	color: red;
+}
+.alSale .goods-item-info p:nth-of-type(2) span:nth-of-type(2) {
+	padding: 0rem .2rem;
+	background: orange;
+	color: #fff;
+	border-radius: .05rem;
+}
+.saleDown .goods-item-info p:nth-of-type(2) span:nth-of-type(2) {
+	padding: 0rem .2rem;
+	background: #ccc;
+	color: #fff;
+	border-radius: .05rem;
+}
+.toggle-id-btn {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	
+	text-align: center;
+	line-height: .72rem;
+	background: #fff;
+}
+.toggle-id-btn img {
+	width: .3rem;
+}
+.alSale, .saleDown {
+	display: none;
+}
+.mui-bar .register-back {
+	font-size: .6rem !important;
+}
+.register-wrap {
+	
+}
+.register {
+	margin: .2rem;
+	border-radius: .1rem;
+	background: #fff;
+}
+.register-tit {
+	line-height: .8rem;
+	color: #000;
+	padding-left: .2rem;
+	border-bottom: .02rem solid #eee;
+}
+.register-money {
+	padding-left: .2rem;
+	display: flex;
+	align-items: center;
+	border-bottom: .02rem solid #eee;
+}
+.register-money input {
+	flex: 1;
+	border: none;
+	font-size: .28rem;
+}
+.register-money i {
+	font-size: .45rem;
+	color: #000;
+	font-style: normal;
+}
+.register-list {
+	padding: .5rem 0;
+	border-bottom: .1rem solid #eee;
+}
+.register-list li {
+	width: 30%;
+	float: left;
+	margin-left: 2.5%;
+	height: 1rem;
+	line-height: 1rem;
+	text-align: center;
+	border: .02rem solid #eee;
+	margin-top: 3%;
+	border-radius: .1rem;
+	font-size: .28rem;
+}
+.register-list li.active {
+	border: .02rem solid orange;
+	color: orange;
+}
+.register-methods {
+	padding-left: .2rem;
+	line-height: .8rem;
+	color: #000;
+}
+.register-method img {
+	width: .5rem;
+	height: .5rem;
+	margin-right: .2rem;
+}
+.register-method li {
+	display: flex;
+	align-items: center;
+	padding-left: .2rem;
+	padding-right: .2rem;
+	line-height: .8rem;
+	font-size: .28rem;
+	border-bottom: .02rem solid #eee;
+}
+.register-method li span {
+	flex: 1;
+}
+.tixian-btn {
+	margin-top: .3rem;
+	width: 100%;
+	line-height: .72rem;
+	text-align: center;
+	background: orange;
+	color: #fff;
+}
+/* 地图 */
+.room-list {
+	width: 100% !important;
+}
+.room-item {
+	display: flex;
+	align-items: center;
+	width: 100% !important;
+}
+.room-right {
+	flex: 1;
+}
+.room-img {
+	margin-right: .1rem;
+	width: 1.2rem;
+	height: 1.2rem;
+}
+.room-desc {
+	display: flex;
+	justify-content: space-between;
 }

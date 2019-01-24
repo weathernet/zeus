@@ -19,15 +19,17 @@
         <label class="layui-form-label">图片</label>
         <div class="layui-input-inline">
             <script type="text/html" template>
-                <input type="text" name="caseImage" value="{{ d.params.caseImage || '' }}" lay-verify="required" placeholder="请输入图片" autocomplete="off" class="layui-input">
+                <input type="text" name="caseImage" value="{{ d.params.caseImage || '' }}" lay-verify="required"
+                       placeholder="请上传图片" autocomplete="off" class="layui-input" id="img_url" disabled="true ">
             </script>
         </div>
+        <button style="float: left;" type="button" class="layui-btn" id="ownerCase-upload-ownerCase">上传图片</button>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">内容</label>
         <div class="layui-input-inline">
             <script type="text/html" template>
-                <input type="text" name="caseContent" value="{{ d.params.caseContent || '' }}" lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+                <textarea placeholder="请输入内容" class="layui-textarea" name="caseContent">{{ d.params.caseContent || '' }}</textarea>
             </script>
         </div>
     </div>
@@ -42,6 +44,7 @@
     </div>
 </div>
 <script>
+
     layui.use([ 'admin', 'form', 'upload' ], function() {
         var $ = layui.$, form = layui.form, upload = layui.upload;
 

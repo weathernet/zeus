@@ -47,10 +47,10 @@ layui.define(['table', 'form'], function (exports) {
         ,toolbar: true
         , cols: [[
              {field: 'evaluateId',  title: '编号'}
-            , {field: 'evaluateUserId', title: ' 用户ID',edit: 'text', sort: true}
-            , {field: 'evaluateUserNickName', title: ' 用户昵称',edit: 'text', sort: true}
-            , {field: 'evaluateType', title: ' 类型0.维修服务1.搬家服务3.保洁服务',edit: 'text', sort: true}
-            , {field: 'evaluateImage', title: ' 照片',edit: 'text', sort: true}
+            , {field: 'evaluateUserId', title: ' 用户ID', sort: true}
+            , {field: 'evaluateUserNickName', title: ' 用户昵称'}
+            , {field: 'evaluateType', title: ' 类型0.维修服务1.搬家服务3.保洁服务', sort: true,templet: '#Type'}
+            , {field: 'evaluateImage', title: ' 照片',templet: '#Img'}
             , {field: 'evaluateContent', title: ' 评价的内容',edit: 'text', sort: true}
             , {field: 'createTime', title: '创建日期',templet: '<div>{{ layui.laytpl.toDateString(d.createTime) }}</div>'}
             , {field: 'updateTime', title: '修改日期',templet: '<div>{{ layui.laytpl.toDateString(d.updateTime) }}</div>'}

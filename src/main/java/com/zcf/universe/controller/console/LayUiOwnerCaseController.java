@@ -55,8 +55,6 @@ public class LayUiOwnerCaseController {
 
     @RequestMapping("upload")
     public Map UploadBrand(@RequestParam("file") MultipartFile file) throws FileNotFoundException{
-        //String pathVal = request.getSession().getServletContext().getRealPath("/") + "WEB-INF/";
-        String pathVal = ResourceUtils.getURL("classpath:").getPath() + "static/";
-        return FileUploadUtils.uploadLayUiImg(file, pathVal,"img/");
+        return FileUploadUtils.uploadLayUiImg(file,"","owner_case");
     }
 }

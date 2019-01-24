@@ -13,31 +13,17 @@
 <div class="layui-fluid">
     <div class="layui-card">
         <div class="layui-card-body">
-            <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="lay-admin-ownerVideo-form">
-                <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">关键字</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="keywords" placeholder="请输入" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-inline">
-                        <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-ownerVideo-back-search">
-                            <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div style="padding-bottom: 10px;">
+
+          <!--  <div style="padding-bottom: 10px;">
                 <button class="layui-btn ownerVideo-form" data-type="add">新增</button>
-            </div>
+            </div>-->
             <table id="LAY-ownerVideo-list" lay-filter="LAY-ownerVideo-list"></table>
             <script type="text/html" id="Img">
                 <img style="display: inline-block; width: 50%; height: 100%;" src={ d.avatar }} onclick="previewImg(this)">
             </script>
             <script type="text/html" id="table-ownerVideo-toolbar">
                 <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
-                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"> <i class="layui-icon  layui-icon-del"></i>删除</a>
+               <!-- <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"> <i class="layui-icon  layui-icon-del"></i>删除</a>-->
             </script>
         </div>
     </div>

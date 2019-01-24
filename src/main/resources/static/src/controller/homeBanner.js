@@ -72,7 +72,6 @@ layui.define(['table', 'form'], function (exports) {
                         //监听提交
                         form.on('submit(homeBanner-form-submit)', function (data) {//form 表单提交的按钮
                             var field = data.field; //获取提交的字段
-                            field.goodsDetails=editor.txt.html();
                             $.ajax({
                                 type: "POST", //请求方式 post
                                 dataType: 'json', //数据类型 json

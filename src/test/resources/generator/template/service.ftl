@@ -1,8 +1,8 @@
-package ${basePackage}.service;
+package ${basePackage}.service.layui;
 
 import ${basePackage}.pojo.${modelNameUpperCamel};
 import ${basePackage}.mapper.${modelNameUpperCamel}Mapper;
-import ${basePackage}.common.utils.LayUiResult;
+import ${basePackage}.common.layui.LayUiResult;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import tk.mybatis.mapper.entity.Example;
@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 /**
- * Created by ${author} on ${date}.
- */
+* @author ${author}
+* @date ${date}
+*/
 @Service
 public class LayUi${modelNameUpperCamel}Service{
 
@@ -43,7 +44,7 @@ public class LayUi${modelNameUpperCamel}Service{
     //搜索
      public LayUiResult search(Integer page, Integer limit,String keywords) {
         Example example = new Example(${modelNameUpperCamel}.class);
-        example.createCriteria().andLike("name", "%" + keywords + "%");//name为你想要搜索的字段
+        example.createCriteria().andLike("${modeListDetails[0].name}", "%" + keywords + "%");
         PageHelper.startPage(page, limit);
         List<${modelNameUpperCamel}> list = this.LayUi${modelNameUpperCamel}Mapper.selectByExample(example);
         return new LayUiResult("0", "查询成功", new PageInfo<>(list).getTotal(), list);

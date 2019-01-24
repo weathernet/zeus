@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zcf</groupId>
-    <artifactId>universe</artifactId>
-    <version>1.0</version>
+    <artifactId>family</artifactId>
+    <version>1.1</version>
     <packaging>jar</packaging>
     <!--项目名称-->
     <name>universe</name>

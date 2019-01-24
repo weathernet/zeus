@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>租房列表</title>
+    <title>房产出售</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="referrer" content="no-referrer"/>
     <link href="css/zufangliebiao.css" type="text/css" rel="stylesheet">
@@ -65,6 +65,10 @@
     		margin: 0;
     		background: #fff;
     	}
+    	.didian-icon {
+    		width: 20px;
+    		height: 20px;
+    	}
     </style>
 </head>
 <body style="background: #fff;">
@@ -76,7 +80,7 @@
             <img src="images/suosou/icon_sousuo.png" style="vertical-align: middle">
             <input type="text" placeholder="输入小区/商圈/地铁站等" style="padding:0;vertical-align: middle;outline: none;color:#000">
         </div>
-        <span class="s1"><img src="images/zufangliebiao/icon_didian.png"></span>
+        <span class="s1"><img class="didian-icon" src="images/zufangliebiao/icon_didian.png"></span>
     </div>
     <p class="p1" style="border-color: transparent"></p>
     <div class="liebiao1" >
@@ -102,13 +106,14 @@
         </table>
     </div>
     </div>
-    <div id="refreshContainer" class="mui-scroll-wrapper" >
-	  <div class="mui-scroll">
+   
+    <!--<div id="refreshContainer" class="mui-scroll-wrapper" >
+	  <div class="mui-scroll">-->
 	    
 	    <ul class="liebiao" >
 	      
-	    </ul>
-	  </div>
+	    <!--</ul>
+	  </div>-->
 	</div>
 	<!--数据列表-->
 	    <!--<ul class="mui-table-view mui-table-view-chevron liebiao" >
@@ -144,7 +149,14 @@
   <script src="js/mui.min.js"></script>
   <script src="js/mui.picker.js"></script>
   <script src="js/mui.poppicker.js"></script>
-  
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
   	// 筛选
   	$(".near").on("click",function(){
@@ -359,7 +371,7 @@
 	      height:'50px',//可选,默认50px.下拉刷新控件的高度,
 	      range:'100px', //可选 默认100px,控件可下拉拖拽的范围
 	      offset:'0px', //可选 默认0px,下拉刷新控件的起始位置
-	      auto: isAuto,//可选,默认false.首次加载自动上拉刷新一次
+	      auto: false,//可选,默认false.首次加载自动上拉刷新一次
 	      callback :function(){
 	      	
 	      } //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
@@ -378,7 +390,7 @@
   	var content = window.location.search;
   	var my_key = "";
   	if(content.split("=")[1]) {
-  		my_key = content.split("=")[1];
+  		my_key = decodeURIComponent(content.split("=")[1]) 
   	}
   	console.log(my_key);
   	//  获取房源列表
@@ -396,7 +408,7 @@
 	  			arr = data.slice(0,100);
 	  			arr.forEach(function(val,index){
 	  				var img;
-	  				if(val.housingImage.split(" ")[0]){
+	  				if(val.housingImage && val.housingImage.split(" ")[0]){
 	  					img = val.housingImage.split(" ")[0];
 	  				}else {
 	  					img = val.housingImage;
@@ -421,6 +433,8 @@
 	  			})
 	  		},
 	  		error:function(xhr){
+//	  			mui('#refreshContainer').pullRefresh().endPullupToRefresh(true);
+//	  			mui('#refreshContainer').pullRefresh().disablePullupToRefresh();
 				console.log(xhr.responseText);
 				var obj = eval("(" + xhr.responseText + ")");
 				mui.toast(obj.message);

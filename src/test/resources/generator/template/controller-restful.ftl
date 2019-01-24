@@ -1,59 +1,57 @@
-package ${basePackage}.web;
+package ${basePackage}.controller.api;
 
-import ${basePackage}.core.Result;
-import ${basePackage}.core.ResultGenerator;
-import ${basePackage}.model.${modelNameUpperCamel};
+
+import ${basePackage}.pojo.${modelNameUpperCamel};
 import ${basePackage}.service.${modelNameUpperCamel}Service;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.ResourceUtils;
 import java.util.List;
 
 /**
-* Created by ${author} on ${date}.
+* @author ${author}
+* @date ${date}
 */
 @RestController
-@Api(value = "首页管理控制器", tags = {"首页管理接口"})
+@RequestMapping("${modelNameLowerCamel}")
+@Api(value = "${modelNameUpperCamel}控制器", tags = {"${modelNameUpperCamel}接口"})
 public class ${modelNameUpperCamel}Controller {
 
     @Autowired
     private ${modelNameUpperCamel}Service ${modelNameLowerCamel}Service;
 
     @ApiOperation(value = "新增")
-    @PostMapping("${modelNameLowerCamel}")
+    @PostMapping
     public ResponseEntity<Void> add${modelNameUpperCamel}(${modelNameUpperCamel} ${modelNameLowerCamel}) {
         this.${modelNameLowerCamel}Service.add${modelNameUpperCamel}(${modelNameLowerCamel});
-        return ResponseEntity.ok(null);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @ApiOperation(value = "删除")
-    @DeleteMapping("${modelNameLowerCamel}/{id}")
-    public ResponseEntity<Void> delete${modelNameUpperCamel}(@PathVariable Integer id) {
-        this.${modelNameLowerCamel}Service.delete${modelNameUpperCamel}(id);
-        return ResponseEntity.ok(null);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete${modelNameUpperCamel}ById(@PathVariable Integer id) {
+        this.${modelNameLowerCamel}Service.delete${modelNameUpperCamel}ById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @ApiOperation(value = "修改")
-    @PutMapping("${modelNameLowerCamel}")
+    @PutMapping
     public ResponseEntity<Void> update${modelNameUpperCamel}(${modelNameUpperCamel} ${modelNameLowerCamel}) {
         this.${modelNameLowerCamel}Service.update${modelNameUpperCamel}(${modelNameLowerCamel});
         return ResponseEntity.ok(null);
     }
 
     @ApiOperation(value = "获取单个")
-    @GetMapping("${modelNameLowerCamel}/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<${modelNameUpperCamel}> get${modelNameUpperCamel}(@PathVariable Integer id) {
         return ResponseEntity.ok(this.${modelNameLowerCamel}Service.get${modelNameUpperCamel}(id));
     }
 
     @ApiOperation(value = "获取所有")
-    @GetMapping("${modelNameUpperCamel}")
+    @GetMapping
     public  ResponseEntity<List<${modelNameUpperCamel}>> getAll${modelNameUpperCamel}() {
        return ResponseEntity.ok(this.${modelNameLowerCamel}Service.getAll${modelNameUpperCamel}());
     }

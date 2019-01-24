@@ -18,7 +18,14 @@
 	<div id="allmap"></div>
     <div id="r-result"></div>
 </div>
-
+ <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
 <script src="js/baseUrl.js"></script>
 </body>
 <script type="text/javascript">

@@ -23,12 +23,12 @@
 				<div class="d3">
 					￥0.00
 				</div>
-				<div class="d4">
+				<div class="d4 my_tixian">
 					<a href="#">提现</a>
 				</div>
 			</div>
 		</div>
-		<div class="two">
+		<!--<div class="two">
 			<div class="d5">银行卡管理</div>
 			<div class="d6">
 				<img src="img/btn_enter2.png"/>
@@ -51,15 +51,39 @@
 			<div class="d6">
 				<img src="img/btn_enter2.png"/>
 			</div>
-		</div>
+		</div>-->
 	</body>
 	<script
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
+  <script src="js/baseUrl.js"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
   	$(".d1").on("click",function(){
   		window.history.back();
   	})
+	$(".my_tixian").on("click",function() {
+		window.location.href = "tixian.html"
+	})
+	getMoney();
+	function getMoney () {
+		$.ajax({
+			type: "GET",
+			url: baseUrl + "/user/" + localStorage.getItem("userId"),
+			data: {},
+			success: function (data) {
+				console.log(data);
+				$(".d3").text('￥'+data.userWallet)
+			}
+		})
+	}
   </script>
 </html>

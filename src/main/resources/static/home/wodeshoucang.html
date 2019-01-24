@@ -15,9 +15,9 @@
 			<div class="d2">
 				我的收藏
 			</div>
-			<div class="d3">
+			<!--<div class="d3">
 				编辑
-			</div>
+			</div>-->
 		</div>
 		<div class="two">
 			
@@ -46,6 +46,14 @@
   crossorigin="anonymous"></script>
   <script src="js/baseUrl.js"></script>
   <script src="js/mui.min.js"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
   	$(".d1").on("click",function(){
   		window.history.back();

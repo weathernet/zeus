@@ -4,9 +4,38 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title></title>
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/mui.poppicker.css" />
+		<link rel="stylesheet" href="css/mui.picker.css" />
 		<link rel="stylesheet" type="text/css" href="css/tijiaodingdan.css"/>
+		<link rel="stylesheet" href="css/mui.dtpicker.css" />
+		<link rel="stylesheet" href="css/mui.picker.css" />
+		<style>
+		    body {
+		    	font-size: 14px;
+		    }
+		    .d4>div {
+		    }
+		    .seven {
+		    	position: fixed;
+		    	bottom: 0;
+		    	left: 0;
+		    	width: 100%;
+		    }
+		    i {
+		    	font-style: normal;
+		    }
+		    .d4>div.active {
+		    	color: #fff;
+		    	background: orange;
+		    }
+		    .d6 {
+		    	display: flex;
+		    	align-items: center;
+		    }
+		</style>
 	</head>
-	<body>
+	<body style="background: #fff;">
 		<div class="one">
 			<div class="d1">
 				<img src="img/nav_back.png" />
@@ -22,20 +51,20 @@
 		</div>
 		<div class="three">
 			<div class="d3">使用日期</div>
-			<div class="d4">
-				<div class="d4-1">
-					<div class="text">今天11-18</div>
-					<div class="text2">￥ 98</div>
+			<div class="d4 jingdian_order">
+				<div class="d4-2 active">
+					<div class="text">今天<i class="time1"></i></div>
+					<div class="text2">￥  <i class="price"></i></div>
 				</div>
 				<div class="d4-2">
-					<div class="text">明天11-19</div>
-					<div class="text2">￥ 98</div>
+					<div class="text">明天<i class="time2"></i></div>
+					<div class="text2">￥ <i class="price"></i></div>
 				</div>
-				<div class="d4-4">
-					<div class="text">11-19周二</div>
-					<div class="text2">￥ 98</div>
+				<div class="d4-4 ">
+					<div class="text">后天<i class="time3"></i></div>
+					<div class="text2">￥  <i class="price"></i></div>
 				</div>
-				<div class="d4-3">
+				<div class="d4-3 more_time">
 					<div>
 						<div class="text">更多</div>
 						<div class="text2">日期</div>
@@ -51,13 +80,13 @@
 				<div class="d5">购买数量</div>
 				<div class="d6">
 					<div class="d6-1">
-						<img src="img/-.png"/>
+						<img class="min" src="img/-.png"/>
 					</div>
-					<div class="d6-2">
+					<div class="d6-2 number">
 						1
 					</div>
 					<div class="d6-3">
-						<img src="img/jia.png"/>
+						<img class="max" src="img/jia.png"/>
 					</div>
 				</div>
 			</div>
@@ -69,7 +98,7 @@
 			</div>
 			<div class="d8">
 				<div class="d8-1">
-					<div class="xm">
+					<div class="xm name">
 						洪昇
 					</div>
 				</div>
@@ -85,11 +114,11 @@
 			</div>
 			<div class="d10">
 				<span>姓名</span>
-				<span class="ss">洪昇</span>
+				<span class="ss name">洪昇</span>
 			</div>
 			<div class="d9">
 				<span>手机号</span>
-				<span class="ss2">18226418964114</span>
+				<span class="ss2 phone">18226418964114</span>
 			</div>
 		</div>
 		<div class="seven">
@@ -100,7 +129,7 @@
 					<span class="zj3">98</span>
 				</div>
 				<div class="d12">
-					<span class="d12-1">
+					<span class="d12-1" onclick="submitOrder()">
 						提交订单
 					</div>
 				</div>
@@ -113,10 +142,148 @@
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
+  <script src="js/mui.min.js"></script>
+  <script src="js/mui.poppicker.js"></script>
+  <script src="js/mui.dtpicker.js"></script>
+  <script src="js/mui.picker.js"></script>
+  <script src="js/baseUrl.js"></script>
+   <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
   	$(".d1").on("click",function(){
   		window.history.back();
   	})
+  	// 景点订单提交
+	$(".jingdian_order>div").on("click",function () {
+		$(this).addClass("active").siblings().removeClass("active");
+		console.log($(".more_time").is(".active"))
+		if($(".more_time").is(".active") == false) {
+			$(".more_time").html(`<div>
+						<div class="text">更多</div>
+						<div class="text2">日期</div>
+					</div>
+					<div class="text3">
+						<img src="img/btn_enter2.png"/>
+					</div>`)
+		}
+	})
+  	// 获取门票价格
+  	var scenicid = window.location.search.split("=")[1];
+  	console.log(scenicid);
+  	
+  	// 获取景点信息
+  	var price;
+  	getJingdianInfo ();
+  	function getJingdianInfo () {
+  		$.ajax({
+  			type: 'GET',
+  			url: baseUrl + "/travelScenery/" + scenicid,
+  			data: {},
+  			success: function (data) {
+  				console.log(data);
+				$(".price").html(data.sceneryPrice);
+				price = parseFloat(data.sceneryPrice)
+	            $(".zj3").text(data.sceneryPrice);
+	            $(".s1").text(data.sceneryTitle)
+  			}
+  		})
+  	}
+  	// 获取今天的时间
+  	
+  	var month = new Date().getMonth()+1;
+  	var myDay1 = new Date().getDate();
+  	var myDay2 = new Date().getDate() + 1;
+  	var myDay3 = new Date().getDate() + 2;
+  	var timeStr1 = month + "-" + myDay1;
+  	var timeStr2 = month + "-" + myDay2;
+  	var timeStr3 = month + "-" + myDay3;
+  	
+  	$(".time1").html(timeStr1);
+  	$(".time2").html(timeStr2);
+  	$(".time3").html(timeStr3);
+  	// 更多日期
+  	$(".d4-3").on("click",function() {
+  		var dtPicker = new mui.DtPicker({
+  			type: "date"
+  		});
+	    dtPicker.show(function (selectItems) { 
+	        console.log(selectItems.y);//{text: "2016",value: 2016} 
+	        console.log(selectItems.m);//{text: "05",value: "05"} 
+	        var timeStr = selectItems.m.text + "-" + selectItems.d.text;
+	        $(".more_time").html(`<div class="text"><i class="time">${timeStr}</i></div>`)
+	    })
+  	})
+  	// 数量控制
+  	$(".min").on("click",function() {
+  		var num = $(".number").text();
+  		
+  		if(num <= 1) {
+  			return ;
+  		}
+  		num --;
+  		$(".number").text(num);
+  		getTotalPrice ()
+  	})
+  	$(".max").on("click",function() {
+  		var num = $(".number").text();
+  		num ++;
+  		$(".number").text(num);
+  		getTotalPrice ()
+  	})
+  	// 价格控制
+  	function getTotalPrice () {
+  		var totalPrice = price * Number($(".number").text());
+  		$(".zj3").text(totalPrice)
+  	}
+  	// 获取用户信息
+  	getUserInfo ();
+  	function getUserInfo () {
+  		$.ajax({
+  			type: 'GET',
+  			url: baseUrl + "/user/"+localStorage.getItem('userId'),
+  			data: {},
+  			success: function (data) {
+  				console.log(data);
+  				$(".name").text(data.userNikeName);
+  				$(".phone").text(data.userPhoneNumber)
+  			}
+  		})
+  	}
+  	// 提交订单
+  	function submitOrder () {
+  		var name = $(".xm").text();
+  		var num = $(".number").text();
+  		var totalPrice = $(".zj3").text();
+  		var title = $(".s1").text();
+  		var orderServiceDate = $(".jingdian_order>div.active .text i").text();
+  		window.location.href = `pay.html?name=${name}&num=${num}&price=${totalPrice}&tit=${title}&time=${orderServiceDate}&type=4`;
+		$.ajax({
+			type: 'POST',
+			url: baseUrl + '/crt_travelorder',
+			data: {
+				orderNumber: num,
+				orderPeopleId: name,
+				orderSumPrice: totalPrice,
+				orderTitle: title,
+				orderId: localStorage.getItem("userId"),
+				orderServiceDate: orderServiceDate
+			},
+			success: function (data) {
+				console.log(data);
+			},
+			error: function (xhr) {
+				console.log(xhr.responseText);
+				var obj = eval("(" + xhr.responseText + ")");
+				mui.toast(obj.message);
+			}
+		})
+  	}
   	</script>
 	</body>
 </html>

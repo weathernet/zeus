@@ -33,7 +33,7 @@ import java.util.concurrent.TimeUnit;
 
 public class UserInfoService {
     //设置拦截图片的格式
-    private static final List<String> ALLOW_TYPES = Arrays.asList("image/jpeg", "image/png", "image/jpg");
+    //private static final List<String> ALLOW_TYPES = Arrays.asList("image/jpeg", "image/png", "image/jpg");
 
     //设置RedisKey的前缀
     private static final String PHONE_NUMBER = "PHONE_NUMBER:";
@@ -125,7 +125,7 @@ public class UserInfoService {
         return userInfo;
     }
 
-    //上传用户的头像
+/*    //上传用户的头像
     public void uploadUserHeadPortrait(Integer id, MultipartFile file) {
         //获取文件的路径
         String userImageUrl = this.uploadImage(file);
@@ -135,30 +135,30 @@ public class UserInfoService {
         if (count != 1) {
             throw new CommonException(ExceptionEnum.SAVE_FAILURE);
         }
-    }
+    }*/
 
     //上传图片返回图片的地址
-    private String uploadImage(MultipartFile file) {
-        try {
-            //校验文件类型
-            String contentType = file.getContentType();//获取文件的上传类型
-            if (!ALLOW_TYPES.contains(contentType)) {
-                throw new CommonException(ExceptionEnum.INVALID_FILE_TYPE);
-            }
-            //校验文件内容
-            BufferedImage read = ImageIO.read(file.getInputStream());
-            if (read == null) {
-                throw new CommonException(ExceptionEnum.INVALID_FILE_TYPE);
-            }
-            //上传文件
-            String path = ResourceUtils.getURL("classpath:").getPath() + "static/";
-            String customPath = "user/";//自定义图片存储路径
-            return FileUploadUtils.fileUpload(file, path, customPath);
-        } catch (IOException e) {
-            log.error("上传文件失败", e);
-            return null;
-        }
-    }
+//    private String uploadImage(MultipartFile file) {
+//        try {
+//            //校验文件类型
+//            String contentType = file.getContentType();//获取文件的上传类型
+//            if (!ALLOW_TYPES.contains(contentType)) {
+//                throw new CommonException(ExceptionEnum.INVALID_FILE_TYPE);
+//            }
+//            //校验文件内容
+//            BufferedImage read = ImageIO.read(file.getInputStream());
+//            if (read == null) {
+//                throw new CommonException(ExceptionEnum.INVALID_FILE_TYPE);
+//            }
+//            //上传文件
+//            String path = ResourceUtils.getURL("classpath:").getPath() + "static/";
+//            String customPath = "user/";//自定义图片存储路径
+//            return FileUploadUtils.fileUpload(file, path, customPath);
+//        } catch (IOException e) {
+//            log.error("上传文件失败", e);
+//            return null;
+//        }
+//    }
 
     //查看该用户是否已经实名认证0.未实名1.已实名
     public boolean isAuthentication(Integer id) {

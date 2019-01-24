@@ -21,10 +21,9 @@ public class TravelSceneryController {
     @Autowired
     private TravelSceneryService travelSceneryService;
 
-
     @ApiOperation(value = "根据搜索条件获取景点")
-    @GetMapping("scenery/{keywords}")
-    public ResponseEntity<List<TravelScenery>> getTravelScenery(@PathVariable String keywords) {
+    @GetMapping("scenery")
+    public ResponseEntity<List<TravelScenery>> getTravelScenery(@RequestParam String keywords) {
         return ResponseEntity.ok(this.travelSceneryService.searchTravelScenery(keywords));
     }
 
@@ -40,9 +39,16 @@ public class TravelSceneryController {
         return ResponseEntity.ok(this.travelSceneryService.getTravelScenery(id));
     }
 
-    @ApiOperation(value = "获取所有的景点")
+    @ApiOperation(value = "获取該城市所有的景点")
     @GetMapping("TravelScenery")
-    public ResponseEntity<List<TravelScenery>> getAllTravelScenery() {
-        return ResponseEntity.ok(this.travelSceneryService.getAllTravelScenery());
+    public ResponseEntity<List<TravelScenery>> getAllTravelScenery(String city) {
+        return ResponseEntity.ok(this.travelSceneryService.getAllTravelScenery(city));
     }
+
+    @ApiOperation(value = "排序城市所有的景点")
+    @GetMapping("TravelSceneryGroup")
+    public ResponseEntity<List<TravelScenery>> TravelSceneryGroup(String city, String group, Boolean sort) {
+        return ResponseEntity.ok(this.travelSceneryService.TravelSceneryGroup(city, group, sort));
+    }
+
 }

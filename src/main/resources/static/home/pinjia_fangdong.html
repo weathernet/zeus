@@ -5,113 +5,329 @@
     <title>品家</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="css/pinjia_fangdong.css" type="text/css" rel="stylesheet">
+    <meta name="referrer" content="no-referrer" />
+	<link href="css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	
+	<style>
+		.oper-good {
+			flex: 1;
+			display: flex;
+			align-items: center;
+		}
+		.goods-item-info {
+			flex: 1
+		}
+		.onSale .goods-item-info p:nth-of-type(2) span:nth-of-type(2) {
+			    padding: 0rem .2rem;
+			    background: #ccc;
+			    color: #fff;
+			    border-radius: .05rem;
+		}
+		.admin-btn-wrap {
+			text-align: center;
+			padding-bottom: .2rem;
+		}
+		.admin-btn {
+			padding: .1rem .3rem;
+			color: #fff;
+			background: orange;
+			border-radius: .1rem;
+			margin-top: .2rem;
+		}
+		#popover {
+			position: fixed;
+			z-index: 999;
+			top: 50%;
+			margin-top: -75px;
+			display: none;
+		}
+		.mask {
+			position: fixed;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background: rgba(0, 0, 0, .3);
+		}
+		.info {
+			background: #fff;
+			position: fixed;
+			top: 50%;
+			transform: translate(0, -50%);
+			z-index: 2
+		}
+		.info label {
+			display: flex;
+			align-items: center;
+			font-size: .3rem;
+			padding: 0 .2rem;
+		}
+		.info label input {
+			flex: 1;
+			border: none;
+		}
+		.waitComment {
+			display: none;
+		}
+	</style>
 </head>
-<body>
-    <div class="d1">
-        <img src="image/pinjia/left.png" class="m1">
-        <span>设置</span>
-    </div>
-    <div class="touxiang">
-        <div></div>
-        <p>品家</p>
-    </div>
-    <div class="d2">
-        <table class="t2" cellspacing="0">
-            <tr>
-                <td>
-                    <img src="image/pinjia/icon_wdht.png">
-                </td>
-                <td>
-                    <img src="image/pinjia/icon_wdsy.png">
-                </td>
-                <td>
-                    <img src="image/pinjia/icon_wdgj.png">
-                </td>
-                <td>
-                    <img src="image/pinjia/icon_wohy.png">
-                </td>
-            </tr>
-            <tr>
-                <td>我的合同</td>
-                <td>我的收益</td>
-                <td>我的管家</td>
-                <td>推荐好友</td>
-            </tr>
-        </table>
-    </div>
-    <div class="d3">
-        <img src="image/pinjia/img_pinjiayoushi1.png">
-    </div>
-    <div class="d2" style="margin-top: 8px">
-        <table class="t2" cellspacing="0">
-        <tr>
-            <td>
-                <img src="image/pinjia/icon_yhq.png">
-            </td>
-            <td>
-                <img src="image/pinjia/icon_bjk.png">
-            </td>
-            <td>
-                <img src="image/pinjia/icon_wdwt.png">
-            </td>
-            <td>
-                <img src="image/pinjia/icon_zxzx.png">
-            </td>
-        </tr>
-        <tr>
-            <td>优惠券</td>
-            <td>保洁卡</td>
-            <td>我的委托</td>
-            <td>在线咨询</td>
-        </tr>
-        <tr>
-            <td>
-                <img src="image/pinjia/icon_yhq.png">
-            </td>
-            <td>
-                <img src="image/pinjia/icon_bjk.png">
-            </td>
-            <td>
-                <img src="image/pinjia/icon_wdwt.png">
-            </td>
-            <td>
-                <img src="image/pinjia/icon_zxzx.png">
-            </td>
-        </tr>
-        <tr>
-            <td>品家保洁</td>
-            <td>品家搬家</td>
-            <td>品家维修</td>
-            <td>我的评价</td>
-        </tr>
-    </table>
-    </div>
-    <div class="d4">
-        <p>品家动态</p>
-        <img src="image/pinjia/img_tuijian.png">
-        <p>品家动态呀，活多多吖</p>
-    </div>
-    <div class="border"></div>
-    <div class="d4" style="margin-top: 0px">
-        <p>品家动态</p>
-        <img src="image/pinjia/img_tuijian.png">
-        <p>品家动态呀，活多多吖</p>
-    </div>
-    <div class="footer">
-        <a href="mine.html">
-        	<img src="image/pinjia/qiehuan.png">
-        	<span>切换为租客</span>
-        </a>
-    </div>
+<body style="background: #fff;">
+	<div class="shangjia_goods">
+		<div class="d1">
+	        <img src="image/pinjia/left.png" class="m1">
+	        <!--<span>设置</span>-->
+	    </div>
+	    <div class="touxiang">
+	        <div></div>
+	        <p>品家</p>
+	    </div>
+	    <p class="my-goods">
+	    	<span>我的商品</span>
+	    	<span class="fabu_btn"><span class="mui-icon mui-icon-compose"></span>发布</span>
+	    </p>
+	    <div class="my-goodsTitle">
+	    	<span class="active">售卖中</span>
+	    	<span>代发货</span>
+	    	<span>待评价</span>
+	    	<span>已完成</span>
+	    </div>
+	    <div class="goods-list " style="padding-bottom: 1.2rem">
+	    	<ul class="onSale">
+	    		
+	    	</ul>
+	    	<ul class="alSale">
+	    		
+	    	</ul>
+	    	<ul class="waitComment">
+	    		
+	    	</ul>
+	    	<ul class="saleDown">
+	    		
+	    	</ul>
+	    </div>
+	    <p class="toggle-id-btn">
+	    	<img src="images/mine/icon_qiehuan.png" alt="" />
+	    	切换为租客
+	    </p>
+	    <div id="popover">
+		  <div class="mask"></div>
+		  <div class="info">
+		  	<form class="admin-btn-wrap">
+		  		<label >快递公司：<input class="company" type="text" placeholder="请输入快递公司" /></label>
+		  		<label >快递单号：<input class="number" type="text" placeholder="请输入快递单号" /></label>
+		  		<button type="button" class="admin-btn">确认</button>
+		  	</form>
+		  </div>
+		</div>
+	</div>
+    
     
     <script
   src="https://code.jquery.com/jquery-1.12.4.min.js"
   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
   crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="js/mui.min.js"></script>
+<script src="js/style.js"></script>
+<script src="js/baseUrl.js"></script>
+ <script src="js/fastclick.js"></script>
+        <script>
+        	if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+        </script>
   <script>
+  	
   	$(".m1").on("click",function(){
   		window.history.back();
   	})
+  	$(".toggle-id-btn").on("click",function() {
+  		window.location.href = 'mine.html'
+  	})
+  	// 发布商品
+  	$(".fabu_btn").on("click",function() {
+  		window.location.href = `fabu_goods.html`;
+  	})
+  	// 获取售卖中的商品
+  	getSellGoods()
+  	function getSellGoods () {
+  		$.ajax({
+  			type: 'GET',
+  			url: baseUrl + '/mallAllGoods',
+  			data: {
+  				traderId: 1,
+  				userId: localStorage.getItem("userId")
+  			},
+  			success: function (data) {
+  				console.log(data,'售卖中')
+  				var str = '';
+  				data.forEach((val, index) => {
+  					str += `<li>
+				    			<img src="${val.goodsImage}" alt="" />
+				    			<div class="goods-item-info">
+				    				<p>${val.goodsTitle}</p>
+				    				<p>
+				    					<span>￥${val.goodsPrice}</span>
+				    					<span data-goodsId="${val.goodsId}" onclick="deleteGoods(this)">删除</span>
+				    				</p>
+				    			</div>
+				    		</li>`;
+  				})
+  				$(".onSale").html(str);
+  			}
+  		})
+  	}
+  	// 获取待发货商品
+  	getDeliverGoods()
+  	function getDeliverGoods () {
+  		$.ajax({
+  			type: 'GET',
+  			url: baseUrl + '/mallOrderTrader',
+  			data: {
+  				status: 1,
+  				traderId: localStorage.getItem('traderId')
+  			},
+  			success: function (data) {
+  				console.log(data,'待发货');
+  				var str = '';
+  				data.forEach((val, index) => {
+  					str += `<li>
+				    			<img src="${val.goodsImage}" alt="" />
+				    			<div class="goods-item-info">
+				    				<p>${val.goodsTitle}</p>
+				    				<p class="oper-good">
+				    					<span>￥${val.goodsPrice}&times;${val.goodsNumber} </span>
+				    					<span data-orderId="${val.orderId}" onclick="deliverGoods(this)">发货</span>
+				    				</p>
+				    			</div>
+				    		</li>`;
+  				})
+  				$(".alSale").html(str);
+  				
+  			}
+  		})
+  	}
+  	
+  	// 获取待评价商品
+  	waitComponent() 
+    function waitComponent () {
+    	$.ajax({
+  			type: 'GET',
+  			url: baseUrl + '/mallOrderTrader',
+  			data: {
+  				status: 3,
+  				traderId: localStorage.getItem('traderId')
+  			},
+  			success: function (data) {
+  				console.log(data,'待评价');
+  				var str = '';
+  				data.forEach((val, index) => {
+  					str += `<li>
+				    			<img src="${val.goodsImage}" alt="" />
+				    			<div class="goods-item-info">
+				    				<p>${val.goodsTitle}</p>
+				    				<p>
+				    					<span>￥${val.goodsPrice}&times;${val.goodsNumber}</span>
+				    					<span>待评价</span>
+				    				</p>
+				    			</div>
+				    		</li>`;
+  				})
+  				$(".waitComment").html(str);
+  				
+  			}
+  		})
+    }
+  	// 获取已完成商品
+  	getDownGoods()
+  	function getDownGoods () {
+  		$.ajax({
+  			type: 'GET',
+  			url: baseUrl + '/mallOrderTrader',
+  			data: {
+  				status: 4,
+  				traderId: localStorage.getItem('traderId')
+  			},
+  			success: function (data) {
+  				console.log(data,'已完成');
+  				var str = '';
+  				data.forEach((val, index) => {
+  					str += `<li>
+				    			<img src="${val.goodsImage}" alt="" />
+				    			<div class="goods-item-info">
+				    				<p>${val.goodsTitle}</p>
+				    				<p>
+				    					<span>￥${val.goodsPrice}&times;${val.goodsNumber}</span>
+				    					<span>已完成</span>
+				    				</p>
+				    			</div>
+				    		</li>`;
+  				})
+  				$(".saleDown").html(str);
+  				
+  			}
+  		})
+  	}
+  	// 发货
+  	var orderId;
+  	function deliverGoods (self) {
+  		$("#popover").show();
+  		orderId = $(self).attr("data-orderId");
+  	}
+  	$(".mask").on("click",function () {
+  		$("#popover").hide();
+  	})
+  	
+  	$(".admin-btn").on("click",function () {
+  		var company = $(".company").val();
+  		var num = $(".number").val();
+  		console.log(company, num);
+  		if(company == "" || company.trim() == "") {
+  			mui.toast("请输入快递公司")
+  		}else if(num == "" || num.trim() == "") {
+  			mui.toast("请输入快递单号")
+  		}else {
+  			$.ajax({
+  				type: 'POST',
+  				url: baseUrl + '/sendMallOrder',
+  				data: {
+  					orderCompany: company,
+  					orderExpressNumber: num,
+  					orderId: orderId,
+  					userId: localStorage.getItem("userId")
+  				},
+  				success: function (data) {
+  					console.log(data);
+  					mui.toast("发货成功");
+  					$("#popover").hide();
+  					getDeliverGoods()
+  				}
+  			})
+  		}
+  	})
+  	// 删除商品
+  	function deleteGoods(self) {
+  		mui.confirm("确定要删除此商品吗",function(e) {
+  			if(e.index == 1) {
+  				var goodsId = $(self).attr("data-goodsId");
+		  		$.ajax({
+		  			type: 'DELETE',
+		  			url: baseUrl + '/mallGoods/' + goodsId,
+		  			data: {},
+		  			success: function (data) {
+		  				console.log(data);
+		  				getSellGoods();
+		  				mui.toast("删除成功")
+		  			}
+		  		})
+  			}
+  		})
+  		
+  	}
   	</script>
 </body>
 </html>

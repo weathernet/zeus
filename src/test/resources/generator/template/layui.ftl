@@ -2,8 +2,9 @@ package ${basePackage}.utils;
 
 import java.util.List;
 /**
- * Created by ${author} on ${date}.
- */
+* @author ${author}
+* @date ${date}
+*/
 public class LayUiResult{
 
     private String code;
